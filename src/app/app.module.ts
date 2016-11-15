@@ -18,6 +18,9 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLarge } from './home/x-large';
+import { ContentComponent } from './home/content';
+import { FooterComponent } from './home/footer';
+import { HeaderComponent } from './home/header';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -41,7 +44,9 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     NoContentComponent,
-    XLarge
+    ContentComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
