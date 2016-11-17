@@ -1,1 +1,1 @@
-export * from './auth.component';
+export * from './dashboard.component';

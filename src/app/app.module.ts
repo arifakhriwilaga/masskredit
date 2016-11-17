@@ -17,22 +17,32 @@ import { AppState, InternalStateType } from './app.service';
 
 // Component Auth
 import { AuthComponent } from './auth';
-import { XLargeAuth } from './auth/x-large';
-// import { ContentComponent } from './auth/content';
-import { FooterAuthComponent } from './auth/shared/footer';
-import { HeaderAuthComponent } from './auth/shared/header';
 import { LoginComponent }      from './auth/login';
 import { RegisterComponent }   from './auth/register';
+import { FooterAuthComponent } from './auth/shared/footer';
+import { HeaderAuthComponent } from './auth/shared/header';
+import { XLargeAuth } from './auth/x-large';
 
 // Component Home
 import { NoContentComponent } from './no-content';
 import { HomeComponent } from './home';
-import { XLarge } from './home/x-large';
 import { ContentComponent } from './home/content';
-import { FooterComponent } from './home/shared/footer';
-import { HeaderComponent } from './home/shared/header';
 import { PendanaanComponent } from './home/pendanaan';
 import { PinjamanComponent } from './home/pinjaman';
+import { FooterComponent } from './home/shared/footer';
+import { HeaderComponent } from './home/shared/header';
+import { XLarge } from './home/x-large';
+
+// Base Dashboard
+import { DashboardComponent } from './dashboard';
+import { ContentDashboardComponent } from './dashboard/content';
+import { InvestasiComponent } from './dashboard/investasi';
+import { PenarikanDanaComponent } from './dashboard/penarikan_dana';
+import { PinjamanDashboardComponent } from './dashboard/pinjaman';
+import { TambahDanaComponent } from './dashboard/tambah_dana';
+import { SidebarDashboardComponent } from './dashboard/shared/sidebar';
+import { HeaderDashboardComponent } from './dashboard/shared/header';
+import { XLargeDashboard } from './dashboard/x-large';
 
 
 // Application wide providers
@@ -70,8 +80,18 @@ type StoreType = {
     HeaderAuthComponent,
     FooterAuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
 
+    //  DashboardComponent,
+    DashboardComponent,
+    XLargeDashboard,
+    HeaderDashboardComponent,
+    SidebarDashboardComponent,
+    ContentDashboardComponent,
+    InvestasiComponent,
+    PenarikanDanaComponent,
+    PinjamanDashboardComponent,
+    TambahDanaComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
