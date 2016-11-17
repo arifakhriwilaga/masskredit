@@ -39,18 +39,22 @@
             <a class="navbar-brand" href="#"><img src="../assets/img/logo.png"/></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="navbar-right">
-              <li class="dropdown">
-                <a href="#" >Login</a>
-              </li>
-              <li class="dropdown">
-                <a href="#" >Daftar</a>
-              </li>
-            </ul>
-            <ul class="nav navbar-nav">
-              <li class="active" *ngFor="let menu of menus"><a href="#">Pendanaan</a></li>
-              <li><a href="#">{{ menu.name }}</a></li>
-            </ul>
+              <ul class="navbar-right">
+                <li class="dropdown">
+                   <a href="#/auth/login" >Login</a>
+                </li>
+                <li class="dropdown">
+                   <a href="#/auth/register" >Daftar</a>
+                </li>
+             </ul>
+             <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Pendanaan</a></li>
+                <li><a href="#">Pinjaman</a></li>
+                <li><a href="#">Faq</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Hubungi Kami</a></li>
+                <li><a href="#">Karir</a></li>
+             </ul>
           </div>
           <!--/.navbar-collapse -->
         </div>

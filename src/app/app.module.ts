@@ -14,13 +14,26 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
-import { AboutComponent } from './about';
+
+// Component Auth
+import { AuthComponent } from './auth';
+import { XLargeAuth } from './auth/x-large';
+// import { ContentComponent } from './auth/content';
+import { FooterAuthComponent } from './auth/shared/footer';
+import { HeaderAuthComponent } from './auth/shared/header';
+import { LoginComponent }      from './auth/login';
+import { RegisterComponent }   from './auth/register';
+
+// Component Home
 import { NoContentComponent } from './no-content';
+import { HomeComponent } from './home';
 import { XLarge } from './home/x-large';
 import { ContentComponent } from './home/content';
-import { FooterComponent } from './home/footer';
-import { HeaderComponent } from './home/header';
+import { FooterComponent } from './home/shared/footer';
+import { HeaderComponent } from './home/shared/header';
+import { PendanaanComponent } from './home/pendanaan';
+import { PinjamanComponent } from './home/pinjaman';
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -41,12 +54,24 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    AboutComponent,
+
+    // Home Component
     HomeComponent,
     NoContentComponent,
-    ContentComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    ContentComponent,
+    PendanaanComponent,
+    PinjamanComponent,
+
+    // Auth Component
+    AuthComponent,
+    XLargeAuth,
+    HeaderAuthComponent,
+    FooterAuthComponent,
+    LoginComponent,
+    RegisterComponent
+
   ],
   imports: [ // import Angular's modules
     BrowserModule,

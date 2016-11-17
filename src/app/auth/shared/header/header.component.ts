@@ -18,16 +18,19 @@ const MENUS: Menu[] = [
 ];
 const BUTTONS: Button[] = [
 	{ id:1, name: 'Login' }, 
-	{ id:2, name: 'Daftar' } 
+	{ id:2, name: 'Daftar' }
+
 ];
 
 @Component({
 	moduleId: module.id,
-	selector: 'header',
+	selector: 'header-auth',
 	templateUrl: 'header.component.html'
 })
 
-export class HeaderComponent { 
+export class HeaderAuthComponent { 
 	menus = MENUS;
 	buttons = BUTTONS;
+
+
 }
