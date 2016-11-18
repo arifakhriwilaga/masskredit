@@ -37,6 +37,7 @@ import { XLarge } from './home/x-large';
 import { DashboardComponent } from './dashboard';
 import { ContentDashboardComponent } from './dashboard/content';
 import { InvestasiComponent } from './dashboard/investasi';
+import { CreateInvestasiComponent }   from './dashboard/investasi/create';
 import { PenarikanDanaComponent } from './dashboard/penarikan_dana';
 import { PinjamanDashboardComponent } from './dashboard/pinjaman';
 import { TambahDanaComponent } from './dashboard/tambah_dana';
@@ -89,6 +90,7 @@ type StoreType = {
     SidebarDashboardComponent,
     ContentDashboardComponent,
     InvestasiComponent,
+    CreateInvestasiComponent,
     PenarikanDanaComponent,
     PinjamanDashboardComponent,
     TambahDanaComponent

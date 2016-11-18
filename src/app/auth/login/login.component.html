@@ -9,13 +9,13 @@
             <!-- Text input-->
             <div class="form-group">
               <div class="col-md-12">
-                <input id="email_login" name="email_login" type="text" placeholder="Username" class="form-control input-md" required="">
+                <input id="email_login" name="email_login" type="text" placeholder="Username" class="form-control input-md" required="" [(ngModel)]="user.email">
               </div>
             </div>
             <!-- Password input-->
             <div class="form-group">
               <div class="col-md-12">
-                <input id="password_login" name="password_login" type="password" placeholder="Password" class="form-control input-md" required="">
+                <input id="password_login" name="password_login" type="password" placeholder="Password" class="form-control input-md" required="" [(ngModel)]="user.password">
               </div>
             </div>
             <!-- Multiple Checkboxes (inline) -->
@@ -33,7 +33,7 @@
             <!-- Button -->
             <div class="form-group">
               <div class="col-md-12">
-                <button id="singlebutton" name="singlebutton" class="btn btn-red btn-block">Log in</button>
+                <button id="singlebutton" name="singlebutton" class="btn btn-red btn-block" (click)="login(user)">Log in</button>
               </div>
             </div>
             

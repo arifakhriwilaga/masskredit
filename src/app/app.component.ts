@@ -22,9 +22,9 @@ import { AppState } from './app.service';
   `
 })
 export class AppComponent {
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
+  angularclassLogo = '';
   name = 'Mass Credit';
-  url = 'https://twitter.com/AngularClass';
+  url = '';
 
   constructor(
     public appState: AppState) {
