@@ -1,21 +1,22 @@
 <div class="container">
   <div class="form-account form-login-register" id="login">
-    <h2>Login Masuk</h2>
+    <h2>Login</h2>
     <p>Silakan isi data berikut untuk masuk ke aplikasi</p>
-    <form class="form-horizontal clearfix row">
+    <form action="javascript:;" class="form-horizontal clearfix row">
       <div class="col-md-6">
         <fieldset>
           <div class="form-box">
+
             <!-- Text input-->
             <div class="form-group">
               <div class="col-md-12">
-                <input id="email_login" name="email_login" type="text" placeholder="Username" class="form-control input-md" required="" [(ngModel)]="user.email">
+                <input type="email" name="email" class="form-control input-md" [(ngModel)]="user.email" placeholder="Email">
               </div>
             </div>
             <!-- Password input-->
             <div class="form-group">
-              <div class="col-md-12">
-                <input id="password_login" name="password_login" type="password" placeholder="Password" class="form-control input-md" required="" [(ngModel)]="user.password">
+              <div class="col-md-12" >
+                <input type="password" name="password" class="form-control input-md" [(ngModel)]="user.password" placeholder="Password">
               </div>
             </div>
             <!-- Multiple Checkboxes (inline) -->
@@ -33,7 +34,7 @@
             <!-- Button -->
             <div class="form-group">
               <div class="col-md-12">
-                <button id="singlebutton" name="singlebutton" class="btn btn-red btn-block" (click)="login(user)">Log in</button>
+                <button type="button" (click)="login(user)" id="singlebutton" name="singlebutton" class="btn btn-red btn-block">Log in</button>
               </div>
             </div>
             

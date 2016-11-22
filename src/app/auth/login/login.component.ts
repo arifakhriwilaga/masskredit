@@ -1,5 +1,11 @@
-import { Component, Inject } 					from '@angular/core';
-import { LoginService }							from './login.service';
+import { Component, Inject } 			from '@angular/core';
+import { LoginService }					from './login.service';
+import { LocalStorageService } 			from 'angular-2-local-storage';
+import { FormGroup, FormBuilder, Validators }  from '@angular/forms';
+import { Headers, Http }				from '@angular/http';
+import { Router } 						from '@angular/router';
+
+
 
 @Component({
 	moduleId: module.id,
@@ -10,24 +16,67 @@ import { LoginService }							from './login.service';
 
 export class LoginComponent {
 
-	constructor(private loginService :  LoginService){
+	loginForm : FormGroup;
 
+	// constructor(private loginService :  LoginService, fb : FormBuilder, http : Http){
+	constructor(private http : Http, private loginService : LoginService, private router:Router){
+	
+		// this.loginForm = fb.group({
+		// 	'email' 	: [Validators.minLength(5),Validators.maxLength(10)],
+		// 	'password ' : [Validators.minLength(5),Validators.maxLength(10)],
+
+		// })
+
+		// console.log(this.loginForm);
+		// this.loginForm.valueChanges.subscribe( (form:any) => {
+		// 	console.log('form changed to :', form );
+		// } );
 	}
 
 	private user = {
 		email		: "",
 		password	: ""
-	}
+	};
 
 	public login(user) {
-		this.loginService.loggedin(user.email,user.password)
-		.map(response => response.json())
-		.subscribe((response : any) => {
 
-		}, (error) => {
+		this.http.post('https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/login',user)
+		.subscribe((data : any) => {
+			var token = data.json();
+			localStorage.setItem('access_token', JSON.stringify(token.data.access_token));
+			console.log(token.meta.code,token.meta.message);
+			if(token.meta.code == "200") {
+				return this.router.navigateByUrl('dashboard');
+			}
+			else{
+				return this.router.navigateByUrl('/')
+			}
+			
+			// if(response.data = "200") {
+			// 	// redirect()	
+			// }
+			// elseif(response.data = "400"){
 
-		}, () => {
-			console.log(user);
+			// }
+			// else{
+
+			// }
+
 		});
+
+
+		// this.loginService.loggedin(user.email,user.password)
+		// .map(response => response.json().data.acces_token)
+		// .subscribe((response : any) => {
+		// 	debugger();
+		// }, (error) => {
+
+		// }, () => {
+		// 	console.log(user);
+		// 	// console.log(this.data);
+		// 	// @LocalStorage(user);
+		// });
 	}
+
+
  }

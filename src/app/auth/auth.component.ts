@@ -1,7 +1,5 @@
 import { Component }       from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
-
-
 import { XLargeAuth } from './x-large';
 
 @Component({

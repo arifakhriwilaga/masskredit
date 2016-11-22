@@ -3,7 +3,7 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { AppState } from './app.service';
+import { AppState }   from './app.service';
 
 /*
  * App Component
@@ -19,7 +19,7 @@ import { AppState } from './app.service';
 
       <router-outlet></router-outlet>
 
-  `
+  `,
 })
 export class AppComponent {
   angularclassLogo = '';

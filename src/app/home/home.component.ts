@@ -1,7 +1,6 @@
 import { Component }       from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
 
-
 import { XLarge } from './x-large';
 
 @Component({
@@ -14,6 +13,6 @@ import { XLarge } from './x-large';
   //   Title
   // ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
 })
 export class HomeComponent { }

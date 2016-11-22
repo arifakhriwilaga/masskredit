@@ -1,8 +1,8 @@
 import { Component }       from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
-
-
 import { XLargeDashboard } from './x-large';
+
+
 
 @Component({
   // The selector is what angular internally uses
@@ -15,5 +15,6 @@ import { XLargeDashboard } from './x-large';
   // ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './dashboard.component.html'
+
 })
 export class DashboardComponent { }
