@@ -3,15 +3,15 @@ import { LoginService }					from './login.service';
 import { LocalStorageService } 			from 'angular-2-local-storage';
 import { FormGroup, FormBuilder, Validators }  from '@angular/forms';
 import { Headers, Http }				from '@angular/http';
-import { Router } 						from '@angular/router';
+import { Router, CanActivate, CanDeactivate  } 						from '@angular/router';
 
 
 
 @Component({
-	moduleId: module.id,
-	selector: 'login',
+	moduleId   : module.id,
+	selector   : 'login',
 	templateUrl: 'login.component.html',
-	providers : [LoginService] 
+	providers  : [LoginService] 
 })
 
 export class LoginComponent {
@@ -37,12 +37,15 @@ export class LoginComponent {
 		email		: "",
 		password	: ""
 	};
+	// private loggedin = false;
+	// 			// this.loggedin = true;
+			// var activate:boolean = false; 
 
 	public login(user) {
 		var authentication:boolean = true;
 		this.http.post('https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/login',user)
 		.subscribe((data : any) => {
-			var token = data.json();
+			var token 	 = data.json();
 			localStorage.setItem('access_token', JSON.stringify(token.data.access_token));
 			// debugger;
 			console.log(token.meta.code,token.meta.message, user);

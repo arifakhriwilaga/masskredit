@@ -22,7 +22,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { ComplexFormComponent } from './app.complexform';
 // import { FormValidationComponent } from './app.formvalidation';
 
-
+// Authentication
+import { AuthGuard  }            from './authguard/auth-guard.service';
+import { AuthGuardDashboard }   from './authguard/auth-guard-dashboard.service';
+import { AuthService }          from './authguard/auth.service';
+import { LoginService }         from './auth/login/login.service';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -141,6 +145,11 @@ type StoreType = {
     ENV_PROVIDERS,
     APP_PROVIDERS,
     LocalStorageService,
+    AuthGuard,
+    AuthService,
+    LoginService,
+    AuthGuardDashboard,
+    LoginComponent,
     // AuthResolve,
       {
           provide: LOCAL_STORAGE_SERVICE_CONFIG, useValue: localStorageServiceConfig
