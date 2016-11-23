@@ -9,6 +9,7 @@ export class LoginService {
 	private loggedinUrl = 'https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/login'; //URL API LOGIN
 	private logoutUrl	= 'https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/logout';
 	constructor (private http:Http, private router : Router) { }
+	isloggedin:boolean = false;
 
 	loggedin(email,password) : Observable<any> {
 		let user = { email: email, password: password };
@@ -16,6 +17,7 @@ export class LoginService {
 	}
 
 	public logout() {
+		var activateHome = true ;
 		var token = localStorage.getItem("access_token");
 		return this.http
 		.post('https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/logout',token)
@@ -24,6 +26,7 @@ export class LoginService {
 			console.log(token.meta.code,token.meta.message);
 		if(token.meta.code == "200") {
 				localStorage.removeItem("access_token");
+				// this.isloggedin = true;
 				return this.router.navigateByUrl('/');
 			}
 			else{

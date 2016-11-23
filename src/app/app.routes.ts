@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NoContentComponent }   from './no-content';
 import { AuthGuard }          from './authguard/auth-guard.service';
-
+import { AuthGuardDashboard }          from './authguard/auth-guard-dashboard.service';
 // Base Home
 import { HomeComponent }              from './home';
 import { ContentComponent }           from './home/content';
@@ -31,7 +31,9 @@ import { DataResolver }               from './app.resolver';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home',  component: HomeComponent,
+  { path: 'home',  
+    component: HomeComponent,
+    canActivate : [ AuthGuardDashboard ],
     children: [
       { path: '', redirectTo: 'content-home', pathMatch :'full' },
       { path: 'content-home', component: ContentComponent },
@@ -41,6 +43,7 @@ export const ROUTES: Routes = [
     ] 
   },
   { path: 'auth', component: AuthComponent,
+    canActivate : [ AuthGuardDashboard ],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login',        component: LoginComponent },
