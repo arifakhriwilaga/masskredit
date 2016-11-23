@@ -34,7 +34,3 @@ export class LoginService {
 
 }
 
-export class User {
-	constructor(public token: any){}
-}
-

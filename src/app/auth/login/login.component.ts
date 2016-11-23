@@ -39,12 +39,13 @@ export class LoginComponent {
 	};
 
 	public login(user) {
-
+		var authentication:boolean = true;
 		this.http.post('https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/login',user)
 		.subscribe((data : any) => {
 			var token = data.json();
 			localStorage.setItem('access_token', JSON.stringify(token.data.access_token));
-			console.log(token.meta.code,token.meta.message);
+			// debugger;
+			console.log(token.meta.code,token.meta.message, user);
 			if(token.meta.code == "200") {
 				return this.router.navigateByUrl('dashboard');
 			}
