@@ -14,18 +14,18 @@
       <div class="col-md-6">
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nama Lengkap" class="form-control input-md" required="">
+               <input  type="text" placeholder="Nama Lengkap" class="form-control input-md" required name="nama_lengkap" [(ngModel)]="registerTwo.nama_lengkap">
             </div>
          </div>
          <!-- Password input-->
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Hubungan " class="form-control input-md" required="">
+               <input  type="text" placeholder="Hubungan " class="form-control input-md" required name="hubungan" [(ngModel)]="registerTwo.hubungan">
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <textarea placeholder="Alamat " class="form-control input-md" required=""></textarea>
+               <textarea placeholder="Alamat " class="form-control input-md" required name="alamat" [(ngModel)]="registerTwo.alamat"></textarea>
             </div>
          </div>
           
@@ -35,19 +35,19 @@
       <fieldset>
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" required="">
+               <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" required name="nomor_telepon" [(ngModel)]="registerTwo.nomor_telepon">
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <select class="form-control input-md" required="">
+               <select class="form-control input-md" required name="jumlah_anak" [(ngModel)]="registerTwo.jumlah_anak">
                   <option>Jumlah Anak</option>
                </select>
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <select class="form-control input-md" required="">
+               <select class="form-control input-md" required name="jumlah_tanggungan" [(ngModel)]="registerTwo.jumlah_tanggungan">
                   <option>Jumlah Tanggungan</option>
                </select>
             </div>
@@ -60,7 +60,7 @@
             <div class="col-md-6 col-center">
                <button  class="btn btn-default">Kembali</button>
                <a href="#/auth/register/step-3">Lanjutkan</a>
-               <button  class="btn btn-red ">Lanjutkan</button>
+               <button  class="btn btn-red " (click)="stepTwo(registerTwo)">Lanjutkan</button>
             </div>
          </div>
       </div>

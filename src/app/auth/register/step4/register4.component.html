@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                 <span class="required">*</span>
                <p>Upload Foto KTP bagian Depan</p>
-         <input  type="file" placeholder="Password" class="form-control input-md" required="">
+         <input  type="file" placeholder="Password" class="form-control input-md" required name="ktp_depan" [(ngModel)]="registerFour.ktp_depan">
             </div>    
          </div>
          </div>
@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                 <span class="required">*</span>
                <p>Upload Foto KTP bagian Belakang</p>
-         <input  type="file" placeholder="Password" class="form-control input-md" required="">
+         <input  type="file" placeholder="Password" class="form-control input-md" required name="ktp_belakang" [(ngModel)]="registerFour.ktp_belakang">
             </div>    
          </div>
          </div>
@@ -34,7 +34,7 @@
                 <div class="col-md-12">
                 <span class="required">*</span>
                <p>Upload Foto Anda</p>
-         <input  type="file" placeholder="Password" class="form-control input-md" required="">
+         <input  type="file" placeholder="Password" class="form-control input-md" required name="foto" [(ngModel)]="registerFour.foto">
             </div>    
          </div>
       </div>
@@ -43,7 +43,7 @@
          <div class="form-group">
             <div class="col-md-6 col-center">
                <button  class="btn btn-default">Kembali</button>
-               <button  class="btn btn-red ">Simpan</button>
+               <button  class="btn btn-red" (click)="stepFour(registerFour)">Simpan</button>
             </div>
          </div>
       </div>

@@ -3,7 +3,7 @@ import { LoginService }					from './login.service';
 import { LocalStorageService } 			from 'angular-2-local-storage';
 import { FormGroup, FormBuilder, Validators }  from '@angular/forms';
 import { Headers, Http }				from '@angular/http';
-import { Router, CanActivate, CanDeactivate  } 						from '@angular/router';
+import { Router } 						from '@angular/router';
 
 
 

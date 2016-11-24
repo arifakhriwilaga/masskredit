@@ -14,7 +14,6 @@ import { XLargeDashboard } from './x-large';
   //   Title
   // ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  templateUrl: './dashboard.component.html'
-
+  templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent { }
