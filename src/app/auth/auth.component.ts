@@ -1,8 +1,4 @@
 import { Component }       from '@angular/core';
-import { ActivatedRoute }  from '@angular/router';
-import { XLargeAuth }      from './x-large';
-import '../../assets/css/main.css';
-
 @Component({
   // The selector is what angular internally uses
   // for `document.querySelectorAll(selector)` in our index.html

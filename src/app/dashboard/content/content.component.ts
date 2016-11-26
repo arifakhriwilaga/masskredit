@@ -6,4 +6,4 @@ import { Component } 	from '@angular/core';
 	templateUrl: 'content.component.html'
 })
 
-export class ContentDashboardComponent { }
+export class ContentComponent { }

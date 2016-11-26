@@ -1,4 +1,4 @@
-import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, ActivatedRoute }  from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
@@ -10,7 +10,7 @@ import { HttpModule }   from '@angular/http';
 
 // Module Auth
 // import { LoginModule }     from './auth/login/app.login.module';
-// import { RegisterModule }  from './auth/register/app.register.module';
+// import { AuthModule }  from './auth/app.auth.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { FormsModule }   from '@angular/forms';
@@ -40,38 +40,38 @@ import { APP_RESOLVER_PROVIDERS }      from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
 // Component Auth
-import { AuthComponent }          from './auth';
-import { RegisterComponent }      from './auth/register';
-import { Step1RegisterComponent } from './auth/register/step1';
-import { Step2RegisterComponent } from './auth/register/step2';
-import { Step3RegisterComponent } from './auth/register/step3';
-import { Step4RegisterComponent } from './auth/register/step4';
-import { LoginComponent }         from './auth/login/login.component';
-import { FooterAuthComponent }    from './auth/shared/footer';
-import { HeaderAuthComponent }    from './auth/shared/header';
-import { XLargeAuth }             from './auth/x-large';
+// import { AuthComponent }          from './auth/auth.component';
+// import { RegisterComponent }      from './auth/register';
+// import { Step1RegisterComponent } from './auth/register/step1';
+// import { Step2RegisterComponent } from './auth/register/step2';
+// import { Step3RegisterComponent } from './auth/register/step3';
+// import { Step4RegisterComponent } from './auth/register/step4';
+// import { LoginComponent }         from './auth/login/login.component';
+// import { FooterAuthComponent }    from './auth/shared/footer';
+// import { HeaderAuthComponent }    from './auth/shared/header';
+// import { XLargeAuth }             from './auth/x-large';
 
 // Component Home
-import { NoContentComponent } from './no-content';
-import { HomeComponent }      from './home';
-import { ContentComponent }   from './home/content';
-import { PendanaanComponent } from './home/pendanaan';
-import { PinjamanComponent }  from './home/pinjaman';
-import { FooterComponent }    from './home/shared/footer';
-import { HeaderComponent }    from './home/shared/header';
-import { XLarge }             from './home/x-large';
+// import { NoContentComponent } from './no-content';
+// import { HomeComponent }      from './home/home.component';
+// import { ContentComponent }   from './home/content';
+// import { PendanaanComponent } from './home/pendanaan';
+// import { PinjamanComponent }  from './home/pinjaman';
+// import { FooterComponent }    from './home/shared/footer';
+// import { HeaderComponent }    from './home/shared/header';
+// import { XLarge }             from './home/x-large';
 
 // Base Dashboard
-import { DashboardComponent }        from './dashboard';
-import { ContentDashboardComponent } from './dashboard/content';
-import { InvestasiComponent }        from './dashboard/investasi';
-import { CreateInvestasiComponent }  from './dashboard/investasi/create';
-import { PenarikanDanaComponent }    from './dashboard/penarikan_dana';
-import { PinjamanDashboardComponent }from './dashboard/pinjaman';
-import { TambahDanaComponent }       from './dashboard/tambah_dana';
-import { SidebarDashboardComponent } from './dashboard/shared/sidebar';
-import { HeaderDashboardComponent }  from './dashboard/shared/header';
-import { XLargeDashboard }           from './dashboard/x-large';
+// import { DashboardComponent }        from './dashboard';
+// import { ContentDashboardComponent } from './dashboard/content';
+// import { InvestasiComponent }        from './dashboard/investasi';
+// import { CreateInvestasiComponent }  from './dashboard/investasi/create';
+// import { PenarikanDanaComponent }    from './dashboard/penarikan_dana';
+// import { PinjamanDashboardComponent }from './dashboard/pinjaman';
+// import { TambahDanaComponent }       from './dashboard/tambah_dana';
+// import { SidebarDashboardComponent } from './dashboard/shared/sidebar';
+// import { HeaderDashboardComponent }  from './dashboard/shared/header';
+// import { XLargeDashboard }           from './dashboard/x-large';
 
 // Config LocalStorage
 let localStorageServiceConfig = {
@@ -99,48 +99,50 @@ type StoreType = {
   declarations: [
     AppComponent,
 
-    // Home Component
-    HomeComponent,
-    NoContentComponent,
-    FooterComponent,
-    HeaderComponent,
-    ContentComponent,
-    PendanaanComponent,
-    PinjamanComponent,
+    // HomeComponent
+    // HomeComponent,
+    // NoContentComponent,
+    // FooterComponent,
+    // HeaderComponent,
+    // ContentComponent,
+    // PendanaanComponent,
+    // PinjamanComponent,
+    // AuthComponent,
 
     // Auth Component
-    AuthComponent,
-    XLargeAuth,
-    HeaderAuthComponent,
-    FooterAuthComponent,
-    LoginComponent,
-    RegisterComponent,
-    Step1RegisterComponent,
-    Step2RegisterComponent,
-    Step3RegisterComponent,
-    Step4RegisterComponent,
+    // AuthComponent,
+    // XLargeAuth,
+    // HeaderAuthComponent,
+    // FooterAuthComponent,
+    // LoginComponent,
+    // RegisterComponent,
+    // Step1RegisterComponent,
+    // Step2RegisterComponent,
+    // Step3RegisterComponent,
+    // Step4RegisterComponent,
 
     //  DashboardComponent,
-    DashboardComponent,
-    XLargeDashboard,
-    HeaderDashboardComponent,
-    SidebarDashboardComponent,
-    ContentDashboardComponent,
-    InvestasiComponent,
-    CreateInvestasiComponent,
-    PenarikanDanaComponent,
-    PinjamanDashboardComponent,
-    TambahDanaComponent
+    // DashboardComponent,
+    // XLargeDashboard,
+    // HeaderDashboardComponent,
+    // SidebarDashboardComponent,
+    // ContentDashboardComponent,
+    // InvestasiComponent,
+    // CreateInvestasiComponent,
+    // PenarikanDanaComponent,
+    // PinjamanDashboardComponent,
+    // TambahDanaComponent
   ],
   imports: [ // import Angular's modules
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
     HttpModule,
-    // LoginModule,
-    // RegisterModule,
+    // AuthModule,
+ 
     RouterModule.forRoot(ROUTES, { useHash: true })
   ],
+  exports: [RouterModule],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
@@ -149,13 +151,12 @@ type StoreType = {
     AuthService,
     LoginService,
     AuthGuardDashboard,
-    LoginComponent,
+    // LoginComponent,
     // AuthResolve,
       {
           provide: LOCAL_STORAGE_SERVICE_CONFIG, useValue: localStorageServiceConfig
       }
-  ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  ]
 })
 
 export class AppModule {

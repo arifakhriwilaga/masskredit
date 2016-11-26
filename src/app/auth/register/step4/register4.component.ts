@@ -1,8 +1,5 @@
 import { Component } 				from '@angular/core';
 import { Router }					from '@angular/router';
-import { Step1RegisterComponent }	from './../step1';
-import { Step2RegisterComponent }	from './../step2';
-import { Step3RegisterComponent }	from './../step3';
 
 @Component({
 	moduleId: module.id,

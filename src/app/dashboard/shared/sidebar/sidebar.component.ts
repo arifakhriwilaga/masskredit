@@ -6,4 +6,4 @@ import { Component } 	from '@angular/core';
 	templateUrl: 'sidebar.component.html'
 })
 
-export class SidebarDashboardComponent { }
+export class SidebarComponent { }

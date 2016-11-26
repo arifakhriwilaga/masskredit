@@ -8,7 +8,7 @@ import { LoginService }   from './../../../auth/login/login.service';
 	providers: [LoginService]
 })
 
-export class HeaderDashboardComponent { 
+export class HeaderComponent { 
 
 	constructor (private loginService:LoginService){
 

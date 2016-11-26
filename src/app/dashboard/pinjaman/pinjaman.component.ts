@@ -6,4 +6,4 @@ import { Component } 	from '@angular/core';
 	templateUrl: 'pinjaman.component.html'
 })
 
-export class PinjamanDashboardComponent { }
+export class PinjamanComponent { }

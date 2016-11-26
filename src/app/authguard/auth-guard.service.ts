@@ -1,11 +1,11 @@
 import { Injectable }		from '@angular/core';
 import { CanActivate,Router,ActivatedRouteSnapshot,RouterStateSnapshot } from '@angular/router'; 
-import { LoginComponent }      from './../auth/login/login.component';
+// import { LoginComponent }      from './../auth/login/login.component';
 
 
 @Injectable()
 export class AuthGuard implements CanActivate  {
-	constructor (private router : Router, private loginComponent : LoginComponent) {  }
+	// constructor (private router : Router, private loginComponent : LoginComponent) {  }
 		// private user = {
 		// 	handphone : '',
 		// 	password  : ''
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate  {
 				return true;
 			}
 			else{ 
-				this.router.navigateByUrl('/');
+				// this.router.navigateByUrl('/');
 				return false;
 			}
 	}

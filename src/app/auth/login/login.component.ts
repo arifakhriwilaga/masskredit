@@ -16,22 +16,10 @@ import { Router } 						from '@angular/router';
 
 export class LoginComponent {
 
-	loginForm : FormGroup;
+	// loginForm : FormGroup;
 
 	// constructor(private loginService :  LoginService, fb : FormBuilder, http : Http){
-	constructor(private http : Http, private loginService : LoginService, private router:Router){
-	
-		// this.loginForm = fb.group({
-		// 	'email' 	: [Validators.minLength(5),Validators.maxLength(10)],
-		// 	'password ' : [Validators.minLength(5),Validators.maxLength(10)],
-
-		// })
-
-		// console.log(this.loginForm);
-		// this.loginForm.valueChanges.subscribe( (form:any) => {
-		// 	console.log('form changed to :', form );
-		// } );
-	}
+	constructor(private http : Http, private loginService : LoginService, private router:Router){ }
 
 	private user = {
 		email		: "",
@@ -55,6 +43,12 @@ export class LoginComponent {
 			else{
 				return this.router.navigateByUrl('/')
 			}
+		});
+
+	}
+
+
+ }
 			
 			// if(response.data = "200") {
 			// 	// redirect()	
@@ -65,8 +59,6 @@ export class LoginComponent {
 			// else{
 
 			// }
-
-		});
 
 
 		// this.loginService.loggedin(user.email,user.password)
@@ -80,7 +72,3 @@ export class LoginComponent {
 		// 	// console.log(this.data);
 		// 	// @LocalStorage(user);
 		// });
-	}
-
-
- }
