@@ -1,9 +1,9 @@
-import { Component, Inject } 			from '@angular/core';
-import { LoginService }					from './login.service';
-import { LocalStorageService } 			from 'angular-2-local-storage';
+import { Component, Inject } 				   from '@angular/core';
+import { LoginService }						   from './login.service';
+import { LocalStorageService } 				   from 'angular-2-local-storage';
 import { FormGroup, FormBuilder, Validators }  from '@angular/forms';
-import { Headers, Http }				from '@angular/http';
-import { Router } 						from '@angular/router';
+import { Headers, Http }					   from '@angular/http';
+import { Router }        					   from '@angular/router';
 
 
 

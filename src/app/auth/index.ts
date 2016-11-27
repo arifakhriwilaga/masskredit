@@ -1,19 +1,23 @@
 // Module
-import { CommonModule } 		   from '@angular/common';
-import { FormsModule }         from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA }            from '@angular/core';
+import { CommonModule }        from '@angular/common';
+import { FormsModule }         from '@angular/forms';
 import { RouterModule }        from '@angular/router';
+
+// Guard Dashboard
+import { AuthGuardDashboard }   from './../authguard/auth-guard-dashboard.service';
 
 // Component
 import { AuthComponent }       from './auth.component';
-import { FooterComponent }     from './shared/footer/footer.component';
-import { HeaderComponent }     from './shared/header/header.component';
+import { FooterComponent }     from './shared/footer';
+import { HeaderComponent }     from './shared/header';
 import { LoginComponent }      from './login/login.component';
 import { RegisterComponent }   from './register/register.component';
 
 
 export const routes = [
   { path: '', component: AuthComponent,
+  canActivate : [ AuthGuardDashboard ],
     children: [
       { path: '',         redirectTo: 'login', pathMatch: 'full' },
       { path: 'login',    component: LoginComponent },

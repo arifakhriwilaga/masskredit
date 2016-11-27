@@ -1,13 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NoContentComponent }   from './no-content';
-import { AuthGuard }          from './authguard/auth-guard.service';
-import { AuthGuardDashboard }          from './authguard/auth-guard-dashboard.service';
-
-import { HomeComponent }              from './home/home.component';
-import { AuthComponent }              from './auth/auth.component';
-import { DashboardComponent }         from './dashboard';
-
-import { DataResolver }               from './app.resolver';
+import { DataResolver }         from './app.resolver';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

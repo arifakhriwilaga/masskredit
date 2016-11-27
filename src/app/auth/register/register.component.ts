@@ -1,4 +1,4 @@
-import { Component, Directive } 				from '@angular/core';
+import { Component, Directive } 	from '@angular/core';
 import { Step1RegisterComponent }   from './step1';
 import { Step2RegisterComponent }   from './step2';
 import { Step3RegisterComponent }   from './step3';

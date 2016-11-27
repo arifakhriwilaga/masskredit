@@ -5,7 +5,7 @@ import { CanActivate,Router,ActivatedRouteSnapshot,RouterStateSnapshot } from '@
 
 @Injectable()
 export class AuthGuard implements CanActivate  {
-	// constructor (private router : Router, private loginComponent : LoginComponent) {  }
+	constructor (private router : Router) {  }
 		// private user = {
 		// 	handphone : '',
 		// 	password  : ''
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate  {
 				return true;
 			}
 			else{ 
-				// this.router.navigateByUrl('/');
+				this.router.navigateByUrl('');
 				return false;
 			}
 	}

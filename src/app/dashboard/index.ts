@@ -1,10 +1,12 @@
-export * from './dashboard.component';
 
 // Module
 import { CommonModule } 	   		from '@angular/common';
 import { FormsModule }         		from '@angular/forms';
 import { NgModule }            		from '@angular/core';
 import { RouterModule }        		from '@angular/router';
+
+// Auth Guard Dashboard
+import { AuthGuard }   from './../authguard/auth-guard.service';
 
 // Component
 import { DashboardComponent }   	from './dashboard.component';
@@ -19,6 +21,7 @@ import { TambahDanaComponent }   from './tambah_dana';
 
 export const routes = [
   { path: '', component: DashboardComponent,
+  	canActivate : [ AuthGuard ],
     children: [
       { path: '',         	    redirectTo: 'content', pathMatch: 'full' },
       { path: 'content',    	component: ContentComponent },
