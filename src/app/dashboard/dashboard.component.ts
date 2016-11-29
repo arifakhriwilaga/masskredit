@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation }       from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
-import { XLargeDashboard } from './x-large';
 
 
 
@@ -15,7 +14,7 @@ import { XLargeDashboard } from './x-large';
   // ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './dashboard.component.html',
-  styleUrls: ['dashboard.component.css'],
-  encapsulation: ViewEncapsulation.Emulated,
+  // styleUrls: ['dashboard.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent { }

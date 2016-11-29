@@ -1,8 +1,7 @@
 import { Component, Directive } 	from '@angular/core';
-import { Step1RegisterComponent }   from './step1';
-import { Step2RegisterComponent }   from './step2';
-import { Step3RegisterComponent }   from './step3';
-import { Step4RegisterComponent }   from './step4';
+import { ActivatedRoute }   		from '@angular/router';
+import { RegisterService }			from './register.service';
+
 
 @Component({
 	moduleId: module.id,

@@ -26,7 +26,7 @@ export const routes = [
 	      { path: 'pinjaman',   component: PinjamanComponent }, 
 
 	    ]
-  	}
+  }
 ];
 
 

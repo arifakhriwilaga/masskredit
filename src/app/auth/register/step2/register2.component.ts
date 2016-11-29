@@ -1,4 +1,5 @@
 import { Component } 	from '@angular/core';
+import { RegisterService }	from './../register.service';
 
 @Component({
 	moduleId: module.id,
@@ -7,10 +8,9 @@ import { Component } 	from '@angular/core';
 })
 
 export class Step2RegisterComponent { 
-	private isCurrent;
-	private step;
 
-	constructor () { }
+
+	constructor (private registerService : RegisterService) { }
 	private registerTwo = {
 		nama_lengkap 	  : '',
 		hubungan 	 	  : '',
@@ -20,14 +20,19 @@ export class Step2RegisterComponent {
 		jumlah_tanggungan : '',
 	}
 
-	stepTwo(registerTwo) {
-		if(this.registerTwo) {
-			console.log('ini dari register2 => lanjutkan yaa', this.registerTwo);
+	nextStepThree(registerTwo) {
+		this.registerService.Step3();
+		// if(this.registerTwo) {
+		// 	console.log('ini dari register2 => lanjutkan yaa', this.registerTwo);
 			// this.router.navigateByUrl('register','step-3');
-		}
-		else{
-			console.log('data gagal disimpan');
-		}
+		// }
+		// else{
+		// 	console.log('data gagal disimpan');
+		// }
+	}
+	prevStepOne(registerTwo){
+		console.log(registerTwo);
+		this.registerService.Step1();
 	}
 
 	// ngOinit(){

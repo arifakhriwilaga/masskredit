@@ -6,13 +6,12 @@ import { Observable }     	from 'rxjs/Observable';
 const localtoken 	= JSON.parse(localStorage.getItem('access_token'));
 const token_tambah 	= '34g35g3';
 
-// URL API
-const createURL = 'https://private-f1c97-masscredit.apiary-mock.com/mobile/user/investloan/new'; 
+// URL API 
 const indexURL  = 'https://private-f1c97-masscredit.apiary-mock.com/mobile/user/investment/getlist';
 
 @Injectable ()
-export class InvestasiService {
-	private headers  		= new Headers ({'Content-Type' : 'application/json'}); //URL to web API
+export class IndexService {
+	private headers  		= new Headers ({'Content-Type' : 'application/json'});
 	private token = localtoken + token_tambah ;
 
 	constructor (private http:Http) { }
@@ -32,16 +31,5 @@ export class InvestasiService {
 			console.log("data gagal coy",localtoken);
 		}
 	}
-	
-	Create(data) {
-		// code...
-	}
-
-	Update(data){
-		// code...
-	}
-
 
 }
-		// console.log(token) 
-		// debugger;

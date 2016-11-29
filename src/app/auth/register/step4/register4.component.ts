@@ -1,17 +1,23 @@
 import { Component } 				from '@angular/core';
-import { Router }					from '@angular/router';
+import { RegisterService }	from './../register.service';
+import { Step1RegisterComponent }	from './../step1/register1.component';
+import { Step2RegisterComponent }	from './../step2';
+import { Step3RegisterComponent }	from './../step3';
 
 @Component({
 	moduleId: module.id,
-	selector: 'register',
+	selector: 'step4',
 	templateUrl: 'register4.component.html'
 })
 
 export class Step4RegisterComponent {
 	constructor(
-		private router : Router, 
-		 ) { 
-	}
+		private registerService: RegisterService,
+		private step1 : Step1RegisterComponent,
+		private step2 : Step2RegisterComponent,
+		private step3 : Step3RegisterComponent,
+
+	) {	}
 	// private step1  : Step1RegisterComponent,
 	// 	private step2  : Step2RegisterComponent,
 	// 	private step3  : Step3RegisterComponent,
@@ -23,15 +29,25 @@ export class Step4RegisterComponent {
 	}
 
 
+	private user = this.step1.sendDataStepOne;
 
-	stepFour(registerFour) {
+
+
+	stepFinish(registerFour) {
+		console.log(this.user);
+
 		if(this.registerFour) {
-			// console.log(this.register)
-			console.log('Beres!');
-			// this.router.navigateByUrl(');
+			console.log(this.registerFour, "Data Beres")
+			
 		}
 		else{
-			console.log('data gagal disimpan');
+			console.log(this.registerFour)
+			this.registerService.Step3();
+	
 		}
+	}
+	prevStepThree(registerFour){
+		console.log(registerFour);
+		this.registerService.Step3();
 	}
 }

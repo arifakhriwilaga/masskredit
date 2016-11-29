@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators }  	from '@angular/forms';
-// import { Step2RegisterComponent }				from './../step2';
-// import * as jQuery from 'jquery';
-// import * as jQuery 	from './../../../../../typings/jquery/jquery.d.ts';
-// import from './../typings/jquery/jquery.d.ts';
-// declare var jQuery:JQueryStatic;
+import { RegisterService }			from './../register.service';
 
-// declare var jQuery:any;
+
+
+declare var jQuery:any;
 @Component({
 	moduleId: module.id,
 	selector: "step-1",
@@ -21,60 +19,57 @@ import { FormGroup, FormBuilder, Validators }  	from '@angular/forms';
 })
 
 export class Step1RegisterComponent  { 
-	constructor () {}
+	constructor(private registerService : RegisterService) { }
+	
 	private registerOne = {
-		nama_lengkap 	 : '',
-		alamat_email 	 : '',
-		password	 	 : '',
-		confirm_password : '',
-		agama 		  	 : '',
-		tempat_lahir  	 : '',
-		tanggal_lahir 	 : '',
-		alamat 			 : '',
-		provinsi 		 : '',
-		kota 			 : '',
-		kode_pos 		 : '',
-		status_rumah 	 : '',
-		luas_tanah 		 : '',
-		luas_bangunan 	 : '',
-		identitas 		 : '',
-		nomor_identitas  : '',
-		status			 : '',
-		npwp 			 : '',
-		bank 			 : '',
-		nomor_rekening 	 : '',
-		nomor_telepon  	 : ''
+		nama_lengkap 	 : 'Jajang Permana',
+		alamat_email 	 : 'jajang_jangkung@gmail.com',
+		password	 	 : 'Handsome',
+		confirm_password : 'Handsome',
+		jenis_kelamin	 : 'Laki-laki',
+		agama 		  	 : 'Islam',
+		tempat_lahir  	 : 'Tasikmalaya',
+		tanggal_lahir 	 : '02/06/1997',
+		alamat 			 : 'St. Lorem ipsum',
+		provinsi 		 : 'Jawa Barat',
+		kota 			 : 'Bandung',
+		kode_pos 		 : '40552',
+		status_rumah 	 : 'Ikut Orang Tua',
+		luas_tanah 		 : '500',
+		luas_bangunan 	 : '500',
+		identitas 		 : 'KTP',
+		nomor_identitas  : '3217060206970001',
+		status			 : 'Belum Kawin',
+		npwp 			 : '123456789',
+		bank 			 : 'BCA',
+		nomor_rekening 	 : '123456789',
+		nomor_telepon  	 : '123456789'
 	}
-	stepOne(registerOne) {
-		if(this.registerOne) {
-			// $(this.el.nativeElement).click(function(){
-			// 	console.log("ini dari id")
-			// });
-			// $( "#hidr" ).click(function() {
-			//   $( "div" ).hide( 1000 );
-			// });
-			
+	nextStepTwo(registerOne) {
+		if(this.registerOne) {		
 			console.log('ini dari register1 => lanjutkan yaa', this.registerOne);
-			// this.router.navigateByUrl('auth/register/step-2');
+			this.registerService.Step2();
+			// jQuery('#step-1').hide();
+			// jQuery('#step-2').show();
+			
 		}
 		else{
 			console.log('data gagal disimpan');
 		}
 	}
 
+	ngAfterViewInit() {
+		// jQuery('#step-1').show("step-1");
+		jQuery('#step-2').hide();
+		jQuery('#step-3').hide();
+		jQuery('#step-4').hide();
+	}
 
-	// @Input() 	step   	   = 1;
-	// @Output() 	finish 	   = new EventEmitter();
-	// @Output()	stepChange = new EventEmitter();
-	// private steps = 0;
-	// private isOnFinalStep = () => this.step === this.steps;
-	// private isOnFirstStep = () => this.step === 1;
 
-	// public addStep(){
-	// 	const newSteps  = this.steps + 1;
-	// 	this.steps 		= newSteps;
-	// 	return newSteps
+	sendDataStepOne(){
+		return this.registerOne;
+	}
 
-	// }
+
 }
 	

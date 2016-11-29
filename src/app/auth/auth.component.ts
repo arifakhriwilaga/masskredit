@@ -4,7 +4,6 @@ import { Component }       from '@angular/core';
   // for `document.querySelectorAll(selector)` in our index.html
   // where, in this case, selector is the string 'home'
   // moduleId: module.id, //component for styleUrls (Masih gagal)
-  moduleId: module.id,
   selector: 'auth',  // <auth></lauth>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   // providers: [

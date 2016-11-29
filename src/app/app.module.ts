@@ -5,6 +5,7 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { LocalStorageService, LOCAL_STORAGE_SERVICE_CONFIG }   from 'angular-2-local-storage';
 import { HttpModule }                                          from '@angular/http';
 import { FormsModule, ReactiveFormsModule }                    from '@angular/forms';
+import { CustomFormsModule }                                   from 'ng2-validation'
 
 
 // Authentication
@@ -49,11 +50,10 @@ type StoreType = {
     AppComponent,
   ],
   imports: [ // import Angular's modules
-    ReactiveFormsModule,
-    FormsModule,
     BrowserModule,
+    FormsModule,
     HttpModule, 
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES, { useHash: true }),
   ],
   exports: [RouterModule],
   providers: [ // expose our Services and Providers into Angular's dependency injection
@@ -62,6 +62,7 @@ type StoreType = {
     LocalStorageService,
     AuthGuard,
     AuthGuardDashboard,
+    
       {
           provide: LOCAL_STORAGE_SERVICE_CONFIG, useValue: localStorageServiceConfig
       }

@@ -11,18 +11,22 @@ import { AuthGuardDashboard }   from './../authguard/auth-guard-dashboard.servic
 import { AuthComponent }       from './auth.component';
 import { FooterComponent }     from './shared/footer';
 import { HeaderComponent }     from './shared/header';
-import { LoginComponent }      from './login/login.component';
-import { RegisterComponent }   from './register/register.component';
 
 
-export const routes = [
-  { path: '', component: AuthComponent,
-  canActivate : [ AuthGuardDashboard ],
+const routes = [
+  { 
+    path: '', 
+    component: AuthComponent,
+    canActivate : [ AuthGuardDashboard ],
     children: [
-      { path: '',         redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login',    component: LoginComponent },
-      { path: 'register', component: RegisterComponent}, 
-
+      {  
+        path: 'login', 
+        loadChildren: () => System.import('./login').then((comp: any) => comp.default) 
+      },
+      {  
+        path: 'register', 
+        loadChildren: () => System.import('./register').then((comp: any) => comp.default) 
+      },
     ]
   },
 ];
@@ -36,22 +40,22 @@ export const routes = [
     AuthComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent,
-    RegisterComponent
+    // RegisterComponent,
+    // VerifyComponent,
+    // Step1RegisterComponent
   ],
   imports: [ // import Angular's modules
   	CommonModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })	
 
 
 
 
 export default class AuthModule {
-  static routes = routes;
+  // static routes = routes;
 }
 
 

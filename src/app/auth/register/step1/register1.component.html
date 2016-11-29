@@ -1,4 +1,5 @@
-<div class="form-account form-login-register" id="register">
+<div class="form-account form-login-register" id="step-1">
+<br><br><br><br><br><br>
       <h2>Registrasi</h2>
       <p>Silakan isi data berikut untuk mendaftarkan diri anda</p>
       <div class="row">
@@ -9,7 +10,7 @@
             <li><a href="javascript:void(0);"><span>4</span>  Data Penunjang</a></li>
          </ul>
       </div>
-      <form class="form-horizontal clearfix row">
+      <form class="form-horizontal clearfix row" name="step1Form" novalidate>
          <h3>Data Diri</h3>
          <div class="col-md-6">
             <div class="form-group">
@@ -87,12 +88,15 @@
                <span class="required">*</span>
                         <select class="form-control input-md" name="provinsi" required [(ngModel)]="registerOne.provinsi">
                            <option>Provinsi</option>
+                           <option>Jawa Barat</option>
                         </select>
                      </div>
                      <div class="col-md-4">
                <span class="required">*</span>
                         <select class="form-control input-md" name="kota" required [(ngModel)]="registerOne.kota">
                            <option>Kota</option>
+                           <option>Bandung</option>
+                        
                         </select>
                      </div>
                      <div class="col-md-4">
@@ -107,6 +111,7 @@
                            <option>Milik Pribadi</option>
                            <option>Kontrak</option>
                            <option>Milik Keluarga</option>
+                           <option>Ikut Orang Tua</option>
                         </select>
                      </div>
                   </div>
@@ -153,6 +158,7 @@
                <span class="required">*</span>
                         <select class="form-control input-md" name="bank" required [(ngModel)]="registerOne.bank">
                            <option>Pilih Bank</option>
+                           <option>BCA</option>
                         </select>
                      </div>
                      <div class="col-md-6">
@@ -175,10 +181,14 @@
             <div class="form-group">
                <div class="col-md-6 col-center">
                   <button  class="btn btn-default">Batal</button>
-                  <button  class="btn btn-red"  (click)="stepOne(registerOne)">Lanjutkan</button>
+                  <button  class="btn btn-red"  (click)="nextStepTwo(registerOne)">Lanjutkan</button>
                </div>
             </div>
          </div>
       </form>
-      <button  id="hide">Lanjutkan</button>
 </div>
+<step2></step2>
+<step3></step3>
+<step4></step4>
+
+

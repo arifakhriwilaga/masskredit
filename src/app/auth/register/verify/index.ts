@@ -3,32 +3,35 @@ import { NgModule }              from '@angular/core';
 import { RouterModule }          from '@angular/router';
 import { HttpModule }            from '@angular/http';
 import { FormsModule }           from '@angular/forms';
-import { LocalStorageService }   from 'angular-2-local-storage';
 
-// Component
-import { LoginComponent }        from './login.component';
 
-const routes = [
-  { path:'', component: LoginComponent}
-] 
+
+// Component Verify
+import { VerifyComponent }       from './verify.component';
+
+
+console.log("dari verify")
+
+export const routes = [
+  { path: '', component: VerifyComponent}
+]
 
 @NgModule({
   declarations: [
-    LoginComponent, // declarations LoginComponent
+    VerifyComponent,
   ],
   imports: [ // import Angular's modules
     HttpModule,
     FormsModule,
     RouterModule.forChild(routes)
+
   ],
-  // exports: [LoginComponent],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    LocalStorageService,
-    // LoginComponent,
-  ]
+    // AuthResolve,
+  ],
 })
 
-export default class LoginModule { 
-  static routes = routes;
+export default class VerifyModule { 
+  static routes = routes
 }
 

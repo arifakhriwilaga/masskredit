@@ -1,1 +1,1 @@
-export * from './create_investasi.component';
+export * from './create.component';
