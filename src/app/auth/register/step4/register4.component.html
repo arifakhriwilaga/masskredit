@@ -9,23 +9,23 @@
          <li class="active"><a href="javascript:void(0);"><span>4</span>  Data Penunjang</a></li>
       </ul>
    </div>
-   <form class="form-horizontal clearfix row" name="step4Form" novalidate>
+   <form class="form-horizontal clearfix row" name="step4Form" method="post" enctype="multipart/form-data" novalidate>
       <h3>Data Penunjang</h3>
       <div class="col-md-4">
          <div class="form-group">
-                <div class="col-md-12">
+            <div class="col-md-12">
                 <span class="required">*</span>
-               <p>Upload Foto KTP bagian Depan</p>
-         <input  type="file" placeholder="Password" class="form-control input-md" required name="ktp_depan" [(ngModel)]="registerFour.ktp_depan">
+                <p>Upload Foto KTP bagian Depan</p>
+                <input  type="file" placeholder="Password" class="form-control input-md" required id="foto_ktp_depan" >
             </div>    
          </div>
          </div>
          <div class="col-md-4">
           <div class="form-group">
-                <div class="col-md-12">
+            <div class="col-md-12">
                 <span class="required">*</span>
                <p>Upload Foto KTP bagian Belakang</p>
-         <input  type="file" placeholder="Password" class="form-control input-md" required name="ktp_belakang" [(ngModel)]="registerFour.ktp_belakang">
+         <input  type="file" class="form-control input-md" required name="foto_ktp_belakang" id="foto_ktp_belakang">
             </div>    
          </div>
          </div>
@@ -34,7 +34,7 @@
                 <div class="col-md-12">
                 <span class="required">*</span>
                <p>Upload Foto Anda</p>
-         <input  type="file" placeholder="Password" class="form-control input-md" required name="foto" [(ngModel)]="registerFour.foto">
+         <input  type="file" class="form-control input-md" required name="foto_diri" id="foto_diri">
             </div>    
          </div>
       </div>
@@ -42,8 +42,8 @@
          <!-- Button -->
          <div class="form-group">
             <div class="col-md-6 col-center">
-               <button  class="btn btn-default" (click)="prevStepThree(registerFour)">Kembali</button>
-               <button  class="btn btn-red" (click)="stepFinish(registerFour)">Simpan</button>
+               <button  class="btn btn-default" (click)="prevStepThree(register)">Kembali</button>
+               <button  class="btn btn-red" (click)="stepFinish()">Simpan</button>
             </div>
          </div>
       </div>

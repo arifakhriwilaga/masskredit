@@ -15,18 +15,18 @@
       <div class="col-md-6">
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nama Lengkap" class="form-control input-md" required name="nama_lengkap" [(ngModel)]="registerTwo.nama_lengkap">
+               <input  type="text" placeholder="Nama Lengkap" class="form-control input-md" required name="nama_lengkap" [(ngModel)]="register.nama_lengkap_keluarga">
             </div>
          </div>
          <!-- Password input-->
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Hubungan " class="form-control input-md" required name="hubungan" [(ngModel)]="registerTwo.hubungan">
+               <input  type="text" placeholder="Hubungan " class="form-control input-md" required name="hubungan" [(ngModel)]="register.hubungan_keluarga">
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <textarea placeholder="Alamat " class="form-control input-md" required name="alamat" [(ngModel)]="registerTwo.alamat"></textarea>
+               <textarea placeholder="Alamat " class="form-control input-md" required name="alamat" [(ngModel)]="register.alamat_keluarga"></textarea>
             </div>
          </div>
           
@@ -36,20 +36,20 @@
       <fieldset>
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" required name="nomor_telepon" [(ngModel)]="registerTwo.nomor_telepon">
+               <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" required name="nomor_telepon" [(ngModel)]="register.nomor_telepon_keluarga">
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <select class="form-control input-md" required name="jumlah_anak" [(ngModel)]="registerTwo.jumlah_anak">
-                  <option>Jumlah Anak</option>
-               </select>
+               <input type="text" class="form-control input-md" placeholder="Jumlah Anak" required name="jumlah_anak" [(ngModel)]="register.jumlah_anak">
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <select class="form-control input-md" required name="jumlah_tanggungan" [(ngModel)]="registerTwo.jumlah_tanggungan">
-                  <option>Jumlah Tanggungan</option>
+               <select class="form-control input-md" required name="jumlah_tanggungan" [(ngModel)]="register.jumlah_tanggungan">
+                  <option selected="">Jumlah Tanggungan</option>
+                  <option value="0">1</option>
+                  <option value="1">2</option>
                </select>
             </div>
          </div>
@@ -59,8 +59,8 @@
          <!-- Button -->
          <div class="form-group">
             <div class="col-md-6 col-center">
-               <button  class="btn btn-default" (click)="prevStepOne(registerTwo)">Kembali</button>
-               <button  class="btn btn-red " (click)="nextStepThree(registerTwo)">Lanjutkan</button>
+               <button  class="btn btn-default" (click)="prevStepOne(register)">Kembali</button>
+               <button  class="btn btn-red " (click)="nextStepThree(register)">Lanjutkan</button>
             </div>
          </div>
       </div>

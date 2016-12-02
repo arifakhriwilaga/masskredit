@@ -1,452 +1,107 @@
- <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
 
-    <!-- Main content -->
-    <section class="content">
-      <!-- Small boxes (Stat box) -->
-      <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box total-income">
-            <div class="inner text-center">
-              <p>Total Income</p>
-              <h3>Rp. 34.000.000</h3>
-            </div>
-            <img src="../../assets/img/total-income.png" class="small-box-chart">
+  <!-- Main content -->
+  <section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box total-income">
+          <div class="inner text-center">
+            <p>Total Income</p>
+            <h3>Rp. 34.000.000</h3>
           </div>
+          <img src="../../assets/img/total-income.png" class="small-box-chart">
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box total-investment">
-            <div class="inner text-center">
-              <p>Total Investment</p>
-              <h3>Rp. 34.000.000</h3>
-            </div>
-            <img src="../../assets/img/total-investment.png" class="small-box-chart">
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box total-loan">
-            <div class="inner text-center">
-              <p>Total Loan</p>
-              <h3>Rp. 34.000.000</h3>
-            </div>
-            <img src="../../assets/img/total-loan.png" class="small-box-chart">
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box total-withdraw">
-            <div class="inner text-center">
-              <p>Total Withdraw</p>
-              <h3>Rp. 34.000.000</h3>
-            </div>
-            <img src="../../assets/img/total-withdraw.png" class="small-box-chart">
-          </div>
-        </div>
-        <!-- ./col -->
       </div>
-      <!-- /.row -->
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-12 connectedSortable">
-          <!-- Map box -->
-          <div class="box box-solid radius-10">
-            <div class="box-header">
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-sm btn-collapse-right pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
-                  <i class="fa fa-chevron-down"></i></button>
-              </div>
-              <!-- /. tools -->
-
-              <i class="fa fa-bar-chart" aria-hidden="true"></i>
-
-              <h3 class="box-title">
-                Investment &amp; Loan Statistic
-              </h3>
-            </div>
-            <hr>
-            <div class="box-body">
-              <div class="clearfix">
-                <div class="pull-right">
-                  <div class="box-datepicker">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <input id="" name="" type="text" placeholder="30 January 2015" class="form-control input-md datepicker" required="">
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                  </div>
-                  <div class="box-datepicker">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <input id="" name="" type="text" placeholder="30 May 2015" class="form-control input-md datepicker" required="">
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-              <div id="sales-chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-            </div>
-            <!-- /.box-body-->
-            
+      <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box total-investment">
+          <div class="inner text-center">
+            <p>Total Investment</p>
+            <h3>Rp. 34.000.000</h3>
           </div>
-          <!-- /.box -->
-
-          <!-- Chat box -->
-          <div class="clearfix row">
-            <div class="col-lg-6 col-xs-6">
-              <div class="white-bg radius-10 padding-top-10">
-                <div class="box-header">
-                  <i class="fa fa-black-tie" aria-hidden="true"></i>
-
-                  <h3 class="box-title">Investment</h3>
-                </div>
-                <hr>
-                <div class="box-body invest-loan" id="invest-loan-box">
-                  <ul>
-                    <li>
-                      <div class="box-left">
-                        <div class="product"><img src="../../assets/img/motorcycle.png"></div>
-                        <div class="verify-user">
-                          <img src="../../assets/img/user4-128x128.jpg">
-                          <span><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</span>
-                        </div>
-                      </div>
-                      <div class="box-right row">
-                        <div class="clearfix">
-                          <h2 class="col-lg-12 col-xs-12">Memberikan pinjaman untuk pembelian motor Honda Beat</h2>
-                          <div class="col-lg-6 col-xs-6">
-                            <p>#23567556778</p>
-                            <p>Class 2A | Active User</p>
-                            <div class="claerfix">
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star null" aria-hidden="true"></i>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-xs-6">
-                            <div id="speedo-01" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="box-left">
-                        <div class="product"><img src="../../assets/img/motorcycle.png"></div>
-                        <div class="verify-user">
-                          <img src="../../assets/img/user4-128x128.jpg">
-                          <span><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</span>
-                        </div>
-                      </div>
-                      <div class="box-right row">
-                        <div class="clearfix">
-                          <h2 class="col-lg-12 col-xs-12">Memberikan pinjaman untuk pembelian motor Honda Beat</h2>
-                          <div class="col-lg-6 col-xs-6">
-                            <p>#23567556778</p>
-                            <p>Class 2A | Active User</p>
-                            <div class="claerfix">
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star null" aria-hidden="true"></i>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-xs-6">
-                            <div id="speedo-02" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="box-left">
-                        <div class="product"><img src="../../assets/img/motorcycle.png"></div>
-                        <div class="verify-user">
-                          <img src="../../assets/img/user4-128x128.jpg">
-                          <span><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</span>
-                        </div>
-                      </div>
-                      <div class="box-right row">
-                        <div class="clearfix">
-                          <h2 class="col-lg-12 col-xs-12">Memberikan pinjaman untuk pembelian motor Honda Beat</h2>
-                          <div class="col-lg-6 col-xs-6">
-                            <p>#23567556778</p>
-                            <p>Class 2A | Active User</p>
-                            <div class="claerfix">
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star null" aria-hidden="true"></i>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-xs-6">
-                            <div id="speedo-03" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="box-left">
-                        <div class="product"><img src="../../assets/img/motorcycle.png"></div>
-                        <div class="verify-user">
-                          <img src="../../assets/../../assets/img/user4-128x128.jpg">
-                          <span><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</span>
-                        </div>
-                      </div>
-                      <div class="box-right row">
-                        <div class="clearfix">
-                          <h2 class="col-lg-12 col-xs-12">Memberikan pinjaman untuk pembelian motor Honda Beat</h2>
-                          <div class="col-lg-6 col-xs-6">
-                            <p>#23567556778</p>
-                            <p>Class 2A | Active User</p>
-                            <div class="claerfix">
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star null" aria-hidden="true"></i>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-xs-6">
-                            <div id="speedo-04" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-xs-6">
-              <div class="white-bg radius-10 padding-top-10">
-                <div class="box-header">
-                  <i class="fa fa-money" aria-hidden="true"></i>
-
-                  <h3 class="box-title">Loan</h3>
-                </div>
-                <hr>
-                <div class="box-body invest-loan" id="invest-loan-box">
-                  <ul>
-                    <li>
-                      <div class="box-left">
-                        <div class="product"><img src="../../assets/img/motorcycle.png"></div>
-                        <div class="verify-user">
-                          <img src="../../assets/img/user4-128x128.jpg">
-                          <span><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</span>
-                        </div>
-                      </div>
-                      <div class="box-right row">
-                        <div class="clearfix">
-                          <h2 class="col-lg-12 col-xs-12">Memberikan pinjaman untuk pembelian motor Honda Beat</h2>
-                          <div class="col-lg-6 col-xs-6">
-                            <p>#23567556778</p>
-                            <p>Class 2A | Active User</p>
-                            <div class="claerfix">
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star null" aria-hidden="true"></i>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-xs-6">
-                            <div id="speedo-05" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="box-left">
-                        <div class="product"><img src="../../assets/img/motorcycle.png"></div>
-                        <div class="verify-user">
-                          <img src="../../assets/img/user4-128x128.jpg">
-                          <span><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</span>
-                        </div>
-                      </div>
-                      <div class="box-right row">
-                        <div class="clearfix">
-                          <h2 class="col-lg-12 col-xs-12">Memberikan pinjaman untuk pembelian motor Honda Beat</h2>
-                          <div class="col-lg-6 col-xs-6">
-                            <p>#23567556778</p>
-                            <p>Class 2A | Active User</p>
-                            <div class="claerfix">
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star null" aria-hidden="true"></i>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-xs-6">
-                            <div id="speedo-06" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="box-left">
-                        <div class="product"><img src="../../assets/img/motorcycle.png"></div>
-                        <div class="verify-user">
-                          <img src="../../assets/img/user4-128x128.jpg">
-                          <span><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</span>
-                        </div>
-                      </div>
-                      <div class="box-right row">
-                        <div class="clearfix">
-                          <h2 class="col-lg-12 col-xs-12">Memberikan pinjaman untuk pembelian motor Honda Beat</h2>
-                          <div class="col-lg-6 col-xs-6">
-                            <p>#23567556778</p>
-                            <p>Class 2A | Active User</p>
-                            <div class="claerfix">
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star null" aria-hidden="true"></i>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-xs-6">
-                            <div id="speedo-07" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="box-left">
-                        <div class="product"><img src="../../assets/img/motorcycle.png"></div>
-                        <div class="verify-user">
-                          <img src="../../assets/img/user4-128x128.jpg">
-                          <span><i class="fa fa-check-circle" aria-hidden="true"></i> Verified</span>
-                        </div>
-                      </div>
-                      <div class="box-right row">
-                        <div class="clearfix">
-                          <h2 class="col-lg-12 col-xs-12">Memberikan pinjaman untuk pembelian motor Honda Beat</h2>
-                          <div class="col-lg-6 col-xs-6">
-                            <p>#23567556778</p>
-                            <p>Class 2A | Active User</p>
-                            <div class="claerfix">
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star full" aria-hidden="true"></i>
-                              <i class="fa fa-star null" aria-hidden="true"></i>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-xs-6">
-                            <div id="speedo-08" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.box (chat box) -->
-          
-
-        </section>
-        <!-- /.Left col -->
+          <img src="../../assets/img/total-investment.png" class="small-box-chart">
+        </div>
       </div>
-      <!-- /.row (main row) -->
-
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="clearfix" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
+      <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box total-loan">
+          <div class="inner text-center">
+            <p>Total Loan</p>
+            <h3>Rp. 34.000.000</h3>
           </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
+          <img src="../../assets/img/total-loan.png" class="small-box-chart">
+        </div>
       </div>
-      <!-- /.tab-pane -->
+      <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box total-withdraw">
+          <div class="inner text-center">
+            <p>Total Withdraw</p>
+            <h3>Rp. 34.000.000</h3>
+          </div>
+          <img src="../../assets/img/total-withdraw.png" class="small-box-chart">
+        </div>
+      </div>
+      <!-- ./col -->
     </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+
+    <div class="row">
+      <!-- Left col -->
+      <section class="col-lg-12 connectedSortable">
+        <!-- Map box -->
+        <div class="box box-solid radius-10">
+          <div class="box-header">
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+              <button type="button" class="btn btn-sm btn-collapse-right pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+                <i class="fa fa-chevron-down"></i></button>
+            </div>
+            <!-- /. tools -->
+
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+
+            <h3 class="box-title">
+              Investment &amp; Loan Statistic
+            </h3>
+          </div>
+          <hr>
+          <div class="box-body">
+            <div class="clearfix">
+              <div class="pull-right">
+                <div class="box-datepicker">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                  <input id="" name="" type="text" placeholder="30 January 2015" class="form-control input-md datepicker" required="">
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </div>
+                <div class="box-datepicker">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                  <input id="" name="" type="text" placeholder="30 May 2015" class="form-control input-md datepicker" required="">
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+            <div id="sales-chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+          <!-- /.box-body-->
+          
+        </div>
+        <!-- /.box -->
+
+        <!-- Chat box -->
+       
+        <!-- /.box (chat box) -->
+        
+      </section>
+      <!-- /.Left col -->
+    </div>
+    <!-- /.row (main row) -->
+    </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

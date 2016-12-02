@@ -1,5 +1,6 @@
 <div class="form-account form-login-register" id="register">
-<br><br><br><br><br><br>
+  <br>
+  <br>
   <h2>Registrasi</h2>
   <p>Silakan masukan nomor handphone untuk tahap pertama pendaftaran</p>
   <br>
@@ -7,7 +8,7 @@
      <div class="col-md-12">
         <div class="form-group">
            <div class="col-md-4">
-              <input  type="text" placeholder="Nomor Handphone" class="form-control input-md" required name="handphone" id="nomor_handphone" [(ngModel)]="nomor.nomor_handphone" >
+              <input  type="text" placeholder="Nomor Handphone" class="form-control input-md" required name="handphone" id="nomor_handphone" [(ngModel)]="nomor.phone_number" >
            </div>
            <div class="col-md-4">
               <button  class="btn btn-red" (click)="sendHandphone(nomor)" >Kirim</button>
@@ -16,7 +17,8 @@
      </div>
   </form>
 </div>
-      <!-- Modal -->
+
+<!-- Modal -->
 <div class="modal fade" id="verifikasi-modal" tabindex="-1" role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -24,7 +26,6 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
                  <h4 class="modal-title" id="memberModalLabel">Verifikasi</h4>
-
             </div>
             <div class="modal-body">
                <div class="verifikasi">
@@ -39,3 +40,4 @@
         </div>
     </div>
 </div>
+

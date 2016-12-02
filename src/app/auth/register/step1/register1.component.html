@@ -1,5 +1,5 @@
 <div class="form-account form-login-register" id="step-1">
-<br><br><br><br><br><br>
+<br><br>
       <h2>Registrasi</h2>
       <p>Silakan isi data berikut untuk mendaftarkan diri anda</p>
       <div class="row">
@@ -16,32 +16,38 @@
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" name="nama_lengkap" placeholder="Nama Lengkap" class="form-control input-md" required [(ngModel)]="registerOne.nama_lengkap">
+                  <input  type="text" name="nama_lengkap" placeholder="Nama Lengkap" class="form-control input-md" required [(ngModel)]="register.nama_lengkap">
                </div>
             </div>
             <!-- Password input-->
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" name="alamat_email" placeholder="Alamat Email " class="form-control input-md" required [(ngModel)]="registerOne.alamat_email">
+                  <input  type="email" name="alamat_email" placeholder="Alamat Email " class="form-control input-md" required [(ngModel)]="register.alamat_email">
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" name ="password" placeholder="Password" class="form-control input-md" required [(ngModel)]="registerOne.password">
+                  <input  type="text" name="no_handphone" placeholder="Nomor Handphone" class="form-control input-md" required [(ngModel)]="register.no_handphone">
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" name ="confirm_password" placeholder="Confirm Password" class="form-control input-md" required [(ngModel)]="registerOne.confirm_password">
+                  <input  type="password" name ="password" placeholder="Password" class="form-control input-md" required [(ngModel)]="register.password">
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <select class="form-control input-md" name="jenis_kelamin" required [(ngModel)]="registerOne.jenis_kelamin">
+                  <input  type="password" name ="confirm_password" placeholder="Confirm Password" class="form-control input-md" required [(ngModel)]="register.confirm_password">
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="col-md-12">
+               <span class="required">*</span>
+                  <select class="form-control input-md" name="jenis_kelamin" required [(ngModel)]="register.jenis_kelamin">
                      <option>Jenis Kelamin</option>
                      <option>Laki-laki</option>
                      <option>Perempuan</option>                  
@@ -51,31 +57,33 @@
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <select class="form-control input-md" name="agama" required  [(ngModel)]="registerOne.agama">
-                     <option>Agama</option>
-                     <option>Islam</option>
-                     <option>Kristen</option>
-                     <option>Hindu</option>
-                     <option>Budha</option>                     
+                  <select class="form-control input-md" name="agama" required  [(ngModel)]="register.agama">
+                     <option selected>Agama</option>
+                     <option value="1">Islam</option>
+                     <option value="2">Kristen</option>
+                     <option value="3">Hindu</option>
+                     <option value="4">Budha</option>                     
                   </select>
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" placeholder="Tempat Lahir " name="tempat_lahir" class="form-control input-md" required [(ngModel)]="registerOne.tempat_lahir">
+                  <input  type="text" placeholder="Tempat Lahir " name="tempat_lahir" class="form-control input-md" required [(ngModel)]="register.tempat_lahir">
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" placeholder="Tanggal Lahir " name="tanggal_lahir" class="form-control input-md" required [(ngModel)]="registerOne.tanggal_lahir">
+                  <!-- <div class="box-datepicker"> -->
+                     <input  type="text" placeholder="Tanggal Lahir " name="tanggal_lahir" class="form-control input-md datepicker" id="tanggal_lahir" required [(ngModel)]="register.tanggal_lahir">
+                  <!-- </div> -->
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <textarea placeholder="Alamat " class="form-control input-md" name="alamat" required [(ngModel)]="registerOne.alamat"></textarea>
+                  <textarea placeholder="Alamat " class="form-control input-md" name="alamat" required [(ngModel)]="register.alamat"></textarea>
                </div>
             </div>
          </div>
@@ -86,90 +94,90 @@
                   <div class="form-group">
                      <div class="col-md-4">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="provinsi" required [(ngModel)]="registerOne.provinsi">
+                        <select class="form-control input-md" name="provinsi" required [(ngModel)]="register.provinsi">
                            <option>Provinsi</option>
-                           <option>Jawa Barat</option>
+                           <option value="1">Jawa Barat</option>
                         </select>
                      </div>
                      <div class="col-md-4">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="kota" required [(ngModel)]="registerOne.kota">
+                        <select class="form-control input-md" name="kota" required [(ngModel)]="register.kota">
                            <option>Kota</option>
-                           <option>Bandung</option>
+                           <option value="1">Bandung</option>
                         
                         </select>
                      </div>
                      <div class="col-md-4">
                <span class="required">*</span>
-                        <input  type="text" placeholder="Kode Pos" name="kode_pos" class="form-control input-md" required [(ngModel)]="registerOne.kode_pos">
+                        <input  type="text" placeholder="Kode Pos" name="kode_pos" class="form-control input-md" required [(ngModel)]="register.kode_pos">
                      </div>
                   </div>
                   <div class="form-group">
                      <div class="col-md-12">
-                        <select class="form-control input-md" name="status_rumah" required [(ngModel)]="registerOne.status_rumah">
-                           <option>Status Rumah</option>
-                           <option>Milik Pribadi</option>
-                           <option>Kontrak</option>
-                           <option>Milik Keluarga</option>
-                           <option>Ikut Orang Tua</option>
+                        <select class="form-control input-md" name="status_rumah" required [(ngModel)]="register.status_rumah">
+                           <option selected="">Status Rumah</option>
+                           <option value="0">Milik Pribadi</option>
+                           <option value="1">Kontrak</option>
+                           <option value="2">Milik Keluarga</option>
+                           <option value="3">Ikut Orang Tua</option>
                         </select>
                      </div>
                   </div>
                   <!-- Password input-->
                   <div class="form-group">
                      <div class="col-md-6">
-                        <input  type="text" placeholder="Luas Tanah " class="form-control input-md" name="luas_tanah" required [(ngModel)]="registerOne.luas_tanah">
+                        <input  type="text" placeholder="Luas Tanah " class="form-control input-md" name="luas_tanah" required [(ngModel)]="register.luas_tanah">
                      </div>
                      <div class="col-md-6">
-                        <input  type="text" placeholder="Luas Bangunan" class="form-control input-md" name="luas_bangunan" required [(ngModel)]="registerOne.luas_bangunan">
+                        <input  type="text" placeholder="Luas Bangunan" class="form-control input-md" name="luas_bangunan" required [(ngModel)]="register.luas_bangunan">
                      </div>
                   </div>
                   <div class="form-group">
                      <div class="col-md-6">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="identitas" required [(ngModel)]="registerOne.identitas">
-                           <option>Pilih Identitas</option>
-                           <option>KTP</option>
-                           <option>SIM</option>
+                        <select class="form-control input-md" name="identitas" required [(ngModel)]="register.tipe_identitas">
+                           <option selected="">Pilih Identitas</option>
+                           <option value="0">KTP</option>
+                           <option value="1">SIM</option>
                         </select>
                      </div>
                      <div class="col-md-6">
                <span class="required">*</span>
-                        <input  type="text" placeholder="Nomor Identitas" class="form-control input-md" name="nomor_identitas" required [(ngModel)]="registerOne.nomor_identitas">
+                        <input  type="text" placeholder="Nomor Identitas" class="form-control input-md" name="nomor_identitas" required [(ngModel)]="register.nomor_identitas">
                      </div>
                   </div>
                   <div class="form-group">
                      <div class="col-md-12">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="status" required [(ngModel)]="registerOne.status">
-                           <option>Status</option>
-                           <option>Kawin</option>
-                           <option>Belum Kawin</option>
+                        <select class="form-control input-md" name="status" required [(ngModel)]="register.status">
+                           <option selected="">Status</option>
+                           <option value="0">Kawin</option>
+                           <option value="1">Belum Kawin</option>
                         </select>
                      </div>
                   </div>
                   <div class="form-group">
                      <div class="col-md-12">
-                        <input  type="text" placeholder="Nomor NPWP" class="form-control input-md" name="npwp" required [(ngModel)]="registerOne.npwp">
+                        <input  type="text" placeholder="Nomor NPWP" class="form-control input-md" name="npwp" required [(ngModel)]="register.nomor_npwp">
                      </div>
                   </div>
                   <div class="form-group">
                      <div class="col-md-6">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="bank" required [(ngModel)]="registerOne.bank">
-                           <option>Pilih Bank</option>
-                           <option>BCA</option>
+                        <select class="form-control input-md" name="bank" required [(ngModel)]="register.tipe_bank">
+                           <option selected="">Pilih Bank</option>
+                           <option value="1">BCA</option>
                         </select>
                      </div>
                      <div class="col-md-6">
                <span class="required">*</span>
-                        <input  type="text" placeholder="Nomor Rekening" class="form-control input-md" name="nomor_rekening" required [(ngModel)]="registerOne.nomor_rekening">
+                        <input  type="text" placeholder="Nomor Rekening" class="form-control input-md" name="nomor_rekening" required [(ngModel)]="register.nomor_rekening">
                      </div>
                   </div>
                   <div class="form-group">
                      <div class="col-md-12">
                <span class="required">*</span>
-                        <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" name="nomor_telepon" required [(ngModel)]="registerOne.nomor_telepon">
+                        <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" name="nomor_telepon" required [(ngModel)]="register.telepon">
                      </div>
                   </div>
                   <!-- Multiple Checkboxes (inline) -->
@@ -180,8 +188,8 @@
             <!-- Button -->
             <div class="form-group">
                <div class="col-md-6 col-center">
-                  <button  class="btn btn-default">Batal</button>
-                  <button  class="btn btn-red"  (click)="nextStepTwo(registerOne)">Lanjutkan</button>
+                  <button  class="btn btn-default" (click)="cancelRegister()">Batal</button>
+                  <button  class="btn btn-red"  (click)="nextStepTwo(register)">Lanjutkan</button>
                </div>
             </div>
          </div>

@@ -12,9 +12,8 @@ export class AuthGuardVerifyCode implements CanActivate  {
 
 	canActivate (){	
 		var token = localStorage.getItem("access_code");
-		// console.log(verify);
-		// debugger
-
+		
+		
 			if(!token){
 				return true;
 			}

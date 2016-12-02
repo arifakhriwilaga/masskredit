@@ -10,6 +10,8 @@ export class JqueryService  {
 	}
 
 	showStep2() {
+		// console.log(step1)
+
 		// console.log("Step2")
 		jQuery('#step-1').hide();
 		jQuery('#step-2').show();

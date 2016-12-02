@@ -17,6 +17,7 @@ import { ContentComponent }     	from './content';
 import { PenarikanDanaComponent } from './penarikan_dana';
 import { PinjamanComponent }      from './pinjaman';
 import { TambahDanaComponent }    from './tambah_dana';
+import { SignOutComponent }       from './sign-out';
 
 import { InvestasiComponent }   	from './investasi/investasi.component';
 import { IndexComponent }         from './investasi/index/index.component';
@@ -55,9 +56,11 @@ export const routes = [
       // { path: 'investasi', load: () => System.import('./investasi')
       //   .then((comp: any) => comp.default) 
       // },
-      { path: 'pinjaman', 		component: PinjamanComponent}, 
+      { path: 'pinjaman', 		  component: PinjamanComponent}, 
       { path: 'penarikan-dana', component: PenarikanDanaComponent}, 
-      { path: 'tambah-dana', 	component: TambahDanaComponent}, 
+      { path: 'tambah-dana', 	  component: TambahDanaComponent}, 
+      { path: 'sign-out',       component: SignOutComponent}, 
+
     ]
   },
 ];
@@ -75,7 +78,7 @@ export const routes = [
     PenarikanDanaComponent,
     PinjamanComponent,
     TambahDanaComponent,
-
+    SignOutComponent, 
     InvestasiComponent,
     IndexComponent,
     CreateComponent,

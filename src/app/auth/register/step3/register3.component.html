@@ -15,38 +15,44 @@
          <div class="form-group">
                 <div class="col-md-12">
                 <span class="required">*</span>
-               <select class="form-control input-md" required name="pekerjaan" [(ngModel)]="registerThree.pekerjaan">
-                  <option>Pekerjaan</option>
+               <select class="form-control input-md" required name="pekerjaan" [(ngModel)]="register.pekerjaan">
+                  <option selected>Pekerjaan</option>
+                  <option value="0">Pengusaha</option>
+                  <option value="1">Pekerja Swasta</option>
+
                </select>
             </div>    
          </div>
          <!-- Password input-->
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nama Perusahaan" class="form-control input-md" required name="nama_perusahaan" [(ngModel)]="registerThree.nama_perusahaan">
+               <input  type="text" placeholder="Nama Perusahaan" class="form-control input-md" required name="nama_perusahaan" [(ngModel)]="register.nama_perusahaan">
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <textarea placeholder="Alamat Perusahaan" class="form-control input-md" required name="alamat_perusahaan" [(ngModel)]="registerThree.alamat_perusahaan"></textarea>
+               <textarea placeholder="Alamat Perusahaan" class="form-control input-md" required name="alamat_perusahaan" [(ngModel)]="register.alamat_perusahaan"></textarea>
             </div>
          </div>
           <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nama Telepon Perusahaan" class="form-control input-md" required name="telepon_perusahaan" [(ngModel)]="registerThree.telepon_perusahaan">
+               <input  type="text" placeholder="Nama Telepon Perusahaan" class="form-control input-md" required name="telepon_perusahaan" [(ngModel)]="register.telepon_perusahaan">
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Jenis Usaha" class="form-control input-md" required name="jenis_usaha" [(ngModel)]="registerThree.jenis_usaha">
+                <select class="form-control input-md" required name="jenis_usaha" [(ngModel)]="register.jenis_usaha">
+                  <option selected>Jenis Usaha</option>
+                  <option value="0">Warung</option>
+                </select>
             </div>
          </div>
           <div class="form-group">
             <div class="col-md-6">
-               <input  type="text" placeholder="Jabatan" class="form-control input-md" required name="jabatan" [(ngModel)]="registerThree.jabatan">
+               <input  type="text" placeholder="Jabatan" class="form-control input-md" required name="jabatan" [(ngModel)]="register.jabatan">
             </div>
              <div class="col-md-6">
-               <input  type="text" placeholder="Tanggal Mulai Kerja" class="form-control input-md" required name="tanggal_mulai_kerja" [(ngModel)]="registerThree.tanggal_mulai_kerja">
+               <input  type="text" placeholder="Tanggal Mulai Kerja" class="form-control input-md datepicker" id="tanggal_mulai_kerja" required name="tanggal_mulai_kerja" [(ngModel)]="register.tanggal_mulai_kerja">
             </div>
          </div>
          
@@ -56,34 +62,37 @@
           <div class="form-group">
             <div class="col-md-8">
             <span class="required">*</span>
-               <input  type="text" placeholder="Gaji Per Bulan" class="form-control input-md" required name="gaji_per_bulan" [(ngModel)]="registerThree.gaji_per_bulan">
+               <input  type="text" placeholder="Gaji Per Bulan" class="form-control input-md" required name="gaji_per_bulan" [(ngModel)]="register.gaji_per_bulan">
             </div>
              <div class="col-md-4">
-                <span class="rupiah">Rupiah   </span> 
+                <span class="rupiah">Rupiah</span> 
              </div>
          </div>
           <div class="form-group">
             <div class="col-md-8">
             <span class="required">*</span>
-               <input  type="text" placeholder="Pendapatan Lain" class="form-control input-md" required name="pendapatan_lain" [(ngModel)]="registerThree.pendapatan_lain">
+               <input  type="text" placeholder="Pendapatan Lain" class="form-control input-md" required name="pendapatan_lain" [(ngModel)]="register.pendapatan_lain">
             </div>
              <div class="col-md-4">
-               <span class="rupiah">Rupiah   </span>
+               <span class="rupiah">Rupiah</span>
              </div>
          </div>
          <div class="form-group">
             <div class="col-md-8">
             <span class="required">*</span>
-               <input  type="text" placeholder="Pengeluaran Per Bulan" class="form-control input-md" required name="pengeluaran_per_bulan" [(ngModel)]="registerThree.pengeluaran_per_bulan">
+               <input  type="text" placeholder="Pengeluaran Per Bulan" class="form-control input-md" required name="pengeluaran_per_bulan" [(ngModel)]="register.pengeluaran_per_bulan">
             </div>
              <div class="col-md-4">
-               <span class="rupiah">Rupiah   </span>
+               <span class="rupiah">Rupiah</span>
              </div>
          </div>
          <div class="form-group">
                 <div class="col-md-12">
-               <select class="form-control input-md" required name="sumber_dana" [(ngModel)]="registerThree.sumber_dana">
-                  <option>Sumber Dana</option>
+               <select class="form-control input-md" required name="sumber_dana" [(ngModel)]="register.sumber_dana">
+                  <option selected="">Sumber Dana</option>
+                  <option value="0">Gaji</option>
+                  <option value="1">Usaha</option>
+               
                </select>
             </div>
          </div>
@@ -93,8 +102,8 @@
          <!-- Button -->
          <div class="form-group">
             <div class="col-md-6 col-center">
-               <button  class="btn btn-default" (click)="prevStepTwo(registerThree)">Kembali</button>
-               <button  class="btn btn-red" (click)="nextStepFour(registerThree)">Lanjutkan</button>
+               <button  class="btn btn-default" (click)="prevStepTwo(register)">Kembali</button>
+               <button  class="btn btn-red" (click)="nextStepFour(register)">Lanjutkan</button>
             </div>
          </div>
       </div>

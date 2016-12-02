@@ -18,9 +18,12 @@ import { Step3RegisterComponent }          from './step3/register3.component';
 // import { Step1RegisterComponent }          from './step1/register1.component';
 
 // Guard Dashboard
-import { AuthGuardVerify }   from './../../authguard/auth-guard-verify.service';
+import { AuthGuardVerify }       from './../../authguard/auth-guard-verify.service';
 import { AuthGuardVerifyCode }   from './../../authguard/auth-guard-verify-code.service';
 
+// Guard Verify
+import { AuthGuardVerifyCodeHandphone }   from './../../authguard/auth-guard-verify-code-handphone.service';
+import { AuthGuardVerifyHandphone }   from './../../authguard/auth-guard-verify-handphone.service';
 console.log("dari register")
 export const routes = [
   { 
@@ -30,12 +33,17 @@ export const routes = [
       { path: '', redirectTo: 'verify' },
       {    
         path: 'verify', 
-        canActivate : [ AuthGuardVerifyCode ],
-        loadChildren: () => System.import('./verify').then((comp: any) => comp.default) 
+        canActivate : [ AuthGuardVerifyCode, AuthGuardVerifyCodeHandphone ],
+        loadChildren: () => System.import('./verify_handphone').then((comp: any) => comp.default) 
       },
       {    
+        path: 'verify-code', 
+        canActivate : [ AuthGuardVerifyCode, AuthGuardVerifyHandphone ],
+        loadChildren: () => System.import('./verify_code').then((comp: any) => comp.default) 
+      },       
+      {    
         path: 'step-1', 
-        canActivate : [ AuthGuardVerify ],
+        // canActivate : [ AuthGuardVerify ],
         loadChildren: () => System.import('./step1').then((comp: any) => comp.default) 
       }          
     ]
@@ -64,7 +72,9 @@ export const routes = [
     JqueryService,
     Step1RegisterComponent,
     Step2RegisterComponent,
-    Step3RegisterComponent
+    Step3RegisterComponent,
+    AuthGuardVerifyHandphone,
+    AuthGuardVerifyCodeHandphone
 
   ],
 })

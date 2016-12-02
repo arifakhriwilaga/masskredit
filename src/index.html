@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <title>Mass Credit</title>
 
   <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
@@ -18,22 +18,16 @@
   <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
 
   <!-- Bootstrap NPM -->
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css"> -->
   
-  <!-- FONTS
-    ============================================ -->
-  <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,300' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
-  <!-- CSS  -->
-  <!-- Bootstrap CSS
-    ============================================ -->
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" type="text/css" href="assets/library/bootstrap/css/bootstrap.min.css">
-  <!-- font-awesome CSS
-    ============================================ -->
-  <link rel="stylesheet" type="text/css" href="assets/library/bootstrap/css/font-awesome.min.css">
-  <!-- style CSS
-    ============================================ -->         
-  <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- style CSS -->         
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
   <!-- Theme style -->
@@ -68,8 +62,26 @@
   <!-- JS -->
   <!-- jquery js -->
   <script src="assets/library/jquery/jquery-1.11.3.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
   <!-- bootstrap js -->
   <script src="assets/library/bootstrap/js/bootstrap.min.js"></script>
+  
+  <!-- Morris.js charts -->
+  <script src="assets/js/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+  <!-- Content Highchart -->
+  <script src="assets/js/content-highchart.js"></script>
+
+  <!-- Slimscroll -->
+  <script src="assets/js/jquery.slimscroll.min.js"></script>
+  <script src="assets/js/app.min.js"></script>
+
+  <!-- datepicker js -->
+  <script src="assets/js/datepicker.js"></script>
+
   <!-- main js -->
   <script src="assets/js/main_js.js"></script>
 

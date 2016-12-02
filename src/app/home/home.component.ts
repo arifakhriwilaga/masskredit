@@ -15,8 +15,8 @@ import { ActivatedRoute }                  from '@angular/router';
   // ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './home.component.html',
-  styleUrls: ['home.component.css'], //component for styleUrls (Masih gagal)
+  // styleUrls: ['home.component.css'], //component for styleUrls (Masih gagal)
   // styles: [require('./home.component.css')] //component for styleUrls (Masih gagal)
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent { }

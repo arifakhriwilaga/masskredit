@@ -9,6 +9,7 @@
  * Core: General Layout Style
  * -------------------------
  */
+ @import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700');
 html,
 body {
   min-height: 100%;
@@ -20,7 +21,7 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Lato;
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
@@ -29,6 +30,7 @@ body {
 .wrapper {
   min-height: 100%;
   position: relative;
+  background: #ecf0f5 !Important;
   overflow: hidden;
 }
 .wrapper:before,
@@ -162,11 +164,11 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;;
+  font-family: Lato;
 }
 /* General Links */
 a {
-  color: #3c8dbc;
+  color: #444;
 }
 a:hover,
 a:active,
@@ -203,6 +205,7 @@ a:focus {
   border: none;
   min-height: 50px;
   border-radius: 0;
+  padding-bottom: 30px;
 }
 .layout-top-nav .main-header .navbar {
   margin-left: 0;
@@ -229,6 +232,7 @@ a:focus {
 .main-header .navbar-custom-menu,
 .main-header .navbar-right {
   float: right;
+  margin-top: 15px;
 }
 @media (max-width: 991px) {
   .main-header .navbar-custom-menu a,
@@ -294,7 +298,7 @@ a:focus {
   line-height: 70px;
   text-align: center;
   width: 150px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato Neue", Lato, Arial, sans-serif;
   padding: 0 15px;
   font-weight: 300;
   overflow: hidden;
@@ -1545,7 +1549,7 @@ a:focus {
   border-radius: 3px;
   background: #ffffff;
   border-top: 3px solid #d2d6de;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
@@ -1590,6 +1594,8 @@ a:focus {
 }
 .box.box-solid {
   border-top: 0;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 .box.box-solid > .box-header .btn.btn-default {
   background: transparent;
@@ -1734,7 +1740,7 @@ a:focus {
 .box-header {
   color: #444;
   display: block;
-  padding: 10px 10px 0;
+  padding: 0;
   position: relative;
 }
 .box-header.with-border {
@@ -1787,7 +1793,6 @@ a:focus {
   border-top-right-radius: 0;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  padding: 10px;
 }
 .no-header .box-body {
   border-top-right-radius: 3px;
@@ -2424,17 +2429,34 @@ a:focus {
  * Component: Nav
  * --------------
  */
-.nav > li > a:hover,
-.nav > li > a:active,
-.nav > li > a:focus {
-  color: #444;
-  background: #f7f7f7;
+.nav-tabs>li.active>a{
+    color: #555;
+    cursor: default;
+    background-color : transparent;
+    border-bottom-color: transparent;
+    border:none;
+    border-bottom: 3px solid #2f445f;
+}
+.nav-tabs>li.active>a:focus{
+    color: #555;
+    cursor: default;
+    background-color : transparent;
+    border: 1px solid;
+    border-bottom-color: transparent;
+    border :none;
+    border-bottom: 3px solid #2f445f;
+}
+.nav-tabs>li.active>a:hover {
+    color: #2f445f;
+    cursor: default;
+    background-color : transparent;
+    border: none;
+    border-bottom: 3px solid #2f445f;
 }
 /* NAV PILLS */
 .nav-pills > li > a {
   border-radius: 0;
   border-top: 3px solid transparent;
-  color: #444;
 }
 .nav-pills > li > a > .fa,
 .nav-pills > li > a > .glyphicon,
@@ -2473,7 +2495,6 @@ a:focus {
 /* NAV TABS */
 .nav-tabs-custom {
   margin-bottom: 20px;
-  background: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
 }
@@ -4941,12 +4962,14 @@ table.text-center th {
 .skin-blue .main-header .navbar .sidebar-toggle {
   color: #ffc300 !important;
   font-size: 22px;
+  margin-top: 10px;
 }
 .skin-blue .main-header .navbar .sidebar-toggle span {
   color: #ffffff;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Lato Neue', Lato, Arial, sans-serif;
   font-size: 16px;
   padding: 0 10px;
+  display: none;
 }
 .main-header .navbar .nav > li > a > .label {
   width: 22px;
@@ -4961,6 +4984,7 @@ table.text-center th {
 .skin-blue .main-header .navbar,
 .skin-blue .main-header .logo {
   background-color: #103b70 !important;
+  margin-bottom: 20px;
 }
 .skin-blue .sidebar-form {
   border: 1px solid #ccc !important;
@@ -4981,6 +5005,7 @@ table.text-center th {
   background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 30px;
 }
 .small-box.total-income {
   border: 1px solid #997ad3;
@@ -5021,7 +5046,8 @@ tspan {
   outline: none !important;
 }
 .white-bg {
-  background: #ffffff !important
+  background: #ffffff !important;
+  border: 1px solid #ddd;
 }
 .radius-10 {
   border-radius: 5px !important;
@@ -5115,6 +5141,8 @@ hr {
   border: 0;
   height: 1px;
   background: none;
+  float: left;
+  display: none;
 }
 .content-bottom-nav p {
   color: #ffffff;
@@ -5157,6 +5185,7 @@ hr {
   width: calc(100% - 120px);
   padding: 10px 0;
   position: relative;
+  color: #fff;
 }
 .no-margin-bottom {
   margin-bottom: 0 !important
@@ -5178,17 +5207,20 @@ hr {
 .main-header {
   max-height: 1000px;
 }
+
 .link-bottom-nav {
   box-shadow:  0 4px 2px -2px rgba(0,0,0,0.2);
   padding: 0;
-  margin: 0 auto 0;
+  margin: 0 auto;
   text-align: center;
   background: #fff;
   width: 360px;
   border-radius: 100px;
-  height: 40px;
-  position: relative;
-  top: 40px;
+  height: 41px;
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  left: 0;
 }
 .link-bottom-nav li {
   list-style: none;
@@ -5206,10 +5238,10 @@ hr {
   border: none;
 }
 .link-bottom-nav li button img{
-  height:50px
+  height: 57px;
 }
 .link-bottom-nav li a.direct-link {
-  line-height: 40px;
+  line-height: 41px;
   float: left;
   text-align: center;
   width: 140px;
@@ -5220,26 +5252,26 @@ hr {
 }
 .link-bottom-nav li a img {}
 .content-wrapper {
-  padding-top: 30px;
+  padding-top: 0;
 }
 .link-bottom-nav .dropdown-menu {
   background: rgba(11,59,117,0.7);
-  width: 325px;
+  width: 280px;
   left: 50%;
-  margin-left: -163px;
+  margin-left: -142px;
   border: none;
   border-radius: 20px;
   padding: 20px 0;
-  top: 80px
+  top: 66px;
 }
 .link-bottom-nav .dropdown-menu li {
   display: block;
   width: 100%
 }
 .link-bottom-nav .dropdown-menu li a {
-  height: 65px;
-  line-height: 65px;
-  width: 260px;
+  height: 50px;
+  line-height: 50px;
+  width: 220px;
   margin: 5px auto;
   border-radius: 50px;
   text-align: center;
@@ -5306,28 +5338,34 @@ hr {
 }
 .skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li > a {
   border-left: none;
+  text-transform: uppercase;
+  font-size: 11px;
 }
 .sidebar-menu li a {
   text-align: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #1f2a37
+  padding: 15px 0 10px;
+  border-bottom: 1px solid #1f2a37;
 }
 .sidebar-menu li img {
   /* height: 40px; */
   display: block;
   margin: 0 auto 10px;
-  width: 40px;
+  width: 38px;
 }
 .sidebar-menu li span {
   color: #ffffff;
   margin-top: 5px;
   display: block;
+  text-transform: uppercase;
+  font-size: 11px;
 }
 .main-sidebar {
   background-color: #253242 !important;
 }
 .skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a {
   background: #212d3b;
+  text-transform: uppercase;
+  font-size: 11px;
 }
 .sidebar-mini.sidebar-collapse .main-sidebar {
   z-index: 1040
@@ -5351,10 +5389,23 @@ table.dataTable thead > tr > th {
   font-weight: normal;
   font-size: 13px;
 }
+.admin-style nav.navbar.navbar-static-top {
+    min-height: 10px;
+    height: 73px;
+}
+.admin-style table thead > tr > th{
+  margin-bottom:25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #ffffff;
+  font-weight: normal;
+  font-size: 13px;
+}
 .data-tables td {
   vertical-align: middle !important;
   color: #4a4a4a;
   font-size: 13px;
+  padding: 15px !important;
 }
 .data-tables td img {
   width: 35px;
@@ -5408,6 +5459,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
   background: transparent !important;
   box-shadow: none;
   border: none;
+  margin-bottom: 10px;
 }
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
   background-color: #f5a623;
@@ -5466,7 +5518,7 @@ select.box-datepicker {
 }
 .box.bg-transparent .box-header .box-title {
   line-height: 45px;
-  font-size: 18px;
+  font-size: 22px;
   position: relative;
   margin-bottom: 20px;
 }
@@ -5491,6 +5543,8 @@ select.box-datepicker {
 .clearfix.content-bottom-nav {
   position: relative;
   /* top: 15px; */
+  width: 100%;
+  float: left;
 }
 .form-login-register .form-control {
   border: 1px solid #dddddd;
@@ -5501,7 +5555,8 @@ select.box-datepicker {
   font-size: 13px;
 }
 .nav li a{
-  padding:10px 15px !important
+  padding:10px 15px !important;
+  background: none !Important;
 }
 .form-login-register form .btn,
 .modal .btn {
@@ -5534,16 +5589,19 @@ textarea.form-control {
   padding: 0 20px;
 }
 label.unit {
-  width: 95px;
+  width: auto;
   line-height: 45px;
   padding-left: 10px;
   font-size: 13px;
   font-weight: normal;
+  display: inline;
+  text-align: right;
 }
 .with-unit.form-control {
-  width: calc(100% - 95px);
+  width: calc(100% - 185px);
   display: inline-block;
   float: left;
+  background: none;
 }
 .required {
   position: absolute;
@@ -5607,4 +5665,110 @@ nav.navbar.navbar-static-top {/* Permalink - use to edit and share this gradient
 }
 
 .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span{ display: none !Important
+}
+
+#example2 thead tr th {
+  color: #fff;
+}
+
+.table-invest td a{
+  margin-left: 0 !important;
+}
+
+.table-aksi {
+  margin-right: 20px;
+}
+
+.box-custom{
+  height: 100%;
+  text-align: center;
+}
+
+.box-custom img{
+  max-width: 20% !important;
+  max-height: 20% !important;
+}
+
+.btn-tutup{
+    margin-left: 30px;
+}
+
+.btn-tutup2 {
+  background: #092d59;
+    border-radius: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    color: #fec300;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin:150px 600px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+}
+
+/* The Close Button */
+
+.close:hover,
+.close:focus {
+    color: #ffc300;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-space {
+  margin: auto;
+  padding: 0;
+}
+
+.radio{
+  padding-bottom:15px;
+  padding-left: 20px;
+}
+
+.title {
+    margin-right: 80px;
+}
+
+.modal-header {
+  padding: 10px 0px;
+}
+
+.nama {
+  padding: 0px;
+}
+.form-head-search .form-group{
+  padding: 0
+}
+
+.form-head-search .form-group  label:first-child{min-width: 150px;float: left;margin-top: 13px;}
+
+.box-datepicker.with-no-bg {
+    width: 436px;
+    text-align: right;
 }

@@ -11,4 +11,9 @@ import { RegisterService }			from './register.service';
 })
 
 // @Directive({ selector: '[step-1]'})
-export class RegisterComponent { }
+export class RegisterComponent { 
+
+
+
+
+}

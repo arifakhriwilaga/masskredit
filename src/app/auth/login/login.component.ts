@@ -2,8 +2,9 @@ import { Component, Inject } 				   from '@angular/core';
 import { LoginService }						   from './login.service';
 import { LocalStorageService } 				   from 'angular-2-local-storage';
 import { FormGroup, FormBuilder, Validators }  from '@angular/forms';
-import { Headers, Http }					   from '@angular/http';
+import { Headers, Http, RequestOptions }	   from '@angular/http';
 import { Router }        					   from '@angular/router';
+import { Observable }     					   from 'rxjs/Observable';
 
 
 
@@ -16,37 +17,45 @@ import { Router }        					   from '@angular/router';
 
 export class LoginComponent {
 
-	// loginForm : FormGroup;
-
-	// constructor(private loginService :  LoginService, fb : FormBuilder, http : Http){
+	// intance 
 	constructor(private http : Http, private loginService : LoginService, private router:Router){ }
 
-	private user = {
-		email		: "",
-		password	: ""
+	private user = { 
+		username 	: "", 
+		password	: "" 
 	};
-	// private loggedin = false;
-	// 			// this.loggedin = true;
-			// var activate:boolean = false; 
 
-	public login(user) {
-		var authentication:boolean = true;
-		this.http.post('https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/login',user)
+	public login(user){
+
+ 	let headers = new Headers({ 
+	 	'Content-Type': 'application/json',
+	 	'API_KEY' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+ 	});
+    
+    let options = new RequestOptions({ headers: headers });
+		console.log(user);
+		this.http.post('http://masscredit-backend.stagingapps.net:9000/user/credential/login', user , options)
 		.subscribe((data : any) => {
-			var token 	 = data.json();
-			localStorage.setItem('access_token', JSON.stringify(token.data.access_token));
-			// debugger;
-			console.log(token.meta.code,token.meta.message, user);
-			if(token.meta.code == "200") {
-				return this.router.navigateByUrl('dashboard');
-			}
-			else{
-				return this.router.navigateByUrl('/')
-			}
+			var data 	 = data.json();
+			console.log(data);
+			localStorage.setItem('access_token', JSON.stringify(data.data.access_token));
+				if(data.meta.code == "200") {
+					return this.router.navigateByUrl('dashboard');
+				}
+				else{
+					return this.router.navigateByUrl('/')
+				}
+			
 		});
+			// debugger;
+			// console.log(token.meta.code,token.meta.message, user);
 
 	}
 
+	// private extractData(res:Response) {
+	// 	let body = res.json();
+	// 	return body.data || { };
+	// }
 
  }
 			
