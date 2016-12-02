@@ -8,7 +8,7 @@ declare var jQuery:any;
 
 
 @Component({
-	moduleId: module.id,
+	//moduleId: module.id,
 	selector: 'verify',
 	templateUrl: 'verify.component.html'
 })

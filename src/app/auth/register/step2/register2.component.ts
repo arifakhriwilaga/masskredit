@@ -2,7 +2,7 @@ import { Component } 	from '@angular/core';
 import { RegisterService }	from './../register.service';
 
 @Component({
-	moduleId: module.id,
+	//moduleId: module.id,
 	selector: 'step2',
 	templateUrl: 'register2.component.html'
 })

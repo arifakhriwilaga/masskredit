@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ValidationServiceInvestasi } from './validationservice.component';
 
 @Component({
-	moduleId: module.id,
+	//moduleId: module.id,
 	selector: 'create',
 	templateUrl: 'create.component.html',
 })

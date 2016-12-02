@@ -7,7 +7,7 @@ declare var jQuery : any;
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
-	moduleId: module.id,
+	//moduleId: module.id,
 	selector: 'step4',
 	templateUrl: 'register4.component.html'
 })

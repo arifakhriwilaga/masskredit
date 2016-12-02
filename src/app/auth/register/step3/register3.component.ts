@@ -3,7 +3,7 @@ import { RegisterService }	from './../register.service';
 
 declare var jQuery: any;
 @Component({
-	moduleId: module.id,
+	//moduleId: module.id,
 	selector: 'step3',
 	templateUrl: 'register3.component.html'
 })

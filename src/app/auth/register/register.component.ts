@@ -4,7 +4,7 @@ import { RegisterService }			from './register.service';
 
 
 @Component({
-	moduleId: module.id,
+	//moduleId: module.id,
 	selector: 'register',
 	templateUrl: 'register.component.html',
   // directives: [Step1RegisterComponent, Step2RegisterComponent, Step3RegisterComponent]

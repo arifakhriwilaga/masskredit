@@ -1,7 +1,7 @@
 import { Component } 	from '@angular/core';
 
 @Component({
-	moduleId: module.id,
+	//moduleId: module.id,
 	selector: 'penarikan-dana',
 	templateUrl: 'penarikan_dana.component.html'
 })

@@ -9,7 +9,7 @@ import { Observable }     					   from 'rxjs/Observable';
 
 
 @Component({
-	moduleId   : module.id,
+	//moduleId: module.id
 	selector   : 'login',
 	templateUrl: 'login.component.html',
 	providers  : [LoginService] 

@@ -9,7 +9,7 @@ import { Headers, Http, RequestOptions }	   from '@angular/http';
 
 declare var jQuery:any;
 @Component({
-	moduleId: module.id,
+	//moduleId: module.id,
 	selector: "step-1",
 
 	templateUrl: 'register1.component.html',

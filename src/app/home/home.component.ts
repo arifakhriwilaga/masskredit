@@ -4,7 +4,7 @@ import { ActivatedRoute }                  from '@angular/router';
 
 @Component({
 
-  moduleId: module.id,
+  // //moduleId: module.id,
   selector: 'home',  // <home></home>
   templateUrl: './home.component.html',
   // styleUrls: ['home.component.css'], //component for styleUrls (Masih gagal)
