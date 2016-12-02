@@ -24,6 +24,8 @@ export class Step4RegisterComponent implements OnInit {
 	private headers  	= new Headers ({'Content-Type' : 'application/json'}); //URL to web API
 	private register = this.registerService.dataRegister();
 	private a;
+	private b;
+	private c;
 
 
 
@@ -43,21 +45,36 @@ export class Step4RegisterComponent implements OnInit {
 
 	stepFinish() {
 
-		let readerFile = new FileReader();
-		readerFile.onload = function(event, varty) {
-			this.a = event.target.result.split(',')[1];
-			console.log(this.a);
-		}.bind(this);
+		// let readerFileA = new FileReader();
+		// readerFileA.onload = function(event, varty) {
+		// 	this.a = event.target.result.split(',')[1];
+		// 	console.log(this.a);
+		// }.bind(this);
 
-		// var img = preg_replace('#^data:image/[^;]+;base64#','', $s['image']);
+		let readerFileB = new FileReader();
+		readerFileB.onload = function(event, varty) {
+			this.b = event.target.result.split(',')[1];
+			console.log(this.b)
+		}.bind(this)
+
+		let readerFileC = new FileReader();
+		readerFileC.onload = function(event, varty) {
+			this.c = event.target.result.split(',')[1];
+			console.log(this.c)
+		}.bind(this)
 
 		let x : any = document.getElementById("foto_ktp_depan");
 		let y : any = document.getElementById("foto_ktp_belakang");
 		let z : any = document.getElementById("foto_diri");
-
 		var file_x =	x.files[0];
+		var file_y =	y.files[0];
+		var file_z =	z.files[0];
 
-		var encode_x  = readerFile.readAsDataURL(file_x);
+		// var encode_x  = readerFileA.readAsDataURL(file_x);
+		var encode_y  = readerFileB.readAsDataURL(file_y);
+		var encode_z  = readerFileC.readAsDataURL(file_z);
+		
+		// console.log(encode_x,encode_y,encode_z);
 		// console.log(encode_x);
 		
 		// var file_x   = x.files[0];
@@ -97,20 +114,20 @@ export class Step4RegisterComponent implements OnInit {
 			// });
 	}
 
-	ngAfterViewInit(){
-		function readURL(input){
-			if(input.files && input.filse[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					jQuery('#foto_ktp_depan')
-					.attr('src', e.target)
-					.width(150)
-					.height(200);
-				};
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-	}
+	// ngAfterViewInit(){
+	// 	function readURL(input){
+	// 		if(input.files && input.filse[0]) {
+	// 			var reader = new FileReader();
+	// 			reader.onload = function(e) {
+	// 				jQuery('#foto_ktp_depan')
+	// 				.attr('src', e.target)
+	// 				.width(150)
+	// 				.height(200);
+	// 			};
+	// 			reader.readAsDataURL(input.files[0]);
+	// 		}
+	// 	}
+	// }
 	
 	prevStepThree(){
 		console.log();

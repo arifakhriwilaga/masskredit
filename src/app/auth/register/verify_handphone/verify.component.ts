@@ -30,7 +30,7 @@ export class VerifyComponent {
 	sendHandphone(nomor)  {
 		let headers = new Headers({ 
 			'Content-Type': 'application/json',
-			'API_KEY' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
+			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
 		});
     	let options = new RequestOptions({ headers: headers });
 

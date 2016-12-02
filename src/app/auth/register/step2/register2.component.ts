@@ -11,14 +11,6 @@ export class Step2RegisterComponent {
 
 
 	constructor (private registerService : RegisterService) { }
-	// private registerTwo = {
-	// 	nama_lengkap 	  : '',
-	// 	hubungan 	 	  : '',
-	// 	alamat	 	 	  : '',
-	// 	nomor_telepon 	  : '',
-	// 	jumlah_anak 	  : '',
-	// 	jumlah_tanggungan : '',
-	// }
 
 	private register = this.registerService.dataRegister();
 
@@ -40,8 +32,4 @@ export class Step2RegisterComponent {
 		this.registerService.Step1();
 	}
 
-
-	sendDataStepTwo(){
-		return this.register;
-	}
 }

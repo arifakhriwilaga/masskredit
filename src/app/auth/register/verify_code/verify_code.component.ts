@@ -23,7 +23,11 @@ export class VerifyCodeComponent {
 	};
 	// send code verify
 	sendVerify(code)  {
-		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let headers = new Headers({ 
+			'Content-Type': 'application/json',
+			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
+		});
+		
     	let options = new RequestOptions({ headers: headers });
 
 		console.log(code);

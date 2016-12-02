@@ -43,7 +43,7 @@ export const routes = [
       },       
       {    
         path: 'step-1', 
-        // canActivate : [ AuthGuardVerify ],
+        canActivate : [ AuthGuardVerify ],
         loadChildren: () => System.import('./step1').then((comp: any) => comp.default) 
       }          
     ]

@@ -2,6 +2,7 @@ import { Component } 							from '@angular/core';
 import { FormGroup, FormBuilder, Validators }  	from '@angular/forms';
 import { RegisterService }						from './../register.service';
 import { Router }  								from '@angular/router';
+import { Headers, Http, RequestOptions }	   from '@angular/http';
 // import { RegisterUser }								from './../register';
 
 
@@ -18,14 +19,100 @@ declare var jQuery:any;
 
 
 export class Step1RegisterComponent  { 
-	constructor(private registerService : RegisterService, private router : Router) { }
+	constructor(
+		private registerService : RegisterService, 
+		private router : Router, 
+		private http : Http
+	) { }
 
 	private register = this.registerService.dataRegister();
 
 
 	ngOnInit(){
+	
+	let headers = new Headers({ 
+	 	'Content-Type': 'application/json',
+	 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+ 	});
+
+    let options = new RequestOptions({ headers: headers });
+
+    // Get data Agama
+	this.http.get('http://masscredit-backend.stagingapps.net:9000/master/agama',options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// return response.data;
+				console.log(response.data)
+			});
 		
+
+	// Get data Provinsi
+	this.http.get('http://masscredit-backend.stagingapps.net:9000/master/provinsi',options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// return response.data;
+				console.log(response.data)
+
+			});
+		
+	// Get data Kota
+	this.http.get('http://masscredit-backend.stagingapps.net:9000/master/kota',options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// return response.data;
+				console.log(response.data)
+
+			});
+
+	// Get data Status Rumah
+	this.http.get('http://masscredit-backend.stagingapps.net:9000/master/status_rumah',options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// return response.data;
+				console.log(response.data)
+
+			});
+
+	// Get data Identitas
+	this.http.get('http://masscredit-backend.stagingapps.net:9000/master/identitas',options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// return response.data;
+				console.log(response.data)
+
+			});
+
+	// Get data Status
+	this.http.get('http://masscredit-backend.stagingapps.net:9000/master/status',options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// return response.data;
+				console.log(response.data)
+
+			});
+	
+	// Get data Bank
+	this.http.get('http://masscredit-backend.stagingapps.net:9000/master/bank',options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// return response.data;
+				console.log(response.data)
+
+			});
+
+	// Get data Pekerjaan
+	this.http.get('http://masscredit-backend.stagingapps.net:9000/master/pekerjaan',options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// return response.data;
+				console.log(response.data)
+
+			});
+
 	}
+
+		
+	
 
 	nextStepTwo(register) {
 		this.register.tanggal_lahir = jQuery("#tanggal_lahir").datepicker("getDate");
