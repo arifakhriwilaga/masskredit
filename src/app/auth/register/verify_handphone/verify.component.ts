@@ -33,8 +33,6 @@ export class VerifyComponent {
 			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
 		});
     	let options = new RequestOptions({ headers: headers });
-
-    	// header.append()
 		
 		console.log(nomor);
 
@@ -65,7 +63,7 @@ export class VerifyComponent {
 	// send code verify
 	sendVerify(code)  {
 
-		 let headers = new Headers({ 'Content-Type': 'application/json' });
+		let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
 		
 		console.log(code);
