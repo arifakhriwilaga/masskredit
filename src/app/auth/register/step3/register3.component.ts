@@ -1,5 +1,6 @@
-import { Component } 	from '@angular/core';
-import { RegisterService }	from './../register.service';
+import { Component } 						from '@angular/core';
+import { RegisterService }					from './../register.service';
+import { Headers, Http, RequestOptions }	from '@angular/http';
 
 declare var jQuery: any;
 @Component({
@@ -10,10 +11,28 @@ declare var jQuery: any;
 
 export class Step3RegisterComponent { 
 
-	constructor(private registerService: RegisterService) { }
+	constructor(private registerService: RegisterService, private http : Http) { }
 
 
 	private register = this.registerService.dataRegister();
+
+	// Objek master data
+	public pekerjaan = [];
+
+	ngOnInit() {
+		let headers = new Headers({ 
+		 	'Content-Type': 'application/json',
+		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	 	});
+	    let options = new RequestOptions({ headers: headers });
+
+		// Get data Pekerjaan
+		this.http.get('http://masscredit-backend.stagingapps.net:9000/master/pekerjaan',options)
+				.map(responsePekerjaan => responsePekerjaan.json())
+				.subscribe((responsePekerjaan : any) => {
+					this.pekerjaan = responsePekerjaan.data.pekerjaan
+				});
+	}
 
 	nextStepFour(register) {
 		this.register.tanggal_mulai_kerja = jQuery("#tanggal_mulai_kerja").datepicker("getDate");
