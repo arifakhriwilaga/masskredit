@@ -1,6 +1,6 @@
 import { NgModule, ApplicationRef }                            from '@angular/core';
 import { BrowserModule }                                       from '@angular/platform-browser';
-import { RouterModule, ActivatedRoute }                        from '@angular/router';
+import { RouterModule, ActivatedRoute, PreloadAllModules }                        from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { LocalStorageService, LOCAL_STORAGE_SERVICE_CONFIG }   from 'angular-2-local-storage';
 import { HttpModule }                                          from '@angular/http';
@@ -53,7 +53,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule, 
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules  }),
   ],
   exports: [RouterModule],
   providers: [ // expose our Services and Providers into Angular's dependency injection
