@@ -5,12 +5,12 @@
       <div class="row">
          <ul class="breadcrumb">
             <li class="active"><a href="javascript:void(0);"><span>1</span> Data Diri </a></li>
-            <li ><a href="javascript:void(0);"><span>2</span> Data Keluarga </a></li>
+            <li><a href="javascript:void(0);"><span>2</span> Data Keluarga </a></li>
             <li><a href="javascript:void(0);"><span>3</span> Data Pekerjaan </a></li>
             <li><a href="javascript:void(0);"><span>4</span>  Data Penunjang</a></li>
          </ul>
       </div>
-      <form class="form-horizontal clearfix row" name="step1Form" novalidate>
+      <form class="form-horizontal clearfix row" name="registerForm" novalidate>
          <h3>Data Diri</h3>
          <div class="col-md-6">
             <div class="form-group">
@@ -48,21 +48,19 @@
                <div class="col-md-12">
                <span class="required">*</span>
                   <select class="form-control input-md" name="jenis_kelamin" required [(ngModel)]="register.jenis_kelamin">
-                     <option>Jenis Kelamin</option>
-                     <option>Laki-laki</option>
-                     <option>Perempuan</option>                  
+                     <option selected="0" value="0">Jenis Kelamin</option>
+                     <option value="1">Laki-laki</option>
+                     <option value="2">Perempuan</option>                  
                   </select>
                </div>
             </div>
+
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <select class="form-control input-md" name="agama" required  [(ngModel)]="register.agama">
-                     <option selected>Agama</option>
-                     <option value="1">Islam</option>
-                     <option value="2">Kristen</option>
-                     <option value="3">Hindu</option>
-                     <option value="4">Budha</option>                     
+                  <select class="form-control input-md" name="agama" required  [(ngModel)]="register.id_agama">
+                     <option value="0" disabled [selected]>Agama</option>
+                     <option *ngFor="let b of agama" [value]="b.id_agama">{{ b.desc_agama }}</option>
                   </select>
                </div>
             </div>
@@ -94,14 +92,16 @@
                   <div class="form-group">
                      <div class="col-md-4">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="provinsi" required [(ngModel)]="register.provinsi">
-                           <option>Provinsi</option>
-                           <option value="1">Jawa Barat</option>
+                        <select class="form-control input-md" name="provinsi" required [(ngModel)]="register.id_provinsi">
+                           <option value="0" disabled>Provinsi</option>
+                           <option *ngFor="let c of province" [value]="c.id_provinsi">
+                              {{ c.desc_provinsi }}
+                           </option>
                         </select>
                      </div>
                      <div class="col-md-4">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="kota" required [(ngModel)]="register.kota">
+                        <select class="form-control input-md" name="kota" required [(ngModel)]="register.id_kota">
                            <option>Kota</option>
                            <option value="1">Bandung</option>
                         
@@ -114,12 +114,11 @@
                   </div>
                   <div class="form-group">
                      <div class="col-md-12">
-                        <select class="form-control input-md" name="status_rumah" required [(ngModel)]="register.status_rumah">
-                           <option selected="">Status Rumah</option>
-                           <option value="0">Milik Pribadi</option>
-                           <option value="1">Kontrak</option>
-                           <option value="2">Milik Keluarga</option>
-                           <option value="3">Ikut Orang Tua</option>
+                        <select class="form-control input-md" name="status_rumah" required [(ngModel)]="register.id_status_rumah">
+                           <option selected value="0" disabled="">Status Rumah</option>
+                            <option *ngFor="let c of status_rumah" [value]="c.id_status_rumah">
+                              {{ c.desc_status_rumah }}
+                           </option>
                         </select>
                      </div>
                   </div>
@@ -135,10 +134,11 @@
                   <div class="form-group">
                      <div class="col-md-6">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="identitas" required [(ngModel)]="register.tipe_identitas">
-                           <option selected="">Pilih Identitas</option>
-                           <option value="0">KTP</option>
-                           <option value="1">SIM</option>
+                        <select class="form-control input-md" name="identitas" required [(ngModel)]="register.id_tipe_identitas">
+                           <option selected value="0" disabled>Pilih Identitas</option>
+                           <option *ngFor="let d of tipe_identitas" [value]="d.id_tipe_identitas">
+                              {{ d.desc_tipe_identitas }}
+                           </option>
                         </select>
                      </div>
                      <div class="col-md-6">
@@ -149,10 +149,11 @@
                   <div class="form-group">
                      <div class="col-md-12">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="status" required [(ngModel)]="register.status">
-                           <option selected="">Status</option>
-                           <option value="0">Kawin</option>
-                           <option value="1">Belum Kawin</option>
+                        <select class="form-control input-md" name="status" required [(ngModel)]="register.id_status">
+                           <option selected value="0" disabled="">Status</option>
+                           <option *ngFor="let e of status" [value]="e.id_status">
+                              {{ e.desc_status }}
+                           </option>
                         </select>
                      </div>
                   </div>
@@ -164,9 +165,11 @@
                   <div class="form-group">
                      <div class="col-md-6">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="bank" required [(ngModel)]="register.tipe_bank">
-                           <option selected="">Pilih Bank</option>
-                           <option value="1">BCA</option>
+                        <select class="form-control input-md" name="bank" required [(ngModel)]="register.id_tipe_bank">
+                           <option selected value="0" disabled>Pilih Bank</option>
+                           <option *ngFor="let f of tipe_bank" [value]="f.id_tipe_bank">
+                              {{ f.desc_tipe_bank }}
+                           </option>
                         </select>
                      </div>
                      <div class="col-md-6">
@@ -188,7 +191,7 @@
             <!-- Button -->
             <div class="form-group">
                <div class="col-md-6 col-center">
-                  <button  class="btn btn-default" (click)="cancelRegister()">Batal</button>
+                  <button  class="btn btn-default" (click)="cancelRegister(register )">Batal</button>
                   <button  class="btn btn-red"  (click)="nextStepTwo(register)">Lanjutkan</button>
                </div>
             </div>
