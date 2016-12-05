@@ -9,17 +9,17 @@
          <li><a href="javascript:void(0);"><span>4</span>  Data Penunjang</a></li>
       </ul>
    </div>
-   <form class="form-horizontal clearfix row" name="step3Form" novalidate>
+   <form class="form-horizontal clearfix row" id="registerForm" name="step3Form" novalidate>
       <h3>Data Pekerjaan</h3>
       <div class="col-md-6">
          <div class="form-group">
                 <div class="col-md-12">
                 <span class="required">*</span>
-               <select class="form-control input-md" required name="pekerjaan" [(ngModel)]="register.pekerjaan">
-                  <option selected>Pekerjaan</option>
-                  <option value="0">Pengusaha</option>
-                  <option value="1">Pekerja Swasta</option>
-
+               <select class="form-control input-md" required name="pekerjaan" [(ngModel)]="register.id_pekerjaan">
+                  <option selected disabled="">Pekerjaan</option>
+                  <option *ngFor="let h of pekerjaan" [value]="h.id_pekerjaan">
+                      {{ h.desc_pekerjaan }}
+                  </option>
                </select>
             </div>    
          </div>
@@ -36,15 +36,12 @@
          </div>
           <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nama Telepon Perusahaan" class="form-control input-md" required name="telepon_perusahaan" [(ngModel)]="register.telepon_perusahaan">
+               <input  type="text" placeholder="Telepon Perusahaan" class="form-control input-md" required name="telepon_perusahaan" [(ngModel)]="register.telepon_perusahaan">
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-                <select class="form-control input-md" required name="jenis_usaha" [(ngModel)]="register.jenis_usaha">
-                  <option selected>Jenis Usaha</option>
-                  <option value="0">Warung</option>
-                </select>
+               <input  type="text" placeholder="Jenis Usaha" class="form-control input-md" required name="jenis_usaha" [(ngModel)]="register.jenis_usaha">
             </div>
          </div>
           <div class="form-group">
