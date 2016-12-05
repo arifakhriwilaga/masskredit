@@ -1,6 +1,6 @@
-import { Component, OnInit } 						  from '@angular/core';
+import { Component, OnInit } 						  	   from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ValidationServiceInvestasi } from './validationservice.component';
+import { ValidationServiceInvestasi } 					   from './validationservice.component';
 
 @Component({
 	//moduleId: module.id,
