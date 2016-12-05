@@ -55,7 +55,7 @@ const routes = [
 
 
 export default class AuthModule {
-  // static routes = routes;
+  public routes = routes;
 }
 
 
