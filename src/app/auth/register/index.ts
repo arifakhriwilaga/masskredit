@@ -7,6 +7,8 @@ import { HttpModule }                                          from '@angular/ht
 import { FormsModule, ReactiveFormsModule }                    from '@angular/forms';
 import { RegisterService }                                     from './register.service';
 import { JqueryService }                                     from './jquery.register';
+import { CommonModule  }              from '@angular/common';
+
 
 // Component Register
 import { RegisterComponent }        from './register.component';
@@ -61,8 +63,8 @@ export const routes = [
   imports: [ // import Angular's modules
     HttpModule,
     FormsModule,
-    RouterModule.forChild(routes)
-
+    RouterModule.forChild(routes),
+    CommonModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // AuthResolve,
