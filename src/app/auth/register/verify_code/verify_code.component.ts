@@ -17,7 +17,6 @@ export class VerifyCodeComponent {
 	constructor(private router : Router, private http : Http) { }
 
 	private code = {
-		phone_number 	  : '',
 		verification_code : '',
 
 	};
