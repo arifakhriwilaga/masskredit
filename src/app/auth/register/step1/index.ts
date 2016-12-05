@@ -1,5 +1,6 @@
 // Module
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA }              from '@angular/core';
+import { NgModule  }              from '@angular/core';
+import { CommonModule  }              from '@angular/common';
 import { RouterModule, Routes }  from '@angular/router';
 import { HttpModule }            from '@angular/http';
 import { FormsModule }           from '@angular/forms';
@@ -29,11 +30,12 @@ export const routes = [
   imports: [ // import Angular's modules
     HttpModule,
     FormsModule,
-    RouterModule.forChild(routes)
-
+    RouterModule.forChild(routes),
+    CommonModule,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // AuthResolve,
+    
   ],
 })
 
