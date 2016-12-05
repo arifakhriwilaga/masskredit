@@ -5,10 +5,12 @@ import { HttpModule }            from '@angular/http';
 import { FormsModule }           from '@angular/forms';
 import { LocalStorageService }   from 'angular-2-local-storage';
 
+
+// debugger;
 // Component
 import { LoginComponent }        from './login.component';
 
-const routes = [
+export const routes = [
   { path:'', component: LoginComponent}
 ] 
 
@@ -29,6 +31,6 @@ const routes = [
 })
 
 export default class LoginModule { 
-  static routes = routes;
+  public routes = routes;
 }
 
