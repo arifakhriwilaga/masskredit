@@ -1536,7 +1536,8 @@ h1.info-title:after {
 }
 
 .form-login-register .breadcrumb li a:hover {
-    background: hsl(213, 82%, 19%);
+    /*Hover disable*/
+    /*background: hsl(213, 82%, 19%);*/
 }
 
 .col-center {
