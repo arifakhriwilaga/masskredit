@@ -14,4 +14,20 @@ import { Component }       from '@angular/core';
   // styleUrls: ['./auth.component.css'] //component for styleUrls (Masih gagal)
 
 })
-export class AuthComponent { }
+export class AuthComponent { 
+
+  ngOnInit(){
+    // nav
+      jQuery("document").ready(function($){
+      var headNav = $('.navbar-head');
+       $(window).scroll(function () {
+           if ($(this).scrollTop() > 40) {
+               headNav.addClass("fixed");
+           } else {
+               headNav.removeClass("fixed");
+           } 
+       });
+      });
+  }
+
+}
