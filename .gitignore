@@ -44,11 +44,6 @@ npm-debug.log
 /tsd_typings/
 
 # Dist #
-/public/__build__/
-/src/*/__build__/
-/__build__/**
-/public/dist/
-/src/*/dist/
 /.awcache
 .webpack.json
 
