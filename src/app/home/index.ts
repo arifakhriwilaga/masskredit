@@ -15,12 +15,13 @@ import { ContentComponent }     from './content';
 import { PendanaanComponent }   from './pendanaan';
 import { PinjamanComponent }    from './pinjaman';
 
+
 // Routes Home Base
 export const routes = [
 	{ path: '', component: HomeComponent,
   canActivate : [ AuthGuardDashboard ],
 	    children: [
-	      { path: '',           redirectTo: 'content', pathMatch: 'full' },
+	      { path: '',           redirectTo: 'content' },
 	      { path: 'content', 	  component: ContentComponent },
 	      { path: 'pendanaan',  component: PendanaanComponent },
 	      { path: 'pinjaman',   component: PinjamanComponent }, 
@@ -47,6 +48,6 @@ export const routes = [
 })
 
 export default class HomeModule {
-	static routes = routes;
+	public routes = routes;
 }
 
