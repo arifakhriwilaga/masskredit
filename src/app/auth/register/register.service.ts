@@ -5,6 +5,7 @@ import { Router }			from '@angular/router';
 import { JqueryService }	from'./jquery.register';
 
 declare var jQuery:any;
+// declare var image : void;
 
 @Injectable ()
 export class RegisterService {
@@ -13,56 +14,60 @@ export class RegisterService {
 
 	constructor(private jqueryService : JqueryService) { }
 
+	private image:void;
+
 	public register = {
-		nama_lengkap 	 : '',
-		alamat_email 	 : '',
-		no_handphone	 : '',
-		password	 	 : '',
-		confirm_password : '',
-		jenis_kelamin	 : '',
-		agama 		  	 : '',
-		tempat_lahir  	 : '',
-		tanggal_lahir 	 : '',
-		alamat 			 : '',
-		provinsi 		 : '',
-		kota 			 : '',
-		kode_pos 		 : '',
-		status_rumah 	 : '',
-		luas_tanah 		 : '',
-		luas_bangunan 	 : '',
-		tipe_identitas 	 : '',
-		nomor_identitas  : '',
-		status			 : '',
-		nomor_npwp 		 : '',
-		tipe_bank 		 : '',
-		nomor_rekening 	 : '',
-		telepon  	 	 : '',
+		access_token	 : '',
+
+		nama_lengkap 	 : 'Ari Fakhri Wilaga',
+		alamat_email 	 : 'arifakhri97@gmail.com',
+		no_handphone	 : '0897654357897',
+		password	 	 : 'Handsome100',
+		confirm_password : 'Handsome100',
+		jenis_kelamin	 : '1',
+		id_agama 		 : '1',
+		tempat_lahir  	 : 'Bandung',
+		tanggal_lahir 	 : '1997-06-02',
+		alamat 			 : 'St. lorem ipsum',
+		id_provinsi 	 : '9',
+		id_kota 		 : '1',
+		kode_pos 		 : '40552',
+		id_status_rumah  : '1',
+		luas_tanah 		 : '123',
+		luas_bangunan 	 : '123',
+		id_tipe_identitas: '1',
+		nomor_identitas  : '1',
+		id_status	 	 : '1',
+		nomor_npwp 		 : '1234567',
+		id_tipe_bank     : '1',
+		nomor_rekening 	 : '1234567',
+		telepon  	 	 : '1234567',
 
 		// step2
-		nama_lengkap_keluarga 	: '',
-		hubungan_keluarga	 	: '',
-		alamat_keluarga	  		: '',
-		nomor_telepon_keluarga 	: '',
-		jumlah_anak 	  		: '',
-		jumlah_tanggungan 		: '',
+		nama_lengkap_keluarga 	: 'Agus Ramdhani',
+		hubungan_keluarga	 	: 'Ayah',
+		alamat_keluarga	  		: 'St. lorem ipsum',
+		nomor_telepon_keluarga 	: '123456',
+		jumlah_anak 	  		: '0',
+		jumlah_tanggungan 		: '1',
 
 		// step3
-		pekerjaan 	 		  : '',
-		nama_perusahaan 	  : '',
-		alamat_perusahaan	  : '',
-		telepon_perusahaan 	  : '',
-		jenis_usaha 		  : '',
-		jabatan  	 		  : '',
-		tanggal_mulai_kerja   : '',
-		gaji_per_bulan 		  : '',
-		pendapatan_lain 	  : '',
-		pengeluaran_per_bulan : '',
-		sumber_dana 		  : '',
+		id_pekerjaan 	 	  : '3',
+		nama_perusahaan 	  : 'Warung lontong',
+		alamat_perusahaan	  : 'St. lorem ipsum',
+		telepon_perusahaan 	  : '12345',
+		jenis_usaha 		  : 'Warung',
+		jabatan  	 		  : 'Pegawai',
+		tanggal_mulai_kerja   : '2016-12-12',
+		gaji_per_bulan 		  : '1234567',
+		pendapatan_lain 	  : '1234567',
+		pengeluaran_per_bulan : '1234567',
+		sumber_dana 		  : '1',
 
 		// step4
-		foto_ktp_depan 	  : '',
-		foto_ktp_belakang : '',
-		foto_diri	 	  : '',
+		foto_ktp_depan 	  : this.image,
+		foto_ktp_belakang : this.image,
+		foto_diri	 	  : this.image,
 	}
 
 	dataRegister(){
