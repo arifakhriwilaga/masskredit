@@ -15,13 +15,20 @@ import { SidebarComponent }     	from './shared/sidebar';
 import { HeaderComponent }     		from './shared/header';
 import { ContentComponent }     	from './content';
 import { PenarikanDanaComponent } from './penarikan_dana';
-import { PinjamanComponent }      from './pinjaman';
 import { TambahDanaComponent }    from './tambah_dana';
 import { SignOutComponent }       from './sign-out';
 
-import { InvestasiComponent }   	from './investasi/investasi.component';
-import { IndexComponent }         from './investasi/index/index.component';
-import { CreateComponent }        from './investasi/create/create.component';
+// Investasi
+import { InvestasiComponent }     from './investasi/investasi.component';
+import { IndexInvestComponent }         from './investasi/index/index.component';
+import { CreateInvestComponent }        from './investasi/create/create.component';
+
+
+// Investasi
+import { PinjamanComponent }      from './pinjaman';
+import { IndexLoanComponent }     from './pinjaman/index/index.component';
+// import { CreateLoanComponent }    from './pinjaman/create/create.component';
+
 
 // Control message create investasi
 import { ControlMessagesCreateInvestasi } from './investasi/create/controlmessage.component';
@@ -44,8 +51,8 @@ export const routes = [
       { path: 'investasi',    component: InvestasiComponent ,
           children: [
               { path: '',        redirectTo: 'index', pathMatch: 'full' },
-              { path: 'index',   component: IndexComponent },
-              { path: 'create',  component: CreateComponent },
+              { path: 'index',   component: IndexInvestComponent },
+              { path: 'create',  component: CreateInvestComponent },
               
           ]
       },
@@ -56,7 +63,14 @@ export const routes = [
       // { path: 'investasi', load: () => System.import('./investasi')
       //   .then((comp: any) => comp.default) 
       // },
-      { path: 'pinjaman', 		  component: PinjamanComponent}, 
+      { path: 'pinjaman', 		  component: PinjamanComponent,
+        children: [
+              { path: '',        redirectTo: 'index', pathMatch: 'full' },
+              { path: 'index',   component: IndexLoanComponent },
+              // { path: 'create',  component: CreateComponent },
+              
+        ]
+      }, 
       { path: 'penarikan-dana', component: PenarikanDanaComponent}, 
       { path: 'tambah-dana', 	  component: TambahDanaComponent}, 
       { path: 'sign-out',       component: SignOutComponent}, 
@@ -80,8 +94,9 @@ export const routes = [
     TambahDanaComponent,
     SignOutComponent, 
     InvestasiComponent,
-    IndexComponent,
-    CreateComponent,
+    IndexInvestComponent,
+    CreateInvestComponent,
+    IndexLoanComponent,
 
     // message error create investasi
     ControlMessagesCreateInvestasi

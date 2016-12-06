@@ -71,7 +71,7 @@ export class VerifyComponent {
 		this.http.post('http://masscredit-backend.stagingapps.net:9000/user/credential/getverificationcode',code, options)
 		.map( data => data.json() )
 		.subscribe((data) => {
-			// var token 	 = data.json();
+			// var code 	 = data.json();
 			console.log(data);
 			localStorage.setItem('access_code', JSON.stringify(data.data.access_token));
 

@@ -7,7 +7,7 @@ import { Component } 		from '@angular/core';
 })
 
 
-export class IndexComponent { 
+export class IndexInvestComponent { 
 	constructor() { }
 	listInvestasi() {
 		// return this.investasiservice.Index();

@@ -31,7 +31,7 @@ export class VerifyCodeComponent {
 
 		console.log(code);
 		if(code) {
-		this.http.post('http://masscredit-backend.stagingapps.net:9000/user/credential/verifycode',code, options)
+		this.http.post('http://masscredit-api.stagingapps.net/user/credential/verifycode',code, options)
 		.map( data => data.json() )
 		.subscribe((data) => {
 			console.log(data)

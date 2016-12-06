@@ -25,29 +25,42 @@ export class Step4RegisterComponent {
 
 
 	private register = this.registerService.dataRegister();
-	private a;
-	private b;
-	private c;
 
 	stepFinish() {
+	let a;
+	let b;
+	let c;
 
 		let readerFileA = new FileReader();
 		readerFileA.onload = function(event, varty) {
-			this.a = event.target.result.split(',')[1];
-			debugger
+			let fileA = event.target.result.split(',')[1];
+			this.register.foto_ktp_depan = fileA;
+			
+			return fileA;
 			// console.log(this.a);
 		}.bind(this);
 
 		let readerFileB = new FileReader();
 		readerFileB.onload = function(event, varty) {
-			this.b = event.target.result.split(',')[1];
-			debugger
+			let fileB = event.target.result.split(',')[1];
+			this.register.foto_ktp_belakang	= fileB;
+
+			return b;
 			// console.log(this.b)
 		}.bind(this)
 
 		let readerFileC = new FileReader();
 		readerFileC.onload = function(event, varty) {
-			this.c = event.target.result.split(',')[1];
+			// constructor(){ }
+			// import { RegisterService }	from './../register.service';
+
+			// var register = new RegisterService;
+
+			let fileC = event.target.result.split(',')[1];
+
+			// RegisterService
+			// console.log(this.re)
+			// return c;
 			// console.log(this.c)
 		}.bind(this)
 
@@ -58,17 +71,14 @@ export class Step4RegisterComponent {
 		var file_y =	y.files[0];
 		var file_z =	z.files[0];
 
-		console.log(file_x, file_y, file_z);
+		// console.log(file_x);
 		var encode_x  = readerFileA.readAsDataURL(file_x);
 		var encode_y  = readerFileB.readAsDataURL(file_y);
 		var encode_z  = readerFileC.readAsDataURL(file_z);
-		this.register.foto_ktp_depan	= encode_x;
-		this.register.foto_ktp_belakang = encode_y;
-		this.register.foto_diri			= encode_z;
 
 		this.register.access_token 		= localStorage.getItem("access_code");
 
-		console.log(this.register);
+		console.log(this.register.foto_ktp_depan);
 
 		// Set Headers
 		let headers = new Headers({ 
@@ -79,25 +89,25 @@ export class Step4RegisterComponent {
 	    let options = new RequestOptions({ headers: headers });
 
 		//API Register 
-		this.register;
-		console.log(this.register)
-			this.http.post('http://masscredit-backend.stagingapps.net:9000/user/credential/register',
-			this.register, 
-			options)
-			.map(response => response.json())
-			.subscribe((response : any) => {
-				var message 	= response.meta.message;
-				var code 		= response.meta.code;
+		// this.register;
+		// console.log(this.register)
+		// 	this.http.post('http://masscredit-api.stagingapps.net/user/credential/register',
+		// 	this.register, 
+		// 	options)
+		// 	.map(response => response.json())
+		// 	.subscribe((response : any) => {
+		// 		var message 	= response.meta.message;
+		// 		var code 		= response.meta.code;
 				
-				console.log(message);
-				if(code == "200") {
-					localStorage.removeItem("access_code");
-					return this.router.navigateByUrl('/');
-				}
-				else{
-					return this.router.navigateByUrl('/auth/register/step-1')
-				}
-			});
+		// 		console.log(message);
+		// 		if(code == "200") {
+		// 			localStorage.removeItem("access_code");
+		// 			return this.router.navigateByUrl('/');
+		// 		}
+		// 		else{
+		// 			return this.router.navigateByUrl('/auth/register/step-1')
+		// 		}
+		// 	});
 	}
 	
 	prevStepThree(){
