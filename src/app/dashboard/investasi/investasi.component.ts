@@ -11,8 +11,8 @@ import { InvestasiService }	from './investasi.service';
 
 export class InvestasiComponent { 
 	constructor(private investasiservice : InvestasiService) { }
-	listInvestasi() {
-		return this.investasiservice.Index();
-	}
+	// listInvestasi() {
+	// 	return this.investasiservice.Index();
+	// }
 
 }
