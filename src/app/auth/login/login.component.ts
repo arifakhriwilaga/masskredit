@@ -34,7 +34,7 @@ export class LoginComponent {
     
     let options = new RequestOptions({ headers: headers });
 		console.log(user);
-		this.http.post('http://masscredit-backend.stagingapps.net:9000/user/credential/login', user , options)
+		this.http.post('http://masscredit-api.stagingapps.net/user/credential/login', user , options)
 		.subscribe((data : any) => {
 			var data 	 = data.json();
 			console.log(data);
