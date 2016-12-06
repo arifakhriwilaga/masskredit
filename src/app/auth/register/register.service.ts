@@ -14,7 +14,7 @@ export class RegisterService {
 
 	constructor(private jqueryService : JqueryService) { }
 
-	private image:void;
+	private image:any;
 
 	public register = {
 		access_token	 : '',
