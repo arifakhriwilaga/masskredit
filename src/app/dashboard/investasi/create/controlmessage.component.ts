@@ -14,10 +14,10 @@ export class ControlMessagesCreateInvestasi {
 	constructor(){ }
 
 	get errorMessage() {
-		for(let propertyNamaInvestasi in this.control.errors){
-			if(this.control.errors.hasOwnProperty(propertyNamaInvestasi) && this.control.touched){
-				return ValidationServiceInvestasi.getValidationErrorInvestasi(propertyNamaInvestasi,
-				this.control.errors[propertyNamaInvestasi]);
+		for(let propertyName in this.control.errors){
+			if(this.control.errors.hasOwnProperty(propertyName) && this.control.touched){
+				return ValidationServiceInvestasi.getValidationErrorInvestasi(propertyName,
+				this.control.errors[propertyName]);
 			}
 		}
 
