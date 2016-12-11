@@ -10,47 +10,81 @@
          <li><a href="javascript:void(0);"><span>4</span>  Data Penunjang</a></li>
       </ul>
    </div>
-   <form class="form-horizontal clearfix row" id="registerForm" name="step2Form" novalidate>
+   <form class="form-horizontal clearfix row" id="step2Form" name="step2Form" novalidate [formGroup]="step2Form">
       <h3>Data Keluarga</h3>
       <div class="col-md-6">
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nama Lengkap" class="form-control input-md" required name="nama_lengkap" [(ngModel)]="register.nama_lengkap_keluarga">
+              <div [ngClass]="{'has-error':!step2Form.controls['nama_lengkap_keluarga'].valid && step2Form.controls['nama_lengkap_keluarga'].touched}">
+                 <input  type="text" placeholder="Nama Lengkap Keluarga" class="form-control input-md" [formControl]="step2Form.controls['nama_lengkap_keluarga']" >
+
+                 <!-- Message Error -->
+                 <p *ngIf="step2Form.controls['nama_lengkap_keluarga'].hasError('required') && step2Form.controls['nama_lengkap_keluarga'].touched">
+                   <font color="red">Nama dibutuhkan</font>
+                 </p>
+             </div>
             </div>
          </div>
-         <!-- Password input-->
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Hubungan " class="form-control input-md" required name="hubungan" [(ngModel)]="register.hubungan_keluarga">
+               <div [ngClass]="{'has-error':!step2Form.controls['hubungan_keluarga'].valid && step2Form.controls['hubungan_keluarga'].touched}">
+                 <input  type="text" placeholder="Hubungan Keluarga" class="form-control input-md" [formControl]="step2Form.controls['hubungan_keluarga']" >
+
+                 <!-- Message Error -->
+                 <p *ngIf="step2Form.controls['hubungan_keluarga'].hasError('required') && step2Form.controls['hubungan_keluarga'].touched">
+                   <font color="red">Nama dibutuhkan</font>
+                 </p>
+             </div>
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <textarea placeholder="Alamat " class="form-control input-md" required name="alamat" [(ngModel)]="register.alamat_keluarga"></textarea>
+             <div [ngClass]="{'has-error':!step2Form.controls['alamat_keluarga'].valid && step2Form.controls['alamat_keluarga'].touched}">
+                 <textarea type="text" placeholder="Alamat" class="form-control input-md" [formControl]="step2Form.controls['alamat_keluarga']">
+                 </textarea>
+                 <!-- Message Error -->
+                 <p *ngIf="step2Form.controls['alamat_keluarga'].hasError('required') && step2Form.controls['alamat_keluarga'].touched">
+                   <font color="red">Alamat dibutuhkan</font>
+                 </p>
+             </div>
             </div>
          </div>
-          
-        
+
       </div>
+
       <div class="col-md-6">
       <fieldset>
          <div class="form-group">
             <div class="col-md-12">
-               <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" required name="nomor_telepon" [(ngModel)]="register.nomor_telepon_keluarga">
+              <div [ngClass]="{'has-error':!step2Form.controls['nomor_telepon_keluarga'].valid && step2Form.controls['nomor_telepon_keluarga'].touched}">
+                 <input type="text" placeholder="Nomor Telepon" class="form-control input-md" [formControl]="step2Form.controls['nomor_telepon_keluarga']">
+                 <!-- Message Error -->
+                 <p *ngIf="step2Form.controls['nomor_telepon_keluarga'].hasError('required') && step2Form.controls['nomor_telepon_keluarga'].touched">
+                   <font color="red">Nomor telepon dibutuhkan</font>
+                 </p>
+             </div>
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <input type="text" class="form-control input-md" placeholder="Jumlah Anak" required name="jumlah_anak" [(ngModel)]="register.jumlah_anak">
+             <div [ngClass]="{'has-error':!step2Form.controls['jumlah_anak'].valid && step2Form.controls['jumlah_anak'].touched}">
+                 <input type="text" placeholder="Jumlah Anak" class="form-control input-md" [formControl]="step2Form.controls['jumlah_anak']">
+                 <!-- Message Error -->
+                 <p *ngIf="step2Form.controls['jumlah_anak'].hasError('required') && step2Form.controls['jumlah_anak'].touched">
+                   <font color="red">Nomor telepon dibutuhkan</font>
+                 </p>
+             </div>
             </div>
          </div>
          <div class="form-group">
             <div class="col-md-12">
-               <select class="form-control input-md" required name="jumlah_tanggungan" [(ngModel)]="register.jumlah_tanggungan">
-                  <option selected="">Jumlah Tanggungan</option>
-                  <option value="0">1</option>
-                  <option value="1">2</option>
-               </select>
+                 <div [ngClass]="{'has-error':!step2Form.controls['jumlah_tanggungan'].valid && step2Form.controls['jumlah_tanggungan'].touched}">
+                 <input type="text" placeholder="jumlah Tanggungan" class="form-control input-md" [formControl]="step2Form.controls['jumlah_tanggungan']">
+                 <!-- Message Error -->
+                 <p *ngIf="step2Form.controls['jumlah_tanggungan'].hasError('required') && step2Form.controls['jumlah_tanggungan'].touched">
+                   <font color="red">Nomor telepon dibutuhkan</font>
+                 </p>
+             </div>
             </div>
          </div>
        </fieldset>
@@ -59,8 +93,8 @@
          <!-- Button -->
          <div class="form-group">
             <div class="col-md-6 col-center">
-               <button  class="btn btn-default" (click)="prevStepOne(register)">Kembali</button>
-               <button  class="btn btn-red " (click)="nextStepThree(register)">Lanjutkan</button>
+               <button  class="btn btn-default" (click)="prevStepOne(step2Form.value)">Kembali</button>
+               <button  class="btn btn-red" (click)="nextStepThree(step2Form.value)"  [disabled]="!step2Form.valid">Lanjutkan</button>
             </div>
          </div>
       </div>

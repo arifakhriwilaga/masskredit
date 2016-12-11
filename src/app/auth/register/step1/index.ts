@@ -3,7 +3,7 @@ import { NgModule  }              from '@angular/core';
 import { CommonModule  }              from '@angular/common';
 import { RouterModule, Routes }  from '@angular/router';
 import { HttpModule }            from '@angular/http';
-import { FormsModule }           from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule }           from '@angular/forms';
 
 
 // Component Register
@@ -32,9 +32,11 @@ export const routes = [
     FormsModule,
     RouterModule.forChild(routes),
     CommonModule,
+    ReactiveFormsModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // AuthResolve,
+    FormBuilder
     
   ],
 })

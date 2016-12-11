@@ -10,189 +10,339 @@
             <li><a href="javascript:void(0);"><span>4</span>  Data Penunjang</a></li>
          </ul>
       </div>
-      <form class="form-horizontal clearfix row" name="registerForm" novalidate>
+      <form class="form-horizontal clearfix row" name="step1Form" novalidate [formGroup]="step1Form">
          <h3>Data Diri</h3>
          <div class="col-md-6">
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" name="nama_lengkap" placeholder="Nama Lengkap" class="form-control input-md" required [(ngModel)]="register.nama_lengkap">
+                 <div [ngClass]="{'has-error':!step1Form.controls['nama_lengkap'].valid && step1Form.controls['nama_lengkap'].touched}">
+                    <input  type="text" placeholder="Nama Lengkap" class="form-control input-md" [formControl]="step1Form.controls['nama_lengkap']" >
+
+                    <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['nama_lengkap'].hasError('required') && step1Form.controls['nama_lengkap'].touched">
+                      <font color="red">Nama dibutuhkan</font>
+                    </p>
+                  </div>
                </div>
             </div>
-            <!-- Password input-->
+         <!-- Backup -->
+          <div class="form-group">
+               <div class="col-md-12">
+               <span class="required">*</span>
+               <div [ngClass]="{'has-error':!step1Form.controls['alamat_email'].valid && step1Form.controls['alamat_email'].touched}">
+                    <input  type="email" placeholder="Alamat Email" class="form-control input-md" [formControl]="step1Form.controls['alamat_email']" >
+
+                    <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['alamat_email'].hasError('required') && step1Form.controls['alamat_email'].touched">
+                      <font color="red">Email dibutuhkan</font>
+                    </p>
+                  </div>
+               </div>
+
+
+                  <!-- <input  type="email" name="alamat_email" placeholder="Alamat Email " class="form-control input-md" required [(ngModel)]="register.alamat_email"> -->
+               </div>
+            <!-- No Handphone -->
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="email" name="alamat_email" placeholder="Alamat Email " class="form-control input-md" required [(ngModel)]="register.alamat_email">
+                 <div [ngClass]="{'has-error':!step1Form.controls['no_handphone'].valid && step1Form.controls['no_handphone'].touched}">
+                    <input  type="text" placeholder="Nomor Handphone" class="form-control input-md" [formControl]="step1Form.controls['no_handphone']" >
+
+                    <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['no_handphone'].hasError('required') && step1Form.controls['no_handphone'].touched">
+                      <font color="red">No handphone dibutuhkan</font>
+                    </p>
+                  </div>
+               </div>
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+               <div class="col-md-12">
+               <span class="required">*</span>
+                  <div [ngClass]="{'has-error':!step1Form.controls['password'].valid && step1Form.controls['password'].touched}">
+                    <input  type="password" placeholder="Password" class="form-control input-md" [formControl]="step1Form.controls['password']" >
+
+                    <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['password'].hasError('required') && step1Form.controls['password'].touched">
+                      <font color="red">Password kosong</font>
+                    </p>
+                  </div>
+
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" name="no_handphone" placeholder="Nomor Handphone" class="form-control input-md" required [(ngModel)]="register.no_handphone">
+                  <div [ngClass]="{'has-error':!step1Form.controls['confirm_password'].valid && step1Form.controls['confirm_password'].touched}">
+                    <input  type="password" placeholder="Confirm Password" class="form-control input-md" [formControl]="step1Form.controls['confirm_password']" >
+
+                    <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['confirm_password'].hasError('required') && step1Form.controls['confirm_password'].touched">
+                      <font color="red">Confirm password kosong</font>
+                    </p>
+                  </div>
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="password" name ="password" placeholder="Password" class="form-control input-md" required [(ngModel)]="register.password">
-               </div>
-            </div>
-            <div class="form-group">
-               <div class="col-md-12">
-               <span class="required">*</span>
-                  <input  type="password" name ="confirm_password" placeholder="Confirm Password" class="form-control input-md" required [(ngModel)]="register.confirm_password">
-               </div>
-            </div>
-            <div class="form-group">
-               <div class="col-md-12">
-               <span class="required">*</span>
-                  <select class="form-control input-md" name="jenis_kelamin" required [(ngModel)]="register.jenis_kelamin">
-                     <option selected="0" value="0">Jenis Kelamin</option>
+                  <div [ngClass]="{'has-error':!step1Form.controls['jenis_kelamin'].valid && step1Form.controls['jenis_kelamin'].touched}">
+
+                  <select class="form-control input-md" name="jenis_kelamin" required [formControl]="step1Form.controls['jenis_kelamin']">
+                     <option value="0" disabled>Jenis Kelamin</option>
                      <option value="1">Laki-laki</option>
                      <option value="2">Perempuan</option>                  
                   </select>
+                    <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['jenis_kelamin'].hasError('required') && step1Form.controls['jenis_kelamin'].touched">
+                      <font color="red">Pilih jenis kelamin</font>
+                    </p>
+                  </div>
                </div>
             </div>
 
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <select class="form-control input-md" name="agama" required  [(ngModel)]="register.id_agama">
-                     <option value="0" disabled [selected]>Agama</option>
+               <div [ngClass]="{'has-error':!step1Form.controls['id_agama'].valid && step1Form.controls['id_agama'].touched}">
+                  <select class="form-control input-md" name="agama" required  [formControl]="step1Form.controls['id_agama']" default="0">
+                     <option value="0" disabled selected>Agama</option>
                      <option *ngFor="let b of agama" [value]="b.id_agama">{{ b.desc_agama }}</option>
                   </select>
+                     <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['id_agama'].hasError('required') && step1Form.controls['id_agama'].touched">
+                      <font color="red">Pilih agama</font>
+                    </p>
+               </div>
                </div>
             </div>
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <input  type="text" placeholder="Tempat Lahir " name="tempat_lahir" class="form-control input-md" required [(ngModel)]="register.tempat_lahir">
+                  <div [ngClass]="{'has-error':!step1Form.controls['tempat_lahir'].valid && step1Form.controls['tempat_lahir'].touched}">
+                    <input  type="text" placeholder="Tempat Lahir" class="form-control input-md" [formControl]="step1Form.controls['tempat_lahir']" >
+
+                    <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['tempat_lahir'].hasError('required') && step1Form.controls['tempat_lahir'].touched">
+                      <font color="red">Tempat lahir masih kosong</font>
+                    </p>
+                  </div>
                </div>
             </div>
+
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <!-- <div class="box-datepicker"> -->
-                     <input  type="text" placeholder="Tanggal Lahir " name="tanggal_lahir" class="form-control input-md datepicker" id="tanggal_lahir" required [(ngModel)]="register.tanggal_lahir">
+                  <!-- <div [ngClass]="{'has-error':!step1Form.controls['tempat_lahir'].valid}"> -->
+
+                     <input  type="datepicker" placeholder="Tanggal Lahir " name="tanggal_lahir" class="form-control input-md datepicker" id="tanggal_lahir" [formControl]="step1Form.controls['tanggal_lahir']">
+                     <!-- Message Error -->
+                    <!-- <p *ngIf="step1Form.controls['tanggal_lahir'].hasError('required')"> -->
+                      <!-- <font color="red">Tanggal lahir dibutuhkan</font> -->
+                    <!-- </p> -->
                   <!-- </div> -->
                </div>
             </div>
+
             <div class="form-group">
                <div class="col-md-12">
                <span class="required">*</span>
-                  <textarea placeholder="Alamat " class="form-control input-md" name="alamat" required [(ngModel)]="register.alamat"></textarea>
+                  <div [ngClass]="{'has-error':!step1Form.controls['alamat'].valid && step1Form.controls['alamat'].touched}">
+                    <textarea  type="text" placeholder="Alamat" class="form-control input-md" [formControl]="step1Form.controls['alamat']" >
+                    </textarea>
+                    <!-- Message Error -->
+                    <p *ngIf="step1Form.controls['alamat'].hasError('required') && step1Form.controls['alamat'].touched">
+                      <font color="red">Alamat masih kosong</font>
+                    </p>
+                  </div>
                </div>
             </div>
          </div>
+
          <div class="col-md-6">
             <fieldset>
                <div class="form-box">
-                  <!-- Text input-->
                   <div class="form-group">
                      <div class="col-md-4">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="provinsi" required [(ngModel)]="register.id_provinsi">
-                           <option value="0" disabled>Provinsi</option>
-                           <option *ngFor="let c of province" [value]="c.id_provinsi">
-                              {{ c.desc_provinsi }}
-                           </option>
-                        </select>
+                        <div [ngClass]="{'has-error':!step1Form.controls['id_provinsi'].valid && step1Form.controls['alamat'].touched}">
+                        <select class="form-control input-md" id="provinsi" name="provinsi" required (change)="getProvinsi($event.target.value)">
+                              <option value="0" disabled>Provinsi</option>
+                              <option *ngFor="let c of province" [value]="c.id_provinsi">
+                                 {{ c.desc_provinsi }}
+                              </option>
+                           </select>
+                       <!-- Message Error -->
+                       <p *ngIf="step1Form.controls['id_provinsi'].hasError('required') && step1Form.controls['id_provinsi'].touched">
+                         <font color="red">Pilih provinsi</font>
+                       </p>
+                        </div>
                      </div>
+
                      <div class="col-md-4">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="kota" required [(ngModel)]="register.id_kota">
-                           <option>Kota</option>
-                           <option value="1">Bandung</option>
-                        
-                        </select>
+                        <div [ngClass]="{'has-error':!step1Form.controls['id_kota'].valid && step1Form.controls['id_kota'].touched}">
+
+                           <select class="form-control input-md" name="kota" required  [formControl]="step1Form.controls['id_kota']">
+                              <option value="0" disabled>Kota</option>
+                              <option *ngFor="let g of kota" [value]="g.id_kota">{{ g.desc_kota }}</option>
+                           </select>
+                             <!-- Message Error -->
+                             <p *ngIf="step1Form.controls['id_kota'].hasError('required') && step1Form.controls['id_kota'].touched">
+                               <font color="red">Pilih kota</font>
+                             </p>
+                        </div>
                      </div>
-                     <div class="col-md-4">
+
+                  <div class="col-md-4">
                <span class="required">*</span>
-                        <input  type="text" placeholder="Kode Pos" name="kode_pos" class="form-control input-md" required [(ngModel)]="register.kode_pos">
+                     <div [ngClass]="{'has-error':!step1Form.controls['kode_pos'].valid && step1Form.controls['kode_pos'].touched}">
+
+                        <input  type="text" placeholder="Kode Pos" class="form-control input-md" required [formControl]="step1Form.controls['kode_pos']">
+                      <!-- Message Error -->
+                       <p *ngIf="step1Form.controls['kode_pos'].hasError('required') && step1Form.controls['kode_pos'].touched">
+                         <font color="red">Kode pos kosong</font>
+                       </p>
+
                      </div>
                   </div>
+                  </div>
+
                   <div class="form-group">
                      <div class="col-md-12">
-                        <select class="form-control input-md" name="status_rumah" required [(ngModel)]="register.id_status_rumah">
-                           <option selected value="0" disabled="">Status Rumah</option>
+                        <select class="form-control input-md" name="status_rumah" required  [formControl]="step1Form.controls['id_status_rumah']">
+                           <option value="0" disabled="">Status Rumah</option>
                             <option *ngFor="let c of status_rumah" [value]="c.id_status_rumah">
                               {{ c.desc_status_rumah }}
                            </option>
                         </select>
                      </div>
                   </div>
-                  <!-- Password input-->
+
                   <div class="form-group">
                      <div class="col-md-6">
-                        <input  type="text" placeholder="Luas Tanah " class="form-control input-md" name="luas_tanah" required [(ngModel)]="register.luas_tanah">
+                        <input  type="text" placeholder="Luas Tanah " class="form-control input-md" name="luas_tanah" required [formControl]="step1Form.controls['luas_tanah']">
                      </div>
+
                      <div class="col-md-6">
-                        <input  type="text" placeholder="Luas Bangunan" class="form-control input-md" name="luas_bangunan" required [(ngModel)]="register.luas_bangunan">
+                        <input  type="text" placeholder="Luas Bangunan" class="form-control input-md" name="luas_bangunan" required [formControl]="step1Form.controls['luas_bangunan']">
                      </div>
                   </div>
                   <div class="form-group">
                      <div class="col-md-6">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="identitas" required [(ngModel)]="register.id_tipe_identitas">
+                        <div [ngClass]="{'has-error':!step1Form.controls['id_tipe_identitas'].valid && step1Form.controls['id_tipe_identitas'].touched}">
+
+                        <select class="form-control input-md" name="identitas" required [formControl]="step1Form.controls['id_tipe_identitas']">
                            <option selected value="0" disabled>Pilih Identitas</option>
                            <option *ngFor="let d of tipe_identitas" [value]="d.id_tipe_identitas">
                               {{ d.desc_tipe_identitas }}
                            </option>
                         </select>
+                         <!-- Message Error -->
+                          <p *ngIf="step1Form.controls['id_tipe_identitas'].hasError('required') && step1Form.controls['id_tipe_identitas'].touched">
+                            <font color="red">Pilih identitas</font>
+                          </p>
+                        </div>
                      </div>
-                     <div class="col-md-6">
+
+
+                  <div class="col-md-6">
                <span class="required">*</span>
-                        <input  type="text" placeholder="Nomor Identitas" class="form-control input-md" name="nomor_identitas" required [(ngModel)]="register.nomor_identitas">
+                     <div [ngClass]="{'has-error':!step1Form.controls['nomor_identitas'].valid && step1Form.controls['nomor_identitas'].touched}">
+
+                        <input  type="text" placeholder="Nomor Identitas" class="form-control input-md" name="nomor_identitas" required  [formControl]="step1Form.controls['nomor_identitas']">
+                        <!-- Message Error -->
+                       <p *ngIf="step1Form.controls['nomor_identitas'].hasError('required') && step1Form.controls['nomor_identitas'].touched">
+                         <font color="red">Nomor identitas masih kosong</font>
+                       </p> 
                      </div>
                   </div>
+                  </div>
+                  
                   <div class="form-group">
                      <div class="col-md-12">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="status" required [(ngModel)]="register.id_status">
-                           <option selected value="0" disabled="">Status</option>
+                     <div [ngClass]="{'has-error':!step1Form.controls['id_status'].valid && step1Form.controls['id_status'].touched}">
+
+                        <select class="form-control input-md" name="status" required [formControl]="step1Form.controls['id_status']">
+                           <option value="0" disabled>Status</option>
                            <option *ngFor="let e of status" [value]="e.id_status">
                               {{ e.desc_status }}
                            </option>
                         </select>
+                        <!-- Message Error -->
+                       <p *ngIf="step1Form.controls['id_status'].hasError('required') && step1Form.controls['id_status'].touched">
+                         <font color="red">Pilih status</font>
+                       </p> 
+                        </div>
                      </div>
                   </div>
+
                   <div class="form-group">
                      <div class="col-md-12">
-                        <input  type="text" placeholder="Nomor NPWP" class="form-control input-md" name="npwp" required [(ngModel)]="register.nomor_npwp">
+                        <input  type="text" placeholder="Nomor NPWP" class="form-control input-md" name="npwp" required [formControl]="step1Form.controls['nomor_npwp']">
                      </div>
                   </div>
+
                   <div class="form-group">
                      <div class="col-md-6">
                <span class="required">*</span>
-                        <select class="form-control input-md" name="bank" required [(ngModel)]="register.id_tipe_bank">
+                        <div [ngClass]="{'has-error':!step1Form.controls['nomor_identitas'].valid && step1Form.controls['nomor_identitas'].touched}">
+
+                        <select class="form-control input-md" name="bank" required [formControl]="step1Form.controls['id_tipe_bank']">
                            <option selected value="0" disabled>Pilih Bank</option>
                            <option *ngFor="let f of tipe_bank" [value]="f.id_tipe_bank">
                               {{ f.desc_tipe_bank }}
                            </option>
                         </select>
+                        <!-- Message Error -->
+                       <p *ngIf="step1Form.controls['id_tipe_bank'].hasError('required') && step1Form.controls['id_tipe_bank'].touched">
+                         <font color="red">Pilih bank</font>
+                       </p> 
+                       </div>
                      </div>
-                     <div class="col-md-6">
+
+
+                  <div class="col-md-6">
                <span class="required">*</span>
-                        <input  type="text" placeholder="Nomor Rekening" class="form-control input-md" name="nomor_rekening" required [(ngModel)]="register.nomor_rekening">
+                     <div [ngClass]="{'has-error':!step1Form.controls['nomor_rekening'].valid && step1Form.controls['nomor_rekening'].touched}">
+
+                        <input  type="text" placeholder="Nomor Rekening" class="form-control input-md" name="nomor_rekening" required [formControl]="step1Form.controls['nomor_rekening']">
+                       <!-- Message Error -->
+                       <p *ngIf="step1Form.controls['nomor_rekening'].hasError('required') && step1Form.controls['nomor_rekening'].touched">
+                         <font color="red">Nomor rekening masih kosong</font>
+                       </p> 
                      </div>
                   </div>
+                  </div>
+
                   <div class="form-group">
                      <div class="col-md-12">
                <span class="required">*</span>
-                        <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" name="nomor_telepon" required [(ngModel)]="register.telepon">
+                     <div [ngClass]="{'has-error':!step1Form.controls['nomor_rekening'].valid && step1Form.controls['nomor_rekening'].touched}">
+
+                        <input  type="text" placeholder="Nomor Telepon" class="form-control input-md" name="nomor_telepon" required [formControl]="step1Form.controls['telepon']">
+                        <!-- Message Error -->
+                       <p *ngIf="step1Form.controls['telepon'].hasError('required') && step1Form.controls['telepon'].touched">
+                         <font color="red">Nomor telepon masih kosong</font>
+                       </p>
+                     </div>
                      </div>
                   </div>
-                  <!-- Multiple Checkboxes (inline) -->
                </div>
             </fieldset>
          </div>
+
          <div class="col-md-12">
             <!-- Button -->
             <div class="form-group">
                <div class="col-md-6 col-center">
-                  <button  class="btn btn-default" (click)="cancelRegister(register )">Batal</button>
-                  <button  class="btn btn-red"  (click)="nextStepTwo(register)">Lanjutkan</button>
+                  <button  class="btn btn-default" (click)="cancelRegister(step1Form.value)">Batal</button>
+                  <button  class="btn btn-red" (click)="nextStepTwo(step1Form.value)" [disabled]="!step1Form.valid">Lanjutkan</button>
+                  <!-- <button  class="btn btn-red"  (click)="nextStepTwo(register)">Lanjutkan</button> -->
                </div>
             </div>
          </div>

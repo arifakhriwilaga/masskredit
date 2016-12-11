@@ -15,35 +15,51 @@
          <div class="form-group">
             <div class="col-md-12">
                 <span class="required">*</span>
-                <p>Upload Foto KTP bagian Depan</p>
-                <input  type="file" placeholder="Password" class="form-control input-md" required id="foto_ktp_depan" >
-            </div>    
-         </div>
-         </div>
+                  <div [ngClass]="{'has-error':!step4Form.controls['foto_ktp_depan'].valid && step4Form.controls['foto_ktp_depan'].touched}">
+                    <p>Upload Foto KTP bagian Depan</p>
+                    <input  type="file" placeholder="Password" class="form-control input-md" required id="foto_ktp_depan" [formControl]="step4Form.controls['foto_ktp_depan']">
+                    <!-- <p *ngIf="step4Form.controls['foto_ktp_depan'].hasError('required') && step4Form.controls['foto_ktp_depan'].touched">
+                      <font color="red">Foto KTP belakang kosong</font>
+                    </p> -->
+                  </div>
+            </div>
+          </div>
+        </div>
          <div class="col-md-4">
           <div class="form-group">
             <div class="col-md-12">
                 <span class="required">*</span>
                <p>Upload Foto KTP bagian Belakang</p>
-         <input  type="file" class="form-control input-md" required name="foto_ktp_belakang" id="foto_ktp_belakang">
-            </div>    
-         </div>
-         </div>
+                <div [ngClass]="{'has-error':!step4Form.controls['foto_ktp_depan'].valid && step4Form.controls['foto_ktp_depan'].touched}">
+                    <input  type="file" class="form-control input-md" required name="foto_ktp_belakang" id="foto_ktp_belakang" [formControl]="step4Form.controls['foto_ktp_belakang']">
+<!--                   <p *ngIf="step4Form.controls['foto_ktp_belakang'].hasError('required') && step4Form.controls['foto_ktp_belakang'].touched">
+                  <font color="red">Foto KTP belakang kosong</font>
+                  </p> -->
+                </div>    
+            </div>
+          </div>
+        </div>
          <div class="col-md-4">
          <div class="form-group">
-                <div class="col-md-12">
-                <span class="required">*</span>
+            <div class="col-md-12">
+              <span class="required">*</span>
                <p>Upload Foto Anda</p>
-         <input  type="file" class="form-control input-md" required name="foto_diri" id="foto_diri">
+            <div [ngClass]="{'has-error':!step4Form.controls['foto_ktp_depan'].valid && step4Form.controls['foto_ktp_depan'].touched}">
+
+         <input  type="file" class="form-control input-md" required name="foto_diri" id="foto_diri" [formControl]="step4Form.controls['foto_diri']">
+<!--                    <p *ngIf="step4Form.controls['foto_diri'].hasError('required') && step4Form.controls['foto_diri'].touched">
+                  <font color="red">Foto diri kosong</font>
+                  </p> -->
             </div>    
          </div>
+      </div>
       </div>
       <div class="col-md-12">
          <!-- Button -->
          <div class="form-group">
             <div class="col-md-6 col-center">
                <button  class="btn btn-default" (click)="prevStepThree(register)">Kembali</button>
-               <button  class="btn btn-red" (click)="stepFinish()">Simpan</button>
+               <button  class="btn btn-red" (click)="stepFinish()"  [disabled]="!step4Form.valid">Simpan</button>
             </div>
          </div>
       </div>
