@@ -168,9 +168,9 @@
         <div class="col-lg-5 col-xs-5 col-sm-offset-1">
           <div class="pull-left profile-left"><img src="../../assets/img/user2-160x160.jpg"><img class="verify-check" src="../../assets/img/green-checklist.png"></div>
           <div class="pull-right profile-right">
-            <h3>Andrew Susanto</h3>
-            <p class="no-margin-bottom">Class 2A <span>Active User</span></p>
-            <p class="last-login">Last login 30 Sep 2016 20:23</p>
+            <h3>{{ name }}</h3>
+            <p class="no-margin-bottom">Class {{ user_class }}<span>Active User</span></p>
+            <p class="last-login">Last login {{ last_login }}</p>
              <div class="clearfix">
                 <i class="fa fa-star full" aria-hidden="true"></i>
                 <i class="fa fa-star full" aria-hidden="true"></i>
@@ -186,7 +186,7 @@
           <div class="pull-left balance-left"><img src="../../assets/img/dollar-bag.png"></div>
           <div class="pull-right balance-right ">
             <p>Balance</p>
-            <h2>Rp. 34.000.000</h2>
+            <h2>{{ account_summary }}</h2>
           </div>
         </div>
       </div>
