@@ -27,6 +27,7 @@ import { CreateInvestComponent }        from './investasi/create/create.componen
 // Investasi
 import { PinjamanComponent }      from './pinjaman';
 import { IndexLoanComponent }     from './pinjaman/index/index.component';
+import { DetailComponent }     from './pinjaman/detail';
 // import { CreateLoanComponent }    from './pinjaman/create/create.component';
 
 
@@ -43,7 +44,7 @@ import { InvestasiService }     from './investasi/investasi.service';
 export const routes = [
 
   { path: '', component: DashboardComponent,
-    canActivate : [ AuthGuard ],
+    // canActivate : [ AuthGuard ],
     children: [
       { path: '',             redirectTo: 'content', pathMatch: 'full' },
       { path: 'content',      component: ContentComponent },
@@ -65,8 +66,10 @@ export const routes = [
       // },
       { path: 'pinjaman', 		  component: PinjamanComponent,
         children: [
-              { path: '',        redirectTo: 'index', pathMatch: 'full' },
-              { path: 'index',   component: IndexLoanComponent },
+              { path: '',          redirectTo: 'index', pathMatch: 'full' },
+              { path: 'index',     component: IndexLoanComponent },
+              { path: 'detail/:id',component: DetailComponent },
+              
               // { path: 'create',  component: CreateComponent },
               
         ]
@@ -97,6 +100,7 @@ export const routes = [
     IndexInvestComponent,
     CreateInvestComponent,
     IndexLoanComponent,
+    DetailComponent,
 
     // message error create investasi
     ControlMessagesCreateInvestasi
