@@ -4,7 +4,7 @@ import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA }    from '@angular/co
 import { RouterModule, Routes, ActivatedRoute }                from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { HttpModule }                                          from '@angular/http';
-import { FormsModule, ReactiveFormsModule }                    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder }                    from '@angular/forms';
 import { RegisterService }                                     from './register.service';
 import { JqueryService }                                     from './jquery.register';
 import { CommonModule  }              from '@angular/common';
@@ -76,8 +76,8 @@ export const routes = [
     Step2RegisterComponent,
     Step3RegisterComponent,
     AuthGuardVerifyHandphone,
-    AuthGuardVerifyCodeHandphone
-
+    AuthGuardVerifyCodeHandphone,
+    FormBuilder
   ],
 })
 
