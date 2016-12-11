@@ -4,15 +4,12 @@
     <div class="col-md-12">
       <div class="box bg-transparent">
         <div class="box-header">
-          <h2 class="box-title pull-left">Investasi</h2>
-          <div *ngFor="let data of pinjaman" >
-                              {{ data.invest_name }}
-          </div>
+          <h2 class="box-title pull-left">Pinjaman</h2>
           <div class="pull-right">
-            <select class="box-datepicker">
+<!--             <select class="box-datepicker">
               <option>Tipe Pinjaman</option>
-            </select>
-            <div class="box-datepicker">
+            </select> -->
+<!--             <div class="box-datepicker">
               <i class="fa fa-calendar" aria-hidden="true"></i>
               <input id="" name="" type="text" placeholder="30 May 2015" class="form-control input-md datepicker" required="">
               <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -20,12 +17,12 @@
             <div class="box-datepicker">
               <input type="text" class="" placeholder="Cari" />
               <img src="../../assets/img/icon-search.png" class="icon-search">
-            </div>
-            <a href="#/dashboard/investasi/create" color="white">
+            </div> -->
+            <a href="#/dashboard/pinjaman/index" color="white">
             <button class="add-advance-search">Tambah
             </button>
             </a>
-            <button type="submit" (click)="listInvestasi()" class="add-advance-search">List Investasi</button>
+            <!-- <button type="submit" (click)="listPinjaman()" class="add-advance-search">List Investasi</button> -->
            </div>
         </div>
 
@@ -36,90 +33,31 @@
             <thead>
               <tr>
                 <th>No.</th>
-                <th>Nama Investor</th>
+                <th>Nama Investasi</th>
                 <th>Tanggal</th>
                 <th>Tipe Pinjaman</th>
                 <th>Nominal Investasi</th>
-                <th>Deskripsi</th>
+                <th>Sisa Investasi</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
+              <tr *ngFor="let a of pinjaman">                              
+                <td>{{ a.id }}</td>
                 <td>
-                  <img src="../../assets/img/user4-128x128.jpg">
-                  Yolanda Santoso
+                  <img src="{{ a.image_invest }}">
+                   {{ a.invest_name }}
                 </td>
-                <td>23/04/2016</td>
-                <td><span class="warranty">Tanpa Jaminan</span></td>
-                <td>1.500.000</td>
-                <td>Investasi penjualan beras wangi</td>
-                <td>
-                  <a class="pull-right" href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  <a class="pull-right" href=""><i class="fa fa-search" aria-hidden="true"></i></a>
-                </td>
-              </tr>
-               <tr>
-                <td>2</td>
-                <td>
-                  <img src="../../assets/img/user4-128x128.jpg">
-                  Yolanda Santoso
-                </td>
-                <td>23/04/2016</td>
-                <td><span class="warranty">Tanpa Jaminan</span></td>
-                <td>1.500.000</td>
-                <td>Investasi penjualan beras wangi</td>
+                <td>{{ a.due_date }}</td>
+                <td><span class="warranty">{{ a.type_invest }}</span></td>
+                <td>{{ a.amount }}</td>
+                <td>0</td>
                 <td>
                   <a class="pull-right" href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  <a class="pull-right" href=""><i class="fa fa-search" aria-hidden="true"></i></a>
+                  <a class="pull-right" [routerLink]="['/dashboard/pinjaman/detail', a.id]"><i class="fa fa-search" aria-hidden="true"></i></a>
                 </td>
               </tr>
-               <tr>
-                <td>3</td>
-                <td>
-                  <img src="../../assets/img/user4-128x128.jpg">
-                  Yolanda Santoso
-                </td>
-                <td>23/04/2016</td>
-                <td><span class="warranty">Tanpa Jaminan</span></td>
-                <td>1.500.000</td>
-                <td>Investasi penjualan beras wangi</td>
-                <td>
-                  <a class="pull-right" href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  <a class="pull-right" href=""><i class="fa fa-search" aria-hidden="true"></i></a>
-                </td>
-              </tr>
-                <tr>
-                <td>4</td>
-                <td>
-                  <img src="../../assets/img/user4-128x128.jpg">
-                  Yolanda Santoso
-                </td>
-                <td>23/04/2016</td>
-                <td><span class="warranty">Tanpa Jaminan</span></td>
-                <td>1.500.000</td>
-                <td>Investasi penjualan beras wangi</td>
-                <td>
-                  <a class="pull-right" href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  <a class="pull-right" href=""><i class="fa fa-search" aria-hidden="true"></i></a>
-                </td>
-              </tr>
-               <tr>
-                <td>5</td>
-                <td>
-                  <img src="../../assets/img/user4-128x128.jpg">
-                  Yolanda Santoso
-                </td>
-                <td>23/04/2016</td>
-                <td><span class="warranty">Tanpa Jaminan</span></td>
-                <td>1.500.000</td>
-                <td>Investasi penjualan beras wangi</td>
-                <td>
-                  <a class="pull-right" href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  <a class="pull-right" href=""><i class="fa fa-search" aria-hidden="true"></i></a>
-                </td>
-              </tr>
+              
 
             </tbody>
           </table>
