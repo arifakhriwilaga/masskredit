@@ -1,5 +1,7 @@
-import { Component, ViewEncapsulation }       from '@angular/core';
-import { ActivatedRoute }  from '@angular/router';
+import { Component, ViewEncapsulation }  from '@angular/core';
+import { ActivatedRoute }                from '@angular/router';
+import { Headers, Http, RequestOptions } from '@angular/http';
+
 
 declare var jQuery: any;
 
@@ -19,6 +21,7 @@ declare var jQuery: any;
 })
 export class DashboardComponent {
   
+  constructor(private http : Http) { }
   ngOnInit(){
     jQuery('li > a').click(function() {
       jQuery('li').removeClass();
@@ -26,10 +29,33 @@ export class DashboardComponent {
    
     });
 
+    let token = {
+      'access_token' : JSON.parse(localStorage.getItem("access_token")),
+    }
 
-     jQuery('.datepicker').datepicker({
+    // console.log(data_detail);
+    
+    let headers = new Headers({ 
+       'Content-Type': 'application/json',
+       'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+     });
+
+   
+    console.log("Sedang mengambil data....")
+      let options = new RequestOptions({ headers: headers });
+      this.http.post('http://masscredit-api.stagingapps.net/user/credential/profile',token,options)
+        .map(response => response.json())
+        .subscribe((response : any) => {
+          // console.log(response);
+          this.profile         = response.data.profile;
+          this.account_summary = response.data.account_summary;
+          console.log(this.profile);
+        });
+
+
+     jQuery('#datepicker').datepicker({
       format: 'mm/dd/yyyy',
-      startDate: '-3d'
+      // startDate: '3d'
     });
 
 
@@ -41,6 +67,10 @@ export class DashboardComponent {
     };
 
   }
+
+  public profile         = [];
+  public account_summary = {};
+
 }    
 
 
