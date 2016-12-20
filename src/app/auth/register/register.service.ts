@@ -17,58 +17,71 @@ export class RegisterService {
 	private image:any;
 
 	public register = {
-		access_token	 : '',
-
 		nama_lengkap 	 : '',
 		alamat_email 	 : '',
-		no_handphone	 : '',
+		phone_number	 : '',
 		password	 	 : '',
 		confirm_password : '',
+		kode_pos		 : '',
 		jenis_kelamin	 : '0',
-		id_agama 		 : '0',
 		tempat_lahir  	 : '',
 		tanggal_lahir 	 : '',
 		alamat 			 : '',
-		id_provinsi 	 : '0',
-		id_kota 		 : '0',
-		kode_pos 		 : '',
-		id_status_rumah  : '0',
-		luas_tanah 		 : '',
-		luas_bangunan 	 : '',
-		id_tipe_identitas: '0',
-		nomor_identitas  : '',
-		id_status	 	 : '0',
-		nomor_npwp 		 : '',
-		id_tipe_bank     : '0',
-		nomor_rekening 	 : '',
-		telepon  	 	 : '',
-
-		// step2
-		nama_lengkap_keluarga 	: '',
-		hubungan_keluarga	 	: '',
-		alamat_keluarga	  		: '',
-		nomor_telepon_keluarga 	: '',
-		jumlah_anak 	  		: '',
-		jumlah_tanggungan 		: '',
-
-		// step3
-		id_pekerjaan 	 	  : '0',
-		nama_perusahaan 	  : '',
-		alamat_perusahaan	  : '',
-		telepon_perusahaan 	  : '',
-		jenis_usaha 		  : '',
-		jabatan  	 		  : '',
-		tanggal_mulai_kerja   : '',
-		gaji_per_bulan 		  : '',
-		pendapatan_lain 	  : '',
-		pengeluaran_per_bulan : '',
-		sumber_dana 		  : '',
-
-		// step4
-		foto_ktp_depan 	  : this.image,
-		foto_ktp_belakang : this.image,
-		foto_diri	 	  : this.image,
 	}
+
+	// public register = {
+	// 	access_token	 : '',
+
+	// 	nama_lengkap 	 : '',
+	// 	alamat_email 	 : '',
+	// 	no_handphone	 : '',
+	// 	password	 	 : '',
+	// 	confirm_password : '',
+	// 	jenis_kelamin	 : '0',
+	// 	id_agama 		 : '0',
+	// 	tempat_lahir  	 : '',
+	// 	tanggal_lahir 	 : '',
+	// 	alamat 			 : '',
+	// 	id_provinsi 	 : '0',
+	// 	id_kota 		 : '0',
+	// 	kode_pos 		 : '',
+	// 	id_status_rumah  : '0',
+	// 	luas_tanah 		 : '',
+	// 	luas_bangunan 	 : '',
+	// 	id_tipe_identitas: '0',
+	// 	nomor_identitas  : '',
+	// 	id_status	 	 : '0',
+	// 	nomor_npwp 		 : '',
+	// 	id_tipe_bank     : '0',
+	// 	nomor_rekening 	 : '',
+	// 	telepon  	 	 : '',
+
+	// 	// step2
+	// 	nama_lengkap_keluarga 	: '',
+	// 	hubungan_keluarga	 	: '',
+	// 	alamat_keluarga	  		: '',
+	// 	nomor_telepon_keluarga 	: '',
+	// 	jumlah_anak 	  		: '',
+	// 	jumlah_tanggungan 		: '',
+
+	// 	// step3
+	// 	id_pekerjaan 	 	  : '0',
+	// 	nama_perusahaan 	  : '',
+	// 	alamat_perusahaan	  : '',
+	// 	telepon_perusahaan 	  : '',
+	// 	jenis_usaha 		  : '',
+	// 	jabatan  	 		  : '',
+	// 	tanggal_mulai_kerja   : '',
+	// 	gaji_per_bulan 		  : '',
+	// 	pendapatan_lain 	  : '',
+	// 	pengeluaran_per_bulan : '',
+	// 	sumber_dana 		  : '',
+
+	// 	// step4
+	// 	foto_ktp_depan 	  : this.image,
+	// 	foto_ktp_belakang : this.image,
+	// 	foto_diri	 	  : this.image,
+	// }
 
 	dataRegister(){
 		return this.register;
