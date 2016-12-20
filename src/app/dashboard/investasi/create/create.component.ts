@@ -45,8 +45,9 @@ export class CreateInvestComponent {
 
 	ngOnInit() {
 		jQuery('.datepicker').datepicker({
-	      format: 'yyyy-mm-dd',
-	      startDate: '-3d'
+	      format	: 'YYYY-MM-DD',
+	      // startDate : '2015-01-01',
+	      // minDate	: '01/01/2015'
 	    });
 	}
 
