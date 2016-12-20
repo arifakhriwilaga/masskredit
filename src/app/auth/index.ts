@@ -13,6 +13,7 @@ import { FooterComponent }     from './shared/footer';
 import { HeaderComponent }     from './shared/header';
 
 
+
 const routes = [
   { 
     path: '', 
@@ -27,6 +28,7 @@ const routes = [
         path: 'register', 
         loadChildren: () => System.import('./register').then((comp: any) => comp.default) 
       },
+ 
     ]
   },
 ];

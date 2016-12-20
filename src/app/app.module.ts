@@ -23,6 +23,10 @@ import { AppComponent }                from './app.component';
 import { APP_RESOLVER_PROVIDERS }      from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
+// Verify Email
+import { VerifyEmailComponent }          from './verify_email';
+
+
 // Config LocalStorage
 let localStorageServiceConfig = {
   prefix: 'my-app',
@@ -48,6 +52,7 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
+    VerifyEmailComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
