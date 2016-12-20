@@ -26,7 +26,9 @@ import { AuthGuardVerifyCode }   from './../../authguard/auth-guard-verify-code.
 // Guard Verify
 import { AuthGuardVerifyCodeHandphone }   from './../../authguard/auth-guard-verify-code-handphone.service';
 import { AuthGuardVerifyHandphone }   from './../../authguard/auth-guard-verify-handphone.service';
-console.log("dari register")
+
+
+
 export const routes = [
   { 
     path: '', 
@@ -35,19 +37,21 @@ export const routes = [
       { path: '', redirectTo: 'verify' },
       {    
         path: 'verify', 
-        canActivate : [ AuthGuardVerifyCode, AuthGuardVerifyCodeHandphone ],
+        // canActivate : [ AuthGuardVerifyCode, AuthGuardVerifyCodeHandphone ],
         loadChildren: () => System.import('./verify_handphone').then((comp: any) => comp.default) 
       },
       {    
         path: 'verify-code', 
-        canActivate : [ AuthGuardVerifyCode, AuthGuardVerifyHandphone ],
+        // canActivate : [ AuthGuardVerifyCode, AuthGuardVerifyHandphone ],
         loadChildren: () => System.import('./verify_code').then((comp: any) => comp.default) 
       },       
       {    
         path: 'step-1', 
         canActivate : [ AuthGuardVerify ],
         loadChildren: () => System.import('./step1').then((comp: any) => comp.default) 
-      }          
+      },
+
+       
     ]
 
   }
@@ -57,7 +61,6 @@ export const routes = [
 @NgModule({
   declarations: [
     RegisterComponent, // declarations RegisterComponent
-    // Step1RegisterComponent
 
   ],
   imports: [ // import Angular's modules
