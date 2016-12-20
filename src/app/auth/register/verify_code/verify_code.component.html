@@ -4,25 +4,28 @@
   <h2>Registrasi</h2>
   <p>Silahkan masukkan nomor verifikasi yang anda terima melalui SMS</p>
   <br>
-  <form class="form-horizontal clearfix row" [formGroup]="verifyCodeForm" (submit)="sendVerify(verifyCodeForm.value)">
-     <div class="col-md-12">
-        <div class="form-group">
-           <div class="col-md-4">
-            <div class="form-group" [ngClass]="{'has-error':!verifyCodeForm.controls['verification_code'].valid && verifyCodeForm.controls['verification_code'].touched}">
-
-
-
-               <input type="text" class="form-control" placeholder="Verification Code" [formControl]="verifyCodeForm.controls['verification_code']" maxlength="5">
-               <!-- Message Erro -->
-<!--                <p *ngIf="verifyCodeForm.controls['verification_code'].hasError('required') && verifyCodeForm.controls['verification_code'].touched">
-                  <font color="red">Code verifikasi tidak valid</font>
-               </p> -->
-               </div>
-            </div>
-           <div class="col-md-4">
-              <button type="button" class="btn btn-batal" data-dismiss="modal" (click)="cancelVerify()">Batal</button>
-              <button  class="btn btn-red">Verify</button>
-           </div>
+  <form class="form-horizontal clearfix row" id="verifyCodeForm">
+     <div class="col-xs-12">
+        <div class="row">
+          <div align="center">
+              <div class="form-group" style="width:60%">
+                <div class="col-xs-6">
+               <input type="text" class="form-control" placeholder="Verification Code" maxlength="5" id="verification_code" [(ngModel)]="code.verification_code" name="verification_code">
+                </div>
+                <div class="col-xs-2">
+                  <button  class="btn btn-red" (click)="sendVerify(code)">
+                    Verifikasi
+                  </button>
+                </div>
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-2">
+                  <button type="button" class="btn btn-batal" data-dismiss="modal" (click)="resendHandphone()">
+                    Resend
+                  </button>
+                </div>
+              </div>
+          </div>
         </div>
      </div>
   </form>
