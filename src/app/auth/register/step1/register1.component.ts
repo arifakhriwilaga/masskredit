@@ -199,7 +199,7 @@ export class Step1RegisterComponent  {
 						.map(response => response.json())
 						.subscribe(
 							(response:any) => { 
-								console.log(response)
+								// console.log(response)
 								var code 		= response.meta.code;
 												
 								if(code == "200") {

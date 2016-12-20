@@ -53,7 +53,7 @@ export class VerifyCodeComponent {
 		
 	    	let options = new RequestOptions({ headers: headers });
 
-			console.log(code);
+			// console.log(code);
 			return this.http.post('http://masscredit-api.stagingapps.net/user/credential/verifycode',code, options)
 			.map( (data) => data.json() )
 			.subscribe((data) => {

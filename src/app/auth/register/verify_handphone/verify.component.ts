@@ -46,7 +46,7 @@ export class VerifyComponent {
 	sendHandphone(nomor:any)  {
 		if(jQuery("#verifyForm").valid()) {
 
-			console.log(nomor);
+			// console.log(nomor);
 			console.log("Data valid");
 
 			var nomor:any;
@@ -54,7 +54,7 @@ export class VerifyComponent {
 
 			jQuery(function($){
 			});
-			console.log(nomor)
+			// console.log(nomor)
 
 			let headers = new Headers({ 
 				'Content-Type': 'application/json',
@@ -77,9 +77,9 @@ export class VerifyComponent {
 					var verify 	= JSON.stringify(nomor.phone_number)
 					var code 	= data.data.verification_code;
 					var header 	= data;
-					console.log(header.meta);
+					// console.log(header.meta);
 					console.log("Verify code :",code)
-					// alert(code);
+					alert(code);
 					// console.log(data);
 					localStorage.setItem("verify_handphone", verify)
 					this.router.navigateByUrl("/auth/register/verify-code") // return view verify code for now
