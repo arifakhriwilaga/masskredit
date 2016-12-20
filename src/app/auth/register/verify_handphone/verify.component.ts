@@ -19,18 +19,23 @@ export class VerifyComponent {
 	constructor(private router : Router, private http : Http, private formBuilder: FormBuilder) { 
 
 		this.verifyForm = this.formBuilder.group({
-			'phone_number' : [null, Validators.compose([Validators.required,
-				Validators.minLength(5),
-				Validators.maxLength(10),
-				// Validators.pattern()
-			])]
+			'phone_number' : [null, Validators.compose([Validators.required])]
 		})
 
 	}	
 
 	// call jquery
-	OnInit() {
-        jQuery('#verifikasi-modal').modal('show');
+	ngAfterViewInit() {
+		jQuery(function($){
+			jQuery('#phone').mask('000-000-000000');
+		});
+		jQuery( "#verifyForm" ).validate({
+		  rules: {
+		    phone: {
+		      required: true
+		    }
+		  }
+		});
     }
 
 
@@ -39,36 +44,58 @@ export class VerifyComponent {
 	};
     // send nomor handphone	
 	sendHandphone(nomor:any)  {
+		if(jQuery("#verifyForm").valid()) {
 
+			console.log(nomor);
+			console.log("Data valid");
 
-		let headers = new Headers({ 
-			'Content-Type': 'application/json',
-			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
-		});
-    	let options = new RequestOptions({ headers: headers });
+			var nomor:any;
+			jQuery(nomor).unmask();
+
+			jQuery(function($){
+			});
+			console.log(nomor)
+
+			let headers = new Headers({ 
+				'Content-Type': 'application/json',
+				'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
+			});
+	    	let options = new RequestOptions({ headers: headers });
+			
+			console.log("Sedang mengirim data....");
+
+			if(nomor == null) {
+				console.log('Gagal Verify');
+
+			}
+			else{
+				this.http.post('http://masscredit-api.stagingapps.net/user/credential/getverificationcode',
+				nomor,
+				options)
+				.map(data => data.json())
+				.subscribe((data : any) => {
+					var verify 	= JSON.stringify(nomor.phone_number)
+					var code 	= data.data.verification_code;
+					var header 	= data;
+					console.log(header.meta);
+					console.log("Verify code :",code)
+					// alert(code);
+					// console.log(data);
+					localStorage.setItem("verify_handphone", verify)
+					this.router.navigateByUrl("/auth/register/verify-code") // return view verify code for now
+				
+				});
+			}
+			
 		
-		console.log("Sedang mengirim data....");
-
-		if(nomor == null) {
-			console.log('Gagal Verify');
-
+			console.log("This valid");
+			// code...
 		}
 		else{
-			this.http.post('http://masscredit-api.stagingapps.net/user/credential/getverificationcode',
-			nomor,
-			options)
-			.map(data => data.json())
-			.subscribe((data : any) => {
-				var verify = JSON.stringify(nomor.phone_number)
-				var code = data.data.verification_code;
-				console.log("Verify code :",code)
-				alert(code);
-				console.log(data);
-				localStorage.setItem("verify_handphone", verify)
-				this.router.navigateByUrl("/auth/register/verify-code") // return view verify code for now
-			
-			});
+			console.log("Data doesn't valid");
 		}
+
+
 	}
 
 
