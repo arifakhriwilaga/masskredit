@@ -15,6 +15,9 @@ export class SignOutComponent {
 
 	ngAfterViewInit() {
 		localStorage.removeItem("access_token");
+		localStorage.removeItem("verify_handphone");
+		localStorage.removeItem("access_code");
+
 		this.router.navigateByUrl('');
 	}
 
