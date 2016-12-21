@@ -71,6 +71,9 @@ export class Step1RegisterComponent  {
 
 	private nomor = "";
 	ngOnInit(){
+		jQuery(function($){
+			jQuery('#kode_pos').mask('00000');
+		});
 		jQuery( "#registerForm" ).validate({
 		  rules: {
 		    nama_lengkap: {
@@ -104,9 +107,6 @@ export class Step1RegisterComponent  {
 		  }
 		});
 
-		// jQuery(function($){
-		// 	jQuery('#phone').mask('000-000-0000');
-		// });
 		this.nomor = JSON.parse(localStorage.getItem("verify_handphone"));
 
 		let headers = new Headers({ 
@@ -205,8 +205,8 @@ export class Step1RegisterComponent  {
 								if(code == "200") {
 									localStorage.removeItem("access_code");
 									localStorage.removeItem("verify_handphone");
-									alert("Registrasi berhasil, cek email untuk verifikasi")
-									return this.router.navigateByUrl('/');
+									// alert("Registrasi berhasil, cek email untuk verifikasi")
+									return this.router.navigateByUrl('/auth/register/finish');
 								}else{
 									alert("Register gagal")
 									return this.router.navigateByUrl('/auth/register/step-1')

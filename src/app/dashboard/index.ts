@@ -66,9 +66,7 @@ export const routes = [
       //   .then((comp: any) => comp.default) 
       // },
       
-      // { path: 'investasi', load: () => System.import('./investasi')
-      //   .then((comp: any) => comp.default) 
-      // },
+      { path: 'profile', loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
       { path: 'pinjaman', 		  component: PinjamanComponent,
         children: [
               { path: '',          redirectTo: 'index', pathMatch: 'full' },

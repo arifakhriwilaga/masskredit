@@ -14,10 +14,7 @@ import { CommonModule  }              from '@angular/common';
 import { RegisterComponent }        from './register.component';
 
 // Component Verify
-import { Step1RegisterComponent }          from './step1/register1.component';
-import { Step2RegisterComponent }          from './step2/register2.component';
-import { Step3RegisterComponent }          from './step3/register3.component';
-// import { Step1RegisterComponent }          from './step1/register1.component';
+import { FinishStep1Component }          from './finish_step_1';
 
 // Guard Dashboard
 import { AuthGuardVerify }       from './../../authguard/auth-guard-verify.service';
@@ -50,6 +47,11 @@ export const routes = [
         canActivate : [ AuthGuardVerify ],
         loadChildren: () => System.import('./step1').then((comp: any) => comp.default) 
       },
+      {    
+        path: 'finish', 
+        // canActivate : [ AuthGuardVerify ],
+        component   : FinishStep1Component, 
+      },
 
        
     ]
@@ -61,6 +63,7 @@ export const routes = [
 @NgModule({
   declarations: [
     RegisterComponent, // declarations RegisterComponent
+    FinishStep1Component
 
   ],
   imports: [ // import Angular's modules
@@ -75,9 +78,6 @@ export const routes = [
     AuthGuardVerifyCode,
     RegisterService,
     JqueryService,
-    Step1RegisterComponent,
-    Step2RegisterComponent,
-    Step3RegisterComponent,
     AuthGuardVerifyHandphone,
     AuthGuardVerifyCodeHandphone,
     FormBuilder

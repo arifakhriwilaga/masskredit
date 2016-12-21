@@ -231,7 +231,12 @@ export class ComplementComponent {
 		if(id == 2) {
 			this.data.status_perkawinan = 0;
 			this.data.jumlah_anak		= 0;
-			this.data.jumlah_tanggungan = 0
+			this.data.jumlah_tanggungan = 0;
+		}
+		if(id == 1) {
+			this.data.status_perkawinan = null;
+			this.data.jumlah_anak		= null;
+			this.data.jumlah_tanggungan = null;
 		}
 	  	console.log(id)
 	}
@@ -325,7 +330,7 @@ export class ComplementComponent {
 								console.log(response);
 								if(code == 200) {
 									alert("Terimakasih telah melengkapi data anda")
-									
+										return this.router.navigateByUrl('/dashboard')
 								}
 								else{
 									alert("Gagal melengkapi data")

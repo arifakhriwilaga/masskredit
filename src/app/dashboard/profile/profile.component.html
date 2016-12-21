@@ -1,0 +1,202 @@
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box bg-transparent">
+            <div class="box-header">
+              <h2 class="box-title pull-left">Detail Profile</h2>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="clearfix white-bg detail-page">
+                <div class="col-md-5">
+                  <div class="box-img-detail"><img alt="Photo Profile"></div>
+                </div>
+                <div class="col-md-7">
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Full Name<span>:</span></label>
+      						<label class="col-md-7 value">Najib Budin Abdullah</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Email Address<span>:</span></label>
+      						<label class="col-md-7 value">najib.budin@appschef.com</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Active User<span>:</span></label>
+      						<label class="col-md-7 value">Active</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Last Login<span>:</span></label>
+      						<label class="col-md-7 value">21 Desember 2016</label>
+      					</div>
+
+      					<div class="form-group clearfix">
+      						<div class="box-header">
+      						  <h2 class="box-title pull-left">User Score</h2>
+      						</div>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">User Class<span>:</span></label>
+      						<label class="col-md-7 value">2A</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">User Status<span>:</span></label>
+      						<label class="col-md-7 value">Verified</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Fund Process<span>:</span></label>
+      						<label class="col-md-7 value">97%</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Fund History<span>:</span></label>
+      						<label class="col-md-7 value">Excellent</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">AVG Reviews<span>:</span></label>
+      						<label class="col-md-7 value">4.5</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Company<span>:</span></label>
+      						<label class="col-md-7 value">Certified</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Borrower<span>:</span></label>
+      						<label class="col-md-7 value">Platinum</label>
+      					</div>
+      					<div class="form-group clearfix">
+      						<label class="col-md-5">Cap Size<span>:</span></label>
+      						<label class="col-md-7 value">17 M</label>
+      					</div>
+                </div>
+
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Complement Data</h2>
+                  </div>
+                </div>
+
+                <div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Jumlah Anak<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.jumlah_anak }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Jumlah Tanggungan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.jumlah_tanggungan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Gaji per bulan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.gaji_per_bulan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Hubungan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.hubungan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Jabatan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.jabatan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Jenis Perusahaan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.jenis_perusahaan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Jumlah Pendapatan Lain 1<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.jumlah_pendapatan_lain_1 }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Jumlah Pendapatan Lain 2<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.jumlah_pendapatan_lain_2 }}</label>
+                </div>
+                <!-- Data Keluarga -->
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Nama Lengkap Keluarga<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.nama_lengkap_keluarga }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Nama Perusahaan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.nama_perusahaan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Nama Usaha<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.nama_usaha }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">no_rekening<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.no_rekening }}</label>
+                </div>
+
+
+                <!-- Data Keluarga -->
+                <div class="form-group clearfix">
+                  <label class="col-md-5">No Telepon<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.no_tlp }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Pekerjaan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.pekerjaan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Pekerjaan Kerabat<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.pekerjaan_kerabat }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Pendapatan Bersih Perusahaan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.pendapatan_bersih_perusahaan }}</label>
+                </div>
+
+
+                <!-- Data Keluarga -->
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Pendapatan Lain 1<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.pendapatan_lain_1 }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Pendapatan Lain 2<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.pendapatan_lain_2 }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Pengeluaran per Bulan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.pengeluaran_per_bulan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Status Perkawinan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.status_perkawinan }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Sumber Pendapatan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.sumber_pendapatan }}</label>
+                </div>
+
+                <!-- Data Keluarga -->
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Sumber Pendapatan Lain 1<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.sumber_pendapatan_lain_1 }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Sumber Pendapatan Lain 2<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.sumber_pendapatan_lain_2 }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Tahun Perusahaan Berdiri<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.tahun_perusahaan_berdiri }}</label>
+                </div>
+                <div class="form-group clearfix">
+                  <label class="col-md-5">Telepon Perusahaan<span>:</span></label>
+                  <label class="col-md-7 value">{{ profile.tlp_perusahaan }}</label>
+                </div>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </section>
+    </div>

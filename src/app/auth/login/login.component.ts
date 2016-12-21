@@ -59,6 +59,9 @@ export class LoginComponent {
 						if(message == "Account not found") {
 							alert("Akun tidak ditemukan")
 						}
+						if(message == "Account already suspend") {
+							alert("Akun belum diaktivasi")
+						}
 				}
 
 			);
