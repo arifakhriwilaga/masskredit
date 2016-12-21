@@ -12,6 +12,9 @@ import { CustomFormsModule }                                   from 'ng2-validat
 import { AuthGuard  }                  from './authguard/auth-guard.service';
 import { AuthGuardDashboard }          from './authguard/auth-guard-dashboard.service';
 
+// Guard Dashboard
+import { AuthGuardEntryDashboard }   from './authguard/auth-guard-entry-dashboard.service';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -67,6 +70,7 @@ type StoreType = {
     LocalStorageService,
     AuthGuard,
     AuthGuardDashboard,
+    AuthGuardEntryDashboard,
     
       {
           provide: LOCAL_STORAGE_SERVICE_CONFIG, useValue: localStorageServiceConfig
