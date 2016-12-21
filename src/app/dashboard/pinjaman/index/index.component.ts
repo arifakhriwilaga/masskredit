@@ -36,9 +36,20 @@ export class IndexLoanComponent {
 				.subscribe((response : any) => {
 					console.log(response);
 					// for message
-					// var code 		= response.meta.code;
-					// var message 	= response.meta.message;
-					this.pinjaman = response.data.investments;
+					this.pinjaman	= response.data.investments;
+					var kosong:null;
+					var code 		= response.meta.code;
+					var message 	= response.meta.message;
+					if(kosong == response.data.investments) {
+						alert("Data list investasi masih kosong")
+					}
+					if(code == 200) {
+						alert("Data list investasi berhasil ditampilkan")
+						
+					}
+					else{
+						alert("Data list investasi gagal ditampilkan")
+					}
 				
 					// console.log(code,message);
 					// get data
