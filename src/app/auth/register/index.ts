@@ -37,12 +37,12 @@ export const routes = [
       { path: '', redirectTo: 'verify' },
       {    
         path: 'verify', 
-        // canActivate : [ AuthGuardVerifyCode, AuthGuardVerifyCodeHandphone ],
+        canActivate : [ AuthGuardVerifyCode],
         loadChildren: () => System.import('./verify_handphone').then((comp: any) => comp.default) 
       },
       {    
         path: 'verify-code', 
-        // canActivate : [ AuthGuardVerifyCode, AuthGuardVerifyHandphone ],
+        canActivate : [ AuthGuardVerifyCode ],
         loadChildren: () => System.import('./verify_code').then((comp: any) => comp.default) 
       },       
       {    
