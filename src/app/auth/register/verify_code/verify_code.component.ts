@@ -56,13 +56,22 @@ export class VerifyCodeComponent {
 			// console.log(code);
 			return this.http.post('http://masscredit-api.stagingapps.net/user/credential/verifycode',code, options)
 			.map( (data) => data.json() )
-			.subscribe((data) => {
+			.subscribe(
+
+				(data) => {
 				console.log("Verify Success..");
-				// localStorage.removeItem("verify_handphone");
+				alert("Verify Success..!")
 				localStorage.setItem('access_code', data.data.access_code);
-				// console.log(localStorage.getItem("access_code"));
 				this.router.navigateByUrl('/auth/register/step-1');
-			});
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+						if(message == "Verifikasi salah.") {
+							alert("Maaf nomor verifikasi salah!")
+						}
+				}
+			);
 		}
 
 		else{
@@ -92,14 +101,8 @@ export class VerifyCodeComponent {
 				.subscribe((data : any) => {
 					var verify 	= JSON.stringify(this.nomor)
 					var code 	= data.data.verification_code;
-					// var header 	= data;
-					// console.log(header.meta);
 					console.log("Verify code :",code)
-					// // alert(code);
-					// // console.log(data);
-					// localStorage.setItem("verify_handphone", verify)
-					// this.router.navigateByUrl("/auth/register/verify-code") // return view verify code for now
-				
+					alert(code);
 				});
 			
 			
