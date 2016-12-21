@@ -354,26 +354,26 @@ export class ComplementComponent {
 
 
 
+			let a : any = document.getElementById("foto_tabungan");
 			let x : any = document.getElementById("foto_identitas");
 			let y : any = document.getElementById("foto_npwp");
 			let z : any = document.getElementById("foto_diri");
-			let a : any = document.getElementById("foto_tabungan");
 			
+			var file_a =	a.files[0];
 			var file_x =	x.files[0];
 			var file_y =	y.files[0];
 			var file_z =	z.files[0];
-			var file_a =	a.files[0];
 
 			// debugger
 			
+			var encode_a  = readerFileA.readAsDataURL(file_a);
 			var encode_x  = readerFileX.readAsDataURL(file_x);
 			var encode_y  = readerFileY.readAsDataURL(file_y);
 			var encode_z  = readerFileZ.readAsDataURL(file_z);
-			var encode_a  = readerFileA.readAsDataURL(file_a);
+			this.data.foto_tabungan		= encode_a;
 			this.data.foto_identitas	= encode_x;
 			this.data.foto_npwp 		= encode_y;
 			this.data.foto_diri			= encode_z;
-			this.data.foto_tabungan		= encode_a;
 
 
 
