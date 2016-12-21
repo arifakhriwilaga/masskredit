@@ -246,9 +246,12 @@ export class ComplementComponent {
 		if(id == 2) {
 			console.log(id)
 			this.data.gaji_per_bulan = 0;
+			this.data.pendapatan_bersih_perusahaan = null;
+			
 		}
 		if(id == 1) {
 			console.log(id)
+			this.data.gaji_per_bulan = null;
 			this.data.pendapatan_bersih_perusahaan = 0;
 		}
 	}
