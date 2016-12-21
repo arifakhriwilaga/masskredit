@@ -7,7 +7,7 @@ import { Router }        					   from '@angular/router';
 import { Observable }     					   from 'rxjs/Observable';
 
 
-
+declare var jQuery:any
 @Component({
 	//moduleId: module.id
 	selector   : 'login',
@@ -25,28 +25,43 @@ export class LoginComponent {
 		password	: "" 
 	};
 
+	ngOnInit(){
+		jQuery(function($){
+			jQuery('#username').mask('000-000-000000');
+		});
+	}
+
 	public login(user){
 
- 	let headers = new Headers({ 
-	 	'Content-Type': 'application/json',
-	 	'API_KEY' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
- 	});
-    
-    let options = new RequestOptions({ headers: headers });
-		console.log("Authentication user");
-		this.http.post('http://masscredit-api.stagingapps.net/user/credential/login', user , options)
-		.subscribe((data : any) => {
-			var data 	 = data.json();
-			console.log(data);
-			localStorage.setItem('access_token', JSON.stringify(data.data.access_token));
-				if(data.meta.code == "200") {
-					return this.router.navigateByUrl('dashboard');
+	 	let headers = new Headers({ 
+		 	'Content-Type': 'application/json',
+		 	'API_KEY' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	 	});
+	    
+	    let options = new RequestOptions({ headers: headers });
+			console.log("Authentication user");
+			this.http.post('http://masscredit-api.stagingapps.net/user/credential/login', user , options)
+			.subscribe(
+				(data : any) => {
+				var data 	 = data.json();
+				console.log(data);
+				localStorage.setItem('access_token', JSON.stringify(data.data.access_token));
+					if(data.meta.code == "200") {
+						return this.router.navigateByUrl('dashboard');
+					}
+					else{
+						return this.router.navigateByUrl('/')
+					}	
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+						if(message == "Account not found") {
+							alert("Akun tidak ditemukan")
+						}
 				}
-				else{
-					return this.router.navigateByUrl('/')
-				}
-			
-		});
+
+			);
 			// debugger;
 			// console.log(token.meta.code,token.meta.message, user);
 
