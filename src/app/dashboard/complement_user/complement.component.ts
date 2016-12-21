@@ -330,7 +330,7 @@ export class ComplementComponent {
 								console.log(response);
 								if(code == 200) {
 									alert("Terimakasih telah melengkapi data anda")
-										return this.router.navigateByUrl('/dashboard')
+										return this.router.navigateByUrl('dashboard')
 								}
 								else{
 									alert("Gagal melengkapi data")
