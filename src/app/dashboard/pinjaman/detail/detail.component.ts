@@ -36,10 +36,23 @@ export class DetailComponent {
 		 	'Content-Type': 'application/json',
 		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
 	 	});
-
+      	let options = new RequestOptions({ headers: headers });
+		// API detail investor
 		console.log("Sedang mengambil data....")
-	    let options = new RequestOptions({ headers: headers });
-		this.http.post('http://masscredit-api.stagingapps.net/user/investment/detail',data_detail,options)
+      	this.http.post('http://masscredit-api.stagingapps.net/user/credential/profile',this.token,options)
+		        .map(response => response.json())
+		        .subscribe((response : any) => {
+		          // console.log(response);
+		          this.name         	= response.data.profile.name;
+		          // this.last_login       = response.data.profile.last_login;
+		          // this.user_class       = response.data.profile.user_class;
+		          this.profile_image    = response.data.profile.profile_image;
+		          // this.account_summary 	= response.data.account_summary.balance;
+        });
+
+		// API detail pinjaman
+		console.log("Sedang mengambil data....")
+	    this.http.post('http://masscredit-api.stagingapps.net/user/investment/detail',data_detail,options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
 					// console.log(response);
@@ -50,13 +63,23 @@ export class DetailComponent {
 					console.log(this.detail);
 				});
 		
-		})
+		});
+
+
+
 
 
 		// console.log(a)
 		// this.listPinjaman();
 			
 	}
+
+	// objek for detail investor
+	private name 			= { };
+	private last_login 		= { };
+	private user_class 		= { };
+	private profile_image 	= { };
+	private account_summary = { };
 
 	// private acces_token = localStorage.getItem("access_token");
     public token 	= {access_token : JSON.parse(localStorage.getItem("access_token"))} ;
