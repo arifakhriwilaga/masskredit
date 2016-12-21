@@ -30,6 +30,11 @@ import { IndexLoanComponent }     from './pinjaman/index/index.component';
 import { DetailComponent }     from './pinjaman/detail';
 // import { CreateLoanComponent }    from './pinjaman/create/create.component';
 
+// Completement USer
+import { ComplementComponent }     from './complement_user';
+
+
+
 
 // Control message create investasi
 import { ControlMessagesCreateInvestasi } from './investasi/create/controlmessage.component';
@@ -76,6 +81,7 @@ export const routes = [
       }, 
       { path: 'penarikan-dana', component: PenarikanDanaComponent}, 
       { path: 'tambah-dana', 	  component: TambahDanaComponent}, 
+      { path: 'complement-user',       component: ComplementComponent}, 
       { path: 'sign-out',       component: SignOutComponent}, 
 
     ]
@@ -101,6 +107,7 @@ export const routes = [
     CreateInvestComponent,
     IndexLoanComponent,
     DetailComponent,
+    ComplementComponent,
 
     // message error create investasi
     ControlMessagesCreateInvestasi
