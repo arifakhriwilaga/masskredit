@@ -157,6 +157,9 @@
             <a href="#/dashboard" data-toggle="control-sidebar"><i class="fa fa-cog"></i></a>
           </li>
           <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-user"></i></a>
+          </li>
+          <li>
             <a href="#/dashboard/sign-out" data-toggle="control-sidebar"><i class="fa fa-sign-out"></i></a>
           </li>
         </ul>
@@ -166,20 +169,38 @@
 
       <div class="clearfix content-bottom-nav">
         <div class="col-lg-5 col-xs-5 col-sm-offset-1">
-          <div class="pull-left profile-left"><img src="{{ profile_image }}" height="100" width="100"><img class="verify-check" src="../../assets/img/green-checklist.png"></div>
+          <div class="pull-left profile-left">
+            <img src="../../assets/img/profile.png" height="100" width="100">
+            <!-- <img src="{{ profile_image }}" height="100" width="100" alt="Foto profile"> -->
+            
+            <!-- <img class="verify-check" src="../../assets/img/green-checklist.png"> -->
+          </div>
+          
           <div class="pull-right profile-right">
-            <h3>{{ name }}</h3>
-            <p class="no-margin-bottom">Class {{ user_class }}<span>Active User</span></p>
-            <p class="last-login">Last login {{ last_login }}</p>
-             <div class="clearfix">
-                <i class="fa fa-star full" aria-hidden="true"></i>
-                <i class="fa fa-star full" aria-hidden="true"></i>
-                <i class="fa fa-star full" aria-hidden="true"></i>
-                <i class="fa fa-star full" aria-hidden="true"></i>
+            <h3>{{ name }} <span style="color:white">{{ user_status }}</span></h3>
+            <!-- <p class="no-margin-bottom">Class {{ user_class }}<span>Status User: {{ user_status }}</span></p> -->
+            <p class="no-margin-bottom">Investor: {{ borrower }}<span>Borrower: {{ borrower }}</span></p>
+            <p class="no-margin-bottom">Credit: {{ fund_history }}<span>Salary: {{ user_class }}</span></p>
+            <div class="clearfix">
+                <!-- <i class="fa fa-star-half-full full" area-hidden="true"></i> -->
                 <i class="fa fa-star null" aria-hidden="true"></i>
+                <i class="fa fa-star null" aria-hidden="true"></i>
+                <i class="fa fa-star null" aria-hidden="true"></i>
+                <i class="fa fa-star null" aria-hidden="true"></i>
+                <i class="fa fa-star null" aria-hidden="true"></i>
+<!--     <span class="bs-glyphicons-list">
+         <span class="glyphicon glyphicon-star star-color star-full"></span>
+        <span class="glyphicon glyphicon-star star-color font half"></span>
+      </span> -->
 
-                <span>(100)</span>
-              </div>
+                <span>({{ avg_reviews }} %)</span>
+            </div>
+            <br>
+            <a href="#/dashboard/complement-user">
+            <button class="btn btn-red" style="background-color:#c0392b;">
+              Lengkapi data!
+            </button>
+            </a>
           </div>
         </div>
          <div class="col-lg-5 col-xs-5">
