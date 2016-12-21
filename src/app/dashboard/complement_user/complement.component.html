@@ -1,0 +1,289 @@
+ <!-- Main content -->
+<div class="content-wrapper">
+<section class="content">
+ <div class="row">
+   <div class="col-md-12">
+     <div class="box bg-transparent">
+       <div class="box-header">
+         <h2 class="box-title pull-left">Data Pelengkap</h2>
+       </div>
+       <div class="box-body">
+         <div class="form-login-register">
+           <form class="form-horizontal clearfix row" name="complementForm" id="complementForm">
+              <div class="col-md-6">
+              	<!-- Family Data  -->
+              	<label>Data Keluarga</label>
+                <div class="form-group">
+                     <div class="col-md-12">
+                       <span class="required">*</span>
+                       <select class="form-control input-md" name="status_perkawinan" id="status_perkawinan" (change)="getStatusMarried($event.target.value)" [(ngModel)]="data.status_perkawinan">
+                          <option value="0" disabled>Status Perkawinan</option>
+                          <option [value]="1">Menikah</option>
+                          <option [value]="2">Belum Menikah</option>
+                       </select>
+                     </div>
+                </div>
+                <div *ngIf="statusMarried == 1">
+                <div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Jumlah Anak" class="form-control input-md" name="jumlah_anak" id="jumlah_anak" [(ngModel)]="data.jumlah_anak">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                  <span class="required">*</span>
+                   <input type="text" placeholder="Tanggungan per anak" class="form-control input-md" name="jumlah_tanggungan" id="jumlah_tanggungan" [(ngModel)]="data.jumlah_tanggungan" value="0">
+                 </div>
+               	</div>
+                </div>
+               	<!-- end Family  -->
+
+               	<!-- Work data -->
+               	<label>Data Pekerjaan</label>
+                 <div class="form-group">
+                     <div class="col-md-12">
+                       <span class="required">*</span>
+                       <select class="form-control input-md" name="sumber_pendapatan" id="sumber_pendapatan" (change)="getSumberPendapatan($event.target.value)" [(ngModel)]="data.sumber_pendapatan">
+                          <option value="0" disabled>Sumber Pendapatan</option>
+                          <option [value]="1">Kerja</option>
+                          <option [value]="2">Usaha</option>
+                       </select>
+                     </div>
+                 </div>
+                <div *ngIf="sumberPendapatan == 1">
+                <div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Nama Perusahaan" class="form-control input-md" name="nama_perusahaan" id="nama_perusahaan" [(ngModel)]="data.nama_perusahaan">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Lama Bekerja" class="form-control input-md" name="lama_bekerja" id="lama_bekerja" [(ngModel)]="data.lama_bekerja">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Jabatan" class="form-control input-md" name="jabatan" id="jabatan" [(ngModel)]="data.jabatan">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Pekerjaan" class="form-control input-md" name="pekerjaan" id="pekerjaan" [(ngModel)]="data.pekerjaan">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Gaji per bulan" class="form-control input-md" name="gaji_per_bulan" id="gaji_per_bulan" [(ngModel)]="data.gaji_per_bulan">
+                 </div>
+               	</div>
+                <div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Jumlah Pengluaran per Bulan" class="form-control input-md" name="pengeluaran_per_bulan" id="pengeluaran_per_bulan" [(ngModel)]="data.pengeluaran_per_bulan">
+                 </div>
+                </div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="No telp Perusahaan" class="form-control input-md" name="tlp_perusahaan" id="tlp_perusahaan" [(ngModel)]="data.tlp_perusahaan">
+                 </div>
+               	</div>
+                </div>
+
+                <div *ngIf="sumberPendapatan == 2">
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Nama Usaha" class="form-control input-md" name="nama_usaha" id="nama_usaha" [(ngModel)]="data.nama_usaha">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Tahun Perusahaan Berdiri" class="form-control input-md" name="tahun_perusahaan_berdiri" id="tahun_perusahaan_berdiri" [(ngModel)]="data.tahun_perusahaan_berdiri">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="No Telp Perusahaan" class="form-control input-md" name="tlp_perusahaan" id="tlp_perusahaan" [(ngModel)]="data.tlp_perusahaan">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Jenis Perusahaan" class="form-control input-md" name="jenis_perusahaan" id="jenis_perusahaan" [(ngModel)]="data.jenis_perusahaan">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Pendapatan bersih perusahaan" class="form-control input-md" name="pendapatan_bersih_perusahaan" id="pendapatan_bersih_perusahaan" [(ngModel)]="data.pendapatan_bersih_perusahaan">
+                 </div>
+               	</div>
+                <div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Jumlah Pengeluaran per Bulan" class="form-control input-md" name="pengeluaran_per_bulan" id="pengeluaran_per_bulan" [(ngModel)]="data.pengeluaran_per_bulan">
+                 </div>
+                </div>
+                </div>
+               	<!-- end work data -->
+
+
+               	<!-- Contact darurat kerabat -->
+               	<label>Data Kerabat yang tidak serumah</label>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                   <span class="required">*</span>
+                   <input type="text" placeholder="Nama" class="form-control input-md" name="nama_lengkap_keluarga" id="nama_lengkap_keluarga" [(ngModel)]="data.nama_lengkap_keluarga">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                    <span class="required">*</span>
+                   <input type="text" placeholder="Hubungan" class="form-control input-md" name="hubungan" id="hubungan" [(ngModel)]="data.hubungan">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                   <span class="required">*</span>
+                   <input type="text" placeholder="No Telepon" class="form-control input-md" name="no_tlp" id="no_tlp" [(ngModel)]="data.no_tlp">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Pekerjaan" class="form-control input-md" name="pekerjaan_kerabat" id="pekerjaan_kerabat" [(ngModel)]="data.pekerjaan_kerabat">
+                 </div>
+               	</div>
+               </div>
+               
+               <div class="col-md-6">
+                <fieldset>
+                <!-- Data pendapatan lain 1 -->
+               	<label>Data Pendapatan Lain</label>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                   <span class="required">*</span>
+                   <select class="form-control input-md" name="pendapatanLainFirst" id="pendapatanLainFirst" (change)="getPendapatanLainFirst($event.target.value)">
+                      <option value="0" disabled>Pendapatan lain</option>
+                      <option [value]="1">Ya</option>
+                      <option [value]="2">Tidak</option>
+                   </select>
+                 </div>
+                </div>
+                <div *ngIf="pendapatanLainFirst == 1">
+                <div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Sumber Pendapatan" class="form-control input-md" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1">
+                 </div>
+               	</div>
+               	<div class="form-group">
+                 <div class="col-md-12">
+                 <span class="required">*</span>
+                   <input type="text" placeholder="Jumlah Pendapatan" class="form-control input-md" name="jumlah_pendapatan_lain" id="jumlah_pendapatan_lain_1" [(ngModel)]="data.jumlah_pendapatan_lain_1">
+                 </div>
+               	</div>
+                <!-- end -->
+
+                  <!-- Data pendapatan 2 -->
+                  <label>Data Pendapatan Lain 2</label>
+                  <div class="form-group">
+                   <div class="col-md-12">
+                     <span class="required">*</span>
+                        <select class="form-control input-md" name="pendapatanLainSecond" id="type" (change)="getPendapatanLainSecond($event.target.value)">
+                        <option value="0" disabled>Pendapatan lain</option>
+                        <option [value]="1">Ya</option>
+                        <option [value]="2">Tidak</option>
+                     </select>
+                   </div>
+                  </div>
+                  <div *ngIf="pendapatanLainSecond == 1">
+                  <div class="form-group">
+                   <div class="col-md-12">
+                 <span class="required">*</span>
+                     <input type="text" placeholder="Sumber Dana" class="form-control input-md" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2" [(ngModel)]="data.sumber_pendapatan_lain_2">
+                   </div>
+                  </div>
+                  <div class="form-group">
+                   <div class="col-md-12">
+                 <span class="required">*</span>
+                     <input type="text" placeholder="Jumlah Pendapatan" class="form-control input-md" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2" [(ngModel)]="data.jumlah_pendapatan_lain_2">
+                   </div>
+                  </div>
+                  </div>
+                <!-- end -->
+                </div>
+               	<!-- Attach document -->
+               	<label>Data Penunjang</label>
+                 <div class="form-group">
+                   <div class="col-md-12">
+                     <span class="required">*</span>
+                     <label>Foto Identitas</label>
+                     <!-- <div class="input-group"> -->
+                     	<input type="file" name="foto_identitas" id="foto_identitas">
+                     <!-- </div> -->
+                   </div>
+                 </div>   
+                 <div class="form-group">
+                   <div class="col-md-12">
+                     <!-- <div class="input-group"> -->
+                     <span class="required">*</span>
+                     <label>Foto NPWP</label>
+                      <input type="file" name="foto_npwp" id="foto_npwp">
+                     <!-- </div> -->
+                   </div>
+                  </div>
+                 <div class="form-group">
+                   <div class="col-md-12">
+                     <!-- <div class="input-group"> -->
+                     <span class="required">*</span>
+                     <label>Foto Diri</label>
+                      <input type="file" name="foto_diri" id="foto_diri">
+                     <!-- </div> -->
+                   </div>
+                  </div>
+                 <!-- end -->
+                 <br>
+                 <!-- Data Bank -->
+                <label>Data Bank</label>
+                <div class="form-group">
+                   <div class="col-md-12">
+                     <div class="input-group">
+                     <label>Foto depan buku tabungan</label>
+                      <input type="file" name="foto_tabungan" id="foto_tabungan">
+                     </div>
+                   </div>
+                 </div>  
+                <div class="form-group">
+                 <div class="col-md-12">
+                   <input type="text" placeholder="No Rekening" class="form-control input-md" name="no_rekening" id="no_rekening" [(ngModel)]="data.no_rekening">
+                 </div>
+                </div> 
+                 </fieldset>
+               </div>
+               <div class="col-md-12">
+                 <div class="form-group">
+                    <div class="col-md-6 col-center">
+                      <a href="#/dashboard/investasi" class="btn btn-default">Batal</a>
+                      <button class="btn btn-red" (click)="submitData(data)">Simpan</button>
+                    </div>
+                 </div>
+              </div>
+           </form>
+         </div>
+       </div>
+    </div>
+   </div>
+ </div>
+</section>
+</div>
+<!-- /.content -->
