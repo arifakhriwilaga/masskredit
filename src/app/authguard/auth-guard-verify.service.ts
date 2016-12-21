@@ -18,7 +18,8 @@ export class AuthGuardVerify implements CanActivate  {
 				return true;
 			}
 			else{ 
-				console.log("Anda belum mengirim no handphone");
+				console.log("Maaf anda tidak bisa mengakses halaman ini");
+				alert("Maaf anda tidak bisa mengakses halaman ini");
 				this.router.navigateByUrl('');
 				return false;
 			}

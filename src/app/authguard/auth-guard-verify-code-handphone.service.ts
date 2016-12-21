@@ -13,8 +13,6 @@ export class AuthGuardVerifyCodeHandphone implements CanActivate  {
 	canActivate (){	
 		var handphone = localStorage.getItem("verify_handphone");
 		
-		// console.log(verify);
-		// debugger
 
 			if(!handphone){
 				return true;

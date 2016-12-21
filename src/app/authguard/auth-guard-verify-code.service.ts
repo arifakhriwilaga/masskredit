@@ -18,7 +18,8 @@ export class AuthGuardVerifyCode implements CanActivate  {
 				return true;
 			}
 			else{ 
-				console.log("Maaf anda tidak mengakses halaman ini")
+				console.log("Maaf anda tidak mengakses halaman ini");
+				alert("Maaf anda tidak bisa mengakses halaman ini");
 				this.router.navigateByUrl('/auth/register/step-1');
 				return false;
 			}
