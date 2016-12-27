@@ -4,7 +4,7 @@ import { RouterModule }          from '@angular/router';
 import { HttpModule }            from '@angular/http';
 import { FormsModule }           from '@angular/forms';
 import { LocalStorageService }   from 'angular-2-local-storage';
-import { CommonModule }            from '@angular/common';
+import { CommonModule }          from '@angular/common';
 
 
 // debugger;
@@ -12,7 +12,9 @@ import { CommonModule }            from '@angular/common';
 import { ProfileComponent }        from './profile.component';
 // alert("Dari Profile");
 export const routes = [
-  { path:'', component: ProfileComponent}
+  { path:'', component: ProfileComponent},
+  { path:'edit', loadChildren: () => System.import('./edit').then((comp: any) => comp.default)} 
+
 ] 
 
 @NgModule({
