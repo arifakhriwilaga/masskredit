@@ -15,6 +15,72 @@ export class ComplementComponent {
 	constructor(private http: Http, private router : Router) { }
 // 
 
+	// Objek
+	private image:void;
+	private number:number;
+	public data = {
+		access_token		:'',
+		// objek keluarga
+		status_perkawinan	: 0,
+		jumlah_anak 	  	: this.number,
+		jumlah_tanggungan 	: this.number,
+
+	  	sumber_pendapatan	: 0,
+	  	
+
+		// objek pekerjaan
+		nama_perusahaan 	  : '',
+		lama_bekerja 	  	  : '',
+		jabatan  	 		  : '',
+		pekerjaan  	 		  : '',
+		gaji_per_bulan 		  : this.number,
+		
+		nama_usaha 	  				: '',
+		tahun_perusahaan_berdiri 	: '',
+		jenis_perusahaan 		  	: '',
+		pendapatan_bersih_perusahaan: this.number,
+
+		pengeluaran_per_bulan 	: this.number,
+		tlp_perusahaan			: '',
+
+		// objek kontak kerabat
+		nama_lengkap_keluarga 	: '',
+		hubungan	 			: '',
+		no_tlp	  				: '',
+		pekerjaan_kerabat 		: '',
+	  	
+	  	// objek pendapatan lain 1
+	  	
+	  	pendapatan_lain_1			: 0,
+		sumber_pendapatan_lain_1 	: '',
+		jumlah_pendapatan_lain_1 	: this.number,
+	  	
+	  	// objek pendapatan lain 2
+	  	pendapatan_lain_2	: 0,
+		sumber_pendapatan_lain_2 	: '',
+		jumlah_pendapatan_lain_2 	: this.number,
+		// step4
+		foto_identitas		: this.image,
+		foto_npwp 		  	: this.image,
+		foto_diri	 	  	: this.image,
+
+		// objek data bank
+		foto_tabungan		: this.image,
+		no_rekening			: '',
+
+		angsuran			: { 
+			jumlah_angsuran : [''],
+			description_angsuran : ['']  
+		}
+
+
+	}
+
+	public angsuran			= { 
+			jumlah_angsuran : [''],
+			description_angsuran : ['']  
+	}
+
 	ngOnInit(){
 		// mask
 		jQuery(function($){
@@ -55,6 +121,70 @@ export class ComplementComponent {
 
 			
 		});
+		// dynamic field
+		var counter = 1;
+		jQuery("#addButton").click(function(){
+			if(counter > 5) {
+				alert("Only 5 textbox");
+				return false;
+			}
+
+			var newTextBoxDiv = jQuery(document.createElement('div'))
+			.attr("id",'TextBoxDiv' + counter);
+
+			newTextBoxDiv.after().html(
+
+				'<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md" name="textbox1' + counter + 
+				'" id="textbox1' + counter + '" value="">' +
+				'<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md" name="textbox2' + counter + 
+				'" id="textbox2' + counter + '" value="">'
+			)
+			;
+			newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+			counter++;
+		});
+
+		jQuery("#removeButton").click(function(){
+			if(counter == 1){
+				alert("No more textbove remove");
+				return false;
+			}
+			counter--;
+			jQuery("#TextBoxDiv" + counter).remove();
+		});
+
+		let angsuran = { 
+			jumlah_angsuran : [''],
+			description_angsuran : ['']  
+		
+		}
+
+
+		jQuery("#getButtonValue").click(function(){
+			var msg1 = [''];
+			var msg2 = [''];
+			// var msg2= angsuran.description_angsuran;
+			for (var i = 1; i < counter; ++i) {
+				msg2 = jQuery('#textbox1' + i).val();
+				angsuran.jumlah_angsuran = msg2
+				 // angsuran.jumlah_angsuran
+				console.log( "ini dari msg2", msg2);
+			}
+			for (var i = 1; i < counter; ++i) {
+				msg1 = jQuery('#textbox2' + i).val();
+				angsuran.description_angsuran = msg1
+				console.log( "ini dari msg1", msg1);
+			}
+			// return angsuran
+		});
+		
+		jQuery("#getValue").click(function(){
+			console.log(angsuran);
+			// return angsuran
+		});
+		
+
 		// validation
 		jQuery( "#complementForm" ).validate({
 		  rules: {
@@ -172,59 +302,47 @@ export class ComplementComponent {
 			
 	}
 
-	private image:void;
-	private number:number;
-	public data = {
-		access_token		:'',
-		// objek keluarga
-		status_perkawinan	: 0,
-		jumlah_anak 	  	: this.number,
-		jumlah_tanggungan 	: this.number,
+	getValueAngsuran(){
+		// this.data.angsuran.jumlah_angsuran = this.angsuran.jumlah_angsuran
+		// this.data.angsuran.description_angsuran = this.angsuran.description_angsuran
+		console.log(this.data.angsuran)
+		// jQuery("#getButtonValue").click(function(){
+		// 	let counter= 1;
+		// 	var msg1= '';
+		// 	var msg2='';
+		// 	for (var i = 1; i < counter; ++i) {
+		// 		 msg1 = jQuery('#textbox1' + i).val();
+		// 		 console.log( "ini dari msg1",msg1);
+		// 	}
+		// 	for (var i = 1; i < counter; ++i) {
+		// 		msg2 = jQuery('#textbox2' + i).val();
+		// 		console.log("ini dari msg2",msg2);
+		// 	}
+		// });
+	// console.log(angsuran)
+	// let jumlah_angsuran = this.angsuran.jumlah_angsuran;
+	// let value1:any;
+	// let counter= 1;
 
-	  	sumber_pendapatan	: 0,
-	  	
-
-		// objek pekerjaan
-		nama_perusahaan 	  : '',
-		lama_bekerja 	  	  : '',
-		jabatan  	 		  : '',
-		pekerjaan  	 		  : '',
-		gaji_per_bulan 		  : this.number,
-		
-		nama_usaha 	  				: '',
-		tahun_perusahaan_berdiri 	: '',
-		jenis_perusahaan 		  	: '',
-		pendapatan_bersih_perusahaan: this.number,
-
-		pengeluaran_per_bulan 	: this.number,
-		tlp_perusahaan			: '',
-
-		// objek kontak kerabat
-		nama_lengkap_keluarga 	: '',
-		hubungan	 			: '',
-		no_tlp	  				: '',
-		pekerjaan_kerabat 		: '',
-	  	
-	  	// objek pendapatan lain 1
-	  	
-	  	pendapatan_lain_1			: 0,
-		sumber_pendapatan_lain_1 	: '',
-		jumlah_pendapatan_lain_1 	: this.number,
-	  	
-	  	// objek pendapatan lain 2
-	  	pendapatan_lain_2	: 0,
-		sumber_pendapatan_lain_2 	: '',
-		jumlah_pendapatan_lain_2 	: this.number,
-		// step4
-		foto_identitas		: this.image,
-		foto_npwp 		  	: this.image,
-		foto_diri	 	  	: this.image,
-
-		// objek data bank
-		foto_tabungan		: this.image,
-		no_rekening			: ''
+	// if(angsuran) {
+	// 	for (var i = 1; i < counter; ++i) {
+	// 		value1 = document.getElementById('#textbox1'+i)
+	// 		var a  = value1.files[0]
+	// 		console.log("ini dari Value1", value1);
+	// 		// this.data.angsuran.jumlah_angsuran = value1.files[0];
+	// 		 // value1 = jQuery('#textbox1' + i).val();
+	// 	}
+	// 	// console.log(angsuran);
+	// 		// console.log("ini dari Jumlah Angsuran", this.data.angsuran.jumlah_angsuran);
+	// 	 // console.log( "ini dari msg1",value1);
+	// }
+	// else{
+	// 	console.log("Data tidak valid")
+	// 	// code...
+	// }
+	
 	}
-
+	
 	private statusMarried:any;
 	getStatusMarried(id){
 		this.statusMarried = id;
