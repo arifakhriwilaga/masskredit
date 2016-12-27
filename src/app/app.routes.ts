@@ -13,7 +13,7 @@ export const ROUTES: Routes = [
   { path: 'home', 	   loadChildren: () => System.import('./home').then((comp: any) => comp.default), },
   { path: 'auth', 	   loadChildren: () => System.import('./auth').then((comp: any) => comp.default), },
   { 
-	canActivate : [ AuthGuardEntryDashboard ],
+	// canActivate : [ AuthGuardEntryDashboard ],
   	path: 'dashboard', 
   	loadChildren: () => System.import('./dashboard').then((comp: any) => comp.default) 
   },

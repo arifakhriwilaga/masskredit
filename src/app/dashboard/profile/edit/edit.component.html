@@ -1,0 +1,356 @@
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box bg-transparent">
+            <div class="box-header">
+              <h2 class="box-title pull-left">Eit Profile</h2>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="clearfix white-bg detail-page">
+                  <div class="box-img-detail">
+                      <label>Foto Diri</label>
+                      <input type="file" name="foto_diri" id="foto_diri">
+                    <img src="{{ profile.profile_image }}" alt="Photo Profile" class="thumbnail" width="500%" height="500%">
+                  </div>
+                <div class="row">
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                <br><br><br>
+                    <h2 class="box-title pull-left">Data Pribadi</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Nama Lengkap</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Nama Lengkap" class="with-unit form-control input-md" value="{{ profile.name }}" [(ngModel)]="data.nama_lengkap" name="nama_lengkap" id="nama_lengkap">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Email Address</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" value="{{ profile.email }}" class="with-unit form-control input-md" placeholder="Address Email" [(ngModel)]="data.alamat_email" name="alamat_email" id="alamat_email">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Status Perkawinan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <!-- <select class="form-control input-md" name="status_perkawinan" id="status_perkawinan" (change)="getStatusMarried($event.target.value)" [(ngModel)]="data.status_perkawinan">
+                          <option value="0" disabled>Status Perkawinan</option>
+                          <option [value]="1">Menikah</option>
+                          <option [value]="2">Belum Menikah</option>
+                      </select> -->
+                      <!-- <input type="text" *ngIf="complement_data.status_perkawinan == 0" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="" [(ngModel)]="data.status_perkawinan">
+                      <input type="text" *ngIf="complement_data.status_perkawinan == 1" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Menikah" [(ngModel)]="data.status_perkawinan"> -->
+                      <input type="text" *ngIf="complement_data.status_perkawinan == 2" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Belum Menikah" [(ngModel)]="data.status_perkawinan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Sumber Pendapatan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 0" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="" [(ngModel)]="data.status_perkawinan">
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 1" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Kerja" [(ngModel)]="data.sumber_pendapatan">
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 2" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Usaha" [(ngModel)]="data.sumber_pendapatan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">No Handphone</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="No Handphone" class="with-unit form-control input-md" value="{{ profile.phone_number }}" [(ngModel)]="data.phone_number" name="phone_number" id="phone_number">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Telepon Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Telepon Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.tlp_perusahaan }}" [(ngModel)]="data.tlp_perusahaan" name="tlp_perusahaan" id="tlp_perusahaan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">No Rekening</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="No Rekening" class="with-unit form-control input-md" value="{{ complement_data.no_rekening }}" [(ngModel)]="data.no_rekening" name="no_rekening" id="no_rekening">
+                  </div>
+                </div>
+                </div>
+                <!-- Data Pribadi -->
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Keluarga</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Anak</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" *ngIf="complement_data.jumlah_anak == 0" placeholder="Jumlah Anak" class="with-unit form-control input-md" value="" [(ngModel)]="data.jumlah_anak" name="jumlah_anak" id="jumlah_anak">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Tanggungan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text"  placeholder="Jumlah Tanggungan" class="with-unit form-control input-md" value="{{ complement_data.jumlah_tanggungan }}" [(ngModel)]="data.jumlah_tanggungan" disabled>
+                  </div>
+                <!-- </div> -->
+                <!-- End -->
+
+                <!-- Data Keluarga -->
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Kerabat</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                <div class="col-md-3">
+                  <label class="unit">Nama Lengkap Keluarga</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" placeholder="Nama Lengkap Keluarga" class="with-unit form-control input-md" value="{{ complement_data.nama_lengkap_keluarga }}" [(ngModel)]="data.nama_lengkap_keluarga" name="nama_lengkap_keluarga" id="nama_lengkap_keluarga">
+                </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pekerjaan Kerabat</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pekerjaan Kerabat" class="with-unit form-control input-md" value="{{ complement_data.pekerjaan_kerabat }}" [(ngModel)]="data.pekerjaan_kerabat" name="pekerjaan_kerabat" id="pekerjaan_kerabat">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Hubungan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Hubungan" class="with-unit form-control input-md" value="{{ complement_data.hubungan }}" [(ngModel)]="data.hubungan" name="hubungan" id="hubungan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">No Telepon</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="No Telepon" class="with-unit form-control input-md" value="{{ complement_data.no_tlp }}" [(ngModel)]="data.no_tlp" name="no_tlp" id="no_tlp">
+                  </div>
+                </div>
+                <!-- End -->
+
+                <!-- Data Pekerjaan -->
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Pekerjaan</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pekerjaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="pekerjaan" class="with-unit form-control input-md" value="{{ complement_data.pekerjaan }}" [(ngModel)]="data.pekerjaan" name="pekerjaan" id="pekerjaan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Nama Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Nama Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.nama_perusahaan }}" [(ngModel)]="data.nama_perusahaan" name="nama_perusahaan" id="nama_perusahaan">
+                  </div>
+                </div>
+                <div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Gaji per bulan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Gaji per bulan" class="with-unit form-control input-md" value="{{ complement_data.gaji_per_bulan }}" [(ngModel)]="data.gaji_per_bulan" name="gaji_per_bulan" id="gaji_per_bulan">
+                  </div>
+                </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jabatan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jabatan" class="with-unit form-control input-md" value="{{ complement_data.jabatan }}" [(ngModel)]="data.jabatan" name="jabatan" id="jabatan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jenis Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jenis Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.jenis_perusahaan }}" [(ngModel)]="data.jenis_perusahaan" name="jenis_perusahaan" id="jenis_perusahaan">
+                  </div>
+                </div>
+                <!-- End -->
+
+                <!-- Data Usaha -->
+                <div>
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Usaha</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Nama Usaha</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Nama Usaha" class="with-unit form-control input-md" value="{{ complement_data.nama_usaha }}" [(ngModel)]="data.nama_usaha" name="nama_usaha" id="nama_usaha">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pengeluaran per bulan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pengeluaran per bulan" class="with-unit form-control input-md" value="{{ complement_data.pengeluaran_per_bulan }}" [(ngModel)]="data.pengeluaran_per_bulan" name="pengeluaran_per_bulan" id="pengeluaran_per_bulan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Tahun Perusahaan Berdiri</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Tahun Perusahaan Berdiri" class="with-unit form-control input-md" value="{{ complement_data.tahun_perusahaan_berdiri }}" [(ngModel)]="data.tahun_perusahaan_berdiri" name="tahun_perusahaan_berdiri" id="tahun_perusahaan_berdiri">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pendapatan Bersih Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pendapatan Bersih Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_bersih_perusahaan }}" [(ngModel)]="data.pendapatan_bersih_perusahaan" name="pendapatan_bersih_perusahaan" id="pendapatan_bersih_perusahaan">
+                  </div>
+                </div>
+                </div>
+                <!-- End -->
+
+                <!-- Pendapatan Lain -->
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Pendapatan Lain</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pendapatan Lain 1</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_lain_1 }}" [(ngModel)]="data.pendapatan_lain_1" name="pendapatan_lain_1" id="pendapatan_lain_1">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Sumber Pendapatan Lain 1</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}" [(ngModel)]="data.sumber_pendapatan_lain_1" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Pendapatan Lain 1</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}" [(ngModel)]="data.jumlah_pendapatan_lain_1" name="jumlah_pendapatan_lain_1" id="jumlah_pendapatan_lain_1">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pendapatan Lain 2</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_lain_2 }}" [(ngModel)]="data.pendapatan_lain_2" name="pendapatan_lain_2" id="pendapatan_lain_2">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Sumber Pendapatan Lain 2</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}" [(ngModel)]="data.sumber_pendapatan_lain_2" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Pendapatan Lain 2</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}" [(ngModel)]="data.jumlah_pendapatan_lain_2" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2">
+                  </div>
+                </div>
+                </div>
+                <!-- End -->
+                <!-- Data Penunjang -->
+                <!-- <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Penunjang</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Foto NPWP</label>
+                  </div>
+                  <div class="col-md-9">
+                      <img src="{{ complement_data.foto_npwp }}" alt="Photo NPWP" class="thumbnail" width="250px" height="250px">
+                      <input type="file" name="foto_npwp" id="foto_npwp">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Foto Tabungan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <img src="{{ complement_data.foto_tabungan }}" alt="Photo Tabungan" class="thumbnail" width="250px" height="250px">
+                      <input type="file" name="foto_tabungan" id="foto_tabungan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Foto Identitas</label>
+                  </div>
+                  <div class="col-md-9">
+                      <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
+                      <input type="file" name="foto_identitas" id="foto_identitas">
+                  </div>
+                </div> -->
+                <!-- end -->
+                    <!-- Button -->
+                <div class="col-md-12">
+                    <div class="form-group">
+                       <div class="col-md-6 col-center">
+                          <button class="btn btn-default">Batal</button>
+                          <button class="btn btn-red" (click)="updateProfile(data)">Simpan</button>
+                       </div>
+                    </div>
+                </div>
+                </div>
+                </div> <!-- end box edit -->
+              </div>
+            </div>
+            </div>
+    </section>
+    </div>
