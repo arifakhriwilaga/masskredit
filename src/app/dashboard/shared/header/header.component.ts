@@ -3,6 +3,8 @@ import { LoginService }   				 from './../../../auth/login/login.service';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { DashboardComponent }			 from './../../dashboard.component';
 
+import { Router }	   from '@angular/router';
+
 @Component({
 	//moduleId: module.id,
 	selector: 'header-dashboard',
@@ -15,7 +17,8 @@ export class HeaderComponent {
 	constructor (
 		// private loginService:LoginService, 
 		private http : Http,
-		private dashboardComponent : DashboardComponent
+		private dashboardComponent : DashboardComponent,
+		private router : Router
 	){ 
 
 	// let data = this.profile;
@@ -53,17 +56,18 @@ export class HeaderComponent {
 	          this.borrower 		= response.data.profile.user_score.borrower;
 	          this.avg_reviews 		= response.data.profile.user_score.avg_reviews;
 	          this.fund_history 	= response.data.profile.user_score.fund_history;
+	          this.is_complete 		= response.data.profile.is_completer;
 
 	        },
-		(err:any) => {
-            var error   = JSON.parse(err._body)
-            var message = error.meta.message
-              if(message == "unauthorized") {
-                alert("Maaf session anda telah habis silahkan login kembali")
-                // return this.router.navigateByUrl('/dashboard/sign-out')
-                
-              }  
-        }
+			(err:any) => {
+	            var error   = JSON.parse(err._body)
+	            var message = error.meta.message
+	              if(message == "unauthorized") {
+	                alert("Maaf session anda telah habis silahkan login kembali")
+	                return this.router.navigateByUrl('/dashboard/sign-out')
+	                
+	              }  
+	        }
         );
 	
 	// let data        = { };
@@ -85,6 +89,7 @@ export class HeaderComponent {
 	private avg_reviews		= { };
 	private fund_history	= { };
 	private account_summary = { };
+	private is_complete 	= { };
 
 	// console.log(this.profile)
 	// debugger;

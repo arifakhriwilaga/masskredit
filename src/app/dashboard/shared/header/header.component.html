@@ -157,7 +157,7 @@
             <a href="#/dashboard" data-toggle="control-sidebar"><i class="fa fa-cog"></i></a>
           </li>
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-user"></i></a>
+            <a href="#/dashboard/profile" data-toggle="control-sidebar"><i class="fa fa-user"></i></a>
           </li>
           <li>
             <a href="#/dashboard/sign-out" data-toggle="control-sidebar"><i class="fa fa-sign-out"></i></a>
@@ -196,7 +196,7 @@
                 <span>({{ avg_reviews }} %)</span>
             </div>
             <br>
-            <a href="#/dashboard/complement-user">
+            <a href="#/dashboard/complement-user" *ngIf="is_complete == 0">
             <button class="btn btn-red" style="background-color:#c0392b;">
               Lengkapi data!
             </button>
