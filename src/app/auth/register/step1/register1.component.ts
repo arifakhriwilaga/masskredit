@@ -236,11 +236,38 @@ export class Step1RegisterComponent  {
 	}
 
 	cancelRegister() {
-		// document.getElementById("registerForm");		
 		localStorage.removeItem("access_code");
 		localStorage.removeItem("verify_handphone");
-		// debugger;
-		this.router.navigateByUrl('');
+		return this.router.navigateByUrl('#');
+
+			// let data = {
+			// 	phone_number : JSON.parse(localStorage.getItem("verify_handphone"))
+			// }		
+					// let headers = new Headers({ 
+					//  	'Content-Type': 'application/json',
+					//  	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+				 // 		});
+
+				 //    let options = new RequestOptions({ headers: headers });
+
+					// //API Register 
+					// // console.log(this.register)
+					// 	this.http.post('http://masscredit-api.stagingapps.net/user/credential/delete-verification-code',
+					// 	data, options)
+					// 	.map(response => response.json())
+					// 	.subscribe(
+					// 		(response:any) => { 
+					// 			// console.log(response)
+					// 			var code 		= response.meta.code;
+												
+					// 			if(code == "200") {
+					// 				localStorage.removeItem("access_code");
+					// 				localStorage.removeItem("verify_handphone");
+					// 				return this.router.navigateByUrl('#');
+					// 			}
+
+					// 		},
+					// 	);
 	}
 
 	ngAfterViewInit() {
@@ -248,9 +275,6 @@ export class Step1RegisterComponent  {
 	      format	: 'yyyy/mm/dd',
 	      // setDate	: '12/12/2000'
 	    });
-		jQuery('#step-2').hide();
-		jQuery('#step-3').hide();
-		jQuery('#step-4').hide();
 
 	}
 
