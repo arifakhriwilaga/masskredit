@@ -73,18 +73,27 @@ export class VerifyComponent {
 				nomor,
 				options)
 				.map(data => data.json())
-				.subscribe((data : any) => {
-					var verify 	= JSON.stringify(nomor.phone_number)
-					var code 	= data.data.verification_code;
-					var header 	= data;
-					// console.log(header.meta);
-					console.log("Verify code :",code)
-					alert(code);
-					// console.log(data);
-					localStorage.setItem("verify_handphone", verify)
-					this.router.navigateByUrl("/auth/register/verify-code") // return view verify code for now
-				
-				});
+				.subscribe(
+					(data : any) => {
+						var verify 	= JSON.stringify(nomor.phone_number)
+						var code 	= data.data.verification_code;
+						var header 	= data;
+						// console.log(header.meta);
+						console.log("Verify code :",code)
+						alert(code);
+						// console.log(data);
+						localStorage.setItem("verify_handphone", verify)
+						this.router.navigateByUrl("/auth/register/verify-code") // return view verify code for now
+					
+					},
+					(err:any) => {
+			            var error   = JSON.parse(err._body)
+			            var message = error.meta.message
+			              if(message == "No Handphone sudah terdaftar") {
+			                alert("Maaf no handphone telah terdaftar")
+			              }  
+			        }
+				);
 			}
 			
 		
