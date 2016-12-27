@@ -65,7 +65,6 @@ export class HeaderComponent {
 	              if(message == "unauthorized") {
 	                alert("Maaf session anda telah habis silahkan login kembali")
 	                return this.router.navigateByUrl('/dashboard/sign-out')
-	                
 	              }  
 	        }
         );
