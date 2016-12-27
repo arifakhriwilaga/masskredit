@@ -9,194 +9,358 @@
         <div class="col-md-12">
           <div class="box bg-transparent">
             <div class="box-header">
-              <h2 class="box-title pull-left">Detail Profile</h2>
+              <h2 class="box-title pull-left">Profile</h2>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="clearfix white-bg detail-page">
-                <div class="col-md-5">
-                  <div class="box-img-detail"><img alt="Photo Profile"></div>
+              <div class="col-md-4">
+              </div>
+              <div class="col-xs-8 pull-left">
+                <a href="#/dashboard/profile/edit">
+                   <button class="">Edit</button>
+                </a>
+              </div>
+                <div class="col-md-4">
+                  <div class="box-img-detail"><img src="{{ profile.profile_image }}" alt="Photo Profile"></div>
                 </div>
-                <div class="col-md-7">
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Full Name<span>:</span></label>
-      						<label class="col-md-7 value">Najib Budin Abdullah</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Email Address<span>:</span></label>
-      						<label class="col-md-7 value">najib.budin@appschef.com</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Active User<span>:</span></label>
-      						<label class="col-md-7 value">Active</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Last Login<span>:</span></label>
-      						<label class="col-md-7 value">21 Desember 2016</label>
-      					</div>
-
-      					<div class="form-group clearfix">
-      						<div class="box-header">
-      						  <h2 class="box-title pull-left">User Score</h2>
-      						</div>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">User Class<span>:</span></label>
-      						<label class="col-md-7 value">2A</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">User Status<span>:</span></label>
-      						<label class="col-md-7 value">Verified</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Fund Process<span>:</span></label>
-      						<label class="col-md-7 value">97%</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Fund History<span>:</span></label>
-      						<label class="col-md-7 value">Excellent</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">AVG Reviews<span>:</span></label>
-      						<label class="col-md-7 value">4.5</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Company<span>:</span></label>
-      						<label class="col-md-7 value">Certified</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Borrower<span>:</span></label>
-      						<label class="col-md-7 value">Platinum</label>
-      					</div>
-      					<div class="form-group clearfix">
-      						<label class="col-md-5">Cap Size<span>:</span></label>
-      						<label class="col-md-7 value">17 M</label>
-      					</div>
-                </div>
+                <div class="col-md-8">
 
                 <div class="form-group clearfix">
                   <div class="box-header">
-                    <h2 class="box-title pull-left">Complement Data</h2>
+                    <h2 class="box-title pull-left">Data Pribadi</h2>
                   </div>
                 </div>
+                <div id="input">
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Nama Lengkap</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Nama Lengkap" class="with-unit form-control input-md" value="{{ profile.name }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Email Address</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" value="{{ profile.email }}" class="with-unit form-control input-md" placeholder="Address Email">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Status Perkawinan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" *ngIf="complement_data.status_perkawinan == 1" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Menikah">
+                      <input type="text" *ngIf="complement_data.status_perkawinan == 2" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Belum Menikah">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Sumber Pendapatan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 1" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Kerja">
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 2" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Usaha">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">No Handphone</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="No Handphone" class="with-unit form-control input-md" value="{{ profile.phone_number }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Telepon Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Telepon Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.tlp_perusahaan }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">No Rekening</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="No Rekening" class="with-unit form-control input-md" value="{{ complement_data.no_rekening }}">
+                  </div>
+                </div>
+                </div>
+                </div>
 
+                <!-- Data Pribadi -->
+                <div id="input">
+                <div *ngIf="complement_data.status_perkawinan == 1">
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Keluarga</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Anak</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jumlah Anak" class="with-unit form-control input-md" value="{{ complement_data.jumlah_anak }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Tanggungan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jumlah Tanggungan" class="with-unit form-control input-md" value="{{ complement_data.jumlah_tanggungan }}">
+                  </div>
+                </div>
+                </div>
+                </div>
+                <!-- End -->
+
+                <!-- Data Keluarga -->
+                <div id="input">
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Kerabat</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                <div class="col-md-3">
+                  <label class="unit">Nama Lengkap Keluarga</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" placeholder="Nama Lengkap Keluarga" class="with-unit form-control input-md" value="{{ complement_data.nama_lengkap_keluarga }}">
+                </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pekerjaan Kerabat</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pekerjaan Kerabat" class="with-unit form-control input-md" value="{{ complement_data.pekerjaan_kerabat }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Hubungan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Hubungan" class="with-unit form-control input-md" value="{{ complement_data.hubungan }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">No Telepon</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="No Telepon" class="with-unit form-control input-md" value="{{ complement_data.no_tlp }}">
+                  </div>
+                </div>
+                </div>
+                <!-- End -->
+
+                <!-- Data Pekerjaan -->
+                <div *ngIf="complement_data.sumber_pendapatan == 1">
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Pekerjaan</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pekerjaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="pekerjaan" class="with-unit form-control input-md" value="{{ complement_data.pekerjaan }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Nama Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Nama Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.nama_perusahaan }}">
+                  </div>
+                </div>
                 <div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Jumlah Anak<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.jumlah_anak }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Gaji per bulan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Gaji per bulan" class="with-unit form-control input-md" value="{{ complement_data.gaji_per_bulan }}">
+                  </div>
+                </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Jumlah Tanggungan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.jumlah_tanggungan }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Jabatan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jabatan" class="with-unit form-control input-md" value="{{ complement_data.jabatan }}">
+                  </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Gaji per bulan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.gaji_per_bulan }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Jenis Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jenis Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.jenis_perusahaan }}">
+                  </div>
                 </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Hubungan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.hubungan }}</label>
                 </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Jabatan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.jabatan }}</label>
-                </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Jenis Perusahaan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.jenis_perusahaan }}</label>
-                </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Jumlah Pendapatan Lain 1<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.jumlah_pendapatan_lain_1 }}</label>
-                </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Jumlah Pendapatan Lain 2<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.jumlah_pendapatan_lain_2 }}</label>
-                </div>
-                <!-- Data Keluarga -->
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Nama Lengkap Keluarga<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.nama_lengkap_keluarga }}</label>
-                </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Nama Perusahaan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.nama_perusahaan }}</label>
-                </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Nama Usaha<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.nama_usaha }}</label>
-                </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">no_rekening<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.no_rekening }}</label>
-                </div>
+                <!-- End -->
 
+                <!-- Data Usaha -->
+                <div *ngIf="complement_data.sumber_pendapatan == 2">
+                <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Usaha</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Nama Usaha</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Nama Usaha" class="with-unit form-control input-md" value="{{ complement_data.nama_usaha }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pengeluaran per bulan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pengeluaran per bulan" class="with-unit form-control input-md" value="{{ complement_data.pengeluaran_per_bulan }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Tahun Perusahaan Berdiri</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Tahun Perusahaan Berdiri" class="with-unit form-control input-md" value="{{ complement_data.tahun_perusahaan_berdiri }}">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pendapatan Bersih Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pendapatan Bersih Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_bersih_perusahaan }}">
+                  </div>
+                </div>
+                </div>
+                <!-- End -->
 
-                <!-- Data Keluarga -->
+                <!-- Pendapatan Lain -->
+                <div *ngIf="complement_data.pendapatan_lain_1 != null && complement_data.pendapatan_lain_1 != 0">
                 <div class="form-group clearfix">
-                  <label class="col-md-5">No Telepon<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.no_tlp }}</label>
-                </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Pekerjaan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.pekerjaan }}</label>
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Pendapatan Lain</h2>
+                  </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Pekerjaan Kerabat<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.pekerjaan_kerabat }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Pendapatan Lain 1</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_lain_1 }}">
+                  </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Pendapatan Bersih Perusahaan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.pendapatan_bersih_perusahaan }}</label>
-                </div>
-
-
-                <!-- Data Keluarga -->
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Pendapatan Lain 1<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.pendapatan_lain_1 }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Sumber Pendapatan Lain 1</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}">
+                  </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Pendapatan Lain 2<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.pendapatan_lain_2 }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Pendapatan Lain 1</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}">
+                  </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Pengeluaran per Bulan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.pengeluaran_per_bulan }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Pendapatan Lain 2</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_lain_2 }}">
+                  </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Status Perkawinan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.status_perkawinan }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Sumber Pendapatan Lain 2</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}">
+                  </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Sumber Pendapatan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.sumber_pendapatan }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Pendapatan Lain 2</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}">
+                  </div>
                 </div>
-
-                <!-- Data Keluarga -->
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Sumber Pendapatan Lain 1<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.sumber_pendapatan_lain_1 }}</label>
                 </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Sumber Pendapatan Lain 2<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.sumber_pendapatan_lain_2 }}</label>
-                </div>
-                <div class="form-group clearfix">
-                  <label class="col-md-5">Tahun Perusahaan Berdiri<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.tahun_perusahaan_berdiri }}</label>
+                <!-- End -->
+                <!-- Data Penunjang -->
+                <!-- <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Data Penunjang</h2>
+                  </div>
                 </div>
                 <div class="form-group clearfix">
-                  <label class="col-md-5">Telepon Perusahaan<span>:</span></label>
-                  <label class="col-md-7 value">{{ profile.tlp_perusahaan }}</label>
+                  <div class="col-md-3">
+                    <label class="unit">Foto NPWP</label>
+                  </div>
+                  <div class="col-md-9">
+                      <img src="{{ complement_data.foto_npwp }}" alt="Photo NPWP" class="thumbnail" width="250px" height="250px">
+                      <input type="file" name="foto_npwp" id="foto_npwp">
+                  </div>
                 </div>
-
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Foto Tabungan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <img src="{{ complement_data.foto_tabungan }}" alt="Photo Tabungan" class="thumbnail" width="250px" height="250px">
+                      <input type="file" name="foto_tabungan" id="foto_tabungan">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Foto Identitas</label>
+                  </div>
+                  <div class="col-md-9">
+                      <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
+                      <input type="file" name="foto_identitas" id="foto_identitas">
+                  </div>
+                </div> -->
+                <!-- end -->
+                    <!-- Button -->
+<!--                 <div class="col-md-12">
+                    <div class="form-group">
+                       <div class="col-md-6 col-center">
+                          <button class="btn btn-default">Batal</button>
+                          <button class="btn btn-red" (click)="updateProfile(data)">Simpan</button>
+                       </div>
+                    </div>
+                </div> -->
                 </div>
                 </div>
+                </div> <!-- end box edit -->
               </div>
             </div>
-          </div>
-        </div>
-
     </section>
     </div>
