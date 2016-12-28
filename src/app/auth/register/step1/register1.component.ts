@@ -243,31 +243,31 @@ export class Step1RegisterComponent  {
 			// let data = {
 			// 	phone_number : JSON.parse(localStorage.getItem("verify_handphone"))
 			// }		
-					// let headers = new Headers({ 
-					//  	'Content-Type': 'application/json',
-					//  	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-				 // 		});
+			// 		let headers = new Headers({ 
+			// 		 	'Content-Type': 'application/json',
+			// 		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+			// 	 		});
 
-				 //    let options = new RequestOptions({ headers: headers });
+			// 	    let options = new RequestOptions({ headers: headers });
 
-					// //API Register 
-					// // console.log(this.register)
-					// 	this.http.post('http://masscredit-api.stagingapps.net/user/credential/delete-verification-code',
-					// 	data, options)
-					// 	.map(response => response.json())
-					// 	.subscribe(
-					// 		(response:any) => { 
-					// 			// console.log(response)
-					// 			var code 		= response.meta.code;
+			// 		// API Cancel Register 
+			// 		console.log(this.register)
+			// 			this.http.post('http://masscredit-api.stagingapps.net/user/credential/delete-verification-code',
+			// 			data, options)
+			// 			.map(response => response.json())
+			// 			.subscribe(
+			// 				(response:any) => { 
+			// 					// console.log(response)
+			// 					var code 		= response.meta.code;
 												
-					// 			if(code == "200") {
-					// 				localStorage.removeItem("access_code");
-					// 				localStorage.removeItem("verify_handphone");
-					// 				return this.router.navigateByUrl('#');
-					// 			}
+			// 					if(code == "200") {
+			// 						localStorage.removeItem("access_code");
+			// 						localStorage.removeItem("verify_handphone");
+			// 						return this.router.navigateByUrl('#');
+			// 					}
 
-					// 		},
-					// 	);
+			// 				},
+			// 			);
 	}
 
 	ngAfterViewInit() {
