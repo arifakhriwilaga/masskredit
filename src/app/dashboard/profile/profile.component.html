@@ -14,18 +14,13 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="clearfix white-bg detail-page">
-              <div class="col-md-4">
-              </div>
-              <div class="col-xs-8 pull-left">
-                <a href="#/dashboard/profile/edit">
-                   <button class="">Edit</button>
-                </a>
+              <div class="pull-left right" *ngIf="is_complete == 1">
+                   <button class="" (click)="edit()">Edit</button>
               </div>
                 <div class="col-md-4">
                   <div class="box-img-detail"><img src="{{ profile.profile_image }}" alt="Photo Profile"></div>
                 </div>
                 <div class="col-md-8">
-
                 <div class="form-group clearfix">
                   <div class="box-header">
                     <h2 class="box-title pull-left">Data Pribadi</h2>
@@ -53,6 +48,7 @@
                     <label class="unit">Status Perkawinan</label>
                   </div>
                   <div class="col-md-9">
+                      <input type="text" *ngIf="complement_data.status_perkawinan == 0" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="">
                       <input type="text" *ngIf="complement_data.status_perkawinan == 1" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Menikah">
                       <input type="text" *ngIf="complement_data.status_perkawinan == 2" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Belum Menikah">
                   </div>
@@ -62,6 +58,7 @@
                     <label class="unit">Sumber Pendapatan</label>
                   </div>
                   <div class="col-md-9">
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == null" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="">
                       <input type="text" *ngIf="complement_data.sumber_pendapatan == 1" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Kerja">
                       <input type="text" *ngIf="complement_data.sumber_pendapatan == 2" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Usaha">
                   </div>
@@ -315,38 +312,25 @@
                 </div>
                 <!-- End -->
                 <!-- Data Penunjang -->
-                <!-- <div class="form-group clearfix">
+                <div class="form-group clearfix">
                   <div class="box-header">
                     <h2 class="box-title pull-left">Data Penunjang</h2>
                   </div>
                 </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Foto NPWP</label>
-                  </div>
-                  <div class="col-md-9">
-                      <img src="{{ complement_data.foto_npwp }}" alt="Photo NPWP" class="thumbnail" width="250px" height="250px">
-                      <input type="file" name="foto_npwp" id="foto_npwp">
-                  </div>
+                <div class="col-xs-12">
+                <div class="col-xs-4">
+                <label class="unit">Foto Identitas</label>
+                  <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
                 </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Foto Tabungan</label>
-                  </div>
-                  <div class="col-md-9">
-                      <img src="{{ complement_data.foto_tabungan }}" alt="Photo Tabungan" class="thumbnail" width="250px" height="250px">
-                      <input type="file" name="foto_tabungan" id="foto_tabungan">
-                  </div>
+                <div class="col-xs-4">
+                <label class="unit">Foto Tabungan</label>
+                  <img src="{{ complement_data.foto_tabungan }}" alt="Photo Tabungan" class="thumbnail" width="250px" height="250px">
                 </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Foto Identitas</label>
-                  </div>
-                  <div class="col-md-9">
-                      <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
-                      <input type="file" name="foto_identitas" id="foto_identitas">
-                  </div>
-                </div> -->
+                <div class="col-xs-4">
+                <label class="unit">Foto NPWP</label>
+                  <img src="{{ complement_data.foto_npwp }}" alt="Photo NPWP" class="thumbnail" width="250px" height="250px">
+                </div>
+                </div>
                 <!-- end -->
                     <!-- Button -->
 <!--                 <div class="col-md-12">

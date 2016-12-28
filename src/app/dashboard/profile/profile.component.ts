@@ -109,6 +109,7 @@ export class ProfileComponent {
     public sumber_pendapatan = { }
 	public complement_data = { };
 	public profile 		   = { };
+	public is_complete		= { };
 	getProfile() {
 		console.log("Sedang mengambil data....")
 		let headers = new Headers({ 
@@ -124,9 +125,9 @@ export class ProfileComponent {
 					(response : any) => {
 						// for message
 						this.complement_data	= response.data.profile.complement_user;
-						this.profile	= response.data.profile;
+						this.profile			= response.data.profile;
 						this.sumber_pendapatan 	= response.data.profile.complement_user.sumber_pendapatan;
-						// this.data.nama_lengkap 	= response.data.profile.name;
+						this.is_complete 		= response.data.profile.is_complete;
 						// this.data.alamat_email 	= response.data.profile.email;
 
 					
@@ -142,6 +143,10 @@ export class ProfileComponent {
 			        }
 				);
 		// return this.investasiservice.Index();
+	}
+
+	edit(){
+		return this.router.navigateByUrl('/dashboard/profile/edit')
 	}
 
 }
