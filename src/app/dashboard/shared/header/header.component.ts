@@ -56,7 +56,7 @@ export class HeaderComponent {
 	          this.borrower 		= response.data.profile.user_score.borrower;
 	          this.avg_reviews 		= response.data.profile.user_score.avg_reviews;
 	          this.fund_history 	= response.data.profile.user_score.fund_history;
-	          this.is_complete 		= response.data.profile.is_completer;
+	          this.is_complete 		= response.data.profile.is_complete;
 
 	        },
 			(err:any) => {

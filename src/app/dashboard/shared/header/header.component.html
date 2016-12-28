@@ -196,11 +196,13 @@
                 <span>({{ avg_reviews }} %)</span>
             </div>
             <br>
-            <a href="#/dashboard/complement-user" *ngIf="is_complete == 0">
+            <div *ngIf="is_complete == 0">
+            <a href="#/dashboard/complement-user">
             <button class="btn btn-red" style="background-color:#c0392b;">
               Lengkapi data!
             </button>
             </a>
+            </div>
           </div>
         </div>
          <div class="col-lg-5 col-xs-5">
