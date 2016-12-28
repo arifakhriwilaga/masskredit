@@ -238,7 +238,7 @@ export class Step1RegisterComponent  {
 	cancelRegister() {
 		localStorage.removeItem("access_code");
 		localStorage.removeItem("verify_handphone");
-		return this.router.navigateByUrl('#');
+		this.router.navigateByUrl('/auth/register');
 
 			// let data = {
 			// 	phone_number : JSON.parse(localStorage.getItem("verify_handphone"))
