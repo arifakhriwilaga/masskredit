@@ -49,7 +49,7 @@ import { InvestasiService }     from './investasi/investasi.service';
 export const routes = [
 
   { path: '', component: DashboardComponent,
-    // canActivate : [ AuthGuard ],
+    canActivate : [ AuthGuard ],
     children: [
       { path: '',             redirectTo: 'content', pathMatch: 'full' },
       { path: 'content',      component: ContentComponent },
