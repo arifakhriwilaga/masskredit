@@ -30,12 +30,12 @@
                    <input type="text" placeholder="Jumlah Anak" class="form-control input-md" name="jumlah_anak" id="jumlah_anak" [(ngModel)]="data.jumlah_anak">
                  </div>
                	</div>
-               	<div class="form-group">
+               	<!-- <div class="form-group">
                  <div class="col-md-12">
                   <span class="required">*</span>
                    <input type="text" placeholder="Tanggungan per anak" class="form-control input-md" name="jumlah_tanggungan" id="jumlah_tanggungan" [(ngModel)]="data.jumlah_tanggungan" value="0">
                  </div>
-               	</div>
+               	</div> -->
                 </div>
                	<!-- end Family  -->
 
@@ -51,21 +51,6 @@
                        </select>
                      </div>
                  </div>
-                <label>Angsuran</label>
-                <div id='TextBoxesGroup'>
-                  <div id="TextBoxDiv1">
-                    <div class="form-group">
-                     <div class="col-md-12">
-                      <span class="required">*</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <input type='button' value='Add Button' id='addButton'>
-                <input type='button' value='Remove Button' id='removeButton'>
-                <input type='button' value='Get Value' id='getValue'>
-                <input type='button' value='Get TextBox Value' id='getButtonValue'>
-                <!-- <input type='button' value='show Value' (click)="getValueAngsuran()"> -->
                 <div *ngIf="sumberPendapatan == 1">
                 <div class="form-group">
                  <div class="col-md-12">
@@ -151,7 +136,23 @@
                 </div>
                	<!-- end work data -->
 
-
+                <!-- Data Angsuran -->
+                <label>Data Angsuran</label>
+                <div id='TextBoxesGroup'>
+                  <div id="TextBoxDiv">
+                    <!-- <label>Angsuran 1</label> -->
+                   <!--  <input type="text" placeholder="Jumlah Angsuran" class="form-control input-md" name="textbox1" id="textbox1" value="">
+                    <input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md" name="textbox2" id="textbox2" value=""> -->
+                    <!-- <div class="form-group">
+                     <div class="col-md-12">
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+                <input type='button' value='Tambah' id='addButton'>
+                <input type='button' value='Hapus' id='removeButton'>
+                <br><br><br>
+                <!-- End -->
                	<!-- Contact darurat kerabat -->
                	<label>Data Kerabat yang tidak serumah</label>
                	<div class="form-group">
@@ -271,16 +272,16 @@
                  <!-- Data Bank -->
                 <label>Data Bank</label>
                 <div class="form-group">
-                   <div class="col-md-12">
-                     <div class="input-group">
-                     <label>Foto depan buku tabungan</label>
-                      <input type="file" name="foto_tabungan" id="foto_tabungan">
-                     </div>
-                   </div>
-                 </div>  
+                  <div class="col-md-12">
+                       <span class="required">*</span>
+                       <label>Foto depan buku tabungan</label>
+                        <input type="file" name="foto_tabungan" id="foto_tabungan">
+                  </div>
+                </div>  
                 <div class="form-group">
                  <div class="col-md-12">
-                   <input type="text" placeholder="No Rekening" class="form-control input-md" name="no_rekening" id="no_rekening" [(ngModel)]="data.no_rekening">
+                     <span class="required">*</span>
+                   <input type="text" placeholder="No Rekening" class="form-control input-md" name="jumlahangsuran" id="jumlahangsuran" [(ngModel)]="data.no_rekening">
                  </div>
                 </div> 
                  </fieldset>

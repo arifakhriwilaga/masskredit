@@ -12,7 +12,10 @@ declare var jQuery:any;
 
 
 export class ComplementComponent { 
-	constructor(private http: Http, private router : Router) { }
+	constructor(private http: Http, private router : Router) { 
+
+	// this.data.angsuran = [];
+	}
 // 
 
 	// Objek
@@ -68,18 +71,16 @@ export class ComplementComponent {
 		foto_tabungan		: this.image,
 		no_rekening			: '',
 
-		angsuran			: { 
-			jumlah_angsuran : [''],
-			description_angsuran : ['']  
-		}
+		angsuran : []
 
 
+			// counter++;
 	}
 
-	public angsuran			= { 
-			jumlah_angsuran : [''],
-			description_angsuran : ['']  
-	}
+	// public angsuran = {
+	// 		jumlah_angsuran : [],
+	// 		description_angsuran : []  
+	// }
 
 	ngOnInit(){
 		// mask
@@ -129,19 +130,18 @@ export class ComplementComponent {
 				return false;
 			}
 
+
 			var newTextBoxDiv = jQuery(document.createElement('div'))
-			.attr("id",'TextBoxDiv' + counter);
+			.attr("id",'TextBoxDiv' + counter).attr("class",'blockElement');
 
 			newTextBoxDiv.after().html(
-
-				'<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md" name="textbox1' + counter + 
+				'<label>Angsuran' + counter +'</label>' +
+				'<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md jumlah-angsuran" name="textbox1' + counter + 
 				'" id="textbox1' + counter + '" value="">' +
-				'<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md" name="textbox2' + counter + 
+				'<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md description-angsuran" name="textbox2' + counter + 
 				'" id="textbox2' + counter + '" value="">'
-			)
-			;
+			);
 			newTextBoxDiv.appendTo("#TextBoxesGroup");
-
 			counter++;
 		});
 
@@ -149,38 +149,34 @@ export class ComplementComponent {
 			if(counter == 1){
 				alert("No more textbove remove");
 				return false;
-			}
+			}	
 			counter--;
-			jQuery("#TextBoxDiv" + counter).remove();
+			jQuery("#TextBoxDiv" + counter).hide();
+
 		});
 
-		let angsuran = { 
-			jumlah_angsuran : [''],
-			description_angsuran : ['']  
+		// let angsuran = {
+		// 	jumlah_angsuran : this.data.angsuran.jumlah_angsuran,
+		// 	description_angsuran : this.data.angsuran.description_angsuran  
 		
-		}
+		// }
 
 
-		jQuery("#getButtonValue").click(function(){
-			var msg1 = [''];
-			var msg2 = [''];
-			// var msg2= angsuran.description_angsuran;
-			for (var i = 1; i < counter; ++i) {
-				msg2 = jQuery('#textbox1' + i).val();
-				angsuran.jumlah_angsuran = msg2
-				 // angsuran.jumlah_angsuran
-				console.log( "ini dari msg2", msg2);
-			}
-			for (var i = 1; i < counter; ++i) {
-				msg1 = jQuery('#textbox2' + i).val();
-				angsuran.description_angsuran = msg1
-				console.log( "ini dari msg1", msg1);
-			}
-			// return angsuran
-		});
+		// jQuery("#getButtonValue").click(function(){
+		// 	// var msg2= angsuran.description_angsuran;
+		// 	for (var i = 1; i < counter; ++i) {
+		// 		angsuran.jumlah_angsuran.push(jQuery('#textbox1' + i).val());
+		// 		 // angsuran.jumlah_angsuran
+		// 		// console.log( "ini dari msg2", angsuran.jumlah_angsuran);
+		// 	}
+		// 	for (var i = 1; i < counter; ++i) {
+		// 		angsuran.description_angsuran.push(jQuery('#textbox2' + i).val());
+		// 	}
+		// 	// return angsuran
+		// });
 		
 		jQuery("#getValue").click(function(){
-			console.log(angsuran);
+			console.log(this.data.angsuran);
 			// return angsuran
 		});
 		
@@ -287,12 +283,12 @@ export class ComplementComponent {
 			},
 	
 		 	// Objek data bank
-		 // 	foto_tabungan 	: {
-			// 	required :true
-			// },
-			// no_rekening 	: {
-			// 	required :true
-			// },
+		 	foto_tabungan 	: {
+				required :true
+			},
+			no_rekening 	: {
+				required :true
+			},
 		  	
 		  	// objek pendapatan lain 2
 		  	// pendapatan_lain_2	: 0,
@@ -302,46 +298,6 @@ export class ComplementComponent {
 			
 	}
 
-	getValueAngsuran(){
-		// this.data.angsuran.jumlah_angsuran = this.angsuran.jumlah_angsuran
-		// this.data.angsuran.description_angsuran = this.angsuran.description_angsuran
-		console.log(this.data.angsuran)
-		// jQuery("#getButtonValue").click(function(){
-		// 	let counter= 1;
-		// 	var msg1= '';
-		// 	var msg2='';
-		// 	for (var i = 1; i < counter; ++i) {
-		// 		 msg1 = jQuery('#textbox1' + i).val();
-		// 		 console.log( "ini dari msg1",msg1);
-		// 	}
-		// 	for (var i = 1; i < counter; ++i) {
-		// 		msg2 = jQuery('#textbox2' + i).val();
-		// 		console.log("ini dari msg2",msg2);
-		// 	}
-		// });
-	// console.log(angsuran)
-	// let jumlah_angsuran = this.angsuran.jumlah_angsuran;
-	// let value1:any;
-	// let counter= 1;
-
-	// if(angsuran) {
-	// 	for (var i = 1; i < counter; ++i) {
-	// 		value1 = document.getElementById('#textbox1'+i)
-	// 		var a  = value1.files[0]
-	// 		console.log("ini dari Value1", value1);
-	// 		// this.data.angsuran.jumlah_angsuran = value1.files[0];
-	// 		 // value1 = jQuery('#textbox1' + i).val();
-	// 	}
-	// 	// console.log(angsuran);
-	// 		// console.log("ini dari Jumlah Angsuran", this.data.angsuran.jumlah_angsuran);
-	// 	 // console.log( "ini dari msg1",value1);
-	// }
-	// else{
-	// 	console.log("Data tidak valid")
-	// 	// code...
-	// }
-	
-	}
 	
 	private statusMarried:any;
 	getStatusMarried(id){
@@ -400,101 +356,120 @@ export class ComplementComponent {
 
 
 	submitData(data){
-		if(jQuery("#complementForm").valid()) {	
+		if(jQuery("#complementForm").valid()) {
+		// if(data) {
 			let acces_token = JSON.parse(localStorage.getItem("access_token"));
 			this.data.access_token = acces_token;
-			console.log(this.data);
+
+			var angsuran = [];
+			jQuery(".blockElement").each(function(){
+				angsuran.push({
+				  jumlah_angsuran: jQuery(this).find("input[type=text].jumlah-angsuran").val(),
+				  description_angsuran: jQuery(this).find("input[type=text].description-angsuran").val()
+				})
+			})
+			this.data.angsuran = angsuran;
+
+			// debugger;
+			// Set jumlah angsuran
+			// var jumlah_angsuran:any = jQuery(".jumlah-angsuran").get();
+			// var length_jumlah_angsuran			= jumlah_angsuran.length
+			// for (var i = 1; i <= length_jumlah_angsuran; ++i) {
+			// 		this.data.angsuran.jumlah_angsuran.push(jQuery('#textbox1' + i).val());
+			// }
+
+			// // Set description angsuran
+			// var description_angsuran:any = jQuery(".description-angsuran").get();
+			// var length_description_angsuran			= description_angsuran.length
+			// for (var i = 1; i <= length_description_angsuran; ++i) {
+			// 		this.data.angsuran.description_angsuran.push(jQuery('#textbox2' + i).val());
+			// }
 
 			let readerFileA = new FileReader();
 			readerFileA.onload = function(event, varty) {
 				let fileA = event.target.result.split(',')[1];
 				this.data.foto_tabungan = fileA;
-				
-				// console.log(fileB)
 			}.bind(this)
 
 			let readerFileX = new FileReader();
-	  		
 			readerFileX.onload = function(event, varty) {
 				let fileX = event.target.result.split(',')[1];
 				this.data.foto_identitas = fileX;
-				// console.log(fileA);
-			}.bind(this);
+			}.bind(this)
 
 			let readerFileY = new FileReader();
 			readerFileY.onload = function(event, varty) {
 				let fileY = event.target.result.split(',')[1];
 				this.data.foto_npwp = fileY;
-				
-				// console.log(fileB)
 			}.bind(this)
 
 			let readerFileZ = new FileReader();
 			readerFileZ.onload = function(event, varty) {
-				let fileZ = event.target.result.split(',')[1];
-				this.data.foto_diri = fileZ;
+			let fileZ = event.target.result.split(',')[1];
+			this.data.foto_diri = fileZ;
 
-				console.log(this.data)
-				console.log("Sedang mengirim data....")
-				let headers = new Headers({ 
-				 	'Content-Type': 'application/json',
-				 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-			 	});
+			// console.log("foto_diri",this.data.foto_diri)
+			// console.log("foto_npwp",this.data.foto_npwp)
+			// console.log("foto_tabungan",this.data.foto_tabungan)
+			// console.log("foto_identitas",this.data.foto_identitas)
+			console.log("Sedang mengirim data....")
+			let headers = new Headers({ 
+			 	'Content-Type': 'application/json',
+			 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+		 	});
 
-			    let options = new RequestOptions({ headers: headers });
+		    let options = new RequestOptions({ headers: headers });
 
-				this.http.post('http://masscredit-api.stagingapps.net/user/credential/status-verification',this.data,options)
-						.map(response => response.json())
-						.subscribe(
-							(response : any) => {
-								var code = response.meta.code;
-								console.log(response);
-								if(code == 200) {
-									alert("Terimakasih telah melengkapi data anda")
-										return this.router.navigateByUrl('dashboard')
-								}
-								else{
-									alert("Gagal melengkapi data")
-								}
-							},
-							(err:any) => {
-								var error   = JSON.parse(err._body)
-								var message = error.meta.message
-									if(message == "unauthorized") {
-										alert("Maaf session anda telah habis silahkan login kembali")
-										return this.router.navigateByUrl('/dashboard/sign-out')
-										
-									}	
-							
+			// console.log(this.data.foto)
+			this.http.post('http://masscredit-api.stagingapps.net/user/credential/status-verification',this.data,options)
+					.map(response => response.json())
+					.subscribe(
+						(response : any) => {
+							var code = response.meta.code;
+							console.log(response);
+							if(code == 200) {
+								alert("Terimakasih telah melengkapi data anda")
+
 							}
-						);
+							else{
+								alert("Gagal melengkapi data")
+							}
+						},
+						(err:any) => {
+							var error   = JSON.parse(err._body)
+							var message = error.meta.message
+								if(message == "unauthorized") {
+									alert("Maaf session anda telah habis silahkan login kembali")
+									return this.router.navigateByUrl('/dashboard/sign-out')
+									
+								}	
+						
+						}
+					);
 
-		
-
-			}.bind(this);
+			}.bind(this)
 
 
 
-			let a : any = document.getElementById("foto_tabungan");
-			let x : any = document.getElementById("foto_identitas");
-			let y : any = document.getElementById("foto_npwp");
-			let z : any = document.getElementById("foto_diri");
+			let a : any = document.getElementById("foto_tabungan")
+			let x : any = document.getElementById("foto_identitas")
+			let y : any = document.getElementById("foto_npwp")
+			let z : any = document.getElementById("foto_diri")
 			
-			var file_a =	a.files[0];
-			var file_x =	x.files[0];
-			var file_y =	y.files[0];
-			var file_z =	z.files[0];
+			var file_a =	a.files[0]
+			var file_x =	x.files[0]
+			var file_y =	y.files[0]
+			var file_z =	z.files[0]
 
-			// debugger
+			var encode_a  = readerFileA.readAsDataURL(file_a)
+			var encode_x  = readerFileX.readAsDataURL(file_x)
+			var encode_y  = readerFileY.readAsDataURL(file_y)
+			var encode_z  = readerFileZ.readAsDataURL(file_z)
+			this.data.foto_tabungan		= encode_a
+			this.data.foto_identitas	= encode_x
+			this.data.foto_npwp 		= encode_y
+			this.data.foto_diri			= encode_z
 			
-			var encode_a  = readerFileA.readAsDataURL(file_a);
-			var encode_x  = readerFileX.readAsDataURL(file_x);
-			var encode_y  = readerFileY.readAsDataURL(file_y);
-			var encode_z  = readerFileZ.readAsDataURL(file_z);
-			this.data.foto_tabungan		= encode_a;
-			this.data.foto_identitas	= encode_x;
-			this.data.foto_npwp 		= encode_y;
-			this.data.foto_diri			= encode_z;
 
 
 
