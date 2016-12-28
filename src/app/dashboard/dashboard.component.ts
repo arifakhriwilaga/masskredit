@@ -29,39 +29,37 @@ export class DashboardComponent {
    
     });
 
-    // let token = {
-    //   'access_token' : JSON.parse(localStorage.getItem("access_token")),
-    // }
-
-    // // console.log(data_detail);
+    let token = {
+      'access_token' : JSON.parse(localStorage.getItem("access_token")),
+    }
     
-    // let headers = new Headers({ 
-    //    'Content-Type': 'application/json',
-    //    'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-    //  });
+    let headers = new Headers({ 
+       'Content-Type': 'application/json',
+       'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+     });
 
    
-    // console.log("Sedang mengambil data....")
-    //   let options = new RequestOptions({ headers: headers });
-    //   this.http.post('http://masscredit-api.stagingapps.net/user/credential/profile',token,options)
-    //     .map(response => response.json())
-    //     .subscribe(
-    //       (response : any) => {
-    //         // console.log(response);
-    //         this.profile         = response.data.profile;
-    //         this.account_summary = response.data.account_summary;
-    //         console.log(this.profile);
-    //       },
-    //       (err:any) => {
-    //         var error   = JSON.parse(err._body)
-    //         var message = error.meta.message
-    //           if(message == "unauthorized") {
-    //             alert("Maaf session anda telah habis silahkan login kembali")
-    //             return this.router.navigateByUrl('/dashboard/sign-out')
+    console.log("Sedang mengambil data....")
+      let options = new RequestOptions({ headers: headers });
+      this.http.post('http://masscredit-api.stagingapps.net/user/credential/profile',token,options)
+        .map(response => response.json())
+        .subscribe(
+          (response : any) => {
+            // console.log(response);
+            this.profile         = response.data.profile;
+            this.account_summary = response.data.account_summary;
+            console.log(this.profile);
+          },
+          (err:any) => {
+            var error   = JSON.parse(err._body)
+            var message = error.meta.message
+              if(message == "unauthorized") {
+                alert("Maaf session anda telah habis silahkan login kembali")
+                return this.router.navigateByUrl('/dashboard/sign-out')
                 
-    //           }  
-    //       }
-    //     );
+              }  
+          }
+        );
 
 
      jQuery('#datepicker').datepicker({
