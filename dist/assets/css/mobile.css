@@ -1,0 +1,329 @@
+
+.peluang-investasi .nav-tabs li.active a, .peluang-investasi .nav-tabs li.active a:focus {
+  border-bottom: 5px solid #ffc300;
+  position: relative;
+}
+.form-login-register form .btn {
+  height: 45px;
+  line-height: 45px;
+}
+.box.bg-transparent .form-login-register .form-group .col-md-12 {
+  margin-top: -1px
+}
+.data-tables table {
+  width: calc(100% - 2px)
+}
+.box-body .white-bg.detail-page .col-xs-8.pull-left > a > button {
+  background: #092d59;
+  border-radius: 0;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  color: #fec300;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border: none;
+}
+#input {
+  float: left;
+  width: 100%
+}
+#input .form-group .col-md-3 {
+  padding: 0;
+}
+#input .form-group .col-md-3 label {
+  padding-left: 0
+}
+
+@media (max-width: 1024px) {
+  .marketplace {
+    padding: 10px;
+  }
+  .title-head {
+    margin-bottom: 0;
+  }
+  .two-boxes .icon {
+    width: 130px;
+    height: 130px;
+    margin: 15px auto;
+  }
+  .two-boxes .icon img {
+    width: 70px;
+    position: relative;
+    top: -10px;
+  }
+  .main-slider .carousel-caption {
+    max-width: 400px;
+    width: 100%;
+  }
+  .form-login-register {
+    max-width: 840px;
+    margin: 35px auto;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .statistic-box img,
+  .statistic-box h2 {
+    float: none;
+    margin-right: 0;
+  }
+  .statistic-box h2 {
+    top: auto;
+    width: 100%;
+    margin-top: 10px
+  }
+  .statistic-box h2 span {
+    top: 0;
+    margin-top: 10px;
+  }
+  .statistic-box .col-md-4 {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .main-slider .carousel-caption {
+    width: 60%
+  }
+  .nav li a {
+    padding: 10px !important
+  }
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+  .navbar-nav>li {
+    float: none;
+    display: inline-block;
+  }
+  .form-login-register {
+    width: 100%
+  }
+  .statistic-box h2 {
+    top: 0;
+  }
+  .statistic-box .col-md-4:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+  }
+  .statistic-box .col-md-4 {
+    margin-bottom: 0;
+    width: 33.3%;
+    float: left;
+  }
+  .statistic-box img {
+      margin-right: 10px;
+  }
+  .statistic-box h2 span {
+    font-size: 12px;
+  }
+  .info-marketplace {
+    min-height: 100px;
+    height: 100%;
+  }
+  .two-boxes .info-marketplace {
+    margin-top: 75px;
+  }
+  .navbar-right:after { 
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+  }
+  .content-bottom-nav .col-xs-5 {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+  .profile-left,
+  .profile-right,
+  .balance-left,
+  .balance-right {
+    float: none !important;
+    display: block;
+    text-align: center;
+    margin: 0 auto
+  }
+  .balance-right {
+    padding-top: 0;
+  }
+  .warranty {
+    display: block;
+  }
+  .detail-page > *:nth-child(2) {
+    float: none !important;
+  }
+  #input .form-group .col-md-9 {
+    padding: 0
+  }
+  #input .form-group .col-md-9 .with-unit.form-control,
+  .white-bg.detail-page .with-unit.form-control {
+    float: none;
+    width: 100%
+  }
+  #input {
+    float: none;
+  }
+  .white-bg.detail-page .col-md-8 {
+    padding: 0
+  }
+}
+
+@media only screen and (max-width: 736px) {
+  .nav.navbar-nav li a {
+    padding: 0 5px !important;
+  }
+  .info-marketplace {
+    min-height: 10px
+  }
+  .marketplace.two-boxes .col-md-12.title-head + .col-md-6 .info-marketplace {
+    margin-bottom: 100px
+  }
+  .peluang-investasi .info-marketplace {
+    margin-bottom: 20px;
+  }
+  .peluang-investasi .nav-tabs li {
+    padding-bottom: 10px !important;
+    display: inline-block;
+  }
+  .skin-blue .main-header .navbar, 
+  .skin-blue .main-header .logo {
+    margin-bottom: 0
+  }
+  .sidebar-mini.sidebar-open .navbar.navbar-static-top {
+    position: relative;
+    left: 150px;
+    transition: 2s;
+  }
+  .highcharts-container {
+    width: 100% !important
+  }
+  .box.bg-transparent {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .statistic-box .col-md-4 {
+    margin-bottom: 20px;
+    margin-left: 15px;
+    width: 100%;
+    float: none;
+  }
+  .statistic-box h2 {
+    top: 20px;
+  }
+  .main-slider .carousel-caption {
+    max-width: 400px;
+    width: 100%;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+  .download-app {
+    background-size: cover;
+    min-height: 400px;
+    height: 100%;
+    padding: 100px 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .main-slider .carousel-caption {
+    width: 80%;
+    max-width: 80%
+  }
+  .download-app .container {
+    padding-left: 15px;
+  }
+  .download-app {
+    padding: 50px 0
+  }
+  .call-action.download-app .clearfix > div + div a {
+    width: 48%;
+    float: left;
+    margin-right: 2%;
+  }
+  .faq-pemodal ul span.text {
+    width: 85%
+  }
+  .call-action {
+    text-align: center;
+  }
+  .call-action p {
+    width: 100%;
+    margin-top: 20px;
+  }
+  footer li {
+    display: block;
+  }
+  .socmed li {
+    display: inline-block;
+  }
+  .navbar-right li {
+    float: none;
+    display: inline-block;
+  }
+  .navbar-right {
+    text-align: center;
+  }
+  .navbar-nav {
+    margin-left: 0
+  }
+  .form-account.form-login-register form .col-xs-6,
+  .form-account.form-login-register form .col-xs-2,
+  .form-account.form-login-register form .col-xs-2 button {
+    width: 100%
+  }
+  .form-account.form-login-register form .col-xs-2 button {
+    margin-top: 10px
+  }
+  .box-datepicker {
+    margin-left: 0;
+    margin-bottom: 10px;
+    width: 100%;
+    position: relative;
+  }
+  .box-datepicker .fa.fa-caret-down {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+  }
+  .sidebar-mini .content-wrapper .col-lg-3.col-xs-6 {
+    width: 100%
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .main-slider .carousel-caption h2 {
+    font-size: 25px
+  }
+  .company-info li {
+    padding: 0 5px 0;
+  }
+  .faq-pemodal ul span.icon {
+    float: right;
+    width: 25px;
+    height: 25px;
+  }
+  #sales-chart {
+    min-width: 100px !important
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .link-bottom-nav {
+    width: 100%
+  }
+  .link-bottom-nav li:first-child a.direct-link {
+    width: 125px;
+  }
+  .link-bottom-nav li:last-child a.direct-link {
+    width: 110px
+  }
+}

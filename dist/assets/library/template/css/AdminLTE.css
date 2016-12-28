@@ -10,6 +10,7 @@
  * -------------------------
  */
  @import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700');
+
 html,
 body {
   min-height: 100%;
@@ -5771,4 +5772,42 @@ nav.navbar.navbar-static-top {/* Permalink - use to edit and share this gradient
 .box-datepicker.with-no-bg {
     width: 436px;
     text-align: right;
+}
+
+/* Add new CSS */
+
+
+.right {
+margin-left: 950px;
+}
+
+.list-user .nav li a{
+        color: #444;
+}
+
+.nav-tabs>li.active>a:hover {
+    color: #2f445f;
+    cursor: default;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid #2f445f;
+}
+
+.nav-tabs>li.active>a {
+    color: #555;
+    cursor: default;
+    background-color: transparent;
+    border-bottom-color: transparent;
+    border: none;
+    border-bottom: 3px solid #2f445f;
+}
+
+.nav-tabs>li.active>a:focus {
+    color: #555;
+    cursor: default;
+    background-color: transparent;
+    border: 1px solid;
+    border-bottom-color: transparent;
+    border: none;
+    border-bottom: 3px solid #2f445f;
 }
