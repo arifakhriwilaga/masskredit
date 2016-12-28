@@ -91,7 +91,7 @@ export class ComplementComponent {
 			jQuery('#jumlah_tanggungan').mask('000000000000');
 			jQuery('#pengeluaran_per_bulan').mask('000000000000');
 			jQuery('#sumber_pendapapatan').mask('000000000000');
-
+			jQuery('.jumlah-angsuran').mask('000000000000');
 			// mask pekerjaan
 			// jQuery('#nama_perusahaan').mask('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM');
 			// jQuery('#lama_bekerja').mask('yyyy-mm-dd');
@@ -135,7 +135,7 @@ export class ComplementComponent {
 			.attr("id",'TextBoxDiv' + counter).attr("class",'blockElement');
 
 			newTextBoxDiv.after().html(
-				'<label>Angsuran' + counter +'</label>' +
+				'<label>Angsuran</label>' +
 				'<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md jumlah-angsuran" name="textbox1' + counter + 
 				'" id="textbox1' + counter + '" value="">' +
 				'<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md description-angsuran" name="textbox2' + counter + 
@@ -183,7 +183,9 @@ export class ComplementComponent {
 
 		// validation
 		jQuery( "#complementForm" ).validate({
+		
 		  rules: {
+
   			// objek keluarga
 			status_perkawinan	: {
 				required :true
@@ -363,27 +365,12 @@ export class ComplementComponent {
 
 			var angsuran = [];
 			jQuery(".blockElement").each(function(){
-				angsuran.push({
-				  jumlah_angsuran: jQuery(this).find("input[type=text].jumlah-angsuran").val(),
-				  description_angsuran: jQuery(this).find("input[type=text].description-angsuran").val()
-				})
+				jQuery(this).rules("add", 
+                {
+                    required: true
+                })
 			})
 			this.data.angsuran = angsuran;
-
-			// debugger;
-			// Set jumlah angsuran
-			// var jumlah_angsuran:any = jQuery(".jumlah-angsuran").get();
-			// var length_jumlah_angsuran			= jumlah_angsuran.length
-			// for (var i = 1; i <= length_jumlah_angsuran; ++i) {
-			// 		this.data.angsuran.jumlah_angsuran.push(jQuery('#textbox1' + i).val());
-			// }
-
-			// // Set description angsuran
-			// var description_angsuran:any = jQuery(".description-angsuran").get();
-			// var length_description_angsuran			= description_angsuran.length
-			// for (var i = 1; i <= length_description_angsuran; ++i) {
-			// 		this.data.angsuran.description_angsuran.push(jQuery('#textbox2' + i).val());
-			// }
 
 			let readerFileA = new FileReader();
 			readerFileA.onload = function(event, varty) {
@@ -450,8 +437,6 @@ export class ComplementComponent {
 
 			}.bind(this)
 
-
-
 			let a : any = document.getElementById("foto_tabungan")
 			let x : any = document.getElementById("foto_identitas")
 			let y : any = document.getElementById("foto_npwp")
@@ -466,14 +451,12 @@ export class ComplementComponent {
 			var encode_x  = readerFileX.readAsDataURL(file_x)
 			var encode_y  = readerFileY.readAsDataURL(file_y)
 			var encode_z  = readerFileZ.readAsDataURL(file_z)
+
 			this.data.foto_tabungan		= encode_a
 			this.data.foto_identitas	= encode_x
 			this.data.foto_npwp 		= encode_y
 			this.data.foto_diri			= encode_z
 			
-
-
-
 		}
 		else{
 			alert("Data tidak valid")	
