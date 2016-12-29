@@ -183,11 +183,14 @@ export class EditComponent {
 					  	// objek pendapatan lain 1
 					  	
 					  	this.data.pendapatan_lain_1			= response.data.profile.complement_user.pendapatan_lain_1,
+						this.pendapatanLainFirst 		= response.data.profile.complement_user.pendapatan_lain_1,
 						this.data.sumber_pendapatan_lain_1 	= response.data.profile.complement_user.sumber_pendapatan_lain_1,
 						this.data.jumlah_pendapatan_lain_1 	= response.data.profile.complement_user.jumlah_pendapatan_lain_1,
 					  	
 					  	// objek pendapatan lain 2
 					  	this.data.pendapatan_lain_2	= response.data.profile.complement_user.pendapatan_lain_2,
+						this.pendapatanLainSecond 		= response.data.profile.complement_user.pendapatan_lain_2,
+						
 						this.data.sumber_pendapatan_lain_2 	= response.data.profile.complement_user.sumber_pendapatan_lain_1,
 						this.data.jumlah_pendapatan_lain_2 	= response.data.profile.complement_user.jumlah_pendapatan_lain_1;
 						
@@ -210,8 +213,28 @@ export class EditComponent {
 	}
 
 	updateProfile(data){
+		console.log(data);
+		if(this.data.sumber_pendapatan == 1) {
+			this.data.nama_usaha 	  				= "";
+			this.data.tahun_perusahaan_berdiri 		= "";
+			this.data.pendapatan_bersih_perusahaan 	= 0;
+
+		}
+		if(this.data.sumber_pendapatan == 2) {
+			this.data.nama_perusahaan 	= "";
+			this.data.lama_bekerja 	  	= "";
+			this.data.jabatan  	 		= "";
+			this.data.pekerjaan  	 	= "";
+			this.data.jenis_perusahaan  = "";
+			this.data.gaji_per_bulan 	= 0;
+			this.data.nama_usaha 	  				= "";
+			this.data.tahun_perusahaan_berdiri 		= "";
+			this.data.pendapatan_bersih_perusahaan 	= 0;
+
+		}
+					
 		this.data.access_token 	= this.acces_token;
-		console.log(data)
+		// console.log(data)
 
 		// let readerFileA = new FileReader();
 		// readerFileA.onload = function(event, varty) {
@@ -246,7 +269,7 @@ export class EditComponent {
 					this.data.foto_diri = fileZ;
 
 					console.log(data);
-					console.log("Sedang mengambil data....")
+					console.log("Sedang mengirim data....")
 					let headers = new Headers({ 
 					 	'Content-Type': 'application/json',
 					 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
@@ -296,12 +319,7 @@ export class EditComponent {
 			// var file_y =	y.files[0];
 			var file_z =	z.files[0];
 
-			if(file_z == undefined) {
-				// alert("Image tabungan")
-				this.editProfile(data);
-			}
-			else{
-
+			if(file_z != undefined) {
 				// var encode_a  = readerFileA.readAsDataURL(file_a);
 				// var encode_x  = readerFileX.readAsDataURL(file_x);
 				// var encode_y  = readerFileY.readAsDataURL(file_y);
@@ -311,43 +329,167 @@ export class EditComponent {
 				// this.data.foto_npwp 		= encode_y;
 				this.data.foto_diri			= encode_z;
 			}
+			else{
+				this.data.foto_diri 	= null;
+				this.data.foto_identitas= null;
+				this.data.foto_npwp		= null;
+				this.data.foto_tabungan = null;
+				console.log(data)
+				let headers = new Headers({ 
+				 	'Content-Type': 'application/json',
+				 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+			 	});
+
+			    let options = new RequestOptions({ headers: headers });
+				this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
+				.map(response => response.json())
+				.subscribe(
+					(response : any) => {
+						// for message
+						var kosong:null;
+						var code 		= response.meta.code;
+						var message 	= response.meta.message;
+						if(code == 200) {
+							alert("Profile berhasil diupate")
+							return this.router.navigateByUrl('/dashboard/profile')
+						}
+						else{
+							alert("Profile gagal diupdate")
+						}
+					},
+					(err:any) => {
+			            var error   = JSON.parse(err._body)
+			            var message = error.meta.message
+			              if(message == "unauthorized") {
+			                alert("Maaf session anda telah habis silahkan login kembali")
+			                return this.router.navigateByUrl('/dashboard/sign-out')
+			                
+			              } 
+			        }
+				)
+				// this.changeProfile();
+		}
+
 	}
 
-	editProfile(data){
-		console.log(data);
-		console.log("Sedang mengambil data....")
-		let headers = new Headers({ 
-		 	'Content-Type': 'application/json',
-		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-	 	});
-
-	    let options = new RequestOptions({ headers: headers });
-		this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
-		.map(response => response.json())
-		.subscribe(
-			(response : any) => {
-				// for message
-				var kosong:null;
-				var code 		= response.meta.code;
-				var message 	= response.meta.message;
-				if(code == 200) {
-					alert("Profile berhasil diupate")
-					return this.router.navigateByUrl('/dashboard/profile')
-				}
-				else{
-					alert("Profile gagal diupdate")
-				}
-			},
-			(err:any) => {
-	            var error   = JSON.parse(err._body)
-	            var message = error.meta.message
-	              if(message == "unauthorized") {
-	                alert("Maaf session anda telah habis silahkan login kembali")
-	                return this.router.navigateByUrl('/dashboard/sign-out')
-	                
-	              } 
-	        }
-		);
+	private statusMarried:any;
+	getStatusMarried(id){
+		this.statusMarried = id;
+		if(id == 2) {
+			this.data.status_perkawinan = 0;
+			this.data.jumlah_anak		= 0;
+			this.data.jumlah_tanggungan = 0;
+		}
+		if(id == 1) {
+			this.data.status_perkawinan = null;
+			this.data.jumlah_anak		= null;
+			this.data.jumlah_tanggungan = null;
+		}
+	  	console.log(id)
 	}
+
+	private sumberPendapatan:any;
+	getSumberPendapatan(id){
+		this.sumberPendapatan = id;
+		if(id == 2) {
+			console.log(id)
+			this.data.gaji_per_bulan = 0;
+			// this.data.pendapatan_bersih_perusahaan = null;
+			this.sumber_pendapatan = 2;
+
+			// objek pekerjaan
+			// this.data.nama_usaha 	  				= "",
+			// this.data.tahun_perusahaan_berdiri 		= 0,
+			// this.data.jenis_perusahaan 		  		= "",
+			// this.data.pendapatan_bersih_perusahaan	= 0,
+
+			// this.data.pengeluaran_per_bulan 		= 0,
+			// this.data.tlp_perusahaan				= 0,
+
+
+			
+		}
+		if(id == 1) {
+			console.log(id)
+			// this.data.gaji_per_bulan = null;
+			this.data.pendapatan_bersih_perusahaan = 0;
+			this.sumber_pendapatan = 1;
+			
+			// this.data.nama_perusahaan 	= "",
+			// this.data.lama_bekerja 	  	= "",
+			// this.data.jabatan  	 		= "",
+			// this.data.pekerjaan  	 	= "",
+			// this.data.gaji_per_bulan 	= 0,
+			
+		}
+	}
+
+	private pendapatanLainFirst:any;
+	getPendapatanLainFirst(id){
+		this.pendapatanLainFirst = id;
+		if(id == 2) {
+			console.log(id)
+		  	
+		  	// objek pendapatan lain 1
+			this.data.pendapatan_lain_1 = 0;
+			this.data.sumber_pendapatan_lain_1 	= '';
+			this.data.jumlah_pendapatan_lain_1 	= 0;			
+		}
+		else{
+		  	console.log(id)
+			this.data.pendapatan_lain_1 = 1;
+		}
+	}
+
+
+	private pendapatanLainSecond:any;
+	getPendapatanLainSecond(id){
+		this.pendapatanLainSecond = id;
+	  	if(id == 2) {
+
+	  		// objek pendapatan lain 2
+			this.data.pendapatan_lain_2 = 0;
+			this.data.sumber_pendapatan_lain_2 	= '';
+			this.data.jumlah_pendapatan_lain_2 	= 0;
+		}
+		else{
+		  	console.log(id)
+			this.data.pendapatan_lain_2 = 1;
+		}
+	}
+
+	// changeProfile(){
+	// 	let headers = new Headers({ 
+	// 	 	'Content-Type': 'application/json',
+	// 	 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	//  	});
+
+	// 	this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
+	// 						.map(response => response.json())
+	// 						.subscribe(
+	// 							(response : any) => {
+	// 								// for message
+	// 								var kosong:null;
+	// 								var code 		= response.meta.code;
+	// 								var message 	= response.meta.message;
+	// 								if(code == 200) {
+	// 									alert("Profile berhasil diupate")
+	// 									return this.router.navigateByUrl('/dashboard/profile')
+	// 								}
+	// 								else{
+	// 									alert("Profile gagal diupdate")
+	// 								}
+	// 							},
+	// 							(err:any) => {
+	// 					            var error   = JSON.parse(err._body)
+	// 					            var message = error.meta.message
+	// 					              if(message == "unauthorized") {
+	// 					                alert("Maaf session anda telah habis silahkan login kembali")
+	// 					                return this.router.navigateByUrl('/dashboard/sign-out')
+						                
+	// 					              } 
+	// 					        }
+	// 						);
+	// }
 
 }

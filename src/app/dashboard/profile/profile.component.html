@@ -255,7 +255,7 @@
                 <!-- End -->
 
                 <!-- Pendapatan Lain -->
-                <div *ngIf="complement_data.pendapatan_lain_1 != null && complement_data.pendapatan_lain_1 != 0">
+                <!-- <div *ngIf="complement_data.pendapatan_lain_1 != 0">
                 <div class="form-group clearfix">
                   <div class="box-header">
                     <h2 class="box-title pull-left">Pendapatan Lain</h2>
@@ -285,6 +285,7 @@
                       <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}">
                   </div>
                 </div>
+                <div *ngIf="complement_data.pendapatan_lain_2 != 0">
                 <div class="form-group clearfix">
                   <div class="col-md-3">
                     <label class="unit">Pendapatan Lain 2</label>
@@ -310,6 +311,59 @@
                   </div>
                 </div>
                 </div>
+                </div> -->
+
+                <!-- Pendapatan lain 1 -->
+                <div *ngIf="complement_data.pendapatan_lain_1 == 1">
+                 <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Pendapatan Lain</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Sumber Pendapatan Lain</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Pendapatan Lain</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}"  name="jumlah_pendapatan_lain_1" id="jumlah_pendapatan_lain_1">
+                  </div>
+                </div>
+                <!-- end -->
+                <!-- Pendapatan lain 2 -->
+                <br><br>
+                <div *ngIf="complement_data.pendapatan_lain_2 == 1">
+                 <div class="form-group clearfix">
+                  <div class="box-header">
+                    <h2 class="box-title pull-left">Pendapatan Lainnya</h2>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Sumber Pendapatan Lainnya</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Jumlah Pendapatan Lainnya</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2">
+                  </div>
+                </div>
+                </div>
+                </div> <!-- end pendapatan lain 1 -->
+
                 <!-- End -->
                 <!-- Data Penunjang -->
                 <div class="form-group clearfix">
