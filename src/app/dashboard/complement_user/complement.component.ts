@@ -355,21 +355,32 @@ export class ComplementComponent {
 
 
 	submitData(data){
-		if(jQuery("#complementForm").valid()) {
 		// if(data) {
+		if(jQuery("#complementForm").valid()) {
+		
 			let acces_token = JSON.parse(localStorage.getItem("access_token"));
 			this.data.access_token = acces_token;
-
-			var angsuran = [];
-			jQuery(".blockElement").each(function(){
+		    var angsuran = [];
+			var check = document.getElementById("TextBoxDiv1");
+			console.log(check)
+			if(check == null) {
 				angsuran.push({
-					jumlah_angsuran : jQuery(".jumlah-angsuran").val(),
-					description_angsuran : jQuery(".description-angsuran").val()
+					jumlah_angsuran : "",
+					description_angsuran : "",
 				})
-				
+			}
+			jQuery(".blockElement").each(function(){
+					// angsuran.push({
+					// 	jumlah_angsuran : jQuery(".jumlah-angsuran").find('input[type=text],select'),
+					// 	description_angsuran : jQuery(".description-angsuran").val().find('input[type=text],select')
+					// })
+					angsuran.push({
+						jumlah_angsuran : jQuery(this).find('.jumlah-angsuran').val(),
+						description_angsuran : jQuery(this).find('.description-angsuran').val()
+					})
 			})
 			this.data.angsuran = angsuran;
-
+			
 			let readerFileA = new FileReader();
 			readerFileA.onload = function(event, varty) {
 				let fileA = event.target.result.split(',')[1];
@@ -393,10 +404,10 @@ export class ComplementComponent {
 			let fileZ = event.target.result.split(',')[1];
 			this.data.foto_diri = fileZ;
 
-			console.log("foto_diri",this.data.foto_diri)
-			console.log("foto_npwp",this.data.foto_npwp)
-			console.log("foto_tabungan",this.data.foto_tabungan)
-			console.log("foto_identitas",this.data.foto_identitas)
+			// console.log("foto_diri",this.data.foto_diri)
+			// console.log("foto_npwp",this.data.foto_npwp)
+			// console.log("foto_tabungan",this.data.foto_tabungan)
+			// console.log("foto_identitas",this.data.foto_identitas)
 			console.log("Sedang mengirim data....")
 			let headers = new Headers({ 
 			 	'Content-Type': 'application/json',
@@ -405,7 +416,8 @@ export class ComplementComponent {
 
 		    let options = new RequestOptions({ headers: headers });
 
-			// console.log(this.data.foto)
+
+			console.log(this.data.foto)
 			this.http.post('http://masscredit-api.stagingapps.net/user/credential/status-verification',this.data,options)
 					.map(response => response.json())
 					.subscribe(
