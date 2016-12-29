@@ -77,7 +77,7 @@
                     <label class="unit">No Handphone</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="No Handphone" class="with-unit form-control input-md" value="{{ profile.phone_number }}" [(ngModel)]="data.phone_number" name="phone_number" id="phone_number">
+                      <input type="text" placeholder="No Handphone" class="with-unit form-control input-md" value="{{ profile.phone_number }}" [(ngModel)]="data.phone_number" name="phone_number" id="phone_number" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -324,50 +324,41 @@
                   </div>
                 </div>
                 </div>
-                </div>
                 <!-- End -->
                 <!-- Data Penunjang -->
-                <!-- <div class="form-group clearfix">
+                <div class="form-group clearfix">
                   <div class="box-header">
                     <h2 class="box-title pull-left">Data Penunjang</h2>
                   </div>
                 </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
+                <div class="col-xs-12">
+                  <div class="col-xs-4">
                     <label class="unit">Foto NPWP</label>
-                  </div>
-                  <div class="col-md-9">
                       <img src="{{ complement_data.foto_npwp }}" alt="Photo NPWP" class="thumbnail" width="250px" height="250px">
-                      <input type="file" name="foto_npwp" id="foto_npwp">
+                      <!-- <input type="file" name="foto_npwp" id="foto_npwp"> -->
                   </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
+                  <div class="col-xs-4">
                     <label class="unit">Foto Tabungan</label>
-                  </div>
-                  <div class="col-md-9">
                       <img src="{{ complement_data.foto_tabungan }}" alt="Photo Tabungan" class="thumbnail" width="250px" height="250px">
-                      <input type="file" name="foto_tabungan" id="foto_tabungan">
+                      <!-- <input type="file" name="foto_tabungan" id="foto_tabungan"> -->
+                  </div>
+                  <div class="col-xs-4">
+                    <label class="unit">Foto Identitas</label>
+                      <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
+                      <!-- <input type="file" name="foto_identitas" id="foto_identitas"> -->
                   </div>
                 </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Foto Identitas</label>
-                  </div>
-                  <div class="col-md-9">
-                      <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
-                      <input type="file" name="foto_identitas" id="foto_identitas">
-                  </div>
-                </div> -->
+                <br><br>
                 <!-- end -->
                     <!-- Button -->
                 <div class="col-md-12">
                     <div class="form-group">
                        <div class="col-md-6 col-center">
-                          <button class="btn btn-default">Batal</button>
+                          <button class="btn btn-default" (click)="cancelUpdateProfile(data)">Batal</button>
                           <button class="btn btn-red" (click)="updateProfile(data)">Simpan</button>
                        </div>
                     </div>
+                </div>
                 </div>
                 </div>
                 </div> <!-- end box edit -->
