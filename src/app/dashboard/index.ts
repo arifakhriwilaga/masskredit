@@ -15,7 +15,7 @@ import { SidebarComponent }     	from './shared/sidebar';
 import { HeaderComponent }     		from './shared/header';
 import { ContentComponent }     	from './content';
 import { PenarikanDanaComponent } from './penarikan_dana';
-import { TambahDanaComponent }    from './tambah_dana';
+// import { TambahDanaComponent }    from './tambah_dana';
 import { SignOutComponent }       from './sign-out';
 
 // Investasi
@@ -51,36 +51,38 @@ export const routes = [
   { path: '', component: DashboardComponent,
     canActivate : [ AuthGuard ],
     children: [
-      { path: '',             redirectTo: 'content', pathMatch: 'full' },
-      { path: 'content',      component: ContentComponent },
+      { path: '',          component: ContentComponent },
+      // { path: 'content',       },
+      { path: 'profile', loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
+      // { path: 'fund', loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
+      // { path: 'complement-user',       component: ComplementComponent}, 
+      { path: 'sign-out',       component: SignOutComponent}, 
       // { path: 'investasi',    component: InvestasiComponent } ,
-      { path: 'investasi',    component: InvestasiComponent ,
-          children: [
-              { path: '',        redirectTo: 'index', pathMatch: 'full' },
-              { path: 'index',   component: IndexInvestComponent },
-              { path: 'create',  component: CreateInvestComponent },
+      // { path: 'investasi',    component: InvestasiComponent ,
+      //     children: [
+      //         { path: '',        redirectTo: 'index', pathMatch: 'full' },
+      //         { path: 'index',   component: IndexInvestComponent },
+      //         { path: 'create',  component: CreateInvestComponent },
               
-          ]
-      },
+      //     ]
+      // },
       // { path: 'content', load: () => System.import('./investasi')
       //   .then((comp: any) => comp.default) 
       // },
       
-      { path: 'profile', loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
-      { path: 'pinjaman', 		  component: PinjamanComponent,
-        children: [
-              { path: '',          redirectTo: 'index', pathMatch: 'full' },
-              { path: 'index',     component: IndexLoanComponent },
-              { path: 'detail/:id',component: DetailComponent },
+      
+      // { path: 'pinjaman',       component: PinjamanComponent,
+      //   children: [
+      //         { path: '',          redirectTo: 'index', pathMatch: 'full' },
+      //         { path: 'index',     component: IndexLoanComponent },
+      //         { path: 'detail/:id',component: DetailComponent },
               
-              // { path: 'create',  component: CreateComponent },
+      //         // { path: 'create',  component: CreateComponent },
               
-        ]
-      }, 
-      { path: 'penarikan-dana', component: PenarikanDanaComponent}, 
-      { path: 'tambah-dana', 	  component: TambahDanaComponent}, 
-      { path: 'complement-user',       component: ComplementComponent}, 
-      { path: 'sign-out',       component: SignOutComponent}, 
+      //   ]
+      // }, 
+      // { path: 'penarikan-dana', component: PenarikanDanaComponent}, 
+      // { path: 'tambah-dana',     component: TambahDanaComponent}, 
 
     ]
   },
@@ -96,16 +98,16 @@ export const routes = [
     HeaderComponent,
     SidebarComponent,
     ContentComponent,
-    PenarikanDanaComponent,
-    PinjamanComponent,
-    TambahDanaComponent,
     SignOutComponent, 
-    InvestasiComponent,
-    IndexInvestComponent,
-    CreateInvestComponent,
-    IndexLoanComponent,
-    DetailComponent,
     ComplementComponent,
+    // TambahDanaComponent,
+    // PenarikanDanaComponent,
+    // PinjamanComponent,
+    // InvestasiComponent,
+    // IndexInvestComponent,
+    // CreateInvestComponent,
+    // IndexLoanComponent,
+    // DetailComponent,
 
     // message error create investasi
     ControlMessagesCreateInvestasi
