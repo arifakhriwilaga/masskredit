@@ -1,14 +1,24 @@
 // Module
-import { NgModule }              from '@angular/core';
-import { RouterModule }          from '@angular/router';
-import { HttpModule }            from '@angular/http';
-import { FormsModule }           from '@angular/forms';
+// import { NgModule }              from '@angular/core';
+// import { RouterModule }          from '@angular/router';
+// import { HttpModule }            from '@angular/http';
+// import { FormsModule }           from '@angular/forms';
 // import { LocalStorageService }   from 'angular-2-local-storage';
+// Module
+import { BrowserModule }                                       from '@angular/platform-browser';
+import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA }    from '@angular/core';
+import { RouterModule, Routes, ActivatedRoute }                from '@angular/router';
+import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { HttpModule }                                          from '@angular/http';
+import { FormsModule, ReactiveFormsModule, FormBuilder }       from '@angular/forms';
+import { CommonModule  }                                       from '@angular/common';
+// import { RegisterService }                                     from './register.service';
+// import { JqueryService }                                     from './jquery.register';
 
 
-// debugger;
 // Component
 import { FundComponent }        from './fund.component';
+// import { IndexComponent }        from './index/index.component';
 
 export const routes = [
   { 
@@ -16,41 +26,54 @@ export const routes = [
       component: FundComponent,
       children : [
         { path: '', redirectTo: 'index' },
+        // { path: 'index', component: IndexComponent },
         {    
           path: 'index', 
-          // canActivate : [ AuthGuardVerifyCode],
-          loadChildren: () => System.import('./index').then((comp: any) => comp.default) 
+          loadChildren: () => System.import('./fund_index').then((comp: any) => comp.default) 
         },
-        // {    
-        //   path: 'create', 
-        //   // canActivate : [ AuthGuardVerifyCode],
-        //   loadChildren: () => System.import('./create').then((comp: any) => comp.default) 
-        // },
-        
-        { path:'', redirectTo: 'index' },
+        {    
+          path: 'create', 
+          // canActivate : [ AuthGuardVerifyCode],
+          loadChildren: () => System.import('./fund_create').then((comp: any) => comp.default) 
+        },
+        {    
+          path: 'confirm/:id', 
+          // canActivate : [ AuthGuardVerifyCode],
+          loadChildren: () => System.import('./fund_confirm').then((comp: any) => comp.default) 
+        },
+        {    
+          path: 'detail/:id', 
+          // canActivate : [ AuthGuardVerifyCode],
+          loadChildren: () => System.import('./fund_detail').then((comp: any) => comp.default) 
+        },
+        {    
+          path: 'attract', 
+          // canActivate : [ AuthGuardVerifyCode],
+          loadChildren: () => System.import('./fund_attract').then((comp: any) => comp.default) 
+        },
       ]      
-  }
-       
-]
+  }     
+];
 
 
 @NgModule({
   declarations: [
     FundComponent, // declarations LoginComponent
+    // IndexComponent
   ],
   imports: [ // import Angular's modules
     HttpModule,
     FormsModule,
+    CommonModule,
     RouterModule.forChild(routes)
   ],
-  // exports: [LoginComponent],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    // LocalStorageService,
-    // LoginComponent,
+      // 
   ]
 })
 
 export default class FundModule { 
-  public routes = routes;
+  static routes = routes;
 }
 
+// export * from './fund.component'; 
