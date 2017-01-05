@@ -14,24 +14,28 @@ import { DashboardComponent }   	from './dashboard.component';
 import { SidebarComponent }     	from './shared/sidebar';
 import { HeaderComponent }     		from './shared/header';
 import { ContentComponent }     	from './content';
-import { PenarikanDanaComponent } from './penarikan_dana';
-// import { TambahDanaComponent }    from './tambah_dana';
 import { SignOutComponent }       from './sign-out';
+// import { PenarikanDanaComponent } from './penarikan_dana';
+// import { TambahDanaComponent }    from './tambah_dana';
 
 // Investasi
-import { InvestasiComponent }     from './investasi/investasi.component';
-import { IndexInvestComponent }         from './investasi/index/index.component';
-import { CreateInvestComponent }        from './investasi/create/create.component';
+// import { InvestasiComponent }     from './investasi/investasi.component';
+// import { IndexInvestComponent }         from './investasi/index/index.component';
+// import { CreateInvestComponent }        from './investasi/create/create.component';
 
 
 // Investasi
-import { PinjamanComponent }      from './pinjaman';
-import { IndexLoanComponent }     from './pinjaman/index/index.component';
-import { DetailComponent }     from './pinjaman/detail';
+// import { PinjamanComponent }      from './pinjaman';
+// import { IndexLoanComponent }     from './pinjaman/index/index.component';
+// import { DetailComponent }     from './pinjaman/detail';
 // import { CreateLoanComponent }    from './pinjaman/create/create.component';
 
 // Completement USer
 import { ComplementComponent }     from './complement_user';
+
+// Fund Component
+// import { FundComponent }     from './fund';
+
 
 
 
@@ -49,13 +53,14 @@ import { InvestasiService }     from './investasi/investasi.service';
 export const routes = [
 
   { path: '', component: DashboardComponent,
-    canActivate : [ AuthGuard ],
+    // canActivate : [ AuthGuard ],
     children: [
-      { path: '',          component: ContentComponent },
+      { path: '', component: ContentComponent },
       // { path: 'content',       },
       { path: 'profile', loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
-      // { path: 'fund', loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
-      // { path: 'complement-user',       component: ComplementComponent}, 
+      { path: 'fund', loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
+      { path: 'complement-user',       component: ComplementComponent}, 
+      // { path: 'fund',       component: FundComponent},
       { path: 'sign-out',       component: SignOutComponent}, 
       // { path: 'investasi',    component: InvestasiComponent } ,
       // { path: 'investasi',    component: InvestasiComponent ,
@@ -100,6 +105,7 @@ export const routes = [
     ContentComponent,
     SignOutComponent, 
     ComplementComponent,
+    // FundComponent,
     // TambahDanaComponent,
     // PenarikanDanaComponent,
     // PinjamanComponent,
