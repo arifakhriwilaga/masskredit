@@ -1,9 +1,9 @@
 // Module
 import { NgModule }              from '@angular/core';
 import { RouterModule }          from '@angular/router';
-import { HttpModule  }            from '@angular/http';
-import { FormsModule, FormBuilder, ReactiveFormsModule }           from '@angular/forms';
-import {CommonModule} from "@angular/common";
+import { HttpModule  }           from '@angular/http';
+import { FormsModule, FormBuilder, ReactiveFormsModule }  from '@angular/forms';
+import {CommonModule}                                     from '@angular/common';
 
 // import { ValidationComponent }  from './validation';
 
@@ -13,9 +13,6 @@ import {CommonModule} from "@angular/common";
 
 // Component Verify
 import { VerifyComponent }       from './verify.component';
-
-
-console.log("dari verify")
 
 export const routes = [
   { path: '', component: VerifyComponent}
@@ -30,10 +27,9 @@ export const routes = [
   imports: [ // import Angular's modules
     HttpModule,
     FormsModule,
-    RouterModule.forChild(routes),
     ReactiveFormsModule,
-    CommonModule
-
+    CommonModule,
+    RouterModule.forChild(routes)
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // AuthResolve,
