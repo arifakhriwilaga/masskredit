@@ -1,6 +1,6 @@
-import { Component, Directive } 	from '@angular/core';
-import { ActivatedRoute }   		from '@angular/router';
-import { RegisterService }			from './register.service';
+import { Component  } 	from '@angular/core';
+// import { ActivatedRoute }   		from '@angular/router';
+// import { RegisterService }			from './register.service';
 
 
 @Component({
@@ -11,9 +11,4 @@ import { RegisterService }			from './register.service';
 })
 
 // @Directive({ selector: '[step-1]'})
-export class RegisterComponent { 
-
-
-
-
-}
+export class RegisterComponent { }
