@@ -10,9 +10,6 @@ import {CommonModule} from "@angular/common";
 // Component Verify
 import { VerifyCodeComponent }       from './verify_code.component';
 
-
-console.log("dari verify")
-
 export const routes = [
   { path: '', component: VerifyCodeComponent}
 ]
