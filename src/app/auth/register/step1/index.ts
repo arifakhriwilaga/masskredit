@@ -13,7 +13,6 @@ import { Step1RegisterComponent }     from './register1.component';
 // import { Step4RegisterComponent }        from './../step4';
 
 
-console.log("dari register")
 export const routes = [
   { path: '', component: Step1RegisterComponent }
 
