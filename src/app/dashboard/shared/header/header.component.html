@@ -37,7 +37,7 @@
           <li class="dropdown messages-menu">
             <a href="#/dashboard" class="dropdown-toggle" >
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-danger">4</span>
+              <!-- <span class="label label-danger">4</span> -->
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
@@ -114,7 +114,7 @@
           <li class="dropdown notifications-menu">
             <a href="#/dashboard" class="dropdown-toggle">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-danger">3</span>
+              <!-- <span class="label label-danger">3</span> -->
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
@@ -197,6 +197,7 @@
             </div>
             <br>
             <div *ngIf="is_complete == 0">
+            <!-- <div> -->
             <a href="#/dashboard/complement-user">
             <button class="btn btn-red" style="background-color:#c0392b;">
               Lengkapi data!
@@ -214,7 +215,7 @@
         </div>
       </div>
       <ul class="link-bottom-nav clearfix">
-        <li><a class="direct-link" href="">Tambah Dana</a></li>
+        <li><a class="direct-link" href="#/dashboard/fund/create">Tambah Dana</a></li>
         <li>
           <button class="dropdown-toggle" type="button" data-toggle="dropdown">
             <img src="../../assets/img/icon-load.png">
@@ -224,7 +225,7 @@
             <li><a href="#">Pinjaman Saya</a></li>
           </ul>
         </li>
-        <li><a class="direct-link" href="">Tarik Dana</a></li>
+        <li><a class="direct-link" href="#/dashboard/fund/attract">Tarik Dana</a></li>
       </ul>
     </nav>
   </header>
