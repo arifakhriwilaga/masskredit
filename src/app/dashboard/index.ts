@@ -53,7 +53,7 @@ import { InvestasiService }     from './investasi/investasi.service';
 export const routes = [
 
   { path: '', component: DashboardComponent,
-    // canActivate : [ AuthGuard ],
+    canActivate : [ AuthGuard ],
     children: [
       { path: '', component: ContentComponent },
       // { path: 'content',       },
