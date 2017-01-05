@@ -69,56 +69,57 @@ export class ConfirmComponent {
 	public data = {
 		access_token: this.token,
 		fund_id: '',
-	  	struct_image: 'qwertyui12345678',
+	  	struct_image: null,
 	  	confirm_date: '',	
 	}
 
 
 
 
-  	confirmFund(data) {
-		// if(jQuery("#confirmForm").valid()) {
-		if(true) {	
-			console.log(this.data)
-			// API request data confirm
-			this.http.post('http://masscredit-api.stagingapps.net/user/fund/confirm',
-			this.data,
-			this.options)
-			.map(response => response.json())
-			.subscribe(
-				(response : any) => {
-					var code 		= response.meta.code;
-					var message 	= response.meta.message;
-					console.log(code,message);
-					this.router.navigateByUrl('/dashboard/fund');
-				},
-				(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-						if(message == "unauthorized") {
-							alert("Maaf session anda telah habis silahkan login kembali")
-							return this.router.navigateByUrl('/dashboard/sign-out')
-							
-						}	
-				}
-			);				
-	  		
-	  // 		let readerFileX = new FileReader();
-	  		
-			// readerFileX.onload = function(event, varty) {
-			// 	let fileX = event.target.result.split(',')[1];
-			// 	this.data.struct_image = fileX;
-			// 	console.log(this.data);
-					
-			// }.bind(this);
+  	confirmFund() {
+		if(jQuery("#confirmForm").valid()) {
+		// if(true) {	
+		 // API request data confirm
+           
+            let readerFileX = new FileReader();
+               
+               readerFileX.onload = function(event, varty) {
+                    let fileX = event.target.result.split(',')[1];
+                    this.data.struct_image = fileX;
+                    // this.data.struct_image = "asjdasd786"
+                    console.log(this.data);
+			          
+			        this.http.post('http://masscredit-api.stagingapps.net/user/fund/confirm',this.data,this.options)
+			           .map(response => response.json())
+			           .subscribe(
+			                   (response : any) => {
+			                           var code                = response.meta.code;
+			                           var message     = response.meta.message;
+			                           console.log(code,message);
+			                           this.router.navigateByUrl('/dashboard/fund');
+			                   },
+			                   (err:any) => {
+			                           var error   = JSON.parse(err._body)
+			                           var message = error.meta.message
+			                                   if(message == "unauthorized") {
+			                                           alert("Maaf session anda telah habis silahkan login kembali")
+			                                           return this.router.navigateByUrl('/dashboard/sign-out')
+			                                           
+			                                   }       
+			                   }
+			        );                              
+                               
+               }.bind(this);
 
-			// let x : any = document.getElementById("image_struct");
-			// var file_x =	x.files[0];
+               let x : any = document.getElementById("struct_image");
+               var file_x = x.files[0];
 
-			// // debugger
+               // debugger
+               
+               var encode_x  = readerFileX.readAsDataURL(file_x);
+               this.data.struct_image       = encode_x;
+
 			
-			// var encode_x  = readerFileX.readAsDataURL(file_x);
-			// this.data.struct_image	= encode_x;
 		}
 		else{
 			// alert("Data tidak valid");
