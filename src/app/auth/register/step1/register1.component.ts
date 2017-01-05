@@ -71,6 +71,13 @@ export class Step1RegisterComponent  {
 
 	private nomor = "";
 	ngOnInit(){
+		jQuery('.datepicker').datepicker({
+	      format	: 'yyyy-mm-dd',
+	      // startDate : '2015-01-01',
+	      // minDate	: '01/01/2015'
+
+	    });
+
 		jQuery(function($){
 			jQuery('#kode_pos').mask('00000');
 		});
@@ -181,7 +188,8 @@ export class Step1RegisterComponent  {
 			let x : any = document.getElementById("phone_number");
 			let phone_number = x.value;
 				// this.register.no_handphone		= document.getElementById("no_handphone")
-				this.register.tanggal_lahir 	= jQuery("#tanggal_lahir").datepicker("getDate");
+				let tanggal_lahir 	= jQuery("#tanggal_lahir").val();
+				this.register.tanggal_lahir = tanggal_lahir;
 				this.register.phone_number		= phone_number;
 					let headers = new Headers({ 
 					 	'Content-Type': 'application/json',
@@ -221,6 +229,9 @@ export class Step1RegisterComponent  {
 									}
 									if(message == "Password dan Confirm Password tidak sama") {
 										alert("Password dan Confirm Password tidak sama")
+									}
+									if(message == "No Handphone sudah terdaftar") {
+										alert("No Handphone sudah terdaftar")
 									}
 									else{
 										// console.log(message)
