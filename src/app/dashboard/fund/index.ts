@@ -47,9 +47,9 @@ export const routes = [
           loadChildren: () => System.import('./fund_detail').then((comp: any) => comp.default) 
         },
         {    
-          path: 'attract', 
+          path: 'withdraw', 
           // canActivate : [ AuthGuardVerifyCode],
-          loadChildren: () => System.import('./fund_attract').then((comp: any) => comp.default) 
+          loadChildren: () => System.import('./fund_withdraw').then((comp: any) => comp.default) 
         },
       ]      
   }     
