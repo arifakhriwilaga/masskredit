@@ -1,4 +1,4 @@
-import { Component } 		from '@angular/core';
+import { Component, OnInit } 		from '@angular/core';
 import { Headers, Http, RequestOptions }	   from '@angular/http';
 import { Router }        					   from '@angular/router';
 
@@ -9,11 +9,21 @@ declare var jQuery:any;
 	templateUrl: 'edit.component.html'
 })
 
-export class EditComponent {
-	// private enable:boolean;
+export class EditComponent implements OnInit {
+	private fileReader:FileReader;
+	private base64Encode:String;
 
 	constructor(private http: Http, private router : Router){ }
 
+	encodeFile(file : File) {
+		let z : any = document.getElementById("foto_diri");
+			
+			// var file_a =	a.files[0];
+			// var file_x =	x.files[0];
+			// var file_y =	y.files[0];
+			var file_z =	z.files[0];
+        this.fileReader.readAsDataURL(file_z);
+    }
 	// Default Objek
 	private image:void;
 	private number:number;
@@ -86,6 +96,17 @@ export class EditComponent {
 
 
 	ngOnInit(){
+		// this.fileReader.onload = function(event, varty) {
+		// 	let fileA = event.target.result.split(',')[1];
+		// 	if(fileA == "AQID") {
+		// 		this.data.foto_tabungan = null
+		// 	}
+		// 	else{
+		// 		return this.data.foto_tabungan = fileA;
+		// 	}
+		// 	// console.log(fileB)
+		// }
+
 		this.getProfile();
 		// mask
 		jQuery(function($){
@@ -239,6 +260,17 @@ export class EditComponent {
 			this.data.pendapatan_bersih_perusahaan 	= 0;
 
 		}
+		if(this.data.status_perkawinan == 2) {
+			this.data.status_perkawinan = 0;
+			this.data.jumlah_anak		= 0;
+			this.data.jumlah_tanggungan = 0;
+		}
+
+		if(this.data.sumber_pendapatan) {
+			this.data.status_perkawinan = null;
+			this.data.jumlah_anak		= null;
+			this.data.jumlah_tanggungan = null;
+		}
 					
 		this.data.access_token 	= this.acces_token;
 		// console.log(data)
@@ -303,32 +335,32 @@ export class EditComponent {
 
 			    let options = new RequestOptions({ headers: headers });
 
-				this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
-						.map(response => response.json())
-						.subscribe(
-							(response : any) => {
-								// for message
-								var kosong:null;
-								var code 		= response.meta.code;
-								var message 	= response.meta.message;
-								if(code == 200) {
-									alert("Profile berhasil diupate")
-									return this.router.navigateByUrl('/dashboard/profile')
-								}
-								else{
-									alert("Profile gagal diupdate")
-								}
-							},
-							(err:any) => {
-					            var error   = JSON.parse(err._body)
-					            var message = error.meta.message
-					              if(message == "unauthorized") {
-					                alert("Maaf session anda telah habis silahkan login kembali")
-					                return this.router.navigateByUrl('/dashboard/sign-out')
+				// this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
+				// 		.map(response => response.json())
+				// 		.subscribe(
+				// 			(response : any) => {
+				// 				// for message
+				// 				var kosong:null;
+				// 				var code 		= response.meta.code;
+				// 				var message 	= response.meta.message;
+				// 				if(code == 200) {
+				// 					alert("Profile berhasil diupate")
+				// 					return this.router.navigateByUrl('/dashboard/profile')
+				// 				}
+				// 				else{
+				// 					alert("Profile gagal diupdate")
+				// 				}
+				// 			},
+				// 			(err:any) => {
+				// 	            var error   = JSON.parse(err._body)
+				// 	            var message = error.meta.message
+				// 	              if(message == "unauthorized") {
+				// 	                alert("Maaf session anda telah habis silahkan login kembali")
+				// 	                return this.router.navigateByUrl('/dashboard/sign-out')
 					                
-					              } 
-					        }
-						);
+				// 	              } 
+				// 	        }
+				// 		);
 
 		}.bind(this)
 
@@ -362,25 +394,30 @@ export class EditComponent {
 			// var encode_a  = readerFileA.readAsDataURL(file_a);
 			// var encode_x  = readerFileX.readAsDataURL(file_x);
 			// var encode_y  = readerFileY.readAsDataURL(file_y);
-			var encode_z  = readerFileZ.readAsDataURL(file_z);
+			// var encode_z  = readerFileZ.readAsDataURL(file_z);
+			var zz = btoa(file_z)
+
 			// this.data.foto_tabungan		= encode_a;
 			// this.data.foto_identitas	= encode_x;
 			// this.data.foto_npwp 		= encode_y;
-			this.data.foto_diri			= encode_z;
+			// this.data.foto_diri			= encode_z;
+
+			this.data.foto_diri			= zz;
+			console.log(this.data)
 	}
 
 	private statusMarried:any;
 	getStatusMarried(id){
 		this.statusMarried = id;
 		if(id == 2) {
-			this.data.status_perkawinan = 0;
-			this.data.jumlah_anak		= 0;
-			this.data.jumlah_tanggungan = 0;
+			// this.data.status_perkawinan = 0;
+			// this.data.jumlah_anak		= 0;
+			// this.data.jumlah_tanggungan = 0;
 		}
 		if(id == 1) {
-			this.data.status_perkawinan = null;
-			this.data.jumlah_anak		= null;
-			this.data.jumlah_tanggungan = null;
+			// this.data.status_perkawinan = null;
+			// this.data.jumlah_anak		= null;
+			// this.data.jumlah_tanggungan = null;
 		}
 	  	console.log(id)
 	}
@@ -496,3 +533,25 @@ export class EditComponent {
 	}
 
 }
+
+// class ClassName {
+	
+// 	public readerFileY: FileReader;
+// 	constructor() {
+// 	}	
+
+		
+// 		readerFileY.onload = function(event, varty) {
+// 			let fileY = event.target.result.split(',')[1];
+// 			if(fileY == "AQID") {
+// 				this.data.foto_npwp = null
+// 			}
+// 			else{
+// 				return this.data.foto_npwp = fileY;
+// 			}
+			
+			
+// 			// console.log(fileB)
+// 		}
+
+// }
