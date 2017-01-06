@@ -3,6 +3,7 @@ import { NgModule }              from '@angular/core';
 import { RouterModule }          from '@angular/router';
 import { HttpModule }            from '@angular/http';
 import { FormsModule }           from '@angular/forms';
+import { CommonModule }          from '@angular/common';
 // import { LocalStorageService }   from 'angular-2-local-storage';
 
 
@@ -21,6 +22,7 @@ export const routes = [
   imports: [ // import Angular's modules
     HttpModule,
     FormsModule,
+    CommonModule,
     RouterModule.forChild(routes)
   ],
   // exports: [LoginComponent],
