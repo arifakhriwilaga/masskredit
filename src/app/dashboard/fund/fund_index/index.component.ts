@@ -87,7 +87,7 @@ export class IndexComponent {
 
 	linkAttractFund(){
 		// alert("tada")
-		this.router.navigateByUrl("/dashboard/fund/attract")	
+		this.router.navigateByUrl("/dashboard/fund/withdraw")	
 	}
 
 
