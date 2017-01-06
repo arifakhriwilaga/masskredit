@@ -98,7 +98,7 @@
                 </div>
                 </div>
                 <!-- Data Pribadi -->
-                <div *ngIf="statusMarried == 1">
+                <div *ngIf="statusMarried == 1 || data.status_perkawinan == 1">
                 <div class="form-group clearfix">
                   <div class="box-header">
                     <h2 class="box-title pull-left">Data Keluarga</h2>
@@ -158,7 +158,7 @@
                 <!-- End -->
 
                 <!-- Data Pekerjaan -->
-                <div *ngIf="sumber_pendapatan == 1 && sumberPendapatan == 1">
+                <div *ngIf="sumber_pendapatan == 1 || sumberPendapatan == 1">
                 <div class="form-group clearfix">
                   <div class="box-header">
                     <h2 class="box-title pull-left">Data Pekerjaan</h2>
