@@ -157,6 +157,7 @@ export class CreateComponent {
 					var code 		= response.meta.code;
 					var message 	= response.meta.message;
 					console.log(code,message);
+					alert("Add dana berhasil")
 					this.router.navigateByUrl('/dashboard/fund');
 				},
 				(err:any) => {
@@ -171,7 +172,7 @@ export class CreateComponent {
 			);				
 		}
 		else{
-			// alert("Data tidak valid")
+			alert("Data tidak valid")
 		}
   		
 	  }
