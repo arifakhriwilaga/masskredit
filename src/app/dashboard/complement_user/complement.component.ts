@@ -33,7 +33,7 @@ export class ComplementComponent {
 
 		// objek pekerjaan
 		nama_perusahaan 	  : '',
-		lama_bekerja 	  	  : '',
+		mulai_bekerja 	  	  : '',
 		jabatan  	 		  : '',
 		pekerjaan  	 		  : '',
 		gaji_per_bulan 		  : this.number,
@@ -83,6 +83,15 @@ export class ComplementComponent {
 	// }
 
 	ngOnInit(){
+		jQuery('.datepicker').datepicker({
+	      format	: 'yyyy-mm-dd',
+	      // startDate : '2015-01-01',
+	      // minDate	: '01/01/2015'
+
+	    });
+	    // let date = jQuery("#mulai_bekerja").datepicker("setDate", new Date());
+		let value_date = jQuery("#mulai_bekerja").val();
+		this.data.mulai_bekerja = value_date;
 		// mask
 		jQuery(function($){
 			// mask keluarga
@@ -204,7 +213,7 @@ export class ComplementComponent {
 			nama_perusahaan 	  : {
 				required :true	
 			},
-			lama_bekerja 	  	  : {
+			mulai_bekerja 	  	  : {
 				required :true
 			},
 			jabatan  	 		  : {
