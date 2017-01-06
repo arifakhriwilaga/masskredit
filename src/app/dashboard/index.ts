@@ -32,6 +32,8 @@ import { SignOutComponent }       from './sign-out';
 
 // Completement USer
 import { ComplementComponent }     from './complement_user';
+import { JobsComponent }     from './complement_user/jobs_data';
+import { BusinessComponent }     from './complement_user/business';
 
 // Fund Component
 // import { FundComponent }     from './fund';
@@ -105,6 +107,8 @@ export const routes = [
     ContentComponent,
     SignOutComponent, 
     ComplementComponent,
+    JobsComponent,
+    BusinessComponent,
     // FundComponent,
     // TambahDanaComponent,
     // PenarikanDanaComponent,
