@@ -81,4 +81,8 @@ export class DetailComponent {
 				});	
 	}
 
+	backFund(){
+		this.router.navigateByUrl('/dashboard/fund')
+	}
+
 }
