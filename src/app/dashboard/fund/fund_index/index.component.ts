@@ -30,16 +30,17 @@ export class IndexComponent {
  	public current_page = null;
  	public per_page 	 = null;
  	public total 		 = null;
+	public array_total = []
+ 	public param = new URLSearchParams();
+ 	public acces_token = JSON.parse(localStorage.getItem("access_token"))
+ 	public limit = 10;
+ 	public page  = 1;
 
 	ngOnInit(){
 
- 	let param = new URLSearchParams();
- 	let acces_token = JSON.parse(localStorage.getItem("access_token"))
- 	let limit = 10;
- 	let page  = 1;
  	
 
-		this.http.get('http://masscredit-api.stagingapps.net/user/fund/get-list/' + acces_token + '/funds.json?limit=' + limit + '&page=' + page, this.options)
+		this.http.get('http://masscredit-api.stagingapps.net/user/fund/get-list/' + this.acces_token + '/funds.json?limit=' + this.limit + '&page=' + this.page, this.options)
 							.map(response => response.json())
 							.subscribe(
 								(response : any) => {
@@ -57,9 +58,17 @@ export class IndexComponent {
 									// this.per_page 		= per_page;
 									// this.total 			= total;
 									if(code == 200) {
-										var total_pagination = total/limit
+										var total_pagination = Math.ceil(total/this.limit) //round up
+										// var object_array	 = Array.from()
+										
+										for (var i = 1; i <= total_pagination; i++) {
+											this.array_total.push(i)
+										}
+										// // var convert_string	 = String(total_pagination)
+										// var convert_string	 = total_pagination.valueOf()
+										// array_total 	 = JSON.parse("[" + convert_string +"]");
+										
 									}
-										console.log(response)
 									// console.log(code)
 									// console.log('current page', this.current_page,'per page', this.per_page,'total',this.total)
 									// if(code == 200) {
@@ -88,6 +97,55 @@ export class IndexComponent {
 	linkAttractFund(){
 		// alert("tada")
 		this.router.navigateByUrl("/dashboard/fund/withdraw")	
+	}
+	linkTo(id : any){
+		// console.log(id)
+		let page = id;
+
+		this.http.get('http://masscredit-api.stagingapps.net/user/fund/get-list/' + this.acces_token + '/funds.json?limit=' + this.limit + '&page=' + page, this.options)
+							.map(response => response.json())
+							.subscribe(
+								(response : any) => {
+									// for rr
+									var kosong:null;
+									var code 		= response.meta.code;
+									var message 	= response.meta.message;
+									var funds		= response.data.fund;
+									var current_page= response.data.paging.current_page;
+									var per_page 	= response.data.paging.per_page;
+									var total		= response.data.paging.total;;
+									this.funds 			= funds;
+									console.log(status)
+									// this.current_page	= current_page;
+									// this.per_page 		= per_page;
+									// this.total 			= total;
+									if(code == 200) {
+										console.log("Success get list")
+										// // var convert_string	 = String(total_pagination)
+										// var convert_string	 = total_pagination.valueOf()
+										// array_total 	 = JSON.parse("[" + convert_string +"]");
+										
+									}
+									// console.log(code)
+									// console.log('current page', this.current_page,'per page', this.per_page,'total',this.total)
+									// if(code == 200) {
+									// 	alert("Profile berhasil diupate")
+									// 	// return this.router.navigateByUrl('/dashboard/profile')
+									// }
+									// else{
+									// 	alert("Profile gagal diupdate")
+									// }
+								},
+								(err:any) => {
+						            var error   = JSON.parse(err._body)
+						            var message = error.meta.message
+						              if(message == "unauthorized") {
+						                alert("Maaf session anda telah habis silahkan login kembali")
+						                return this.router.navigateByUrl('/dashboard/sign-out')
+						                
+						              } 
+						        }
+							);
 	}
 
 
