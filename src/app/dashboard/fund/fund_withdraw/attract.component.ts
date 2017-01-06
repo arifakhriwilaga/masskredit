@@ -18,36 +18,24 @@ export class AttractComponent {
 
 	ngOnInit() {
 		jQuery('.datepicker').datepicker({
-	      format	: 'yyyy/mm/dd',
+	      format	: 'yyyy-mm-dd',
 	      // startDate : '2015-01-01',
 	      // minDate	: '01/01/2015'
 
 	    });
-	    jQuery( "#investasiForm" ).validate({
+	    jQuery( "#withdrawalForm" ).validate({
 		  rules: {
-		    invest_name: {
+		    nama_lengkap: {
 		      required: true
 		    },
-		    type: {
+		    bank_name: {
 		      required: true,
 		      // email	  : true
 		    },
-		    images1: {
-		      required: true
-		    },
-		    masa_berlaku: {
+		    no_rekening: {
 		      required: true
 		    },
 		    amount: {
-		      required: true
-		    },
-		    tenor: {
-		      required: true
-		    },
-		    collateral: {
-		      required: true
-		    },
-		    description: {
 		      required: true
 		    },
 		  }
@@ -60,11 +48,71 @@ export class AttractComponent {
 
 			
 		});
+
+		// Request for get no reference
+		this.http.post('http://masscredit-api.stagingapps.net/user/fund/no-reference',this.data,this.options)
+			.map(response => response.json())
+			.subscribe(
+				(response : any) => {
+					var code 		= response.meta.code;
+					var message 	= response.meta.message;
+					var no_reference= response.data.no_reference;
+					this.data.no_reference = no_reference;
+					console.log(code,message);
+					// this.router.navigateByUrl('/dashboard/fund');
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+					// console.log(err)
+						if(message == "unauthorized") {
+							alert("Maaf session anda telah habis silahkan login kembali")
+							return this.router.navigateByUrl('/dashboard/sign-out')
+							
+						}
+				}
+			);		
+
+		// Request for get data bank
+		this.http.get('http://masscredit-api.stagingapps.net/master/bank',this.options)
+			.map(response => response.json())
+			.subscribe(
+				(response : any) => {
+					var code 		= response.meta.code;
+					var message 	= response.meta.message;
+					var banks 		= response.data.tipe_bank;
+					this.banks 		= banks;
+					console.log(response);
+					// this.router.navigateByUrl('/dashboard/fund');
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+						if(message == "unauthorized") {
+							alert("Maaf session anda telah habis silahkan login kembali")
+							return this.router.navigateByUrl('/dashboard/sign-out')
+							
+						}	
+						if(message == "unauthorized") {
+							alert("Maaf session anda telah habis silahkan login kembali")
+							return this.router.navigateByUrl('/dashboard/sign-out')
+							
+						}	
+				}
+			);
+
+		// Get date
+		let date = jQuery("#date").datepicker("setDate", new Date());
+		let value_date = jQuery("#date").val();
+		this.data.date = value_date;
 	}
 
+	// Get access_token in localstorage
+	access_token = JSON.parse(localStorage.getItem("access_token"));
 
+	public banks = [];
 	public data = {
-		access_token: '',
+		access_token: this.access_token,
 	  	date		: '',
 	  	no_reference: '',
 	  	nama_lengkap: '',
@@ -73,15 +121,24 @@ export class AttractComponent {
 		amount		: '',		
 	}
 
+	// Headers
+  	public headers = new Headers({ 
+			'Content-Type': 'application/json',
+			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
+		});
+	public options = new RequestOptions({ headers: this.headers });
 
 
+	getBankName(id){
+		this.data.bank_name = id;
+		console.log(this.data)
+	}
 
 
   	attractFund(data) {
-		// if(jQuery("#investasiForm").valid()) {	
-		if(true) {	
+		if(jQuery("#withdrawalForm").valid()) {	
+		// if(true) {	
 	  		// this.investasi = investasi;
-	  		this.data.date = jQuery("#date").datepicker("getDate");
 	  		console.log(this.data)
 	  		
 	  		// Headers
@@ -91,29 +148,36 @@ export class AttractComponent {
 				});
 	    	let options = new RequestOptions({ headers: headers });
 				
-			// API Create Fund
-			// this.http.post('/user/transaction/fund/add',this.data,options)
-			// .map(response => response.json())
-			// .subscribe(
-			// 	(response : any) => {
-			// 		var code 		= response.meta.code;
-			// 		var message 	= response.meta.message;
-			// 		console.log(code,message);
-			// 		this.router.navigateByUrl('/dashboard/fund');
-			// 	},
-			// 	(err:any) => {
-			// 		var error   = JSON.parse(err._body)
-			// 		var message = error.meta.message
-			// 			if(message == "unauthorized") {
-			// 				alert("Maaf session anda telah habis silahkan login kembali")
-			// 				return this.router.navigateByUrl('/dashboard/sign-out')
+			// API withdrawal Fund
+			this.http.post('http://masscredit-api.stagingapps.net/user/fund/withdraw',this.data,this.options)
+			.map(response => response.json())
+			.subscribe(
+				(response : any) => {
+					var code 		= response.meta.code;
+					var message 	= response.meta.message;
+					console.log(code,message);
+					alert("Penarikan dana berhasil")
+					this.router.navigateByUrl('/dashboard/fund');
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+					var code = error.meta.code
+						if(message == "unauthorized") {
+							alert("Maaf session anda telah habis silahkan login kembali")
+							return this.router.navigateByUrl('/dashboard/sign-out')
 							
-			// 			}	
-			// 	}
-			// );				
+						}
+						if(code == 400) {
+							alert("Maaf saldo anda tidak mencukupi")
+							return this.router.navigateByUrl('/dashboard/fund')
+							
+						}	
+				}
+			);				
 		}
 		else{
-			// alert("Data tidak valid")
+			alert("Data tidak valid")
 		}
   		
 	  }
