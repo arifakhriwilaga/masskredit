@@ -41,8 +41,9 @@
                     <th>No.</th>
                     <th>Nomor Referensi</th>
                     <th>Jenis Transaksi</th>
-                    <th>Nominal Rp</th>
                     <th>Tanggal</th>
+                    <th>Nominal Rp</th>
+                    <th>Tanggal Konfirmasi</th>
                     <th>Status</th>
                     <th></th>
                   </tr>
@@ -54,11 +55,12 @@
                       {{ data.no_reference }}
                     </td>
                     <td><span class="warranty">{{ data.type_transaction }}</span></td>
-                    <td>{{ data.amount }}</td>
                     <td>{{ data.date }}</td>
+                    <td>{{ data.amount }}</td>
+                    <td>{{ data.confirm_date }}</td>
                     <td>{{ data.status }}</td>
                     <td>
-                      <a *ngIf="data.status == 'Open'" class="pull-right" [routerLink]="['/dashboard/fund/confirm', data.id]">
+                      <a *ngIf="data.confirm_date == ''" class="pull-right" [routerLink]="['/dashboard/fund/confirm', data.id]">
                         Konfirmasi
                       </a>
                       <a class="pull-right" [routerLink]="['/dashboard/fund/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></a>
