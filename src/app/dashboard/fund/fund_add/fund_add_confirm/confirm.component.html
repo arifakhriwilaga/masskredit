@@ -1,0 +1,39 @@
+<section class="content">
+ <div class="row">
+   <div class="col-md-12">
+     <div class="box bg-transparent">
+       <div class="box-header">
+         <h2 class="box-title pull-left">Konfirmasi Dana</h2>
+       </div>
+       <div class="box-body">
+         <div class="form-login-register">
+           <form class="clearfix row white-bg detail-page form-space" name="confirmForm" id="confirmForm">
+              <div class="col-md-12">
+                  <div class="form-group" align="center">
+                      <label><h1>Foto Struk dan Tanggal Transfer</h1></label>
+                      <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="file" name="struct_image" id="struct_image">
+                        </div>
+                      </div> 
+                      <div class="input-group">
+                         <br>
+                         <input  type="text" placeholder="Tanggal Transfer" class="form-control input-md datepicker" name="confirm_date" id="confirm_date"  disabled>
+                      </div>
+                 </div>
+              </div>
+               <div class="col-md-12">
+                 <div class="form-group">
+                    <div class="col-md-6 col-center">
+                      <a href="#/dashboard/fund" class="btn btn-default">Batal</a>
+                      <button class="btn btn-red" (click)="confirmFund()">Konfirmasi</button>
+                    </div>
+                 </div>
+              </div>
+           </form>
+         </div>
+       </div>
+    </div>
+   </div>
+ </div>
+</section>
