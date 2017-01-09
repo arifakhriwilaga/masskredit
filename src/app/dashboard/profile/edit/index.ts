@@ -6,6 +6,16 @@ import { FormsModule }           from '@angular/forms';
 import { LocalStorageService }   from 'angular-2-local-storage';
 import { CommonModule }            from '@angular/common';
 
+// Component for view
+import { JobComponent }     from './job';
+import { BusinessComponent } from './business';
+import { FamilyComponent }   from './family';
+
+import { SupportComponent }  from './support';
+import { BankComponent }     from './bank';
+import { PersonalComponent } from './personal';
+import { PersonalFamilyComponent } from './personal_family';
+
 
 // debugger;
 // Component
@@ -18,6 +28,13 @@ export const routes = [
 @NgModule({
   declarations: [
     EditComponent, // declarations LoginComponent
+    JobComponent,
+    BusinessComponent,
+    FamilyComponent,
+    // SupportComponent, 
+    // BankComponent,
+    PersonalComponent,
+    PersonalFamilyComponent
   ],
   imports: [ // import Angular's modules
     CommonModule,
