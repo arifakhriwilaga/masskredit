@@ -1,0 +1,158 @@
+import { Component }										from '@angular/core';
+import { ValidationServiceInvestasi }						from './validationservice.component';
+import { Headers, Http, RequestOptions, URLSearchParams }	from '@angular/http';
+import { Router }        									from '@angular/router';
+// import { IndexService }	from './index.service';
+@Component({
+	//moduleId: module.id,
+	selector: 'index',
+	templateUrl: 'index.component.html'
+})
+
+
+export class IndexComponent { 
+	constructor (private router : Router, private http : Http) {}
+	// headers
+	public headers = new Headers({ 
+		 	'Content-Type': 'application/json',
+		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	 	});
+
+ 	public options = new RequestOptions({ headers: this.headers });
+
+ 	// access token
+ 	public access_token = {
+	 	access_token : JSON.parse(localStorage.getItem("access_token"))
+ 	}
+
+ 	// objek for show data when request data
+ 	public withdrawals = []
+ 	public current_page = null;
+ 	public per_page 	 = null;
+ 	public total 		 = null;
+	public array_total = []
+	public total_pagination
+ 	public param = new URLSearchParams();
+ 	public acces_token = JSON.parse(localStorage.getItem("access_token"))
+ 	public limit = 10;
+ 	public page  = 1;
+
+ 	public data_get_list_fund = { 
+ 		access_token : this.acces_token,
+ 		page : this.page,
+ 		limit : this.limit
+
+ 	}
+
+
+	ngOnInit(){
+
+ 	
+
+		this.http.post('http://masscredit-api.stagingapps.net/user/withdrawal/get-list', this.data_get_list_fund, this.options)
+							.map(response => response.json())
+							.subscribe(
+								(response : any) => {
+									// for rr
+									var kosong:null;
+									var code 		= response.meta.code;
+									var message 	= response.meta.message;
+									var withdrawal	= response.data.withdrawal;
+									var current_page= response.data.paging.current_page;
+									var per_page 	= response.data.paging.per_page;
+									var total		= response.data.paging.total;;
+									this.withdrawals= withdrawal;
+									this.current_page	= current_page;
+									// this.per_page 		= per_page;
+									// this.total 			= total;
+									console.log(response)
+									if(code == 200) {
+										var total_pagination = Math.ceil(total/this.limit) //round up
+										this.total_pagination = total_pagination
+										
+										for (var i = 1; i <= total_pagination; i++) {
+											this.array_total.push(i)
+										}
+										// // var convert_string	 = String(total_pagination)
+										// var convert_string	 = total_pagination.valueOf()
+										// array_total 	 = JSON.parse("[" + convert_string +"]");
+										
+									}
+									// console.log(code)
+									// console.log('current page', this.current_page,'per page', this.per_page,'total',this.total)
+									// if(code == 200) {
+									// 	alert("Profile berhasil diupate")
+									// 	// return this.router.navigateByUrl('/dashboard/profile')
+									// }
+									// else{
+									// 	alert("Profile gagal diupdate")
+									// }
+								},
+								(err:any) => {
+						            var error   = JSON.parse(err._body)
+						            var message = error.meta.message
+						              if(message == "unauthorized") {
+						                alert("Maaf session anda telah habis silahkan login kembali")
+						                return this.router.navigateByUrl('/dashboard/sign-out')
+						                
+						              } 
+						        }
+							);
+	}
+
+	linkFundWithdrawal(){
+		// alert("tada")
+		this.router.navigateByUrl("/dashboard/fund/fund-withdrawal/create")	
+	}
+	linkTo(id : any){
+		// console.log(id)
+		let page = id;
+
+		this.http.get('http://masscredit-api.stagingapps.net/user/fund/get-list/' + this.acces_token + '/funds.json?limit=' + this.limit + '&page=' + page, this.options)
+							.map(response => response.json())
+							.subscribe(
+								(response : any) => {
+									// for rr
+									var kosong:null;
+									var code 		= response.meta.code;
+									var message 	= response.meta.message;
+									var withdrawal		= response.data.withdrawal;
+									var current_page= response.data.paging.current_page;
+									var per_page 	= response.data.paging.per_page;
+									var total		= response.data.paging.total;;
+									this.withdrawals 			= withdrawal;
+									this.current_page	= current_page;
+									// this.per_page 		= per_page;
+									// this.total 			= total;
+									console.log(this.current_page)
+									if(code == 200) {
+										console.log("Success get list")
+										// // var convert_string	 = String(total_pagination)
+										// var convert_string	 = total_pagination.valueOf()
+										// array_total 	 = JSON.parse("[" + convert_string +"]");
+										
+									}
+									// console.log(code)
+									// console.log('current page', this.current_page,'per page', this.per_page,'total',this.total)
+									// if(code == 200) {
+									// 	alert("Profile berhasil diupate")
+									// 	// return this.router.navigateByUrl('/dashboard/profile')
+									// }
+									// else{
+									// 	alert("Profile gagal diupdate")
+									// }
+								},
+								(err:any) => {
+						            var error   = JSON.parse(err._body)
+						            var message = error.meta.message
+						              if(message == "unauthorized") {
+						                alert("Maaf session anda telah habis silahkan login kembali")
+						                return this.router.navigateByUrl('/dashboard/sign-out')
+						                
+						              } 
+						        }
+							);
+	}
+
+
+}
