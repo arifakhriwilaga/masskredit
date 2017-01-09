@@ -1,0 +1,47 @@
+<div *ngIf="sumber_pendapatan == 2 || data.sumber_pendapatan == 2">
+<div class="form-group clearfix">
+  <div class="box-header">
+    <h2 class="box-title pull-left">Data Usaha</h2>
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-md-3">
+    <label class="unit">Nama Usaha</label>
+  </div>
+  <div class="col-md-9">
+      <input type="text" placeholder="Nama Usaha" class="with-unit form-control input-md" value="{{ complement_data.nama_usaha }}" [(ngModel)]="data.nama_usaha" name="nama_usaha" id="nama_usaha">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-md-3">
+    <label class="unit">Jenis Perusahaan</label>
+  </div>
+  <div class="col-md-9">
+      <input type="text" placeholder="Jenis Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.jenis_perusahaan }}" [(ngModel)]="data.jenis_perusahaan" name="jenis_perusahaan" id="jenis_perusahaan">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-md-3">
+    <label class="unit">Pengeluaran per bulan</label>
+  </div>
+  <div class="col-md-9">
+      <input type="text" placeholder="Pengeluaran per bulan" class="with-unit form-control input-md" value="{{ complement_data.pengeluaran_per_bulan }}" [(ngModel)]="data.pengeluaran_per_bulan" name="pengeluaran_per_bulan" id="pengeluaran_per_bulan">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-md-3">
+    <label class="unit">Tahun Perusahaan Berdiri</label>
+  </div>
+  <div class="col-md-9">
+      <input type="text" placeholder="Tahun Perusahaan Berdiri" class="with-unit form-control input-md" value="{{ complement_data.tahun_perusahaan_berdiri }}" [(ngModel)]="data.tahun_perusahaan_berdiri" name="tahun_perusahaan_berdiri" id="tahun_perusahaan_berdiri">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-md-3">
+    <label class="unit">Pendapatan Bersih Perusahaan</label>
+  </div>
+  <div class="col-md-9">
+      <input type="text" placeholder="Pendapatan Bersih Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_bersih_perusahaan }}" [(ngModel)]="data.pendapatan_bersih_perusahaan" name="pendapatan_bersih_perusahaan" id="pendapatan_bersih_perusahaan">
+  </div>
+</div>
+</div>
