@@ -76,30 +76,8 @@
                 <!-- End -->
                	<!-- Contact darurat kerabat -->
                	<label>Data Kerabat yang tidak serumah</label>
-               	<div class="form-group">
-                 <div class="col-md-12">
-                   <span class="required">*</span>
-                   <input type="text" placeholder="Nama" class="form-control input-md" name="nama_lengkap_keluarga" id="nama_lengkap_keluarga" [(ngModel)]="data.nama_lengkap_keluarga">
-                 </div>
-               	</div>
-               	<div class="form-group">
-                 <div class="col-md-12">
-                    <span class="required">*</span>
-                   <input type="text" placeholder="Hubungan" class="form-control input-md datepicker" name="hubungan" id="hubungan" [(ngModel)]="data.hubungan">
-                 </div>
-               	</div>
-               	<div class="form-group">
-                 <div class="col-md-12">
-                   <span class="required">*</span>
-                   <input type="text" placeholder="No Telepon" class="form-control input-md" name="no_tlp" id="no_tlp" [(ngModel)]="data.no_tlp">
-                 </div>
-               	</div>
-               	<div class="form-group">
-                 <div class="col-md-12">
-                 <span class="required">*</span>
-                   <input type="text" placeholder="Pekerjaan" class="form-control input-md" name="pekerjaan_kerabat" id="pekerjaan_kerabat" [(ngModel)]="data.pekerjaan_kerabat">
-                 </div>
-               	</div>
+               	<family></family>
+                
                </div>
                
                <div class="col-md-6">
@@ -161,50 +139,12 @@
                 </div>
                	<!-- Attach document -->
                	<label>Data Penunjang</label>
-                 <div class="form-group">
-                   <div class="col-md-12">
-                     <span class="required">*</span>
-                     <label>Foto Identitas</label>
-                     <!-- <div class="input-group"> -->
-                     	<input type="file" name="foto_identitas" id="foto_identitas">
-                     <!-- </div> -->
-                   </div>
-                 </div>   
-                 <div class="form-group">
-                   <div class="col-md-12">
-                     <!-- <div class="input-group"> -->
-                     <span class="required">*</span>
-                     <label>Foto NPWP</label>
-                      <input type="file" name="foto_npwp" id="foto_npwp">
-                     <!-- </div> -->
-                   </div>
-                  </div>
-                 <div class="form-group">
-                   <div class="col-md-12">
-                     <!-- <div class="input-group"> -->
-                     <span class="required">*</span>
-                     <label>Foto Diri</label>
-                      <input type="file" name="foto_diri" id="foto_diri">
-                     <!-- </div> -->
-                   </div>
-                  </div>
-                 <!-- end -->
+                <support></support>
+                  <!-- end -->
                  <br>
                  <!-- Data Bank -->
                 <label>Data Bank</label>
-                <div class="form-group">
-                  <div class="col-md-12">
-                       <span class="required">*</span>
-                       <label>Foto depan buku tabungan</label>
-                        <input type="file" name="foto_tabungan" id="foto_tabungan">
-                  </div>
-                </div>  
-                <div class="form-group">
-                 <div class="col-md-12">
-                     <span class="required">*</span>
-                   <input type="text" placeholder="No Rekening" class="form-control input-md" name="no_rekening" id="no_rekening" [(ngModel)]="data.no_rekening">
-                 </div>
-                </div> 
+                <bank></bank>
                  </fieldset>
                </div>
                <div class="col-md-12">
