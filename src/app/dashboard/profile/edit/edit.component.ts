@@ -169,6 +169,16 @@ export class EditComponent implements OnInit {
 				.map(response => response.json())
 				.subscribe(
 					(response : any) => {
+					  	let pendapatan_lain_1 = response.data.profile.complement_user.pendapatan_lain_1;
+					  	let pendapatan_lain_2 = response.data.profile.complement_user.pendapatan_lain_2; 
+					  	if(pendapatan_lain_1 == null) {
+						  	this.data.pendapatan_lain_1	= 2
+					  			
+					  	}
+
+					  	else if(pendapatan_lain_2 == null){
+					  		this.data.pendapatan_lain_2	= 2
+					  	}
 						// for message
 						this.profile	= response.data.profile;
 						this.complement_data	= response.data.profile.complement_user;
@@ -208,14 +218,12 @@ export class EditComponent implements OnInit {
 						this.data.pekerjaan_kerabat 		= response.data.profile.complement_user.pekerjaan_kerabat,
 					  	
 					  	// objek pendapatan lain 1
-					  	
-					  	this.data.pendapatan_lain_1			= response.data.profile.complement_user.pendapatan_lain_1,
 						this.pendapatanLainFirst 		= response.data.profile.complement_user.pendapatan_lain_1,
 						this.data.sumber_pendapatan_lain_1 	= response.data.profile.complement_user.sumber_pendapatan_lain_1,
 						this.data.jumlah_pendapatan_lain_1 	= response.data.profile.complement_user.jumlah_pendapatan_lain_1,
 					  	
 					  	// objek pendapatan lain 2
-					  	this.data.pendapatan_lain_2	= response.data.profile.complement_user.pendapatan_lain_2,
+					  	// this.data.pendapatan_lain_2	= response.data.profile.complement_user.pendapatan_lain_2,
 						this.pendapatanLainSecond 		= response.data.profile.complement_user.pendapatan_lain_2,
 						
 						this.data.sumber_pendapatan_lain_2 	= response.data.profile.complement_user.sumber_pendapatan_lain_1,
@@ -406,57 +414,7 @@ export class EditComponent implements OnInit {
 			console.log(this.data)
 	}
 
-	private statusMarried:any;
-	getStatusMarried(id){
-		this.statusMarried = id;
-		if(id == 2) {
-			// this.data.status_perkawinan = 0;
-			// this.data.jumlah_anak		= 0;
-			// this.data.jumlah_tanggungan = 0;
-		}
-		if(id == 1) {
-			// this.data.status_perkawinan = null;
-			// this.data.jumlah_anak		= null;
-			// this.data.jumlah_tanggungan = null;
-		}
-	  	console.log(id)
-	}
 
-	private sumberPendapatan:any;
-	getSumberPendapatan(id){
-		this.sumberPendapatan = id;
-		if(id == 2) {
-			console.log(id)
-			this.data.gaji_per_bulan = 0;
-			// this.data.pendapatan_bersih_perusahaan = null;
-			this.sumber_pendapatan = 2;
-
-			// objek pekerjaan
-			// this.data.nama_usaha 	  				= "",
-			// this.data.tahun_perusahaan_berdiri 		= 0,
-			// this.data.jenis_perusahaan 		  		= "",
-			// this.data.pendapatan_bersih_perusahaan	= 0,
-
-			// this.data.pengeluaran_per_bulan 		= 0,
-			// this.data.tlp_perusahaan				= 0,
-
-
-			
-		}
-		if(id == 1) {
-			console.log(id)
-			// this.data.gaji_per_bulan = null;
-			this.data.pendapatan_bersih_perusahaan = 0;
-			this.sumber_pendapatan = 1;
-			
-			// this.data.nama_perusahaan 	= "",
-			// this.data.lama_bekerja 	  	= "",
-			// this.data.jabatan  	 		= "",
-			// this.data.pekerjaan  	 	= "",
-			// this.data.gaji_per_bulan 	= 0,
-			
-		}
-	}
 
 	private pendapatanLainFirst:any;
 	getPendapatanLainFirst(id){
