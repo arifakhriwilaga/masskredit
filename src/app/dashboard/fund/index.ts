@@ -25,32 +25,36 @@ export const routes = [
       path: '', 
       component: FundComponent,
       children : [
-        { path: '', redirectTo: 'index' },
+        { path: '', redirectTo: 'fund-add' },
         // { path: 'index', component: IndexComponent },
         {    
-          path: 'index', 
-          loadChildren: () => System.import('./fund_index').then((comp: any) => comp.default) 
+          path: 'fund-add', 
+          loadChildren: () => System.import('./fund_add').then((comp: any) => comp.default) 
         },
         {    
-          path: 'create', 
-          // canActivate : [ AuthGuardVerifyCode],
-          loadChildren: () => System.import('./fund_create').then((comp: any) => comp.default) 
+          path: 'fund-withdrawal', 
+          loadChildren: () => System.import('./fund_withdrawal').then((comp: any) => comp.default) 
         },
-        {    
-          path: 'confirm/:id', 
-          // canActivate : [ AuthGuardVerifyCode],
-          loadChildren: () => System.import('./fund_confirm').then((comp: any) => comp.default) 
-        },
-        {    
-          path: 'detail/:id', 
-          // canActivate : [ AuthGuardVerifyCode],
-          loadChildren: () => System.import('./fund_detail').then((comp: any) => comp.default) 
-        },
-        {    
-          path: 'withdraw', 
-          // canActivate : [ AuthGuardVerifyCode],
-          loadChildren: () => System.import('./fund_withdraw').then((comp: any) => comp.default) 
-        },
+        // {    
+        //   path: 'create', 
+        //   // canActivate : [ AuthGuardVerifyCode],
+        //   loadChildren: () => System.import('./fund_create').then((comp: any) => comp.default) 
+        // },
+        // {    
+        //   path: 'confirm/:id', 
+        //   // canActivate : [ AuthGuardVerifyCode],
+        //   loadChildren: () => System.import('./fund_confirm').then((comp: any) => comp.default) 
+        // },
+        // {    
+        //   path: 'detail/:id', 
+        //   // canActivate : [ AuthGuardVerifyCode],
+        //   loadChildren: () => System.import('./fund_detail').then((comp: any) => comp.default) 
+        // },
+        // {    
+        //   path: 'withdraw', 
+        //   // canActivate : [ AuthGuardVerifyCode],
+        //   loadChildren: () => System.import('./fund_withdraw').then((comp: any) => comp.default) 
+        // },
       ]      
   }     
 ];
