@@ -16,7 +16,6 @@ export class ComplementComponent {
 
 	// this.data.angsuran = [];
 	}
-// 
 
 	// Objek
 	private image:void;
@@ -74,7 +73,6 @@ export class ComplementComponent {
 		angsuran : []
 
 
-			// counter++;
 	}
 
 	// public angsuran = {
@@ -90,8 +88,7 @@ export class ComplementComponent {
 
 	    });
 	    // let date = jQuery("#mulai_bekerja").datepicker("setDate", new Date());
-		let value_date = jQuery("#mulai_bekerja").val();
-		this.data.mulai_bekerja = value_date;
+		
 		// mask
 		jQuery(function($){
 			// mask keluarga
@@ -364,14 +361,18 @@ export class ComplementComponent {
 
 
 	submitData(data){
-		// if(data) {
-		if(jQuery("#complementForm").valid()) {
+		if(data) {
+		// if(jQuery("#complementForm").valid()) {
+
+			let value_date = jQuery("#mulai_bekerja").val();
+			this.data.mulai_bekerja = value_date;
 		
 			let acces_token = JSON.parse(localStorage.getItem("access_token"));
 			this.data.access_token = acces_token;
 		    var angsuran = [];
 			var check = document.getElementById("TextBoxDiv1");
 			console.log(check)
+			console.log(this.data)
 			if(check == null) {
 				angsuran.push({
 					jumlah_angsuran : "",
@@ -389,92 +390,93 @@ export class ComplementComponent {
 					})
 			})
 			this.data.angsuran = angsuran;
+			console.log(this.data);
 			
-			let readerFileA = new FileReader();
-			readerFileA.onload = function(event, varty) {
-				let fileA = event.target.result.split(',')[1];
-				this.data.foto_tabungan = fileA;
-			}.bind(this)
+			// let readerFileA = new FileReader();
+			// readerFileA.onload = function(event, varty) {
+			// 	let fileA = event.target.result.split(',')[1];
+			// 	this.data.foto_tabungan = fileA;
+			// }.bind(this)
 
-			let readerFileX = new FileReader();
-			readerFileX.onload = function(event, varty) {
-				let fileX = event.target.result.split(',')[1];
-				this.data.foto_identitas = fileX;
-			}.bind(this)
+			// let readerFileX = new FileReader();
+			// readerFileX.onload = function(event, varty) {
+			// 	let fileX = event.target.result.split(',')[1];
+			// 	this.data.foto_identitas = fileX;
+			// }.bind(this)
 
-			let readerFileY = new FileReader();
-			readerFileY.onload = function(event, varty) {
-				let fileY = event.target.result.split(',')[1];
-				this.data.foto_npwp = fileY;
-			}.bind(this)
+			// let readerFileY = new FileReader();
+			// readerFileY.onload = function(event, varty) {
+			// 	let fileY = event.target.result.split(',')[1];
+			// 	this.data.foto_npwp = fileY;
+			// }.bind(this)
 
-			let readerFileZ = new FileReader();
-			readerFileZ.onload = function(event, varty) {
-			let fileZ = event.target.result.split(',')[1];
-			this.data.foto_diri = fileZ;
+			// let readerFileZ = new FileReader();
+			// readerFileZ.onload = function(event, varty) {
+			// let fileZ = event.target.result.split(',')[1];
+			// this.data.foto_diri = fileZ;
 
-			// console.log("foto_diri",this.data.foto_diri)
-			// console.log("foto_npwp",this.data.foto_npwp)
-			// console.log("foto_tabungan",this.data.foto_tabungan)
-			// console.log("foto_identitas",this.data.foto_identitas)
-			console.log("Sedang mengirim data....")
-			let headers = new Headers({ 
-			 	'Content-Type': 'application/json',
-			 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-		 	});
+			// // console.log("foto_diri",this.data.foto_diri)
+			// // console.log("foto_npwp",this.data.foto_npwp)
+			// // console.log("foto_tabungan",this.data.foto_tabungan)
+			// // console.log("foto_identitas",this.data.foto_identitas)
+			// console.log("Sedang mengirim data....")
+			// let headers = new Headers({ 
+			//  	'Content-Type': 'application/json',
+			//  	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+		 // 	});
 
-		    let options = new RequestOptions({ headers: headers });
+		 //    let options = new RequestOptions({ headers: headers });
 
 
-			console.log(this.data.foto)
-			this.http.post('http://masscredit-api.stagingapps.net/user/credential/status-verification',this.data,options)
-					.map(response => response.json())
-					.subscribe(
-						(response : any) => {
-							var code = response.meta.code;
-							console.log(response);
-							if(code == 200) {
-								alert("Terimakasih telah melengkapi data anda")
-								return this.router.navigateByUrl('/dashboard')
-							}
-							else{
-								alert("Gagal melengkapi data")
-								return this.router.navigateByUrl('/dashboard')
-							}
-						},
-						(err:any) => {
-							var error   = JSON.parse(err._body)
-							var message = error.meta.message
-								if(message == "unauthorized") {
-									alert("Maaf session anda telah habis silahkan login kembali")
-									return this.router.navigateByUrl('/dashboard/sign-out')
+			// console.log(this.data)
+			// // this.http.post('http://masscredit-api.stagingapps.net/user/credential/status-verification',this.data,options)
+			// // 		.map(response => response.json())
+			// // 		.subscribe(
+			// // 			(response : any) => {
+			// // 				var code = response.meta.code;
+			// // 				console.log(response);
+			// // 				if(code == 200) {
+			// // 					alert("Terimakasih telah melengkapi data anda")
+			// // 					return this.router.navigateByUrl('/dashboard')
+			// // 				}
+			// // 				else{
+			// // 					alert("Gagal melengkapi data")
+			// // 					return this.router.navigateByUrl('/dashboard')
+			// // 				}
+			// // 			},
+			// // 			(err:any) => {
+			// // 				var error   = JSON.parse(err._body)
+			// // 				var message = error.meta.message
+			// // 					if(message == "unauthorized") {
+			// // 						alert("Maaf session anda telah habis silahkan login kembali")
+			// // 						return this.router.navigateByUrl('/dashboard/sign-out')
 									
-								}	
+			// // 					}	
 						
-						}
-					);
+			// // 			}
+			// // 		);
 
-			}.bind(this)
+			// }.bind(this)
 
-			let a : any = document.getElementById("foto_tabungan")
-			let x : any = document.getElementById("foto_identitas")
-			let y : any = document.getElementById("foto_npwp")
-			let z : any = document.getElementById("foto_diri")
+			// let a : any = document.getElementById("foto_tabungan")
+			// let x : any = document.getElementById("foto_identitas")
+			// let y : any = document.getElementById("foto_npwp")
+			// let z : any = document.getElementById("foto_diri")
 			
-			var file_a =	a.files[0]
-			var file_x =	x.files[0]
-			var file_y =	y.files[0]
-			var file_z =	z.files[0]
+			// var file_a =	a.files[0]
+			// var file_x =	x.files[0]
+			// var file_y =	y.files[0]
+			// var file_z =	z.files[0]
 
-			var encode_a  = readerFileA.readAsDataURL(file_a)
-			var encode_x  = readerFileX.readAsDataURL(file_x)
-			var encode_y  = readerFileY.readAsDataURL(file_y)
-			var encode_z  = readerFileZ.readAsDataURL(file_z)
+			// var encode_a  = readerFileA.readAsDataURL(file_a)
+			// var encode_x  = readerFileX.readAsDataURL(file_x)
+			// var encode_y  = readerFileY.readAsDataURL(file_y)
+			// var encode_z  = readerFileZ.readAsDataURL(file_z)
 
-			this.data.foto_tabungan		= encode_a
-			this.data.foto_identitas	= encode_x
-			this.data.foto_npwp 		= encode_y
-			this.data.foto_diri			= encode_z
+			// this.data.foto_tabungan		= encode_a
+			// this.data.foto_identitas	= encode_x
+			// this.data.foto_npwp 		= encode_y
+			// this.data.foto_diri			= encode_z
 			
 		}
 		else{
