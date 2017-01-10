@@ -15,7 +15,7 @@
             <div class="box-body">
               <div class="clearfix white-bg detail-page">
               <!-- <div class="pull-left right" *ngIf="is_complete == 1"> -->
-              <div>
+              <div class="pull-right">
                    <button class="" (click)="edit()">Edit</button>
               </div>
                 <div class="col-md-4">
@@ -33,7 +33,7 @@
                     <label class="unit">Nama Lengkap</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Nama Lengkap" class="with-unit form-control input-md" value="{{ profile.name }}">
+                      <input type="text" placeholder="Nama Lengkap" class="with-unit form-control input-md" value="{{ profile.name }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -41,7 +41,7 @@
                     <label class="unit">Email Address</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" value="{{ profile.email }}" class="with-unit form-control input-md" placeholder="Address Email">
+                      <input type="text" value="{{ profile.email }}" class="with-unit form-control input-md" placeholder="Address Email" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -49,9 +49,9 @@
                     <label class="unit">Status Perkawinan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" *ngIf="complement_data.status_perkawinan == 0" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="">
-                      <input type="text" *ngIf="complement_data.status_perkawinan == 1" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Menikah">
-                      <input type="text" *ngIf="complement_data.status_perkawinan == 2" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Belum Menikah">
+                      <input type="text" *ngIf="complement_data.status_perkawinan == 0" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="" disabled>
+                      <input type="text" *ngIf="complement_data.status_perkawinan == 1" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Menikah" disabled>
+                      <input type="text" *ngIf="complement_data.status_perkawinan == 2" placeholder="Status Perkawinan" class="with-unit form-control input-md" value="Belum Menikah" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -59,9 +59,9 @@
                     <label class="unit">Sumber Pendapatan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" *ngIf="complement_data.sumber_pendapatan == null" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="">
-                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 1" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Kerja">
-                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 2" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Usaha">
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == null" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="" disabled>
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 1" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Kerja" disabled>
+                      <input type="text" *ngIf="complement_data.sumber_pendapatan == 2" placeholder="Sumber Pendapatan" class="with-unit form-control input-md" value="Usaha" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -69,15 +69,7 @@
                     <label class="unit">No Handphone</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="No Handphone" class="with-unit form-control input-md" value="{{ profile.phone_number }}">
-                  </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Telepon Perusahaan</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Telepon Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.tlp_perusahaan }}">
+                      <input type="text" placeholder="No Handphone" class="with-unit form-control input-md" value="{{ profile.phone_number }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -85,7 +77,7 @@
                     <label class="unit">No Rekening</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="No Rekening" class="with-unit form-control input-md" value="{{ complement_data.no_rekening }}">
+                      <input type="text" placeholder="No Rekening" class="with-unit form-control input-md" value="{{ complement_data.no_rekening }}" disabled>
                   </div>
                 </div>
                 </div>
@@ -104,7 +96,7 @@
                     <label class="unit">Jumlah Anak</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Jumlah Anak" class="with-unit form-control input-md" value="{{ complement_data.jumlah_anak }}">
+                      <input type="text" placeholder="Jumlah Anak" class="with-unit form-control input-md" value="{{ complement_data.jumlah_anak }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -112,7 +104,7 @@
                     <label class="unit">Jumlah Tanggungan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Jumlah Tanggungan" class="with-unit form-control input-md" value="{{ complement_data.jumlah_tanggungan }}">
+                      <input type="text" placeholder="Jumlah Tanggungan" class="with-unit form-control input-md" value="{{ complement_data.jumlah_tanggungan }}" disabled>
                   </div>
                 </div>
                 </div>
@@ -131,7 +123,7 @@
                   <label class="unit">Nama Lengkap Keluarga</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" placeholder="Nama Lengkap Keluarga" class="with-unit form-control input-md" value="{{ complement_data.nama_lengkap_keluarga }}">
+                    <input type="text" placeholder="Nama Lengkap Keluarga" class="with-unit form-control input-md" value="{{ complement_data.nama_lengkap_keluarga }}" disabled>
                 </div>
                 </div>
                 <div class="form-group clearfix">
@@ -139,7 +131,7 @@
                     <label class="unit">Pekerjaan Kerabat</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Pekerjaan Kerabat" class="with-unit form-control input-md" value="{{ complement_data.pekerjaan_kerabat }}">
+                      <input type="text" placeholder="Pekerjaan Kerabat" class="with-unit form-control input-md" value="{{ complement_data.pekerjaan_kerabat }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -147,7 +139,7 @@
                     <label class="unit">Hubungan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Hubungan" class="with-unit form-control input-md" value="{{ complement_data.hubungan }}">
+                      <input type="text" placeholder="Hubungan" class="with-unit form-control input-md" value="{{ complement_data.hubungan }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -155,7 +147,7 @@
                     <label class="unit">No Telepon</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="No Telepon" class="with-unit form-control input-md" value="{{ complement_data.no_tlp }}">
+                      <input type="text" placeholder="No Telepon" class="with-unit form-control input-md" value="{{ complement_data.no_tlp }}" disabled>
                   </div>
                 </div>
                 </div>
@@ -170,36 +162,58 @@
                 </div>
                 <div class="form-group clearfix">
                   <div class="col-md-3">
-                    <label class="unit">Pekerjaan</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="pekerjaan" class="with-unit form-control input-md" value="{{ complement_data.pekerjaan }}">
-                  </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
                     <label class="unit">Nama Perusahaan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Nama Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.nama_perusahaan }}">
+                      <input type="text" placeholder="Nama Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.nama_perusahaan }}" name="nama_perusahaan" id="nama_perusahaan" disabled>
                   </div>
                 </div>
-                <div>
                 <div class="form-group clearfix">
                   <div class="col-md-3">
-                    <label class="unit">Gaji per bulan</label>
+                    <label class="unit">Mulai Bekerja</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Gaji per bulan" class="with-unit form-control input-md" value="{{ complement_data.gaji_per_bulan }}">
+                      <input type="text" placeholder="Mulai Bekerja" class="with-unit form-control input-md datepicker" value="{{ complement_data.mulai_bekerja }}" name="mulai_bekerja" id="mulai_bekerja" disabled>
                   </div>
-                </div>
                 </div>
                 <div class="form-group clearfix">
                   <div class="col-md-3">
                     <label class="unit">Jabatan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Jabatan" class="with-unit form-control input-md" value="{{ complement_data.jabatan }}">
+                      <input type="text" placeholder="Jabatan" class="with-unit form-control input-md" value="{{ complement_data.jabatan }}" name="jabatan" id="jabatan" disabled>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pekerjaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="pekerjaan" class="with-unit form-control input-md" value="{{ complement_data.pekerjaan }}" name="pekerjaan" id="pekerjaan" disabled>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Gaji per bulan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Gaji per bulan" class="with-unit form-control input-md" value="{{ complement_data.gaji_per_bulan }}" name="gaji_per_bulan" id="gaji_per_bulan" disabled>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">Pengeluaran per bulan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="Pengeluaran per bulan" class="with-unit form-control input-md" value="{{ complement_data.pengeluaran_per_bulan }}" name="pengeluaran_per_bulan" id="pengeluaran_per_bulan" disabled>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-3">
+                    <label class="unit">No Telp Perusahaan</label>
+                  </div>
+                  <div class="col-md-9">
+                      <input type="text" placeholder="No Telp Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.tlp_perusahaan }}" name="tlp_perusahaan" id="tlp_perusahaan" disabled>
                   </div>
                 </div>
                 </div>
@@ -217,7 +231,7 @@
                     <label class="unit">Nama Usaha</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Nama Usaha" class="with-unit form-control input-md" value="{{ complement_data.nama_usaha }}">
+                      <input type="text" placeholder="Nama Usaha" class="with-unit form-control input-md" value="{{ complement_data.nama_usaha }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -225,7 +239,7 @@
                     <label class="unit">Jenis Perusahaan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Jenis Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.jenis_perusahaan }}">
+                      <input type="text" placeholder="Jenis Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.jenis_perusahaan }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -233,7 +247,7 @@
                     <label class="unit">Pengeluaran per bulan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Pengeluaran per bulan" class="with-unit form-control input-md" value="{{ complement_data.pengeluaran_per_bulan }}">
+                      <input type="text" placeholder="Pengeluaran per bulan" class="with-unit form-control input-md" value="{{ complement_data.pengeluaran_per_bulan }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -241,7 +255,7 @@
                     <label class="unit">Tahun Perusahaan Berdiri</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Tahun Perusahaan Berdiri" class="with-unit form-control input-md" value="{{ complement_data.tahun_perusahaan_berdiri }}">
+                      <input type="text" placeholder="Tahun Perusahaan Berdiri" class="with-unit form-control input-md" value="{{ complement_data.tahun_perusahaan_berdiri }}" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -249,71 +263,11 @@
                     <label class="unit">Pendapatan Bersih Perusahaan</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Pendapatan Bersih Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_bersih_perusahaan }}">
+                      <input type="text" placeholder="Pendapatan Bersih Perusahaan" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_bersih_perusahaan }}" disabled>
                   </div>
                 </div>
                 </div>
                 <!-- End -->
-
-                <!-- Pendapatan Lain -->
-                <!-- <div *ngIf="complement_data.pendapatan_lain_1 != 0">
-                <div class="form-group clearfix">
-                  <div class="box-header">
-                    <h2 class="box-title pull-left">Pendapatan Lain</h2>
-                  </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Pendapatan Lain 1</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_lain_1 }}">
-                  </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Sumber Pendapatan Lain 1</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}">
-                  </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Jumlah Pendapatan Lain 1</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}">
-                  </div>
-                </div>
-                <div *ngIf="complement_data.pendapatan_lain_2 != 0">
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Pendapatan Lain 2</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.pendapatan_lain_2 }}">
-                  </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Sumber Pendapatan Lain 2</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}">
-                  </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Jumlah Pendapatan Lain 2</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}">
-                  </div>
-                </div>
-                </div>
-                </div> -->
-
                 <!-- Pendapatan lain 1 -->
                 <div *ngIf="complement_data.pendapatan_lain_1 == 1">
                  <div class="form-group clearfix">
@@ -326,7 +280,7 @@
                     <label class="unit">Sumber Pendapatan Lain</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1">
+                      <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -334,7 +288,7 @@
                     <label class="unit">Jumlah Pendapatan Lain</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}"  name="jumlah_pendapatan_lain_1" id="jumlah_pendapatan_lain_1">
+                      <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}"  name="jumlah_pendapatan_lain_1" id="jumlah_pendapatan_lain_1" disabled>
                   </div>
                 </div>
                 <!-- end -->
@@ -351,7 +305,7 @@
                     <label class="unit">Sumber Pendapatan Lainnya</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2">
+                      <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2" disabled>
                   </div>
                 </div>
                 <div class="form-group clearfix">
@@ -359,7 +313,7 @@
                     <label class="unit">Jumlah Pendapatan Lainnya</label>
                   </div>
                   <div class="col-md-9">
-                      <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2">
+                      <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2" disabled>
                   </div>
                 </div>
                 </div>
