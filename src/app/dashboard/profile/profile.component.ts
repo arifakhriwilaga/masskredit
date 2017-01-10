@@ -110,6 +110,7 @@ export class ProfileComponent {
 	public complement_data = { };
 	public profile 		   = { };
 	public is_complete		= { };
+
 	getProfile() {
 		console.log("Sedang mengambil data....")
 		let headers = new Headers({ 
@@ -128,6 +129,7 @@ export class ProfileComponent {
 						this.profile			= response.data.profile;
 						this.sumber_pendapatan 	= response.data.profile.complement_user.sumber_pendapatan;
 						this.is_complete 		= response.data.profile.is_complete;
+						console.log(response)
 						// this.data.alamat_email 	= response.data.profile.email;
 
 					
