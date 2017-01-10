@@ -12,10 +12,10 @@ declare var jQuery:any;
 export class SupportComponent { 
 
 	constructor(private edit:EditComponent) {
-	// initial objek in complement data
-	this.data = this.edit.data;
-	this.profile = this.edit.profile;
-	this.complement_data = this.complement_data;
+		// initial objek in complement data
+		this.data = this.edit.data;
+		this.profile = this.edit.profile;
+		this.complement_data = this.complement_data;
 	}
 
 	ngOnInit(){
