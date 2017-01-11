@@ -12,20 +12,12 @@ declare var jQuery:any;
 export class PersonalFamilyComponent { 
 
 	constructor(private edit:EditComponent) {
-	// initial objek in complement data
-	this.data = this.edit.data;
-	this.profile = this.edit.profile;
-	this.complement_data = this.complement_data;
+		// initial objek in complement data
+		this.data = this.edit.data;
+		this.profile = this.edit.profile;
+		// this.complement_data = this.edit.complement_data;
 	}
 
-	ngOnInit(){
-		jQuery('.datepicker').datepicker({
-	      format	: 'yyyy-mm-dd',
-	      // startDate : '2015-01-01',
-	      // minDate	: '01/01/2015'
-
-	    });
-	}
 	public complement_data = { };
 	public data = { }
 	public profile = { };
