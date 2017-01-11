@@ -11,7 +11,7 @@
          <div class="form-login-register">
            <form class="form-horizontal clearfix row" name="complementForm" id="complementForm">
               <div class="col-md-6">
-              	<!-- Family Data  -->
+              	<!-- Data Family  -->
               	<label>Data Keluarga</label>
                 <div class="form-group">
                      <div class="col-md-12">
@@ -23,23 +23,10 @@
                        </select>
                      </div>
                 </div>
-                <div *ngIf="statusMarried == 1">
-                <div class="form-group">
-                 <div class="col-md-12">
-                 <span class="required">*</span>
-                   <input type="text" placeholder="Jumlah Anak" class="form-control input-md" name="jumlah_anak" id="jumlah_anak" [(ngModel)]="data.jumlah_anak">
-                 </div>
-               	</div>
-               	<!-- <div class="form-group">
-                 <div class="col-md-12">
-                  <span class="required">*</span>
-                   <input type="text" placeholder="Tanggungan per anak" class="form-control input-md" name="jumlah_tanggungan" id="jumlah_tanggungan" [(ngModel)]="data.jumlah_tanggungan" value="0">
-                 </div>
-               	</div> -->
-                </div>
-               	<!-- end Family  -->
+                <!-- component if merried -->
+                <personal-family *ngIf="statusMarried == 1"></personal-family> 
 
-               	<!-- Work data -->
+               	<!-- Data Work -->
                	<label>Data Pekerjaan</label>
                  <div class="form-group">
                      <div class="col-md-12">
@@ -51,36 +38,22 @@
                        </select>
                      </div>
                  </div>
-               <!--  -->
-                <jobs *ngIf="sumberPendapatan == 1"></jobs>
+                 <!-- component if work -->
+                <job *ngIf="sumberPendapatan == 1"></job>
+                <!-- component if business -->
                 <business *ngIf="sumberPendapatan == 2"></business>
                	
-               	<!-- end work data -->
-
                 <!-- Data Angsuran -->
                 <label>Data Angsuran</label>
-                <div id='TextBoxesGroup'>
-                  <div id="TextBoxDiv">
-                    <!-- <label>Angsuran 1</label> -->
-                   <!--  <input type="text" placeholder="Jumlah Angsuran" class="form-control input-md" name="textbox1" id="textbox1" value="">
-                    <input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md" name="textbox2" id="textbox2" value=""> -->
-                    <!-- <div class="form-group">
-                     <div class="col-md-12">
-                      </div>
-                    </div> -->
-                  </div>
-                </div>
-                <input type='button' value='Tambah' id='addButton'>
-                <input type='button' value='Hapus' id='removeButton'>
-                <br><br><br>
-                <!-- End -->
+                <installment></installment> <!-- component installment data -->
+
                	<!-- Contact darurat kerabat -->
                	<label>Data Kerabat yang tidak serumah</label>
-               	<family></family>
-                
-               </div>
+               	<family></family> <!-- component family -->
+
+               </div> <!-- end input field in left side -->
                
-               <div class="col-md-6">
+               <div class="col-md-6"> <!-- input field in right side -->
                 <fieldset>
                 <!-- Data pendapatan lain 1 -->
                	<label>Data Pendapatan Lain</label>
@@ -94,63 +67,38 @@
                    </select>
                  </div>
                 </div>
+                <!-- component if have other-income-one -->
                 <div *ngIf="pendapatanLainFirst == 1">
+                <other-income-one></other-income-one>
+                <br>
                 <div class="form-group">
                  <div class="col-md-12">
-                 <span class="required">*</span>
-                   <input type="text" placeholder="Sumber Pendapatan" class="form-control input-md" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1">
-                 </div>
-               	</div>
-               	<div class="form-group">
-                 <div class="col-md-12">
-                 <span class="required">*</span>
-                   <input type="text" placeholder="Jumlah Pendapatan" class="form-control input-md" name="jumlah_pendapatan_lain" id="jumlah_pendapatan_lain_1" [(ngModel)]="data.jumlah_pendapatan_lain_1">
-                 </div>
-               	</div>
-                <!-- end -->
-
-                  <!-- Data pendapatan 2 -->
-                  <label>Data Pendapatan Lain 2</label>
-                  <div class="form-group">
-                   <div class="col-md-12">
-                     <span class="required">*</span>
-                      <select class="form-control input-md" name="pendapatanLainSecond" id="type" (change)="getPendapatanLainSecond($event.target.value)">
-                        <option value="0" disabled>Pendapatan lain</option>
-                        <option [value]="1">Ya</option>
-                        <option [value]="2">Tidak</option>
-                     </select>
-                   </div>
+                   <span class="required">*</span> 
+                   <select class="form-control input-md" name="pendapatanLainSecond" id="pendapatanLainSecond" (change)="getPendapatanLainSecond($event.target.value)" [(ngModel)]="data.pendapatan_lain_2">
+                      <option value="0" disabled>Pendapatan lain</option>
+                      <option [value]="1">Ya</option>
+                      <option [value]="2">Tidak</option>
+                   </select>
                   </div>
-                  <div *ngIf="pendapatanLainSecond == 1">
-                  <div class="form-group">
-                   <div class="col-md-12">
-                 <span class="required">*</span>
-                     <input type="text" placeholder="Sumber Dana" class="form-control input-md" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2" [(ngModel)]="data.sumber_pendapatan_lain_2">
-                   </div>
-                  </div>
-                  <div class="form-group">
-                   <div class="col-md-12">
-                 <span class="required">*</span>
-                     <input type="text" placeholder="Jumlah Pendapatan" class="form-control input-md" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2" [(ngModel)]="data.jumlah_pendapatan_lain_2">
-                   </div>
-                  </div>
-                  </div>
-                <!-- end -->
                 </div>
+                <!-- component if have other-income-two, and option for other-income-two yet in other-income-one -->
+                <other-income-two *ngIf="pendapatanLainSecond == 1"></other-income-two> 
+                </div> 
+                <br>
                	<!-- Attach document -->
                	<label>Data Penunjang</label>
-                <support></support>
-                  <!-- end -->
+                <support></support> <!-- component support data -->
+
                  <br>
                  <!-- Data Bank -->
                 <label>Data Bank</label>
-                <bank></bank>
+                <bank></bank> <!-- component bank data -->
                  </fieldset>
-               </div>
+               </div> <!-- end input field in right side -->
                <div class="col-md-12">
                  <div class="form-group">
                     <div class="col-md-6 col-center">
-                      <a href="#/dashboard/investasi" class="btn btn-default">Batal</a>
+                      <a href="#/dashboard" class="btn btn-default">Batal</a>
                       <button class="btn btn-red" (click)="submitData(data)">Simpan</button>
                     </div>
                  </div>
