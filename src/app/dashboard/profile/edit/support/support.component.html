@@ -1,27 +1,23 @@
-<div class="form-group">
-<div class="col-md-12">
- <span class="required">*</span>
- <label>Foto Identitas</label>
- <!-- <div class="input-group"> -->
- 	<input type="file" name="foto_identitas" id="foto_identitas">
- <!-- </div> -->
+<div class="form-group clearfix">
+  <div class="box-header">
+    <h2 class="box-title pull-left">Data Penunjang</h2>
+  </div>
 </div>
-</div>   
-<div class="form-group">
-<div class="col-md-12">
- <!-- <div class="input-group"> -->
- <span class="required">*</span>
- <label>Foto NPWP</label>
-  <input type="file" name="foto_npwp" id="foto_npwp">
- <!-- </div> -->
+<div class="col-xs-12">
+  <div class="col-xs-4">
+    <label class="unit">Foto NPWP</label>
+      <img src="{{ complement_data.foto_npwp }}" alt="Photo NPWP" class="thumbnail" width="250px" height="250px">
+      <!-- <input type="file" name="foto_npwp" id="foto_npwp"> -->
+  </div>
+  <div class="col-xs-4">
+    <label class="unit">Foto Tabungan</label>
+      <img src="{{ complement_data.foto_tabungan }}" alt="Photo Tabungan" class="thumbnail" width="250px" height="250px">
+      <!-- <input type="file" name="foto_tabungan" id="foto_tabungan"> -->
+  </div>
+  <div class="col-xs-4">
+    <label class="unit">Foto Identitas</label>
+      <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
+      <!-- <input type="file" name="foto_identitas" id="foto_identitas"> -->
+  </div>
 </div>
-</div>
-<div class="form-group">
-<div class="col-md-12">
- <!-- <div class="input-group"> -->
- <span class="required">*</span>
- <label>Foto Diri</label>
-  <input type="file" name="foto_diri" id="foto_diri">
- <!-- </div> -->
-</div>
-</div>
+<br><br>
