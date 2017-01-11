@@ -34,9 +34,8 @@ export class PersonalComponent {
 	getStatusMarried(id){
 		this.statusMarried = id;
 		if(id == 2) {
-			// this.data.status_perkawinan = 0;
-			// this.data.jumlah_anak		= 0;
-			// this.data.jumlah_tanggungan = 0;
+			this.edit.data.status_perkawinan = id;
+			this.edit.data.jumlah_anak		= 0;
 		}
 		if(id == 1) {
 			// this.data.status_perkawinan = null;
@@ -52,50 +51,15 @@ export class PersonalComponent {
 		if(id == 2) {
 			console.log(id)
 			this.edit.data.gaji_per_bulan = 0;
-			// this.data.pendapatan_bersih_perusahaan = null;
 			this.edit.data.sumber_pendapatan = 2;
 			this.edit.sumber_pendapatan = 2
-
-			// objek pekerjaan
-			// this.data.nama_usaha 	  				= "",
-			// this.data.tahun_perusahaan_berdiri 		= 0,
-			// this.data.jenis_perusahaan 		  		= "",
-			// this.data.pendapatan_bersih_perusahaan	= 0,
-
-			// this.data.pengeluaran_per_bulan 		= 0,
-			// this.data.tlp_perusahaan				= 0,
-
-
 			
 		}
 		if(id == 1) {
 			console.log(id)
-			// this.data.gaji_per_bulan = null;
 			this.edit.data.pendapatan_bersih_perusahaan = 0;
 			this.edit.data.sumber_pendapatan = 1;
 			this.edit.sumber_pendapatan = 1
-			// this.data.nama_perusahaan 	= "",
-			// this.data.lama_bekerja 	  	= "",
-			// this.data.jabatan  	 		= "",
-			// this.data.pekerjaan  	 	= "",
-			// this.data.gaji_per_bulan 	= 0,
-			
 		}
 	}
-	// public data = {
-
-	// 	// objek pekerjaan
-	// 	nama_perusahaan 	  : '',
-	// 	mulai_bekerja 	  	  : '',
-	// 	jabatan  	 		  : '',
-	// 	pekerjaan  	 		  : '',
-	// 	gaji_per_bulan 		  : 0,
-	// 	pengeluaran_per_bulan : '',
-	// 	tlp_perusahaan		  : ''
-		
-		
-
-	// 		// counter++;
-	// }
-
 }
