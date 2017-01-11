@@ -7,7 +7,7 @@ import { LocalStorageService }   from 'angular-2-local-storage';
 import { CommonModule }            from '@angular/common';
 
 // Component for view
-import { JobComponent }     from './job';
+import { WorkComponent }     from './work';
 import { BusinessComponent } from './business';
 import { FamilyComponent }   from './family';
 
@@ -15,6 +15,8 @@ import { SupportComponent }  from './support';
 import { BankComponent }     from './bank';
 import { PersonalComponent } from './personal';
 import { PersonalFamilyComponent } from './personal_family';
+import { OtherIncomeOneComponent } from './other_income_one';
+import { OtherIncomeTwoComponent } from './other_income_two';
 
 
 // debugger;
@@ -28,13 +30,16 @@ export const routes = [
 @NgModule({
   declarations: [
     EditComponent, // declarations LoginComponent
-    JobComponent,
+    WorkComponent,
     BusinessComponent,
     FamilyComponent,
-    // SupportComponent, 
-    // BankComponent,
+    SupportComponent, 
+    BankComponent,
     PersonalComponent,
-    PersonalFamilyComponent
+    PersonalFamilyComponent,
+    OtherIncomeOneComponent,
+    OtherIncomeTwoComponent
+ 
   ],
   imports: [ // import Angular's modules
     CommonModule,
