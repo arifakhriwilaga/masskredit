@@ -31,8 +31,8 @@ import { SignOutComponent }       from './sign-out';
 // import { CreateLoanComponent }    from './pinjaman/create/create.component';
 
 // Completement USer
-import { ComplementComponent }     from './complement_user';
-import { JobsComponent }     from './complement_user/jobs_data';
+// import { ComplementComponent }     from './complement_user';
+import { JobComponent }     from './complement_user/job';
 import { BusinessComponent }     from './complement_user/business';
 
 // Fund Component
@@ -59,9 +59,10 @@ export const routes = [
     children: [
       { path: '', component: ContentComponent },
       // { path: 'content',       },
-      { path: 'profile', loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
-      { path: 'fund', loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
-      { path: 'complement-user',       component: ComplementComponent}, 
+      { path: 'profile',         loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
+      { path: 'fund',            loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
+      { path: 'complement-user', loadChildren: () => System.import('./complement_user').then((comp: any) => comp.default) },
+      // { path: 'complement-user',       component: ComplementComponent}, 
       // { path: 'fund',       component: FundComponent},
       { path: 'sign-out',       component: SignOutComponent}, 
       // { path: 'investasi',    component: InvestasiComponent } ,
@@ -106,9 +107,6 @@ export const routes = [
     SidebarComponent,
     ContentComponent,
     SignOutComponent, 
-    ComplementComponent,
-    JobsComponent,
-    BusinessComponent,
     // FundComponent,
     // TambahDanaComponent,
     // PenarikanDanaComponent,
