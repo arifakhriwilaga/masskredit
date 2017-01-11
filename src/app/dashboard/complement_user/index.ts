@@ -1,42 +1,61 @@
-export * from './complement.component';
-
-// Auth Guard Dashboard
-// import { AuthGuard }   from './../../authguard/auth-guard.service';
-
 // Module
-// import { CommonModule } 	   		from '@angular/common';
-// import { FormsModule }         		from '@angular/forms';
-// import { NgModule }            		from '@angular/core';
-// import { RouterModule }        		from '@angular/router';
+import { BrowserModule }                                       from '@angular/platform-browser';
+import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA }    from '@angular/core';
+import { RouterModule, Routes, ActivatedRoute }                from '@angular/router';
+import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { HttpModule }                                          from '@angular/http';
+import { FormsModule, ReactiveFormsModule, FormBuilder }       from '@angular/forms';
+import { CommonModule  }                                       from '@angular/common';
 
-// Investasi Service
-// import { InvestasiService }   		from './investasi.service';
 
 // Component
-// import { InvestasiComponent }   	from './investasi.component';
+import { ComplementComponent }      from './complement.component';
+import { JobComponent }     	      from './job';
+import { BusinessComponent }        from './business';
+import { PersonalFamilyComponent }  from './personal_family';
+import { FamilyComponent }          from './family';
+import { SupportComponent }         from './support';
+import { BankComponent }            from './bank';
+import { InstallmentComponent }     from './installment';
+import { OtherIncomeOneComponent }  from './other_income_one';
+import { OtherIncomeTwoComponent }  from './other_income_two';
+// import { IndexComponent }        from './index/index.component';
 
-// Routes Investasi
-// export const routes = [
-
-//    { path: '',         	  redirectTo: 'investasi' },
-//     { path: 'investasicontent',    	component: InvestasiComponent },
-// ];
-
- // `AppModule` is the main entry point into Angular2's bootstraping process
-// @NgModule({
-//   declarations: [
-//     InvestasiComponent,
-//   ],
-  // imports: [ // import Angular's modules
-//   	CommonModule,
-//     FormsModule,
-//   ],
-//   providers: [InvestasiService]
-// })	
+export const routes = [
+  { path: '', component: ComplementComponent}     
+];
 
 
-// export default class InvestasiModule {
-// 	static routes = routes;
-// }
+@NgModule({
+  declarations: [
+    ComplementComponent, // declarations LoginComponent
+    JobComponent,
+    BusinessComponent,
+    PersonalFamilyComponent,
+    FamilyComponent,
+    SupportComponent,
+    BankComponent,
+    InstallmentComponent,
+    OtherIncomeOneComponent,
+    OtherIncomeTwoComponent
+    // IndexComponent
+  ],
+  imports: [ // import Angular's modules
+    HttpModule,
+    FormsModule,
+    CommonModule,
+    RouterModule.forChild(routes)
+  ],
+  providers: [ // expose our Services and Providers into Angular's dependency injection
+      // 
+  ]
+})
+
+export default class ComplementModule { 
+  static routes = routes;
+}
+
+// export * from './fund.component'; 
+
 
 
