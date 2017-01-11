@@ -1,5 +1,5 @@
 import { Component, OnInit } 	from '@angular/core';
-import { ComplementComponent }	from './../index';
+import { ComplementComponent }	from './../complement.component';
 
 declare var jQuery:any;
 
