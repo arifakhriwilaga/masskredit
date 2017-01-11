@@ -1,8 +1,5 @@
-
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -11,40 +8,33 @@
             <div class="box-header">
               <h2 class="box-title pull-left">Edit Profile</h2>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
               <div class="clearfix white-bg detail-page">
                   <div class="box-img-detail">
-                      <label>Foto Diri</label>
-                      <input type="file" name="foto_diri" id="foto_diri">
+                    <input type="file" name="foto_diri" id="foto_diri">
                     <img src="{{ profile.profile_image }}" alt="Photo Profile" class="thumbnail" width="500%" height="500%">
                   </div>
                 <div class="row">
-                <!-- Data Pribadi -->
+                <!-- personal data -->
                 <personal></personal>
                 </div>
 
-
-                <!-- Data Keluarga -->
-                <personal-family></personal-family>
-                <!-- </div> -->
-                <!-- End -->
+                <!-- personal-family data -->
+                <personal-family *ngIf="statusMarried == 1 || data.status_perkawinan == 1"></personal-family>
                 
-
-                <!-- Data Keluarga -->
+                <!-- family data -->
                 <family></family>
-                <!-- End -->
 
-                <!-- Data Pekerjaan -->
-                <job></job>
-                <!-- End -->
+                <!-- job data -->
+                <!-- component if sumber_pendapatan  == work --> 
+                <work *ngIf="sumber_pendapatan == 1 || data.sumber_pendapatan == 1"></work>
 
-                <!-- Data Usaha -->
-                <business></business>
-                <!-- End -->
+                <!-- business data -->
+                <!-- component if sumber_pendapatan  == business -->
+                <business *ngIf="sumber_pendapatan == 2 || data.sumber_pendapatan == 2"></business>
 
-                <!-- Pendapatan Lain -->
-                <!-- Data pendapatan lain 1 -->
+                <!-- other-income-one data -->
+                <div>
                 <div class="form-group clearfix">
                   <div class="box-header">
                     <h2 class="box-title pull-left">Data Pendapatan Lain</h2>
@@ -59,64 +49,16 @@
                  </div>
                 </div>
                 </div>
-                <!-- <div class="col-xs-12">
-                <br>
-                </div> -->
-                <!-- Pendapatan lain 1 -->
-                <div *ngIf="pendapatanLainFirst == 1">
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Sumber Pendapatan Lain</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}" [(ngModel)]="data.sumber_pendapatan_lain_1" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1">
-                  </div>
-                </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Jumlah Pendapatan Lain</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}" [(ngModel)]="data.jumlah_pendapatan_lain_1" name="jumlah_pendapatan_lain_1" id="jumlah_pendapatan_lain_1">
-                  </div>
-                </div>
-                <!-- end -->
-                <!-- Pendapatan lain 2 -->
+
+                <!-- component other-income-one and component if has other-income-one -->
+                <!-- component if has other-income-one -->
+                <other-income-one *ngIf="pendapatanLainFirst == 1"></other-income-one>
+
                 <br><br>
-                  <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Pendapatan Lainnya :</label>
-                  </div>
-                  <div class="form-group">
-                   <div class="col-md-12">
-                    <select class="form-control input-md" name="pendapatanLainSecond" id="type" (change)="getPendapatanLainSecond($event.target.value)" [(ngModel)]="data.pendapatan_lain_2">
-                        <option value="0" disabled>Pendapatan lain</option>
-                        <option [value]="1">Ya</option>
-                        <option [value]="2">Tidak</option>
-                    </select>
-                    </div>
-                    </div>
-                  </div>
-                </div> <!-- end pendapatan lain 1 -->
-                <div *ngIf="pendapatanLainSecond == 1">
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Sumber Pendapatan Lainnya</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}" [(ngModel)]="data.sumber_pendapatan_lain_2" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2">
-                  </div>
+
+                <!-- component other-income-two, is component will show if has other-income-two and this function yet in other-income-one -->
+                <other-income-two *ngIf="pendapatanLainSecond == 1"></other-income-two>
                 </div>
-                <div class="form-group clearfix">
-                  <div class="col-md-3">
-                    <label class="unit">Jumlah Pendapatan Lainnya</label>
-                  </div>
-                  <div class="col-md-9">
-                      <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}" [(ngModel)]="data.jumlah_pendapatan_lain_2" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2">
-                  </div>
-                </div>
-                </div>
-                <!-- End -->
                 <!-- Data Penunjang -->
                 <div class="form-group clearfix">
                   <div class="box-header">
@@ -140,9 +82,8 @@
                       <!-- <input type="file" name="foto_identitas" id="foto_identitas"> -->
                   </div>
                 </div>
-                <br><br>
-                <!-- end -->
-                    <!-- Button -->
+                <!-- <support></support> -->
+
                 <div class="col-md-12">
                     <div class="form-group">
                        <div class="col-md-6 col-center">
@@ -151,10 +92,10 @@
                        </div>
                     </div>
                 </div>
-                </div>
-                </div>
-                </div> <!-- end box edit -->
               </div>
             </div>
-    </section>
-    </div>
+          </div>
+        </div> <!-- end box edit -->
+      </div>
+  </section>
+</div>
