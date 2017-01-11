@@ -24,14 +24,13 @@ export class EditComponent implements OnInit {
 			var file_z =	z.files[0];
         this.fileReader.readAsDataURL(file_z);
     }
+
 	// Default Objek
 	private image:void;
 	private number:number;
 
 	// Objek Request
 	public data = {
-
-
 		access_token		: null,
 		// objek data diri
 		nama_lengkap		: null,
@@ -45,10 +44,9 @@ export class EditComponent implements OnInit {
 
 	  	sumber_pendapatan	: 0,
 	  	
-
 		// objek pekerjaan
 		nama_perusahaan 	  : null,
-		lama_bekerja 	  	  : null,
+		mulai_bekerja 	  	  : null,
 		jabatan  	 		  : null,
 		pekerjaan  	 		  : null,
 		gaji_per_bulan 		  : this.number,
@@ -85,15 +83,8 @@ export class EditComponent implements OnInit {
 
 		// objek data bank
 		foto_tabungan		: null,
-		no_rekening			: ''
+		no_rekening			: null
 	}
-
-	// public copy_data = {
-	// 	copy_foto_identitas : null,
-	// 	copy_foto_npwp : null,
-	// 	copy_foto_identitas : null,
-	// }
-
 
 	ngOnInit(){
 		// this.fileReader.onload = function(event, varty) {
@@ -145,8 +136,6 @@ export class EditComponent implements OnInit {
 			// jQuery('#sumber_pendapatan_lain_2').mask('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM');
 			jQuery('#jumlah_pendapatan_lain_2').mask('000000000000');
 			jQuery('#no_rekening').mask('000000000000000');
-
-			
 		});
 	}
 
@@ -173,62 +162,59 @@ export class EditComponent implements OnInit {
 					  	let pendapatan_lain_2 = response.data.profile.complement_user.pendapatan_lain_2; 
 					  	if(pendapatan_lain_1 == null) {
 						  	this.data.pendapatan_lain_1	= 2
+						  	this.data.pendapatan_lain_2	= 2
 					  			
 					  	}
-
-					  	else if(pendapatan_lain_2 == null){
-					  		this.data.pendapatan_lain_2	= 2
-					  	}
-						// for message
-						this.profile	= response.data.profile;
+						// entry data to object, before edit profile
+						this.profile			= response.data.profile;
 						this.complement_data	= response.data.profile.complement_user;
 						this.sumber_pendapatan 	= response.data.profile.complement_user.sumber_pendapatan;
 						this.data.nama_lengkap 	= response.data.profile.name;
 						this.data.alamat_email 	= response.data.profile.email;						
 
-						this.data.phone_number		= response.data.profile.phone_number,
+						this.data.phone_number	= response.data.profile.phone_number;
 
-						// objek keluarga
-						this.data.status_perkawinan	= response.data.profile.complement_user.status_perkawinan,
-						this.data.jumlah_anak 	  	= response.data.profile.complement_user.jumlah_anak,
-						// this.data.jumlah_tanggungan 	= response.data.profile.jumlah_tanggungan,
+						// object keluarga
+						this.data.status_perkawinan	= response.data.profile.complement_user.status_perkawinan;
+						this.data.jumlah_anak 	  	= response.data.profile.complement_user.jumlah_anak;
 
-					  	this.data.sumber_pendapatan	= response.data.profile.complement_user.sumber_pendapatan,
+					  	this.data.sumber_pendapatan	= response.data.profile.complement_user.sumber_pendapatan;
 					  	
 
-						// objek pekerjaan
-						this.data.nama_perusahaan 	  = response.data.profile.complement_user.nama_perusahaan,
-						this.data.lama_bekerja 	  	  = response.data.profile.complement_user.lama_bekerja,
-						this.data.jabatan  	 		  =	response.data.profile.complement_user.jabatan,
-						this.data.pekerjaan  	 	= response.data.profile.complement_user.pekerjaan,
-						this.data.gaji_per_bulan 		  = response.data.profile.complement_user.gaji_per_bulan,
+						// object pekerjaan
+						this.data.nama_perusahaan 	  = response.data.profile.complement_user.nama_perusahaan;
+						this.data.mulai_bekerja 	  = response.data.profile.complement_user.mulai_bekerja;
+						this.data.jabatan  	 		  =	response.data.profile.complement_user.jabatan;
+						this.data.pekerjaan  	 	  = response.data.profile.complement_user.pekerjaan;
+						this.data.gaji_per_bulan 	  = response.data.profile.complement_user.gaji_per_bulan;
 						
 						this.data.nama_usaha 	  				= response.data.profile.complement_user.nama_usaha,
-						this.data.tahun_perusahaan_berdiri 	= response.data.profile.complement_user.tahun_perusahaan_berdiri,
-						this.data.jenis_perusahaan 		  	= response.data.profile.complement_user.jenis_perusahaan,
-						this.data.pendapatan_bersih_perusahaan = response.data.profile.complement_user.pendapatan_bersih_perusahaan ,
+						this.data.tahun_perusahaan_berdiri 		= response.data.profile.complement_user.tahun_perusahaan_berdiri;
+						this.data.jenis_perusahaan 		  		= response.data.profile.complement_user.jenis_perusahaan;
+						this.data.pendapatan_bersih_perusahaan	= response.data.profile.complement_user.pendapatan_bersih_perusahaan;
 
-						this.data.pengeluaran_per_bulan 	= response.data.profile.complement_user.pengeluaran_per_bulan,
-						this.data.tlp_perusahaan			= response.data.profile.complement_user.tlp_perusahaan,
+						this.data.pengeluaran_per_bulan 	= response.data.profile.complement_user.pengeluaran_per_bulan;
+						this.data.tlp_perusahaan			= response.data.profile.complement_user.tlp_perusahaan;
 
-						// objek kontak kerabat
-						this.data.nama_lengkap_keluarga 	= response.data.profile.complement_user.nama_lengkap_keluarga,
-						this.data.hubungan	 			= response.data.profile.complement_user.hubungan,
-						this.data.no_tlp	  				= response.data.profile.complement_user.no_tlp,
-						this.data.pekerjaan_kerabat 		= response.data.profile.complement_user.pekerjaan_kerabat,
+						// object kontak kerabat
+						this.data.nama_lengkap_keluarga 	= response.data.profile.complement_user.nama_lengkap_keluarga;
+						this.data.hubungan	 				= response.data.profile.complement_user.hubungan;
+						this.data.no_tlp	  				= response.data.profile.complement_user.no_tlp;
+						this.data.pekerjaan_kerabat 		= response.data.profile.complement_user.pekerjaan_kerabat;
 					  	
-					  	// objek pendapatan lain 1
-						this.pendapatanLainFirst 		= response.data.profile.complement_user.pendapatan_lain_1,
-						this.data.sumber_pendapatan_lain_1 	= response.data.profile.complement_user.sumber_pendapatan_lain_1,
-						this.data.jumlah_pendapatan_lain_1 	= response.data.profile.complement_user.jumlah_pendapatan_lain_1,
+					  	// object pendapatan lain 1
+						this.pendapatanLainFirst 			= response.data.profile.complement_user.pendapatan_lain_1;
+						this.data.sumber_pendapatan_lain_1 	= response.data.profile.complement_user.sumber_pendapatan_lain_1;
+						this.data.jumlah_pendapatan_lain_1 	= response.data.profile.complement_user.jumlah_pendapatan_lain_1;
 					  	
-					  	// objek pendapatan lain 2
-					  	// this.data.pendapatan_lain_2	= response.data.profile.complement_user.pendapatan_lain_2,
-						this.pendapatanLainSecond 		= response.data.profile.complement_user.pendapatan_lain_2,
-						
-						this.data.sumber_pendapatan_lain_2 	= response.data.profile.complement_user.sumber_pendapatan_lain_1,
+					  	// object pendapatan lain 2
+						this.data.sumber_pendapatan_lain_2 	= response.data.profile.complement_user.sumber_pendapatan_lain_1;
 						this.data.jumlah_pendapatan_lain_2 	= response.data.profile.complement_user.jumlah_pendapatan_lain_1;
 						
+						// object bank
+						this.data.no_rekening 	= response.data.profile.complement_user.no_rekening;
+						
+						// console.log(response.data.profile.complement_user.nama_perusahaa)
 						// this.data.foto_diri 	= response.data.profile.profile_image;
 						// alert("Data berhasil diambil")
 					
@@ -244,41 +230,40 @@ export class EditComponent implements OnInit {
 			              }  
 			        }
 				);
-		// return this.investasiservice.Index();
 	}
 
 	updateProfile(data){
 
-		// console.log(data);
 		if(this.data.sumber_pendapatan == 1) {
 			this.data.nama_usaha 	  				= "";
+			this.data.jenis_perusahaan  = "";
 			this.data.tahun_perusahaan_berdiri 		= "";
 			this.data.pendapatan_bersih_perusahaan 	= 0;
 
 		}
+
 		if(this.data.sumber_pendapatan == 2) {
 			this.data.nama_perusahaan 	= "";
-			this.data.lama_bekerja 	  	= "";
+			this.data.mulai_bekerja 	= "";
 			this.data.jabatan  	 		= "";
 			this.data.pekerjaan  	 	= "";
-			this.data.jenis_perusahaan  = "";
 			this.data.gaji_per_bulan 	= 0;
-			this.data.nama_usaha 	  				= "";
-			this.data.tahun_perusahaan_berdiri 		= "";
-			this.data.pendapatan_bersih_perusahaan 	= 0;
 
 		}
+
 		if(this.data.status_perkawinan == 2) {
-			this.data.status_perkawinan = 0;
 			this.data.jumlah_anak		= 0;
-			this.data.jumlah_tanggungan = 0;
 		}
 
-		if(this.data.sumber_pendapatan) {
-			this.data.status_perkawinan = null;
-			this.data.jumlah_anak		= null;
-			this.data.jumlah_tanggungan = null;
-		}
+		 // get value mulai_bekerja
+		let value_date = jQuery("#mulai_bekerja").val();
+		this.data.mulai_bekerja = value_date;
+
+		// if(this.data.sumber_pendapatan) {
+		// 	this.data.status_perkawinan = null;
+		// 	this.data.jumlah_anak		= null;
+		// 	this.data.jumlah_tanggungan = null;
+		// }
 					
 		this.data.access_token 	= this.acces_token;
 		// console.log(data)
@@ -343,32 +328,32 @@ export class EditComponent implements OnInit {
 
 			    let options = new RequestOptions({ headers: headers });
 
-				// this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
-				// 		.map(response => response.json())
-				// 		.subscribe(
-				// 			(response : any) => {
-				// 				// for message
-				// 				var kosong:null;
-				// 				var code 		= response.meta.code;
-				// 				var message 	= response.meta.message;
-				// 				if(code == 200) {
-				// 					alert("Profile berhasil diupate")
-				// 					return this.router.navigateByUrl('/dashboard/profile')
-				// 				}
-				// 				else{
-				// 					alert("Profile gagal diupdate")
-				// 				}
-				// 			},
-				// 			(err:any) => {
-				// 	            var error   = JSON.parse(err._body)
-				// 	            var message = error.meta.message
-				// 	              if(message == "unauthorized") {
-				// 	                alert("Maaf session anda telah habis silahkan login kembali")
-				// 	                return this.router.navigateByUrl('/dashboard/sign-out')
+				this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
+						.map(response => response.json())
+						.subscribe(
+							(response : any) => {
+								// for message
+								var kosong:null;
+								var code 		= response.meta.code;
+								var message 	= response.meta.message;
+								if(code == 200) {
+									alert("Profile berhasil diupate")
+									return this.router.navigateByUrl('/dashboard/profile')
+								}
+								else{
+									alert("Profile gagal diupdate")
+								}
+							},
+							(err:any) => {
+					            var error   = JSON.parse(err._body)
+					            var message = error.meta.message
+					              if(message == "unauthorized") {
+					                alert("Maaf session anda telah habis silahkan login kembali")
+					                return this.router.navigateByUrl('/dashboard/sign-out')
 					                
-				// 	              } 
-				// 	        }
-				// 		);
+					              } 
+					        }
+						);
 
 		}.bind(this)
 
@@ -402,16 +387,16 @@ export class EditComponent implements OnInit {
 			// var encode_a  = readerFileA.readAsDataURL(file_a);
 			// var encode_x  = readerFileX.readAsDataURL(file_x);
 			// var encode_y  = readerFileY.readAsDataURL(file_y);
-			// var encode_z  = readerFileZ.readAsDataURL(file_z);
-			var zz = btoa(file_z)
+			var encode_z  = readerFileZ.readAsDataURL(file_z);
+			// var zz = btoa(file_z)
 
 			// this.data.foto_tabungan		= encode_a;
 			// this.data.foto_identitas	= encode_x;
 			// this.data.foto_npwp 		= encode_y;
-			// this.data.foto_diri			= encode_z;
+			this.data.foto_diri			= encode_z;
 
-			this.data.foto_diri			= zz;
-			console.log(this.data)
+			// this.data.foto_diri			= zz;
+			// console.log(this.data)
 	}
 
 
@@ -434,22 +419,6 @@ export class EditComponent implements OnInit {
 	}
 
 
-	private pendapatanLainSecond:any;
-	getPendapatanLainSecond(id){
-		this.pendapatanLainSecond = id;
-	  	if(id == 2) {
-
-	  		// objek pendapatan lain 2
-			this.data.pendapatan_lain_2 = 0;
-			this.data.sumber_pendapatan_lain_2 	= '';
-			this.data.jumlah_pendapatan_lain_2 	= 0;
-		}
-		else{
-		  	console.log(id)
-			this.data.pendapatan_lain_2 = 1;
-		}
-	}
-
 	changeProfile(){
 		let headers = new Headers({ 
 		 	'Content-Type': 'application/json',
@@ -459,31 +428,31 @@ export class EditComponent implements OnInit {
 	 	let options = new RequestOptions({ headers: headers });
 
 		this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
-							.map(response => response.json())
-							.subscribe(
-								(response : any) => {
-									// for message
-									var kosong:null;
-									var code 		= response.meta.code;
-									var message 	= response.meta.message;
-									if(code == 200) {
-										alert("Profile berhasil diupate")
-										return this.router.navigateByUrl('/dashboard/profile')
-									}
-									else{
-										alert("Profile gagal diupdate")
-									}
-								},
-								(err:any) => {
-						            var error   = JSON.parse(err._body)
-						            var message = error.meta.message
-						              if(message == "unauthorized") {
-						                alert("Maaf session anda telah habis silahkan login kembali")
-						                return this.router.navigateByUrl('/dashboard/sign-out')
-						                
-						              } 
-						        }
-							);
+					.map(response => response.json())
+					.subscribe(
+						(response : any) => {
+							// for message
+							var kosong:null;
+							var code 		= response.meta.code;
+							var message 	= response.meta.message;
+							if(code == 200) {
+								alert("Profile berhasil diupate")
+								return this.router.navigateByUrl('/dashboard/profile')
+							}
+							else{
+								alert("Profile gagal diupdate")
+							}
+						},
+						(err:any) => {
+				            var error   = JSON.parse(err._body)
+				            var message = error.meta.message
+				              if(message == "unauthorized") {
+				                alert("Maaf session anda telah habis silahkan login kembali")
+				                return this.router.navigateByUrl('/dashboard/sign-out')
+				                
+				              } 
+				        }
+					);
 	}
 
 	cancelUpdateProfile(){
