@@ -410,6 +410,7 @@ export class ComplementComponent {
 					})
 			})
 			this.data.angsuran = angsuran;
+			
 			console.log(this.data); // end get angsuran
 			
 			let readerFileA = new FileReader();

@@ -1,4 +1,4 @@
-import { Component, OnInit } 	from '@angular/core';
+import { Component, OnInit, AfterContentInit, ElementRef } 	from '@angular/core';
 import { ComplementComponent }	from './../complement.component';
 
 declare var jQuery:any;
@@ -11,35 +11,25 @@ declare var jQuery:any;
 
 export class InstallmentComponent { 
 
-	constructor(private complement:ComplementComponent) {
-	// initial objek in complement data
-	this.data = this.complement.data;
+	constructor(private complement:ComplementComponent, private elementRef : ElementRef) {}
+
+	much(id:any){
 		
 	}
+
+	private node :any;
+	private node1 :any;
 
 	ngOnInit(){
-		jQuery('.datepicker').datepicker({
-	      format	: 'yyyy-mm-dd',
-	      // startDate : '2015-01-01',
-	      // minDate	: '01/01/2015'
+		const tmp = document.createElement("input");
+		const el = this.elementRef.nativeElement.cloneNode(true);
 
-	    });
+		tmp.appendChild(el);
+		this.node = tmp.innerHTML
 	}
-	public data = { }
-	// public data = {
 
-	// 	// objek pekerjaan
-	// 	nama_perusahaan 	  : '',
-	// 	mulai_bekerja 	  	  : '',
-	// 	jabatan  	 		  : '',
-	// 	pekerjaan  	 		  : '',
-	// 	gaji_per_bulan 		  : 0,
-	// 	pengeluaran_per_bulan : '',
-	// 	tlp_perusahaan		  : ''
-		
-		
-
-	// 		// counter++;
-	// }
-
+	more(){
+		let node_element = '<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md description-angsuran" name="textbox2" id="textbox2">';
+		this.node1 = document.createElement(node_element)
+	}
 }

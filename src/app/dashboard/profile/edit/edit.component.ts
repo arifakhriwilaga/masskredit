@@ -15,15 +15,15 @@ export class EditComponent implements OnInit {
 
 	constructor(private http: Http, private router : Router){ }
 
-	encodeFile(file : File) {
-		let z : any = document.getElementById("foto_diri");
+	// encodeFile(file : File) {
+	// 	let z : any = document.getElementById("foto_diri");
 			
-			// var file_a =	a.files[0];
-			// var file_x =	x.files[0];
-			// var file_y =	y.files[0];
-			var file_z =	z.files[0];
-        this.fileReader.readAsDataURL(file_z);
-    }
+	// 		var file_a =	a.files[0];
+	// 		var file_x =	x.files[0];
+	// 		var file_y =	y.files[0];
+	// 		var file_z =	z.files[0];
+ //        this.fileReader.readAsDataURL(file_z);
+ //    }
 
 	// Default Objek
 	private image:void;
@@ -77,14 +77,21 @@ export class EditComponent implements OnInit {
 		sumber_pendapatan_lain_2 	: null,
 		jumlah_pendapatan_lain_2 	: this.number,
 		// step4
-		foto_identitas		: null,
-		foto_npwp 		  	: null,
-		foto_diri	 	  	: null,
+		foto_identitas		: this.foto_identitas,
+		foto_npwp 		  	: this.foto_npwp,
+		foto_diri	 	  	: this.foto_diri,
 
 		// objek data bank
-		foto_tabungan		: null,
+		foto_tabungan		: this.foto_tabungan,
 		no_rekening			: null
 	}
+		public foto_identitas		= null;
+		public foto_npwp 		  	= null;
+		public foto_diri	 	  	= null;
+
+		// objek data bank
+		public foto_tabungan		= null;
+		public check_image = [];
 
 	ngOnInit(){
 		// this.fileReader.onload = function(event, varty) {
@@ -234,14 +241,6 @@ export class EditComponent implements OnInit {
 
 	updateProfile(data){
 
-		if(this.data.sumber_pendapatan == 1) {
-			this.data.nama_usaha 	  				= "";
-			this.data.jenis_perusahaan  = "";
-			this.data.tahun_perusahaan_berdiri 		= "";
-			this.data.pendapatan_bersih_perusahaan 	= 0;
-
-		}
-
 		if(this.data.sumber_pendapatan == 2) {
 			this.data.nama_perusahaan 	= "";
 			this.data.mulai_bekerja 	= "";
@@ -268,57 +267,84 @@ export class EditComponent implements OnInit {
 		this.data.access_token 	= this.acces_token;
 		// console.log(data)
 
-		// let readerFileA = new FileReader();
-		// readerFileA.onload = function(event, varty) {
-		// 	let fileA = event.target.result.split(',')[1];
-		// 	if(fileA == "AQID") {
-		// 		this.data.foto_tabungan = null
-		// 	}
-		// 	else{
-		// 		return this.data.foto_tabungan = fileA;
-		// 	}
-		// 	// console.log(fileB)
-		// }.bind(this)
+		let readerFileA = new FileReader();
+		readerFileA.onload = function(event, varty) {
+			let fileA = event.target.result.split(',')[1];
+			if(fileA == "AQID") {
+				this.data.foto_tabungan = null
+			}
+			else{
+				// this.data.foto_tabungan = fileA;
+				this.foto_tabungan = fileA;
+			}
+			this.check_image.push(5)
+			// console.log(fileB)
+		}.bind(this)
 
-		// let readerFileX = new FileReader();
+		let readerFileX = new FileReader();
   		
-		// readerFileX.onload = function(event, varty) {
-		// 	let fileX = event.target.result.split(',')[1];
-		// 	if(fileX == "AQID") {
-		// 		this.data.foto_identitas = null
-		// 	}
-		// 	else{
-		// 		return this.data.foto_identitas = fileX;
-		// 	}
-		// 	// console.log(fileA);
-		// }.bind(this);
+		readerFileX.onload = function(event, varty) {
+			alert("dari file x")
+			let fileX = event.target.result.split(',')[1];
+			// console.log(fileX)
+			if(fileX == "AQID") {
+				this.data.foto_identitas = null
+			}
+			else{
+				// alert("dari else")
+				// this.data.foto_identitas = fileX;
+				this.foto_identitas = fileX;
+				// console.log(this.foto_identitas)
+			}
+				this.check_image.push(2)
+				console.log(this.check_image)
+			return;
+			// console.log(fileA);
+		}.bind(this);
 
-		// let readerFileY = new FileReader();
-		// readerFileY.onload = function(event, varty) {
-		// 	let fileY = event.target.result.split(',')[1];
-		// 	if(fileY == "AQID") {
-		// 		this.data.foto_npwp = null
-		// 	}
-		// 	else{
-		// 		return this.data.foto_npwp = fileY;
-		// 	}
+		let readerFileY = new FileReader();
+		readerFileY.onload = function(event, varty) {
+			let fileY = event.target.result.split(',')[1];
+			if(fileY == "AQID") {
+				this.data.foto_npwp = null
+			}
+			else{
+				this.foto_npwp = fileY;
+				// this.data.foto_npwp = fileY;
+				
+			}
+			this.check_image.push(3)
+			return;
 			
-			
-		// 	// console.log(fileB)
-		// }.bind(this)
+			// console.log(fileB)
+		}.bind(this)
 
 
 		let readerFileZ = new FileReader();
 		readerFileZ.onload = function(event, varty) {
+			// let dari_file_x = this.foto_identitas
+			// console.log(dari_file_x)
 			let fileZ = event.target.result.split(',')[1];
 				if(fileZ == "AQID") {
 				this.data.foto_diri = null
 				}
 				if(fileZ != "AQID") {
 				this.data.foto_diri = fileZ;
+				// this.data.foto_diri = fileZ;
 				}
-				
-				console.log(this.data);
+				// this.check_image.push(4)
+				// return	;
+				// this.check()
+				// self(this.check()
+				// EditComponent.call(this.changeProfile())
+				// this.foto_identitas = this.data.foto_identitas;
+				// 	console.log(this.data);
+				// // let image = this.data_image;
+				// this.data_image.foto_diri = this.data.foto_diri
+				// // this.data_image.foto_tabungan = this.data.foto_tabungan
+				// // this.data_image.foto_npwp = this.data.foto_npwp
+				// // image.foto_identitas = this.data.foto_identitas
+				// // console.log(this.data);
 				console.log("Sedang mengirim data....")
 				
 				let headers = new Headers({ 
@@ -358,7 +384,6 @@ export class EditComponent implements OnInit {
 		}.bind(this)
 
 
-
 			// let a : any = document.getElementById("foto_tabungan");
 			// let x : any = document.getElementById("foto_identitas");
 			// let y : any = document.getElementById("foto_npwp");
@@ -372,10 +397,12 @@ export class EditComponent implements OnInit {
 			var arrayBlob	= objectBlob.buffer;
 			var image_default = new Blob([arrayBlob]);
 
+			// console.log(file_a,file_x,file_y,file_z)
+
 			if(file_z == undefined) {
 				file_z = image_default;
 			}
-			// if(file_y == null) {
+			// if(file_y == undefined) {
 			// 	file_y = image_default;
 			// }
 			// if(file_x == undefined) {
@@ -384,19 +411,46 @@ export class EditComponent implements OnInit {
 			// if(file_a == undefined) {
 			// 	file_a = image_default;
 			// }
-			// var encode_a  = readerFileA.readAsDataURL(file_a);
-			// var encode_x  = readerFileX.readAsDataURL(file_x);
-			// var encode_y  = readerFileY.readAsDataURL(file_y);
-			var encode_z  = readerFileZ.readAsDataURL(file_z);
-			// var zz = btoa(file_z)
+				readerFileZ.readAsDataURL(file_z);
+				// readerFileY.readAsDataURL(file_y);
+				// readerFileX.readAsDataURL(file_x);
+				// readerFileA.readAsDataURL(file_a);
+				
+			// if(file_z != undefined || file_y != undefined || file_x != undefined || file_a != undefined) {
+			// 	// alert("data tidak valid")
+			// 	// file_z = image_default;
+			// 	// file_y = image_default;
+			// 	// file_x = image_default;
+			// 	// file_a = image_default;
+			// }
+			// if(this.check_image == []) {
+			// 	console.log(this.check_image)
+			// 	// code...
+			// }
+			// else {
+			// }
+				// this.data.foto_tabungan		= null;
+				// this.data.foto_identitas	= null;
+				// this.data.foto_npwp 		= null;	
+				// this.data.foto_diri			= null;
+
+			// let encode_z = readerFileZ.readAsDataURL(file_z);
+			// let encode_y = readerFileY.readAsDataURL(file_y);
+			// let encode_x = readerFileX.readAsDataURL(file_x);
+			// let encode_a = readerFileA.readAsDataURL(file_a);
 
 			// this.data.foto_tabungan		= encode_a;
 			// this.data.foto_identitas	= encode_x;
 			// this.data.foto_npwp 		= encode_y;
-			this.data.foto_diri			= encode_z;
+			// this.data.foto_diri			= encode_z;			
+			// if(this.data.sumber_pendapatan == 1) {
+			// 	this.data.nama_usaha 	  				= "";
+			// 	this.data.jenis_perusahaan  = "";
+			// 	this.data.tahun_perusahaan_berdiri 		= "";
+			// 	this.data.pendapatan_bersih_perusahaan 	= 0;
 
-			// this.data.foto_diri			= zz;
-			// console.log(this.data)
+			// }
+
 	}
 
 
@@ -420,6 +474,59 @@ export class EditComponent implements OnInit {
 
 
 	changeProfile(){
+		// alert("dari change profile")
+		// console.log(this.data)
+		// this.check()
+		// console.log(this.data)
+		// this.data.foto_identitas = this.foto_identitas
+		// let headers = new Headers({ 
+		//  	'Content-Type': 'application/json',
+		//  	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	 // 	});
+
+	 // 	let options = new RequestOptions({ headers: headers });
+
+		// this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
+		// 			.map(response => response.json())
+		// 			.subscribe(
+		// 				(response : any) => {
+		// 					// for message
+		// 					var kosong:null;
+		// 					var code 		= response.meta.code;
+		// 					var message 	= response.meta.message;
+		// 					if(code == 200) {
+		// 						alert("Profile berhasil diupate")
+		// 						return this.router.navigateByUrl('/dashboard/profile')
+		// 					}
+		// 					else{
+		// 						alert("Profile gagal diupdate")
+		// 					}
+		// 				},
+		// 				(err:any) => {
+		// 		            var error   = JSON.parse(err._body)
+		// 		            var message = error.meta.message
+		// 		              if(message == "unauthorized") {
+		// 		                alert("Maaf session anda telah habis silahkan login kembali")
+		// 		                return this.router.navigateByUrl('/dashboard/sign-out')
+				                
+		// 		              } 
+		// 		        }
+		// 			);
+	}
+
+	cancelUpdateProfile(){
+		return this.router.navigateByUrl('/dashboard/profile')
+	}
+
+
+
+	check(){
+		alert("dari check")
+		this.data.foto_identitas = this.foto_identitas
+		this.data.foto_diri = this.foto_diri
+		this.data.foto_tabungan = this.foto_tabungan
+		this.data.foto_npwp = this.foto_npwp
+		console.log(this.data)
 		let headers = new Headers({ 
 		 	'Content-Type': 'application/json',
 		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
@@ -454,13 +561,26 @@ export class EditComponent implements OnInit {
 				        }
 					);
 	}
-
-	cancelUpdateProfile(){
-		return this.router.navigateByUrl('/dashboard/profile')
-	}
-
 }
 
+	// class encodeFileX {
+	// public readerFileX = new FileReader();
+	// 	this.readerFileX.onload = function(event, varty) {
+	// 		let fileX = event.target.result.split(',')[1];
+	// 		// console.log(fileX)
+	// 		if(fileX == "AQID") {
+	// 			this.data.foto_identitas = null
+	// 			return true;
+	// 		}
+	// 		else{
+	// 			// alert("dari else")
+	// 			this.foto_identitas = fileX;
+	// 			return true;
+	// 			// console.log(this.foto_identitas)
+	// 		}
+	// 		// console.log(fileA);
+	// 	}.bind(this);
+	// }
 // class ClassName {
 	
 // 	public readerFileY: FileReader;
