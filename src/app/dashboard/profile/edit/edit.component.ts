@@ -270,22 +270,14 @@ export class EditComponent implements OnInit {
 		let readerFileA = new FileReader();
 		readerFileA.onload = function(event, varty) {
 			let fileA = event.target.result.split(',')[1];
-			console.log(this.check_image)
 			if(fileA == "AQID") {
-				this.check_image.push(1)
 				this.data.foto_tabungan = null
 			}
 			else{
 				// this.data.foto_tabungan = fileA;
 				this.foto_tabungan = fileA;
-				this.check_image.push(1)
 			}
-			
-			if(this.check_image == [3]) {
-					alert("dari check image!")
-					// console.log(this.check_image)
-					// code...
-				}
+			this.check_image.push(5)
 			// console.log(fileB)
 		}.bind(this)
 
@@ -297,15 +289,15 @@ export class EditComponent implements OnInit {
 			// console.log(fileX)
 			if(fileX == "AQID") {
 				this.data.foto_identitas = null
-				this.check_image.push(2)
 			}
 			else{
 				// alert("dari else")
 				// this.data.foto_identitas = fileX;
 				this.foto_identitas = fileX;
-				this.check_image.push(2)
 				// console.log(this.foto_identitas)
 			}
+				this.check_image.push(3)
+				console.log(this.check_image)
 			return;
 			// console.log(fileA);
 		}.bind(this);
@@ -315,14 +307,13 @@ export class EditComponent implements OnInit {
 			let fileY = event.target.result.split(',')[1];
 			if(fileY == "AQID") {
 				this.data.foto_npwp = null
-				this.check_image.push(3)
 			}
 			else{
 				this.foto_npwp = fileY;
-				this.check_image.push(3)
 				// this.data.foto_npwp = fileY;
 				
 			}
+			this.check_image.push(2)
 			return;
 			
 			// console.log(fileB)
@@ -336,15 +327,20 @@ export class EditComponent implements OnInit {
 			let fileZ = event.target.result.split(',')[1];
 				if(fileZ == "AQID") {
 				this.data.foto_diri = null
-				this.check_image.push(4)
+				this.check_image.push(1)
 				}
 				if(fileZ != "AQID") {
 				this.data.foto_diri = fileZ;
-				this.check_image.push(4)
+				this.check_image.push(1)
 				// this.data.foto_diri = fileZ;
 				}
 
-				
+				// if(this.check_image == ['4']) {
+				// 	alert("dari check image!")
+				// 	console.log(this.data)
+				// 	// console.log(this.check_image)
+				// 	// code...
+				// }
 				// console.log(this.check_image)
 				// this.check_image.push(4)
 				// return	;
@@ -361,51 +357,51 @@ export class EditComponent implements OnInit {
 				// // console.log(this.data);
 				// console.log("Sedang mengirim data....")
 				
-				// let headers = new Headers({ 
-				//  	'Content-Type': 'application/json',
-				//  	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-			 // 	});
+				let headers = new Headers({ 
+				 	'Content-Type': 'application/json',
+				 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+			 	});
 
-			 //    let options = new RequestOptions({ headers: headers });
+			    let options = new RequestOptions({ headers: headers });
 
-				// this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
-				// 		.map(response => response.json())
-				// 		.subscribe(
-				// 			(response : any) => {
-				// 				// for message
-				// 				var kosong:null;
-				// 				var code 		= response.meta.code;
-				// 				var message 	= response.meta.message;
-				// 				if(code == 200) {
-				// 					alert("Profile berhasil diupate")
-				// 					return this.router.navigateByUrl('/dashboard/profile')
-				// 				}
-				// 				else{
-				// 					alert("Profile gagal diupdate")
-				// 				}
-				// 			},
-				// 			(err:any) => {
-				// 	            var error   = JSON.parse(err._body)
-				// 	            var message = error.meta.message
-				// 	              if(message == "unauthorized") {
-				// 	                alert("Maaf session anda telah habis silahkan login kembali")
-				// 	                return this.router.navigateByUrl('/dashboard/sign-out')
+				this.http.put('http://masscredit-api.stagingapps.net/user/credential/update-profile',this.data,options)
+						.map(response => response.json())
+						.subscribe(
+							(response : any) => {
+								// for message
+								var kosong:null;
+								var code 		= response.meta.code;
+								var message 	= response.meta.message;
+								if(code == 200) {
+									alert("Profile berhasil diupate")
+									return this.router.navigateByUrl('/dashboard/profile')
+								}
+								else{
+									alert("Profile gagal diupdate")
+								}
+							},
+							(err:any) => {
+					            var error   = JSON.parse(err._body)
+					            var message = error.meta.message
+					              if(message == "unauthorized") {
+					                alert("Maaf session anda telah habis silahkan login kembali")
+					                return this.router.navigateByUrl('/dashboard/sign-out')
 					                
-				// 	              } 
-				// 	        }
-				// 		);
+					              } 
+					        }
+						);
 
 		}.bind(this)
 
 
-			let a : any = document.getElementById("foto_tabungan");
-			let x : any = document.getElementById("foto_identitas");
-			let y : any = document.getElementById("foto_npwp");
+			// let a : any = document.getElementById("foto_tabungan");
+			// let x : any = document.getElementById("foto_identitas");
+			// let y : any = document.getElementById("foto_npwp");
 			let z : any = document.getElementById("foto_diri");
 			
-			var file_a =	a.files[0];
-			var file_x =	x.files[0];
-			var file_y =	y.files[0];
+			// var file_a =	a.files[0];
+			// var file_x =	x.files[0];
+			// var file_y =	y.files[0];
 			var file_z =	z.files[0];
 			var objectBlob	= new Uint8Array([1,2,3]);
 			var arrayBlob	= objectBlob.buffer;
@@ -416,19 +412,19 @@ export class EditComponent implements OnInit {
 			if(file_z == undefined) {
 				file_z = image_default;
 			}
-			if(file_y == undefined) {
-				file_y = image_default;
-			}
-			if(file_x == undefined) {
-				file_x = image_default;
-			}
-			if(file_a == undefined) {
-				file_a = image_default;
-			}
+			// if(file_y == undefined) {
+			// 	file_y = image_default;
+			// }
+			// if(file_x == undefined) {
+			// 	file_x = image_default;
+			// }
+			// if(file_a == undefined) {
+			// 	file_a = image_default;
+			// }
 				readerFileZ.readAsDataURL(file_z);
-				readerFileY.readAsDataURL(file_y);
-				readerFileX.readAsDataURL(file_x);
-				readerFileA.readAsDataURL(file_a);
+				// readerFileY.readAsDataURL(file_y);
+				// readerFileX.readAsDataURL(file_x);
+				// readerFileA.readAsDataURL(file_a);
 				
 			// if(file_z != undefined || file_y != undefined || file_x != undefined || file_a != undefined) {
 			// 	// alert("data tidak valid")
