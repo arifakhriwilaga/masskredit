@@ -27,6 +27,10 @@ export class RegisterService {
 		tempat_lahir  	 : '',
 		tanggal_lahir 	 : '',
 		alamat 			 : '',
+		status_rumah	 : '0',
+		luas_bangunan	 : '',
+		luas_tanah		 : '',
+		
 	}
 
 	// public register = {
