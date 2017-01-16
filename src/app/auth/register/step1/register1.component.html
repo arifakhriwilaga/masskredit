@@ -36,21 +36,22 @@
                     <input  type="text" placeholder="{{ nomor }}" class="form-control input-md" name="phone_number" id="phone_number" value="{{ nomor }}" disabled>
                </div>
             </div>
-          </div>
-
-          <div class="col-xs-6">
-            <div class="form-group">
-               <div class="col-md-12">
-               <span class="required">*</span>
+          <div class="form-group">
+              <div class="col-md-12">
+              <span class="required">*</span>
                   <select class="form-control input-md" name="jenis_kelamin" [(ngModel)]="register.jenis_kelamin" name="jenis_kelamin">
                      <option value="0" disabled>Jenis Kelamin</option>
                      <option value="1">Laki-laki</option>
                      <option value="2">Perempuan</option>                  
                   </select>
-               </div>
-            </div>
+              </div>
+          </div>
+          </div>
+
+          <div class="col-xs-6">
+
             <div class="form-group">
-              <div class="col-md-4">
+              <div class="col-xs-4">
                <span class="required">*</span>
                     <input  type="text" placeholder="Tempat Lahir" class="form-control input-md" [(ngModel)]="register.tempat_lahir" name="tempat_lahir">
               </div>
@@ -71,6 +72,26 @@
               <div class="col-xs-12">
                <span class="required">*</span>
                     <input  type="text" placeholder="Kode Pos" class="form-control input-md" [(ngModel)]="register.kode_pos" name="kode_pos" id="kode_pos">
+              </div>
+            </div>
+             <div class="form-group">
+               <div class="col-md-12">
+               <span class="required">*</span>
+                  <select class="form-control input-md" name="status_rumah" [(ngModel)]="register.status_rumah" name="status_rumah">
+                     <option value="0" disabled>Status Rumah</option>
+                     <option value="1">Pribadi</option>
+                     <option value="2">Kontrak</option>                  
+                  </select>
+               </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-4">
+               <span class="required">*</span>
+                    <input  type="text" placeholder="Luas Tanah" class="form-control input-md" [(ngModel)]="register.luas_tanah" name="luas_tanah" id="luas_tanah">
+              </div>
+              <div class="col-xs-8">
+               <span class="required">*</span>
+                    <input  type="text" placeholder="Luas Bangunan" class="form-control input-md" [(ngModel)]="register.luas_bangunan" name="luas_bangunan" id="luas_bangunan">
               </div>
             </div>
           </div>
