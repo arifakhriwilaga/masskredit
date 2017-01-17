@@ -19,12 +19,12 @@ import { SignOutComponent }       from './sign-out';
 // import { TambahDanaComponent }    from './tambah_dana';
 
 // Investasi
-// import { InvestasiComponent }     from './investasi/investasi.component';
-// import { IndexInvestComponent }         from './investasi/index/index.component';
-// import { CreateInvestComponent }        from './investasi/create/create.component';
+import { InvestasiComponent }     from './investasi/investasi.component';
+import { IndexInvestComponent }         from './investasi/index/index.component';
+import { CreateInvestComponent }        from './investasi/create/create.component';
 
 
-// Investasi
+// Pinjaman
 // import { PinjamanComponent }      from './pinjaman';
 // import { IndexLoanComponent }     from './pinjaman/index/index.component';
 // import { DetailComponent }     from './pinjaman/detail';
@@ -66,14 +66,14 @@ export const routes = [
       // { path: 'fund',       component: FundComponent},
       { path: 'sign-out',       component: SignOutComponent}, 
       // { path: 'investasi',    component: InvestasiComponent } ,
-      // { path: 'investasi',    component: InvestasiComponent ,
-      //     children: [
-      //         { path: '',        redirectTo: 'index', pathMatch: 'full' },
-      //         { path: 'index',   component: IndexInvestComponent },
-      //         { path: 'create',  component: CreateInvestComponent },
+      { path: 'investasi',    component: InvestasiComponent ,
+          children: [
+              { path: '',        redirectTo: 'index', pathMatch: 'full' },
+              { path: 'index',   component: IndexInvestComponent },
+              { path: 'create',  component: CreateInvestComponent },
               
-      //     ]
-      // },
+          ]
+      },
       // { path: 'content', load: () => System.import('./investasi')
       //   .then((comp: any) => comp.default) 
       // },
@@ -111,9 +111,9 @@ export const routes = [
     // TambahDanaComponent,
     // PenarikanDanaComponent,
     // PinjamanComponent,
-    // InvestasiComponent,
-    // IndexInvestComponent,
-    // CreateInvestComponent,
+    InvestasiComponent,
+    IndexInvestComponent,
+    CreateInvestComponent,
     // IndexLoanComponent,
     // DetailComponent,
 
