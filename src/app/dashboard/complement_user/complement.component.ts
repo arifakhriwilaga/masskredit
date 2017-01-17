@@ -71,7 +71,8 @@ export class ComplementComponent {
 		bank				: 0,
 		no_rekening			: null,
 
-		angsuran : []
+		angsuran : [],
+		jaminan: 0
 
 
 	}
@@ -129,7 +130,7 @@ export class ComplementComponent {
 
 			
 		});
-		// dynamic field
+		// dynamic data angsuran
 		var counter = 1;
 		jQuery("#addButton").click(function(){
 			if(counter > 5) {
@@ -150,41 +151,20 @@ export class ComplementComponent {
 			);
 			newTextBoxDiv.appendTo("#TextBoxesGroup");
 			counter++;
+			console.log(counter)
 		});
 
 		jQuery("#removeButton").click(function(){
-			if(counter == 1){
+			if(counter <= 1){
 				alert("No more textbove remove");
 				return false;
 			}	
 			counter--;
-			jQuery("#TextBoxDiv" + counter).hide();
+			console.log(counter)
+			jQuery("#TextBoxDiv" + counter).remove();
 
 		});
-
-		// let angsuran = {
-		// 	jumlah_angsuran : this.data.angsuran.jumlah_angsuran,
-		// 	description_angsuran : this.data.angsuran.description_angsuran  
 		
-		// }
-
-
-		// jQuery("#getButtonValue").click(function(){
-		// 	// var msg2= angsuran.description_angsuran;
-		// 	for (var i = 1; i < counter; ++i) {
-		// 		angsuran.jumlah_angsuran.push(jQuery('#textbox1' + i).val());
-		// 		 // angsuran.jumlah_angsuran
-		// 		// console.log( "ini dari msg2", angsuran.jumlah_angsuran);
-		// 	}
-		// 	for (var i = 1; i < counter; ++i) {
-		// 		angsuran.description_angsuran.push(jQuery('#textbox2' + i).val());
-		// 	}
-		// 	// return angsuran
-		// });
-		
-
-		
-
 		// validation
 		jQuery( "#complementForm" ).validate({
 		
@@ -299,6 +279,26 @@ export class ComplementComponent {
 				required :true
 			},
 
+			// Objek data collateral
+			deskripsi_jaminan :  {
+				required : true
+			},
+	        jenis_jaminan: {
+	        	required : true
+	        },
+	        taksiran_harga_jaminan: {
+	        	required : true 
+	        },
+	        foto_jaminan_satu: {
+	        	required : true
+	        },
+	        foto_jaminan_dua: {
+	        	required : true
+	        },
+	        foto_jaminan_tiga: {
+	        	required : true
+	        }
+
 		  }
 		});		
 	}
@@ -372,6 +372,72 @@ export class ComplementComponent {
 		}
 		else{
 		  	console.log(id)
+		}
+	}
+	private collateral:any;
+	getCollateral(id){
+		this.collateral = id;
+	 //  	if(id == 2) {
+		// 	this.data.jaminan = 2;
+		// }
+		// else{
+		//   	// console.log(id)
+		// }
+	}
+
+	private classPersonal 	= "";
+	private classFamily 	= "";
+	private classJob 		= "";
+	private classCollateral = "";
+	private classSupport 	= "";
+
+	tabPersonal(id : any){
+		if(id == 1) {
+			this.classPersonal 	 = "active";
+			this.classFamily 	 = "";
+			this.classJob 		 = "";
+			this.classCollateral = "";
+			this.classSupport 	 = "";
+		}
+	}
+
+	tabFamily(id : any){
+		if(id == 1) {
+			this.classPersonal 	 = "";
+			this.classFamily 	 = "active";
+			this.classJob 		 = "";
+			this.classCollateral = "";
+			this.classSupport 	 = "";
+		}
+	}
+
+	tabJob(id : any){
+		if(id == 1) {
+			this.classPersonal 	 = "";
+			this.classFamily 	 = "";
+			this.classJob 		 = "active";
+			this.classCollateral = "";
+			this.classSupport 	 = "";
+		}
+	}
+
+	tabCollateral(id : any){
+		if(id == 1) {
+			this.classPersonal 	 = "";
+			this.classFamily 	 = "";
+			this.classJob 		 = "";
+			this.classCollateral = "active";
+			this.classSupport 	 = "";
+		}
+	}
+
+	tabSupport(id : any){
+		if(id == 1) {
+			this.classPersonal 	 = "";
+			this.classFamily 	 = "";
+			this.classJob 		 = "";
+			this.classCollateral = "";
+			this.classSupport 	 = "active";
 		}
 	}
 
