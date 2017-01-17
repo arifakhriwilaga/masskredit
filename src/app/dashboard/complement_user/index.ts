@@ -19,6 +19,7 @@ import { BankComponent }            from './bank';
 import { InstallmentComponent }     from './installment';
 import { OtherIncomeOneComponent }  from './other_income_one';
 import { OtherIncomeTwoComponent }  from './other_income_two';
+import { CollateralComponent }  from './collateral';
 // import { IndexComponent }        from './index/index.component';
 
 export const routes = [
@@ -37,7 +38,8 @@ export const routes = [
     BankComponent,
     InstallmentComponent,
     OtherIncomeOneComponent,
-    OtherIncomeTwoComponent
+    OtherIncomeTwoComponent,
+    CollateralComponent
     // IndexComponent
   ],
   imports: [ // import Angular's modules
