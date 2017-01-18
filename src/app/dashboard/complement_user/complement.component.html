@@ -10,113 +10,6 @@
        <div class="box-body">
          <div class="form-login-register">
            <form class="form-horizontal clearfix row" name="complementForm" id="complementForm">
-              <div class="col-md-6">
-              	<!-- Data Family  -->
-              	<label>Data Keluarga</label>
-                <div class="form-group">
-                     <div class="col-md-12">
-                       <span class="required">*</span>
-                       <select class="form-control input-md" name="status_perkawinan" id="status_perkawinan" (change)="getStatusMarried($event.target.value)" [(ngModel)]="data.status_perkawinan">
-                          <option value="0" disabled>Status Perkawinan</option>
-                          <option [value]="1">Menikah</option>
-                          <option [value]="2">Belum Menikah</option>
-                       </select>
-                     </div>
-                </div>
-                <!-- component if merried -->
-                <personal-family *ngIf="statusMarried == 1"></personal-family> 
-
-               	<!-- Data Work -->
-               	<label>Data Pekerjaan</label>
-                 <div class="form-group">
-                     <div class="col-md-12">
-                       <span class="required">*</span>
-                       <select class="form-control input-md" name="sumber_pendapatan" id="sumber_pendapatan" (change)="getSumberPendapatan($event.target.value)" [(ngModel)]="data.sumber_pendapatan">
-                          <option value="0" disabled>Sumber Pendapatan</option>
-                          <option [value]="1">Kerja</option>
-                          <option [value]="2">Usaha</option>
-                       </select>
-                     </div>
-                 </div>
-                 <!-- component if work -->
-                <job *ngIf="sumberPendapatan == 1"></job>
-                <!-- component if business -->
-                <business *ngIf="sumberPendapatan == 2"></business>
-               	
-                <!-- Data pendapatan lain 1 -->
-                <label>Data Pendapatan Lain</label>
-                <div class="form-group">
-                 <div class="col-md-12">
-                   <span class="required">*</span>
-                   <select class="form-control input-md" name="pendapatanLainFirst" id="pendapatanLainFirst" (change)="getPendapatanLainFirst($event.target.value)">
-                      <option value="0" disabled>Pendapatan lain</option>
-                      <option [value]="1">Ya</option>
-                      <option [value]="2">Tidak</option>
-                   </select>
-                 </div>
-                </div>
-                <!-- component if have other-income-one -->
-                <div *ngIf="pendapatanLainFirst == 1">
-                <other-income-one></other-income-one>
-                <br>
-                <div class="form-group">
-                 <div class="col-md-12">
-                   <span class="required">*</span> 
-                   <select class="form-control input-md" name="pendapatanLainSecond" id="pendapatanLainSecond" (change)="getPendapatanLainSecond($event.target.value)" [(ngModel)]="data.pendapatan_lain_2">
-                      <option value="0" disabled>Pendapatan lain</option>
-                      <option [value]="1">Ya</option>
-                      <option [value]="2">Tidak</option>
-                   </select>
-                  </div>
-                </div>
-                <!-- component if have other-income-two, and option for other-income-two yet in other-income-one -->
-                <other-income-two *ngIf="pendapatanLainSecond == 1"></other-income-two> 
-                </div>
-
-                <!-- Data Angsuran -->
-                <label>Data Angsuran</label>
-                <installment></installment> <!-- component installment data -->
-
-               	<!-- Contact darurat kerabat -->
-               	<label>Data Kerabat yang tidak serumah</label>
-               	<family></family> <!-- component family -->
-
-               </div> <!-- end input field in left side -->
-               
-               <div class="col-md-6"> <!-- input field in right side -->
-                 <label>Data Jaminan</label>
-                 <div class="form-group">
-                 <div class="col-md-12">
-                   <span class="required">*</span> 
-                   <select class="form-control input-md" name="jaminan" id="jaminan" (change)="getCollateral($event.target.value)" [(ngModel)]="data.jaminan">
-                      <option value="0" disabled>Tipe Jaminan</option>
-                      <option [value]="1">Jaminan</option>
-                      <option [value]="2">Tanpa Jaminan</option>
-                   </select>
-                  </div>
-                </div>
-                <!-- component if have other-income-two, and option for other-income-two yet in other-income-one -->
-                <collateral *ngIf="collateral == 1"></collateral> 
-                <br>
-                <!-- Attach document -->
-                <label>Data Penunjang</label>
-                <support></support> <!-- component support data -->
-
-                 <br>
-                 <!-- Data Bank -->
-                <label>Data Bank</label>
-                <bank></bank> <!-- component bank data -->
-                <!-- <fieldset>
-                 </fieldset> -->
-               </div> <!-- end input field in right side -->
-               <div class="col-md-12">
-                 <div class="form-group">
-                    <div class="col-md-6 col-center">
-                      <a href="#/dashboard" class="btn btn-default">Batal</a>
-                      <button class="btn btn-red" (click)="submitData(data)">Simpan</button>
-                    </div>
-                 </div>
-              </div>
               <div class="col-xs-12">
               <!-- Main content -->
               <section class="content list-user">
@@ -126,6 +19,7 @@
                       <div class="box-header">
                         <!-- header -->
                       </div>          
+                        <div class="form-horizontal clearfix row white-bg detail-page form-space">
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active">
@@ -157,7 +51,6 @@
                       <!-- Tab panes -->
                       <br>
                       <!-- <form class="form-horizontal clearfix row white-bg detail-page form-space" id="complementForm" name="complementForm"> -->
-                      <div class="form-horizontal clearfix row white-bg detail-page form-space">
                       <div class="tab-content ">
                       <h1></h1>
                         <div class="col-md-12">
@@ -238,7 +131,38 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="collateral"> 
                           <!-- content job data  -->
-                          <label>Data Pinjaman</label>
+                          <!-- <label>Data Jaminan</label> -->
+                          <div class="box-body data-tables table-responsive">
+                          <table class="table table-hover" id="example2">
+                          <thead>
+                            <tr>
+                              <th>No.</th>
+                              <th>Gambar</th>
+                              <th>Nama Investasi</th>
+                              <th>Jenis Jaminan</th>
+                              <th>Taksiran Harga</th>
+                              <th>Deskripsi</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                               <td>1</td>
+                              <td>
+                                <img src="../../assets/img/user4-128x128.jpg">
+                              </td>
+                              <td>Warung Kelontongan</td>
+                              <td><span class="warranty">Tanpa Jaminan</span></td>
+                              <td>15.500.000</td>
+                              <td>3.000.000</td>
+                              <td>
+                                <a class="pull-right" href=""><i aria-hidden="true" class="fa fa-trash-o"></i></a>
+                                <a class="pull-right" href=""><i aria-hidden="true" class="fa fa-search"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        </div>
                           <collateral></collateral> <!-- component collateral data -->
                         </div>
                         <div role="tabpanel" class="tab-pane" id="support"> 
@@ -249,6 +173,14 @@
                         </div>
                         </div>
                         </div>
+                      </div>
+                      <div class="col-md-12">
+                       <div class="form-group">
+                          <div class="col-md-6 col-center">
+                            <a href="#/dashboard" class="btn btn-default">Batal</a>
+                            <button class="btn btn-red" (click)="submitData(data)">Simpan</button>
+                          </div>
+                       </div>
                       </div>
                     <!-- </form>      -->
                   </div>
