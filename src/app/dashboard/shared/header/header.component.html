@@ -177,10 +177,12 @@
           </div>
           
           <div class="pull-right profile-right">
-            <h3>{{ name }} <span style="color:white">{{ user_status }}</span></h3>
+          <!-- <h2>{{ incomingDataName}}</h2> -->
+            <h3>{{ incomingDataName }} <span style="color:white">{{ incomingDataUserStatus }}</span></h3>
             <!-- <p class="no-margin-bottom">Class {{ user_class }}<span>Status User: {{ user_status }}</span></p> -->
-            <p class="no-margin-bottom">Investor: {{ borrower }}<span>Borrower: {{ borrower }}</span></p>
-            <p class="no-margin-bottom">Credit: {{ fund_history }}<span>Salary: {{ user_class }}</span></p>
+            <p class="no-margin-bottom">Investor: Bronze<span>Borrower: Bronze</span></p>
+            <!-- <p class="no-margin-bottom">Investor: {{ borrower }}<span>Borrower: {{ borrower }}</span></p> -->
+            <p class="no-margin-bottom">Credit: {{ incomingDataFundHistory }}<span>Salary: {{ incomingDataUserClass }}</span></p> 
             <div class="clearfix">
                 <!-- <i class="fa fa-star-half-full full" area-hidden="true"></i> -->
                 <i class="fa fa-star null" aria-hidden="true"></i>
@@ -211,7 +213,7 @@
           <div class="pull-left balance-left"><img src="../../assets/img/dollar-bag.png"></div>
           <div class="pull-right balance-right ">
             <p>Balance</p>
-            <h2>{{ account_summary }}</h2>
+            <h2>{{ incomingDataAccountSummary }}</h2>
           </div>
         </div>
       </div>
