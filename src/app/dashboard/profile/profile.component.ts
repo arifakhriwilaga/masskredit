@@ -18,68 +18,7 @@ export class ProfileComponent {
 	private image:void;
 	private number:number;
 
-	// Objek Request
-	// public data = {
-
-
-	// 	access_token		:'',
-	// 	// objek data diri
-	// 	nama_lengkap		:'',
-	// 	alamat_email		:'',
-	// 	phone_number		:'',
-
-	// 	// objek keluarga
-	// 	status_perkawinan	: 0,
-	// 	jumlah_anak 	  	: this.number,
-	// 	jumlah_tanggungan 	: this.number,
-
-	//   	sumber_pendapatan	: 0,
-	  	
-
-	// 	// objek pekerjaan
-	// 	nama_perusahaan 	  : '',
-	// 	lama_bekerja 	  	  : '',
-	// 	jabatan  	 		  : '',
-	// 	pekerjaan  	 		  : '',
-	// 	gaji_per_bulan 		  : this.number,
-		
-	// 	nama_usaha 	  				: '',
-	// 	tahun_perusahaan_berdiri 	: '',
-	// 	jenis_perusahaan 		  	: '',
-	// 	pendapatan_bersih_perusahaan: this.number,
-
-	// 	pengeluaran_per_bulan 	: this.number,
-		
-	// 	tlp_perusahaan			: '',
-
-	// 	// objek kontak kerabat
-	// 	nama_lengkap_keluarga 	: '',
-	// 	hubungan	 			: '',
-	// 	no_tlp	  				: '',
-	// 	pekerjaan_kerabat 		: '',
-	  	
-	//   	// objek pendapatan lain 1
-	  	
-	//   	pendapatan_lain_1			: 0,
-	// 	sumber_pendapatan_lain_1 	: '',
-	// 	jumlah_pendapatan_lain_1 	: this.number,
-	  	
-	//   	// objek pendapatan lain 2
-	//   	pendapatan_lain_2	: 0,
-	// 	sumber_pendapatan_lain_2 	: '',
-	// 	jumlah_pendapatan_lain_2 	: this.number,
-	// 	// step4
-	// 	foto_identitas		: this.image,
-	// 	foto_npwp 		  	: this.image,
-	// 	foto_diri	 	  	: this.image,
-
-	// 	// objek data bank
-	// 	foto_tabungan		: this.image,
-	// 	no_rekening			: ''
-	// }
-
-
-	private enable:number;
+	private enable:number
 	ngOnInit(){
 		jQuery("input").prop("disabled", true);
 		jQuery("#batal").hide();
@@ -112,6 +51,7 @@ export class ProfileComponent {
 	public is_complete		= { };
 
 	getProfile() {
+		alert("get profile")
 		console.log("Sedang mengambil data....")
 		let headers = new Headers({ 
 		 	'Content-Type': 'application/json',
