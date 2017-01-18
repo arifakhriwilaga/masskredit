@@ -72,16 +72,10 @@ export class ComplementComponent {
 		no_rekening			: null,
 
 		angsuran : [],
-		jaminan: 0
-
-
+		jaminan: []
 	}
 
-	// public angsuran = {
-	// 		jumlah_angsuran : [],
-	// 		description_angsuran : []  
-	// }
-
+	
 	ngOnInit(){
 		jQuery('.datepicker').datepicker({
 	      format	: 'yyyy-mm-dd',
@@ -131,39 +125,39 @@ export class ComplementComponent {
 			
 		});
 		// dynamic data angsuran
-		var counter = 1;
-		jQuery("#addButton").click(function(){
-			if(counter > 5) {
-				alert("Only 5 textbox");
-				return false;
-			}
+		// var counter = 1;
+		// jQuery("#addButton").click(function(){
+		// 	if(counter > 5) {
+		// 		alert("Only 5 textbox");
+		// 		return false;
+		// 	}
 
 
-			var newTextBoxDiv = jQuery(document.createElement('div'))
-			.attr("id",'TextBoxDiv' + counter).attr("class",'blockElement');
+		// 	var newTextBoxDiv = jQuery(document.createElement('div'))
+		// 	.attr("id",'TextBoxDiv' + counter).attr("class",'blockElement');
 
-			newTextBoxDiv.after().html(
-				'<label>Angsuran</label>' +
-				'<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md jumlah-angsuran" name="textbox1' + counter + 
-				'" id="textbox1' + counter + '" value="">' +
-				'<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md description-angsuran" name="textbox2' + counter + 
-				'" id="textbox2' + counter + '" value="">'
-			);
-			newTextBoxDiv.appendTo("#TextBoxesGroup");
-			counter++;
-			console.log(counter)
-		});
+		// 	newTextBoxDiv.after().html(
+		// 		'<label>Angsuran</label>' +
+		// 		'<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md jumlah-angsuran" name="textbox1' + counter + 
+		// 		'" id="textbox1' + counter + '" value="">' +
+		// 		'<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md description-angsuran" name="textbox2' + counter + 
+		// 		'" id="textbox2' + counter + '" value="">'
+		// 	);
+		// 	newTextBoxDiv.appendTo("#TextBoxesGroup");
+		// 	counter++;
+		// 	console.log(counter)
+		// });
 
-		jQuery("#removeButton").click(function(){
-			if(counter <= 1){
-				alert("No more textbove remove");
-				return false;
-			}	
-			counter--;
-			console.log(counter)
-			jQuery("#TextBoxDiv" + counter).remove();
+		// jQuery("#removeButton").click(function(){
+		// 	if(counter <= 1){
+		// 		alert("No more textbove remove");
+		// 		return false;
+		// 	}	
+		// 	counter--;
+		// 	console.log(counter)
+		// 	jQuery("#TextBoxDiv" + counter).remove();
 
-		});
+		// });
 		
 		// validation
 		jQuery( "#complementForm" ).validate({
@@ -441,6 +435,89 @@ export class ComplementComponent {
 		}
 	}
 
+	submitCollateral(){
+		// get value data angsuran
+		let jaminan = [];
+		jQuery(".blockElement").each(function(){
+				// angsuran.push({
+				// 	jumlah_angsuran : jQuery(".jumlah-angsuran").find('input[type=text],select'),
+				// 	description_angsuran : jQuery(".description-angsuran").val().find('input[type=text],select')
+				// })
+				jaminan.push({
+					deskripsi_jaminan	: jQuery(this).find('.deskripsi-jaminan').val() ,
+	        jenis_jaminan			: jQuery(this).find('.jenis-jaminan').val(),
+	        taksiran_harga_jaminan: jQuery(this).find('.taksiran-harga-jaminan').val(),
+	        // foto_jaminan_satu	: jQuery(this).find('.jumlah-angsuran').val(),
+	        // foto_jaminan_dua	: jQuery(this).find('.jumlah-angsuran').val(),
+	        // foto_jaminan_tiga	: jQuery(this).find('.jumlah-angsuran').val(), 
+				})
+		})
+			this.data.jaminan = jaminan
+			console.log(jaminan)
+	}
+
+	// addCollateral(){
+	// 	var counterdua = 1;
+	// 	jQuery("#addCollateral").click(function(){
+	// 		console.log("mantap")
+	// 		if(counterdua > 5) {
+	// 			alert("Only 5 textbox");
+	// 			return false;
+	// 		}
+
+
+	// 		var newTextBoxDivCollateral = jQuery(document.createElement('div'))
+	// 		.attr("id",'TextBoxCollateralDiv' + counterdua).attr("class",'blockElementCollateral');
+
+	// 		newTextBoxDivCollateral.after().html(
+	// 			'<div class="form-group">' +
+	// 			'<div class="col-md-12">' +
+	// 			 '<label>Foto Jaminan Satu</label>' +
+	// 			  '<input type="file" name="foto_jaminan_satu' + counterdua + '" id="foto_jaminan_satu' + counterdua + '>' +
+	// 			'</div>' +
+	// 			'<div class="col-md-12">' +
+	// 			 '<label>Foto Jaminan Dua</label>' +
+	// 			  '<input type="file" name="foto_jaminan_dua' + counterdua + '" id="foto_jaminan_dua' + counterdua + '>' +
+	// 			 '</div>' +
+	// 			'<div class="col-md-12">' +
+	// 			 // '<span class="required">*</span>' +
+	// 			 // '<span class="required">*</span>' +
+	// 			 // '<span class="required">*</span>' +
+	// 			 '<label>Foto Jaminan Tiga</label>' +
+	// 			  '<input type="file" name="foto_jaminan_tiga' + counterdua + '" id="foto_jaminan_tiga' + counterdua + '>' +
+	// 			 '</div>' +
+	// 			'</div>'+
+	// 			'<div class="form-group">' +
+	// 			 '<div class="col-xs-7">'+
+	// 				'<input type="text" placeholder="Taksiran Harga Jaminan" class="form-control input-md taksiran-harga-jaminan" name="textboxjaminan1' + counterdua + 
+	// 				'" id="textboxjaminan1' + counterdua + '" value="">' +
+	// 			 '</div>' +
+	// 			 '<div class="col-xs-5">'+
+	// 				'<input type="text" placeholder="Jenis Jaminan" class="form-control input-md jenis-jaminan" name="textboxjaminan2' + counterdua + 
+	// 				'" id="textboxjaminan2' + counterdua + '" value="">' +
+	// 			'</div>' +
+	// 			 '<div class="col-xs-12">'+
+	// 				'<textarea type="text" placeholder="Deskripsi Jaminan" class="form-control input-md deskripsi-jaminan" name="textboxjaminan3' + counterdua + 
+	// 				'" id="textboxjaminan3' + counterdua + '" value=""></textarea>' +
+	// 			 '</div>' + 
+	// 			'</div>'
+	// 		);
+	// 		newTextBoxDivCollateral.appendTo("#TextBoxesGroupCollateral");
+	// 		counterdua++;
+	// 		console.log(counterdua)
+	// 	});
+
+	// 	// jQuery("#removeCollateral").click(function(){
+	// 	// 	if(counterdua <= 1){
+	// 	// 		alert("No more textbove remove");
+	// 	// 		return false;
+	// 	// 	}	
+	// 	// 	counterdua--;
+	// 	// 	jQuery("#TextBoxCollateralDiv" + counterdua).remove();
+
+	// 	// });
+	// 	// });
+	// }
 
 	submitData(data){
 		if(data) {
@@ -470,9 +547,9 @@ export class ComplementComponent {
 					// 	jumlah_angsuran : jQuery(".jumlah-angsuran").find('input[type=text],select'),
 					// 	description_angsuran : jQuery(".description-angsuran").val().find('input[type=text],select')
 					// })
-					angsuran.push({
-						jumlah_angsuran : jQuery(this).find('.jumlah-angsuran').val(),
-						description_angsuran : jQuery(this).find('.description-angsuran').val()
+					angsuran.push({		
+						// jumlah_angsuran : jQuery(this).find('.jumlah-angsuran').val(),
+						// description_angsuran : jQuery(this).find('.description-angsuran').val()
 					})
 			})
 			this.data.angsuran = angsuran;
