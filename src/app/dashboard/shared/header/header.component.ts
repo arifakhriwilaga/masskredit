@@ -1,9 +1,11 @@
-import { Component, ViewEncapsulation } 	  				 from '@angular/core';
-import { LoginService }   				 from './../../../auth/login/login.service';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
-import { DashboardComponent }			 from './../../dashboard.component';
+import { LoginService } from './../../../auth/login/login.service';
+import { DashboardComponent } from './../../dashboard.component';
+import { ProfileComponent } from './../../profile/profile.component';
 
 import { Router }	   from '@angular/router';
+
 
 @Component({
 	//moduleId: module.id,
@@ -12,7 +14,17 @@ import { Router }	   from '@angular/router';
 	providers: [LoginService]
 })
 
-export class HeaderComponent { 
+
+export class HeaderComponent {
+	// recieve data from dashboard 
+	@Input('dataName') incomingDataName: string	
+	@Input('dataLastLogin') incomingDataLastLogin: string	
+	@Input('dataUserClass') incomingDataUserClass: string	
+	@Input('dataUserStatus') incomingDataUserStatus: string	
+	@Input('dataAccountSummary') incomingDataAccountSummary: string
+	@Input('dataFundHistory') incomingDataFundHistory: string
+	// @Input('dashboardData') incomingDataName: string	
+
 
 	constructor (
 		// private loginService:LoginService, 
