@@ -1,8 +1,73 @@
 <div id='TextBoxesGroupCollateral'>
-  <div id="TextBoxCollateralDiv">
+  <div id="TextBoxCollateralDiv" class="blockElementCollateral">
       <!-- content jaminan -->
+      <div class="form-group">
+		<div class="col-md-4">
+		 <label>Foto Jaminan Satu</label>
+		  <input type="file" name="foto_jaminan_satu" id="foto_jaminan_satu" class="foto-jaminan-satu">
+		</div>
+		<div class="col-md-4">
+		 <label>Foto Jaminan Dua</label>
+		  <input type="file" name="foto_jaminan_dua" id="foto_jaminan_dua" class="foto-jaminan-dua">
+		 </div>
+		<div class="col-md-4">
+		 <label>Foto Jaminan Tiga</label>
+		  <input type="file" name="foto_jaminan_tiga" id="foto_jaminan_tiga" class="foto-jaminan-tiga">
+		 </div>
+		</div>
+		<div class="form-group">
+		 <div class="col-xs-7">
+			<input type="text" placeholder="Taksiran Harga Jaminan" class="form-control input-md taksiran-harga-jaminan" name="taksiran_harga_jaminan" id="taksiran_harga_jaminan" value="" [(ngModel)]="data.taksiran_harga_jaminan">
+		 </div>
+		 <div class="col-xs-5">
+			<input type="text" placeholder="Jenis Jaminan" class="form-control input-md jenis-jaminan" name="jenis_jaminan" id="jenis_jaminan" value="" [(ngModel)]="data.jenis_kelamin">
+		</div>
+		</div>
+		<div class="form-group">
+		 <div class="col-xs-12">
+			<textarea type="text" placeholder="Deskripsi Jaminan" class="form-control input-md deskripsi-jaminan" name="deskripsi_jaminan" id="deskripsi_jaminan" value="" [(ngModel)]="data.deskripsi_jaminan"></textarea>
+		 </div> 
+		</div>
+		<div class="form-group">
+			<div class="col-xs-12">
+				<input type='button' value='Tambah' id='addCollateral' (click)="submitCollateral(data)">
+			</div>
+		</div>
+	</div>
 </div>
+
+<!-- back up -->
+<!-- <div id='TextBoxesGroupCollateral'>
+  <div id="TextBoxCollateralDiv" class="blockElementCollateral">
+      <div class="form-group">
+		<div class="col-md-12">
+		 <label>Foto Jaminan Satu</label>
+		  <input type="file" name="foto_jaminan_satu{{ counter }}" id="foto_jaminan_satu{{ counter }}" class="foto-jaminan-satu">
+		</div>
+		<div class="col-md-12">
+		 <label>Foto Jaminan Dua</label>
+		  <input type="file" name="foto_jaminan_dua{{ counter }}" id="foto_jaminan_dua{{ counter }}" class="foto-jaminan-dua">
+		 </div>
+		<div class="col-md-12">
+		 <label>Foto Jaminan Tiga</label>
+		  <input type="file" name="foto_jaminan_tiga{{ counter }}" id="foto_jaminan_tiga{{ counter }}" class="foto-jaminan-tiga">
+		 </div>
+		</div>
+		<div class="form-group">
+		 <div class="col-xs-7">
+			<input type="text" placeholder="Taksiran Harga Jaminan" class="form-control input-md taksiran-harga-jaminan" name="textboxjaminan1{{ counter }}" id="textboxjaminan1{{ counter }}" value="">
+		 </div>
+		 <div class="col-xs-5">
+			<input type="text" placeholder="Jenis Jaminan" class="form-control input-md jenis-jaminan" name="textboxjaminan2{{ counter }}" id="textboxjaminan2{{ counter }}" value="">
+		</div>
+		</div>
+		<div class="form-group">
+		 <div class="col-xs-12">
+			<textarea type="text" placeholder="Deskripsi Jaminan" class="form-control input-md deskripsi-jaminan" name="textboxjaminan3{{ counter }}" id="textboxjaminan3{{ counter }}" value=""></textarea>
+		 </div> 
+		</div>
+	</div>
 </div>
-<input type='button' value='Tambah' id='addCollateral'>
-<input type='button' value='Hapus' id='removeCollateral'>
-<br><br><br>
+	<input type='button' value='Tambah' id='addCollateral' (click)="submitCollateral()">
+	<input type='button' value='Hapus' id='removeCollateral'>
+	<br><br><br> -->
