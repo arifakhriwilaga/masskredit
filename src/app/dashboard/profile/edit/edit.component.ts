@@ -384,7 +384,7 @@ export class EditComponent implements OnInit {
 							if(code == 200) {
 								alert("Profile berhasil diupate")
 								// this.getNewProfile();
-								return this.router.navigateByUrl('/dashboard')
+								return this.router.navigateByUrl('/dashboard/profile')
 							}
 							else{
 								alert("Profile gagal diupdate")
