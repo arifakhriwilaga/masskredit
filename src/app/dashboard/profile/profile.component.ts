@@ -215,6 +215,7 @@ export class ProfileComponent {
 					 this.data.foto_diri = image;
 					}
 				}finally{
+					this.editDataPribadiPhoto = 0;
 					this.updateProfile();
 				}
 			}.bind(this);
@@ -223,18 +224,20 @@ export class ProfileComponent {
 	// condition for section data kerabat
 	private editDataKerabat = 0;
 	enableDataKerabat(){
-		jQuery(".data-kerabat").prop("disabled", false);
+		jQuery("#family").prop("disabled", false);
 		this.editDataKerabat = 1;
 	}
 
 	cancelDataKerabat(){
-		jQuery(".data-kerabat").prop("disabled", true);
+		jQuery("#family").prop("disabled", true);
 		this.editDataKerabat = 0;
 		this.getProfile();
 	}
 
 	updateDataKerabat(data){
 		// jQuery(".data-diri").prop("disabled", true);
+		this.editDataKerabat = 0;
+		jQuery("#family").prop("disabled", true);
 		this.updateProfile();
 	}
 
@@ -293,6 +296,8 @@ export class ProfileComponent {
 				 this.data.foto_tabungan = image;
 				}
 			}finally{
+				this.editDataBank = 0;
+				jQuery("#bank").prop("disabled", true);
 				this.updateProfile()	
 			}
 
@@ -354,6 +359,7 @@ export class ProfileComponent {
 						 this.data.foto_npwp = image;
 						}
 					}finally{
+						this.editDataPenunjang = 0;
 						this.updateProfile()
 					}
 				}.bind(this);
@@ -419,7 +425,8 @@ export class ProfileComponent {
 			this.data.pekerjaan = "";
 			this.data.gaji_per_bulan = 0;
 		}
-		
+		this.editDataPekerjaan = 0;
+		jQuery("#job").prop("disabled", true);
 		this.updateProfile()
 	}
 
@@ -573,6 +580,8 @@ export class ProfileComponent {
 			this.data.sumber_pendapatan_lain_2 	= "";
 			this.data.jumlah_pendapatan_lain_2 	= 0;		
 		}
+		this.editDataPendapatanLain = 0;
+		jQuery("#other-income").prop("disabled", true);
 		this.updateProfile();
 		// this.updateProfile()
 	}

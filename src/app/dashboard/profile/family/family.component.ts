@@ -34,6 +34,8 @@ export class FamilyComponent {
 
 	updateDataKerabat(data){
 		// jQuery(".data-diri").prop("disabled", true);
+		jQuery("#family").prop("disabled", true);
+		this.editDataKerabat = 0;
 		this.profileComponent.updateProfile();
 	}
 }

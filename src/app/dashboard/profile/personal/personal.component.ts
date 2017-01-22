@@ -64,6 +64,8 @@ export class PersonalComponent {
 		if(this.profileComponent.data.status_perkawinan == 2) {
 			this.profileComponent.data.jumlah_anak		= 0;
 		}
+		this.editDataPribadi = 0;
+		jQuery("#personal").prop("disabled", true);
 		this.profileComponent.updateProfile();
 	}
 
