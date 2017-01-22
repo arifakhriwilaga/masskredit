@@ -1,6 +1,9 @@
 import { Component, OnInit } 	from '@angular/core';
 import { ComplementComponent }	from './../complement.component';
 
+import { Headers, Http, RequestOptions }	   from '@angular/http';
+import { Router }        					   from '@angular/router';
+
 declare var jQuery:any;
 
 @Component({
@@ -11,27 +14,54 @@ declare var jQuery:any;
 
 export class CollateralComponent{ 
 
-	constructor(private complement:ComplementComponent) {
-	// initial objek in complement data
-	// this.data = this.complement.data;
+	constructor(
+		private complement:ComplementComponent, 
+		private router : Router, 
+		private http: Http
+	) { }
+
+	ngOnInit(){ 
+		this.getDataCollateral();
+
 	}
 
-	ngOnInit(){ }
-
+	public token =  JSON.parse(localStorage.getItem("access_token"))
+	// object add collateral
 	public data = {
-		access_token : null,
+		access_token : this.token,
 		// objek jaminan
-		deskripsi_jaminan	: null,
-		taksiran_harga_jaminan : null,
-		foto_jaminan_satu 	: null,
-		foto_jaminan_dua 		: null,
-		foto_jaminan_tiga 	: null,
+		collateral_description: null,
+		collateral_type : null,
+		collateral_estimate_price: null,
+		collateral_image_one 	: null,
+		collateral_image_two 	: null,
+		collateral_image_three: null,
 	}
+
+	// object remove collateral
+	public dataRemove = {
+		access_token : this.token,
+		collateral_id : null
+	}
+
+	// object detail collateral
+	public dataDetail = {
+		access_token : this.token,
+		collateral_id : null
+	}
+
+	public access_token = {
+		access_token : this.token,
+		page : 1,
+		limit : 10
+	}
+	public collateral = [];
 	public counter = 1;
+	public formCollateral = 0;
 
 	submitCollateral(data){
 		this.encodeImages()
-
+		// console.log(this.data)
 		// var check = document.getElementById("TextBoxCollateralDiv");
 		// 	if(check == null) {
 
@@ -139,9 +169,9 @@ export class CollateralComponent{
 
 
 	encodeImages(){
-		let a : any = document.getElementById("foto_jaminan_satu");
-		let x : any = document.getElementById("foto_jaminan_dua");
-		let y : any = document.getElementById("foto_jaminan_tiga");
+		let a : any = document.getElementById("collateral_image_one");
+		let x : any = document.getElementById("collateral_image_two");
+		let y : any = document.getElementById("collateral_image_three");
 		
 		var file_a =	a.files[0];
 		var file_x =	x.files[0];
@@ -166,11 +196,11 @@ export class CollateralComponent{
 				let image = event.target.result.split(',')[1];
 				
 				if(image == "AQID") {
-					this.data.foto_jaminan_satu = null
+					this.data.collateral_file_one = null
 				}
 
 				if(image != "AQID") {
-				 this.data.foto_jaminan_satu = image;
+				 this.data.collateral_file_one = image;
 				}
 			}finally{
 				this.encodeImage(file_x).onload = function(event, varty){
@@ -178,11 +208,11 @@ export class CollateralComponent{
 						let image = event.target.result.split(',')[1];
 						
 						if(image == "AQID") {
-							this.data.foto_jaminan_dua = null
+							this.data.collateral_file_two = null
 						}
 
 						if(image != "AQID") {
-						 this.data.foto_jaminan_dua = image;
+						 this.data.collateral_file_two = image;
 						}
 					}finally{
 						this.encodeImage(file_y).onload = function(event, varty){
@@ -190,15 +220,15 @@ export class CollateralComponent{
 								let image = event.target.result.split(',')[1];
 								
 								if(image == "AQID") {
-									this.data.foto_jaminan_tiga = null
+									this.data.collateral_file_three = null
 								}
 
 								if(image != "AQID") {
-								 this.data.foto_jaminan_tiga = image;
+								 this.data.collateral_file_three = image;
 								}
 							}finally{
-								console.log(this.data)
-								// this.changeProfile();
+								// console.log(this.data)
+								this.sendDataCollateral();
 							}
 						}.bind(this);
 					}
@@ -206,4 +236,150 @@ export class CollateralComponent{
 			}
 		}.bind(this);
 	}
+
+	sendDataCollateral(){
+		let headers = new Headers({ 
+			 	'Content-Type': 'application/json',
+			 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+		 	});
+
+		    let options = new RequestOptions({ headers: headers });
+
+
+			// console.log(this.data)
+			this.http.post('http://masscredit-api.stagingapps.net/user/collateral/add',this.data,options)
+					.map(response => response.json())
+					.subscribe(
+						(response : any) => {
+							var code = response.meta.code;
+							console.log(response);
+							if(code == 200) {
+								alert("Jaminan berhasil ditambahkan")
+								this.formCollateral = 0;
+								this.getDataCollateral()
+								// return this.router.navigateByUrl('/dashboard/com')
+							}
+							else{
+								alert("Gagal menambahkan data")
+								// return this.router.navigateByUrl('/dashboard')
+							}
+						},
+						(err:any) => {
+							var error   = JSON.parse(err._body)
+							var message = error.meta.message
+								if(message == "unauthorized") {
+									alert("Maaf session anda telah habis silahkan login kembali")
+									return this.router.navigateByUrl('/dashboard/sign-out')
+									
+								}	
+						
+						}
+					);
+	}
+
+	showFormCollateral(){
+		this.formCollateral = 1;
+	}
+
+	cancelCollateral(){
+		this.formCollateral = 0;
+		this.data.collateral_description = null;
+		this.data.collateral_type = null;
+		this.data.collateral_estimate_price = null;
+		
+	}
+
+	getDetailCollateral(id){
+		console.log(id)
+		jQuery('#myModal').modal('show') 
+	}
+
+	removeCollateral(id){
+		this.dataRemove.collateral_id = id;
+
+		let headers = new Headers({ 
+			 	'Content-Type': 'application/json',
+			 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+		 	});
+
+		let options = new RequestOptions({ headers: headers });
+
+
+			// console.log(this.data)
+			this.http.post('http://masscredit-api.stagingapps.net/user/collateral/delete',this.dataRemove,options)
+					.map(response => response.json())
+					.subscribe(
+						(response : any) => {
+							var code = response.meta.code;
+							console.log(response);
+							if(code == 200) {
+								alert("List Jaminan berhasil dihapus")
+								this.getDataCollateral()
+								// this.collateral = response.data.collateral;
+								// console.log(response)
+
+								// console.log()
+								// return this.router.navigateByUrl('/dashboard/com')
+							}
+							else{
+								alert("Gagal menambahkan data")
+								// return this.router.navigateByUrl('/dashboard')
+							}
+						},
+						(err:any) => {
+							var error   = JSON.parse(err._body)
+							var message = error.meta.message
+								if(message == "unauthorized") {
+									alert("Maaf session anda telah habis silahkan login kembali")
+									return this.router.navigateByUrl('/dashboard/sign-out')
+									
+								}	
+						
+						}
+					);
+	}
+
+	getDataCollateral(){
+		let headers = new Headers({ 
+			 	'Content-Type': 'application/json',
+			 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+		 	});
+
+		let options = new RequestOptions({ headers: headers });
+
+
+			// console.log(this.data)
+			this.http.post('http://masscredit-api.stagingapps.net/user/collateral/get-list',this.access_token,options)
+					.map(response => response.json())
+					.subscribe(
+						(response : any) => {
+							var code = response.meta.code;
+							console.log(response);
+							if(code == 200) {
+								this.collateral = response.data.collateral;
+								console.log(response)
+
+								// console.log()
+								// alert("List Jaminan berhasil diambil")
+								// return this.router.navigateByUrl('/dashboard/com')
+							}
+							else{
+								alert("Gagal menambahkan data")
+								// return this.router.navigateByUrl('/dashboard')
+							}
+						},
+						(err:any) => {
+							var error   = JSON.parse(err._body)
+							var message = error.meta.message
+								if(message == "unauthorized") {
+									alert("Maaf session anda telah habis silahkan login kembali")
+									return this.router.navigateByUrl('/dashboard/sign-out')
+									
+								}	
+						
+						}
+					);
+	}
+
+
 }
