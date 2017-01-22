@@ -156,8 +156,11 @@
           <li>
             <a href="#/dashboard" data-toggle="control-sidebar"><i class="fa fa-cog"></i></a>
           </li>
-          <li>
-            <a href="#/dashboard/profile" data-toggle="control-sidebar"><i class="fa fa-user"></i></a>
+          <li class="dropdown notifications-menu">
+            <a href="#/dashboard/profile" class="dropdown-toggle">
+              <i class="fa fa-user"></i>
+                <!-- <span class="label label-danger">4</span> -->
+            </a>
           </li>
           <li>
             <a href="#/dashboard/sign-out" data-toggle="control-sidebar"><i class="fa fa-sign-out"></i></a>
@@ -195,7 +198,8 @@
         <span class="glyphicon glyphicon-star star-color font half"></span>
       </span> -->
 
-                <span>({{ avg_reviews }} %)</span>
+                <!-- <span>({{ avg_reviews }} %)</span> -->
+                <span>(0%)</span>
             </div>
             <br>
             <div *ngIf="is_complete == 0">
@@ -207,6 +211,10 @@
             </button>
             </a>
             </div>
+            <!-- <input type="text" name="value" id="value" class="form-control" placeholder="Value" value="incomingDataName" [(ngModel)]='incomingDataName'>
+             <button class="btn" style="background-color:#c0392b;" (click)="getDataGlobal()">
+              get global data!
+            </button> -->
           </div>
         </div>
          <div class="col-lg-5 col-xs-5">
