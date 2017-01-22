@@ -1,0 +1,61 @@
+<div class="form-group">
+  <div class="col-xs-12">
+  <br>
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-xs-3">
+    <label class="unit">Nama Perusahaan</label>
+  </div>
+  <div class="col-xs-7">
+    <input type="text" placeholder="Nama Perusahaan" class="with-unit form-control input-md" value="" name="nama_perusahaan" id="nama_perusahaan" [(ngModel)]="data.nama_perusahaan">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-xs-3">
+    <label class="unit">Mulai Bekerja</label>
+  </div>
+  <div class="col-xs-7">
+    <input type="text" placeholder="Mulai Bekerja" class="with-unit form-control input-md datepicker" name="mulai_bekerja" id="mulai_bekerja" [(ngModel)]="data.mulai_bekerja">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-xs-3">
+    <label class="unit">Jabatan</label>
+  </div>
+  <div class="col-xs-7">
+    <input type="text" placeholder="Jabatan" class="with-unit form-control input-md" name="jabatan" id="jabatan" [(ngModel)]="data.jabatan">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-xs-3">
+    <label class="unit">Pekerjaan</label>
+  </div>
+  <div class="col-xs-7">
+    <input type="text" placeholder="pekerjaan" class="with-unit form-control input-md" name="pekerjaan" id="pekerjaan" [(ngModel)]="data.pekerjaan">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-xs-3">  
+    <label class="unit">Gaji per bulan</label>
+  </div>
+  <div class="col-xs-7">
+    <input type="text" placeholder="Gaji per bulan" class="with-unit form-control input-md data-kerja" name="gaji_per_bulan" id="gaji_per_bulan" [(ngModel)]="data.gaji_per_bulan">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-xs-3">
+    <label class="unit">Pengeluaran per bulan</label>
+  </div>
+  <div class="col-xs-7">
+    <input type="text" placeholder="Pengeluaran per bulan" class="with-unit form-control input-md data-kerja" name="pengeluaran_per_bulan" id="pengeluaran_per_bulan" [(ngModel)]="data.pengeluaran_per_bulan">
+  </div>
+</div>
+<div class="form-group clearfix">
+  <div class="col-xs-3">
+    <label class="unit">No Telp Perusahaan</label>
+  </div>
+  <div class="col-xs-7">
+    <input type="text" placeholder="No Telp Perusahaan" class="with-unit form-control input-md data-kerja" name="tlp_perusahaan" id="tlp_perusahaan" [(ngModel)]="data.tlp_perusahaan" disabled>
+  </div>
+</div>
