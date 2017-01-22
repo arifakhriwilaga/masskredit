@@ -9,6 +9,8 @@ import { DataResolver }           from './app.resolver';
 // Auth Guard Dashboard
 import { AuthGuard }   from './../authguard/auth-guard.service';
 
+import { GlobalService }                 from './../global.service';
+
 // Component
 import { DashboardComponent }   	from './dashboard.component';
 import { SidebarComponent }     	from './shared/sidebar';
@@ -128,7 +130,7 @@ export const routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule
   ],
-  providers: [InvestasiService, ValidationServiceInvestasi]
+  providers: [InvestasiService, ValidationServiceInvestasi, GlobalService]
 })	
 
 
