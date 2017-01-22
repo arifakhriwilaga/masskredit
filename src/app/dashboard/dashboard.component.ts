@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit }  from '@angular/core';
 import { ActivatedRoute, Router }        from '@angular/router';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { HeaderComponent }               from './shared/header';
+import { GlobalService }                 from './../global.service';
 
 
 
@@ -13,9 +14,13 @@ declare var jQuery: any;
 })
 export class DashboardComponent implements OnInit{
   
-  constructor(private http : Http, private router:Router) { }
+  constructor(private http : Http, private router:Router, private globalService:GlobalService) { 
+    // this.name = this.globalService.data
+    this.globalService.data = this.name
+  }
+
     // object for pass to header dashboard
-    name : string          = "";
+    name : string ;
     last_login : string    = "";
     user_class : string    = "";
     user_status : string   = "";
@@ -69,12 +74,13 @@ export class DashboardComponent implements OnInit{
       .map(response => response.json())
       .subscribe(
         (response : any) => {
-          alert("get profile")
+          // alert("get profile")
           // console.log(response);
           // this.profile         = response.data.profile.name;
           // this.account_summary = response.data.account_summary;
 
-          this.name           = response.data.profile.name;
+          this.name = response.data.profile.name;  
+          // this.name           = this.globalService.data;
           this.last_login     = response.data.profile.last_login;
           this.user_class     = response.data.profile.user_score.user_class;
           this.user_status    = response.data.profile.user_score.user_status;
@@ -99,7 +105,6 @@ export class DashboardComponent implements OnInit{
         }
       );
   }
-
 }    
 
 
