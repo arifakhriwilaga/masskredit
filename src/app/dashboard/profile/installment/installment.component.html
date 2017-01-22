@@ -1,0 +1,70 @@
+<div class="box box-solid radius-10">
+  <div class="box-header">
+    <i class="fa fa-credit-card" aria-hidden="true"></i>
+    <h3 class="box-title">
+      Data Angsuran
+    </h3>
+    <h3 class="box-title pull-right" *ngIf="editDataAngsuran == 0">
+      <a href="#/dashboard/profile" (click)="enableDataAngsuran()">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </h3>
+  </div>
+  <hr>
+  <div class="box-body">
+	<div class="box-body data-tables table-responsive">
+	<table class="table table-hover" id="example2">
+	<thead>
+	<tr>
+	  <th>No.</th><!-- 
+	  <th>Gambar</th>
+	  <th>Nama Investasi</th> -->
+	  <th>Jumlah Angsuran</th>
+	  <th>Deskripsi Angsuran</th>
+	  <th></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	  <td></td>
+	  <td><span class="warranty"></span></td>
+	  <td></td>
+	  <td>
+	    <a class="pull-right" href="#/dashboard/profile">
+	    	<i aria-hidden="true" class="fa fa-trash-o"></i>
+	    </a>
+	    <a class="pull-right" href="#/dashboard/profile">
+	    	<i aria-hidden="true" class="fa fa-search"></i>
+	    </a>
+	  </td>
+	</tr>
+	<!-- <tr *ngFor="let data of collateral">
+	   <td>{{ data.collateral_id }}</td> -->
+	  <!-- <td>
+	    <img src="../../assets/img/user4-128x128.jpg">
+	  </td>
+	  <td>Warung Kelontongan</td> -->
+	  <!-- <td><span class="warranty">{{ data.collateral_type }}</span></td>
+	  <td>{{ data.collateral_estimate_price }}</td>
+	  <td>{{ data.collateral_description }}</td>
+	  <td>
+	    <a class="pull-right" href="#/dashboard/profile"><i aria-hidden="true" class="fa fa-trash-o" (click)="removeCollateral(data.collateral_id)"></i></a>
+	    <a class="pull-right" href="#/dashboard/profile"><i aria-hidden="true" class="fa fa-search" (click)="getDetailCollateral(data.collateral_id)"></i></a>
+	  </td>
+	</tr> -->
+	</tbody>
+	</table>
+	</div>
+	<br>
+	<div id='TextBoxesGroup'>
+	  <div id="TextBoxDiv">
+	      <!-- content angsuran -->
+	      <label>Angsuran</label>
+	</div>
+	</div>
+	<input type='button' value='Tambah' id='addButton'>
+	<input type='button' value='Hapus' id='removeButton'>
+	<br><br><br>
+  
+  </div> 
+</div>
