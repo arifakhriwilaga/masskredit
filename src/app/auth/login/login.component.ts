@@ -40,17 +40,17 @@ export class LoginComponent {
 	    
 	    let options = new RequestOptions({ headers: headers });
 			console.log("Authentication user");
-			this.http.post('http://masscredit-api.stagingapps.net/user/credential/login', user , options)
+			this.http.post('https://masscredit-api.stagingapps.net/user/credential/login', user , options)
 			.subscribe(
 				(data : any) => {
 				var data 	 = data.json();
 				console.log(data);
 				localStorage.setItem('access_token', JSON.stringify(data.data.access_token));
 					if(data.meta.code == "200") {
-						return this.router.navigateByUrl('dashboard');
+						this.router.navigateByUrl('dashboard');
 					}
 					else{
-						return this.router.navigateByUrl('/')
+						this.router.navigateByUrl('/')
 					}	
 				},
 				(err:any) => {
