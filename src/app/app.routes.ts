@@ -11,7 +11,9 @@ export const ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: 'coba', component: CobaComponent },
   { path: 'home', 	   loadChildren: () => System.import('./home').then((comp: any) => comp.default), },
-  { path: 'auth', 	   loadChildren: () => System.import('./auth').then((comp: any) => comp.default), },
+  { path: 'auth',
+    loadChildren: () => System.import('./auth').then((comp: any) => comp.default), 
+  },
   { 
 	// canActivate : [ AuthGuardEntryDashboard ],
   	path: 'dashboard', 

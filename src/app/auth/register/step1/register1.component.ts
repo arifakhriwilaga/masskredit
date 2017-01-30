@@ -113,13 +113,7 @@ export class Step1RegisterComponent  {
 		    },
 		    status_rumah: {
 		      required: true
-		    },
-		    luas_tanah: {
-		      required: true
-		    },
-		    luas_bangunan: {
-		      required: true
-		    },
+		    }
 		  }
 		});
 

@@ -1,0 +1,205 @@
+<section class="content">
+ <div class="row">
+   <div class="col-md-4">
+      <div class="box box-solid radius-10" style="border: 100px">
+        <div align="center">
+          <label><h2 style="font-size: 24px;color: orange;">Investor</h2></label>
+        </div>
+        <div class="form-group">
+        <br>
+            <img src="" alt="Foto Diri Investor" class="thumbnail" width="250px" height="250px">
+        </div>
+      </div>
+
+     <!--  <div class="box box-solid radius-10">
+        <div align="center">
+          <label><h2 style="font-size: 24px;color: orange;">Form Pinjaman</h2></label>
+        </div>
+        <div class="form-group">
+        <br>
+         <select class="form-control input-md" name="type" id="type">
+            <option value="0" disabled>Pilih Jaminan</option>
+         </select>
+       </div>
+        <div class="form-group">
+         <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="loan_amount" id="loan_amount" value="">
+       </div>
+         <div class="form-group">
+            <button class="btn btn-default" (click)="createInvest(invest)">Kembali</button>
+            <button class="btn btn-red" (click)="createInvest(invest)" style="background-color: #e74c3c;"><font style="color:white">Pinjam Sekarang!</font></button>
+         </div>
+      </div> -->
+  </div>
+  <div class="col-md-7">
+    <div class="box box-solid radius-10">
+    <div class="box-body">
+    <div align="center">
+     <label><h2 style="font-size: 24px;color: orange;">Detail Investasi</h2></label>
+    </div>
+    <br>
+   <div class="col-md-12 clearfix"> 
+     <div class="form-group">
+       <div class="col-md-4 clearfix">
+         <label class="unit">ID Investasi</label>
+       </div>
+       <div class="col-md-7 clearfix">
+         <input type="text" placeholder="ID Investasi" class="form-control input-md" name="id" id="id" value="{{ data.id }}" disabled>
+       </div>
+     </div>
+     <div class="form-group">
+       <div class="col-md-4 clearfix">
+         <label class="unit">Nama Investasi</label>
+       </div>
+       <div class="col-md-7 clearfix">
+         <input type="text" placeholder="Nama Investasi" class="form-control input-md" name="invest_name" id="invest_name" value="{{ data.invest_name }}" disabled>
+       </div>
+     </div>
+    <div class="form-group">
+      <div class="col-md-12 clearfix">
+      <br>
+      </div>
+    </div>
+    <div class="form-group">
+       <div class="col-md-4 clearfix">
+         <label class="unit">Tipe Investasi</label>
+       </div>
+       <div class="col-md-7 clearfix">
+         <select class="form-control input-md" name="type" id="type" disabled>
+            <option value="0" disabled>{{ data.invest_name }}</option>
+          </select>
+       </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-12 clearfix">
+      <br>
+      </div>
+    </div>
+   <div class="form-group">
+     <div class="col-md-4 clearfix">
+       <label class="unit">Deskipsi</label>
+     </div>
+     <div class="col-md-7 clearfix">
+       <textarea type="text" placeholder="Description" class="form-control input-md" name="description" id="description" value="{{ data.collateral_value }}" disabled></textarea>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-md-12 clearfix">
+      <br>
+      </div>
+    </div>
+     <div class="form-group">
+     <div class="col-md-4 clearfix">
+       <label class="unit">Batas Penawaran</label>
+     </div>
+       <div class="col-md-7 clearfix">
+         <input  type="text" placeholder="Batas Akhir Penawaran" name="due_date" class="form-control input-md" id="due_date" value="" disabled>
+       </div>
+     </div>
+     <div class="form-group">
+      <div class="col-md-12 clearfix">
+      <br>
+      </div>
+    </div>
+      <div class="form-group">
+      <div class="col-md-4 clearfix">
+       <label class="unit">Bunga</label>
+      </div>
+      <div class="col-md-7 clearfix">
+       <input type="text" placeholder="Bunga" class="form-control input-md" name="interest" id="interest" value="{{ data.interest }}" disabled>
+      </div>
+     </div>
+     <div class="form-group">
+      <div class="col-md-12 clearfix">
+      <br>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-4 clearfix">
+        <label class="unit">Tenor</label>
+      </div>
+      <div class="col-md-7 clearfix">
+       <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" value="{{ data.tenor }}" disabled>
+      </div>
+     </div>
+     <div class="form-group">
+      <div class="col-md-12 clearfix">
+      <br>
+      </div>
+    </div>
+     <div class="form-group">
+     <div class="col-md-4 clearfix">
+       <label class="unit">Charge Fee</label>
+     </div>
+      <div class="col-md-7 clearfix">
+        <input type="text" placeholder="Charge Fee" class="form-control input-md" name="charge_fee" id="charge_fee" value="{{ data.charge_fee }}" disabled>
+      </div>
+     </div>
+     <div class="form-group">
+      <div class="col-md-12 clearfix">
+      <br>
+      </div>
+    </div>
+     <div class="form-group">
+     <div class="col-md-4 clearfix">
+       <label class="unit">Success Fee</label>
+     </div>
+      <div class="col-md-7 clearfix">
+         <input type="text" placeholder="Success Fee" class="form-control input-md" name="success_fee" id="success_fee" value="{{ data.success_fee }}" disabled>
+      </div>
+     </div>
+     </div>
+    <div class="col-md-12">
+      <div class="form-group">
+      <div align="center">
+        <label class="unit"><b>Foto Investasi</b></label>
+          <img src="{{ data.images }}" alt="Bukti Transfer" class="thumbnail" width="250px" height="250px">
+      </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+ </div>
+<div class="row">
+  <div class="col-xs-12">
+ <label><h2 style="font-size: 30px;color: orange;">Daftar Peminjam</h2></label>
+  <div class="box-body data-tables table-responsive">
+  <table class="table table-hover" id="example2">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Nama Peminjam</th>
+        <th>Nominal Pinjaman (Rp)</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataBorrower of dataBorrower">
+        <td>{{ dataBorrower.id }}</td>
+        <td>
+          {{ dataBorrower.borrower_name }}
+        </td>
+        <td>{{ dataBorrower.loan_amount }}</td>
+        <td>{{ dataBorrower.status }}</td>
+        <td *ngIf="dataBorrower.status == 'Tunda'">
+          <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id ,'loan-not-been-approved', dataBorrower.id]"><i aria-hidden="true" class="fa fa-search"></i></a>
+        </td>
+        <td *ngIf="dataBorrower.status == 'Setuju'">
+          <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id ,'loan-approved', dataBorrower.id]"><i aria-hidden="true" class="fa fa-search"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>  
+  </div>
+</div>
+</section>
+           <!-- </form>
+         </div>
+       </div>
+       <div class="form-group">
+          <div class="col-md-6 col-center">
+            <button class="btn btn-red" (click)="backFund()">Kembali</button>
+          </div>
+       </div> -->

@@ -3,7 +3,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { LoginService } from './../../../auth/login/login.service';
 import { DashboardComponent } from './../../dashboard.component';
 import { ProfileComponent } from './../../profile/profile.component';
-import { GlobalService } from './../../../global.service';
+import { Global } from './../../../global.service';
 
 
 import { Router }	   from '@angular/router';
@@ -12,7 +12,7 @@ import { Router }	   from '@angular/router';
 @Component({
 	selector: 'header-dashboard',
 	templateUrl: 'header.component.html',
-	providers: [LoginService]
+	providers: [LoginService, Global]
 })
 
 
@@ -32,11 +32,15 @@ export class HeaderComponent implements OnInit{
 		private http : Http,
 		private dashboardComponent : DashboardComponent,
 		private router : Router,
-		private globalService : GlobalService
+		private dataUser:Global
+		// private globalService : GlobalService
 	){ }
 
+	private data = this.dataUser.data;
+	
 	getDataGlobal(){
-	    console.log(this.globalService.data);
+		console.log(this.data)
+	    // console.log(this.globalService.data);
  	}
 
  	ngOnInit(){	}	

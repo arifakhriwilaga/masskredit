@@ -1,7 +1,7 @@
 import { Component } 		from '@angular/core';
 import { Headers, Http, RequestOptions }	   from '@angular/http';
 import { Router } from '@angular/router';
-import { GlobalService } from './../../global.service';
+// import { GlobalService } from './../../global.service';
 
 declare var jQuery:any;
 
@@ -14,7 +14,7 @@ declare var jQuery:any;
 export class ProfileComponent {
 	// private enable:boolean;
 
-	constructor(private http: Http, private router : Router, private globalService : GlobalService){ }
+	constructor(private http: Http, private router : Router){ }
 
 	// Default Objek
 	private image:void;

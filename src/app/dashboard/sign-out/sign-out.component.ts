@@ -3,7 +3,7 @@ import { ActivatedRoute, Router }   from '@angular/router';
 
 @Component({
 	//moduleId: module.id,
-	selector: 'investasi',
+	selector: 'sign-out',
 	template: '',
 	
 })
@@ -17,6 +17,7 @@ export class SignOutComponent {
 		localStorage.removeItem("access_token");
 		localStorage.removeItem("verify_handphone");
 		localStorage.removeItem("access_code");
+		localStorage.removeItem("access");
 
 		this.router.navigateByUrl('');
 	}

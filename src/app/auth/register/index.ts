@@ -6,7 +6,7 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { HttpModule }                                          from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormBuilder }                    from '@angular/forms';
 import { RegisterService }                                     from './register.service';
-import { JqueryService }                                     from './jquery.register';
+// import { JqueryService }                                     from './jquery.register';
 import { CommonModule  }              from '@angular/common';
 
 
@@ -77,7 +77,6 @@ export const routes = [
     AuthGuardVerify,
     AuthGuardVerifyCode,
     RegisterService,
-    JqueryService,
     AuthGuardVerifyHandphone,
     AuthGuardVerifyCodeHandphone,
     FormBuilder

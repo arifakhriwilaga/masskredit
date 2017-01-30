@@ -28,7 +28,7 @@ import { AppState, InternalStateType } from './app.service';
 
 // Verify Email
 import { VerifyEmailComponent }          from './verify_email';
-import { GlobalService }                 from './global.service';
+// import { GlobalService }                 from './global.service';
 
 
 // Config LocalStorage
@@ -72,7 +72,6 @@ type StoreType = {
     AuthGuard,
     AuthGuardDashboard,
     AuthGuardEntryDashboard,
-    GlobalService,
     
       {
           provide: LOCAL_STORAGE_SERVICE_CONFIG, useValue: localStorageServiceConfig

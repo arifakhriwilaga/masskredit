@@ -1,10 +1,4 @@
 // Module
-// import { NgModule }              from '@angular/core';
-// import { RouterModule }          from '@angular/router';
-// import { HttpModule }            from '@angular/http';
-// import { FormsModule }           from '@angular/forms';
-// import { LocalStorageService }   from 'angular-2-local-storage';
-// Module
 import { BrowserModule }                                       from '@angular/platform-browser';
 import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA }    from '@angular/core';
 import { RouterModule, Routes, ActivatedRoute }                from '@angular/router';
