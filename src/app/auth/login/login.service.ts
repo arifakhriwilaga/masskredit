@@ -14,7 +14,7 @@ export class LoginService {
 	// private user:User;
 
   // declare object url login
-	private loggedinUrl = 'https://masscredit-api.stagingapps.net/user/credential/login';
+	private loggedinUrl = 'http://masscredit-api.stagingapps.net/user/credential/login';
 	
 	// declare headers
 	private headers = new Headers({ 
