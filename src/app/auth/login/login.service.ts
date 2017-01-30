@@ -24,21 +24,28 @@ export class LoginService {
   private options = new RequestOptions({ headers: this.headers });
 
   private message = {};
+  
 	// function login
 	public login(user:any){
 		return this.http.post(this.loggedinUrl, user, this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response:any) => { 
+					var access_token 		= response.data.access_token;
 					var code 		= response.meta.code;
 					if(code == "200") {
-						return this.router.navigateByUrl('/dashboard')
+						localStorage.setItem('access_token',access_token);
+						return this.router.navigateByUrl('/dashboard');
 					}else{
-						alert("Register gagal")
+						alert("Register gagal");
 					}
 				},
 				(err:any) => {
-
+					var error   = JSON.parse(err._body);
+					var code = error.meta.code;
+						if(code == "404") {
+							alert("Akun tidak ditemukan.")
+						}
 				}
 			);
 	}
