@@ -1,37 +1,47 @@
-import { Injectable }		from '@angular/core';
-import { Headers, Http }	from '@angular/http';
-import { Observable }     	from 'rxjs/Observable';
-import { Router }			from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
+
+import 'rxjs/add/operator/toPromise';
+
+import { User } from './login';
+
 
 @Injectable ()
 export class LoginService {
-	private headers  	= new Headers ({'Content-Type' : 'application/json'}); //URL to web API
-	private loggedinUrl = 'https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/login'; //URL API LOGIN
-	private logoutUrl	= 'https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/logout';
-	constructor (private http:Http, private router : Router) { }
+	constructor (private http:Http, private router:Router) { }
+
+	// private user:User;
+
+  // declare object url login
+	private loggedinUrl = 'https://masscredit-api.stagingapps.net/user/credential/login';
 	
-	loggedin(email,password) : Observable<any> {
-		let user = { email: email, password: password };
-		return this.http.post(this.loggedinUrl, user, this.headers);
-	}
+	// declare headers
+	private headers = new Headers({ 
+	 	'Content-Type': 'application/json',
+	 	'API_KEY' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	});    
+  private options = new RequestOptions({ headers: this.headers });
 
-	public logout() {
-		var token = localStorage.getItem("access_token");
-		return this.http
-		.post('https://private-f1c97-masscredit.apiary-mock.com/mobile/user/credential/logout',token)
-		.subscribe((data: any) => {
-			var token = data.json();
-			console.log(token.meta.code,token.meta.message);
-			if(token.meta.code == "200") {
-				localStorage.removeItem("access_token");
-				// this.isloggedin = true;
-				return this.router.navigateByUrl('/');
-			}
-			else{
-				return this.router.navigateByUrl('dashboard')
-		}
-		});
-	}
+  private message = {};
+	// function login
+	public login(user:any){
+		return this.http.post(this.loggedinUrl, user, this.options)
+			.map(response => response.json())
+			.subscribe(
+				(response:any) => { 
+					var code 		= response.meta.code;
+					if(code == "200") {
+						return this.router.navigateByUrl('/dashboard')
+					}else{
+						alert("Register gagal")
+					}
+				},
+				(err:any) => {
 
+				}
+			);
+	}
 }
+
 
