@@ -31,7 +31,7 @@ export class LoginComponent {
 	}
 
 	login(user){
-		this.loginService.login(user)
+		this.loginService.login(user);
 	}
 
  }
