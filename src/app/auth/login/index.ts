@@ -3,11 +3,8 @@ import { NgModule }              from '@angular/core';
 import { RouterModule }          from '@angular/router';
 import { HttpModule }            from '@angular/http';
 import { FormsModule }           from '@angular/forms';
-import { LocalStorageService }   from 'angular-2-local-storage';
+// import { LocalStorageService }   from 'angular-2-local-storage';
 
-
-// debugger;
-// Component
 import { LoginComponent }        from './login.component';
 
 export const routes = [
@@ -23,10 +20,8 @@ export const routes = [
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  // exports: [LoginComponent],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    LocalStorageService,
-    // LoginComponent,
+    // LocalStorageService,
   ]
 })
 
