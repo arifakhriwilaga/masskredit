@@ -72,7 +72,7 @@ export class CreateComponent {
 
 	cancelInvest(){
 
-		this.router.navigateByUrl("/dashboard/user-action/invest");
+		this.router.navigateByUrl("/dashboard/other-user-action/invest");
 	}
 
 	// function for encode image
