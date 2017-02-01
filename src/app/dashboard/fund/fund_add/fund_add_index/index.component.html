@@ -31,8 +31,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of funds">
-              <td>{{ data.id }}</td>
+            <tr *ngFor="let data of funds; let i='index'">
+              <td>{{ i+1 }}</td>
               <td>
                 {{ data.no_reference }}
               </td>
