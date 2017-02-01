@@ -192,9 +192,11 @@ export class ProfileComponent {
 
 	cancelDataPribadiPhoto(){
 		this.editDataPribadiPhoto = 0;
+		this.dataProfile = 0;
 	}
 
 	updateDataPribadiPhoto(){
+		this.dataProfile = 0;
 		let z : any = document.getElementById("foto_diri");
 		var file_z =	z.files[0];
 		var objectBlob	= new Uint8Array([1,2,3]);
