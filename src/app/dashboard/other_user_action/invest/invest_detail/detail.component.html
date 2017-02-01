@@ -1,0 +1,156 @@
+<section class="content">
+<div class="row" *ngIf="dataDetailListInvest == 1">
+<div class="col-md-4">
+  <div class="box box-solid radius-10" style="border: 2px">
+    <div align="center">
+      <label><h2 style="font-size: 24px;color: orange;">Investor</h2></label>
+    </div>
+    <div class="form-group">
+    <br>
+    <img src="" alt="Foto Diri Investor" class="thumbnail" width="250px" height="250px">
+    </div>
+  </div>
+  <div class="box box-solid radius-10">
+    <div align="center">
+      <label><h2 style="font-size: 24px;color: orange;">Form Pinjaman</h2></label>
+    </div>
+<!--         <div class="form-group">
+    <br>
+     <select class="form-control input-md" name="type" id="type">
+        <option value="0" disabled>Pilih Jaminan</option>
+     </select>
+   </div> -->
+    <div *ngIf="dataDetailInvest == 0">
+    <div class="form-group">
+      <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="loan_amount" id="loan_amount" value="" [(ngModel)]="loan.loan_amount">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-default" (click)="cancelDetailInvest()">Kembali</button>
+      <button class="btn btn-red" (click)="makeLoan(loan)" style="background-color: #e74c3c;"><font style="color:white">Pinjam Sekarang!</font></button>
+    </div>
+    </div>
+    <!-- component password -->
+    <verify *ngIf="dataDetailInvest == 1"></verify>
+    
+  </div>
+</div>
+<div class="col-md-7">
+  <div class="box box-solid radius-10">
+  <div class="box-body">
+  <div align="center">
+   <label><h2 style="font-size: 24px;color: orange;">Detail Investasi</h2></label>
+  </div>
+  <br>
+  <div class="col-md-12 clearfix"> 
+  <div class="form-group">
+    <div class="col-md-4 clearfix">
+      <label class="unit">Nama Investasi</label>
+    </div>
+    <div class="col-md-7 clearfix">
+      <input type="text" placeholder="Nama Investasi" class="form-control input-md" name="invest_name" id="invest_name" value="{{ data.loan_name }}" disabled>
+    </div>
+ </div>
+  <div class="form-group">
+    <!-- null -->
+  </div>
+  <div class="form-group">
+     <div class="col-md-4 clearfix">
+       <label class="unit">Tipe Investasi</label>
+     </div>
+     <div class="col-md-7 clearfix">
+      <input type="text" placeholder="Tipe Invest" class="form-control input-md" name="invest_name" id="invest_name" value="{{ data.tipe }}" disabled>
+     </div>
+  </div>
+  <div class="form-group">
+    <!-- null -->
+  </div>
+ <div class="form-group">
+   <div class="col-md-4 clearfix">
+     <label class="unit">Deskipsi</label>
+   </div>
+   <div class="col-md-7 clearfix">
+     <textarea type="text" placeholder="Description" class="form-control input-md" name="description" id="description" value="{{ data.collateral_value }}" disabled></textarea>
+    </div>
+ </div>
+  <div class="form-group">
+  <!-- null -->
+  </div>
+  <div class="form-group">
+    <div class="col-md-4 clearfix">
+      <label class="unit">Batas Penawaran</label>
+    </div>
+    <div class="col-md-7 clearfix">
+      <input  type="text" placeholder="Batas Akhir Penawaran" name="due_date" class="form-control input-md" id="due_date" value="" disabled>
+    </div>
+  </div>
+  <div class="form-group">
+  <!-- null -->
+  </div>
+  <div class="form-group">
+    <div class="col-md-4 clearfix">
+      <label class="unit">Bunga</label>
+    </div>
+    <div class="col-md-7 clearfix">
+      <input type="text" placeholder="Bunga" class="form-control input-md" name="interest" id="interest" value="{{ data.interest }}" disabled>
+    </div>
+  </div>
+  <div class="form-group">
+    <!-- null -->
+  </div>
+  <div class="form-group">
+    <div class="col-md-4 clearfix">
+      <label class="unit">Tenor</label>
+    </div>
+    <div class="col-md-7 clearfix">
+      <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" value="{{ data.tenor }}" disabled>
+    </div>
+  </div>
+  <div class="form-group">
+    <!-- null -->
+  </div>
+  <div class="form-group">
+    <div class="col-md-4 clearfix">
+      <label class="unit">Charge Fee</label>
+    </div>
+    <div class="col-md-7 clearfix">
+      <input type="text" placeholder="Charge Fee" class="form-control input-md" name="charge_fee" id="charge_fee" value="{{ data.charge_fee }}" disabled>
+    </div>
+  </div>
+  <div class="form-group">
+    <!-- null -->
+  </div>
+  <div class="form-group">
+    <div class="col-md-4 clearfix">
+      <label class="unit">Success Fee</label>
+    </div>
+    <div class="col-md-7 clearfix">
+      <input type="text" placeholder="Success Fee" class="form-control input-md" name="success_fee" id="success_fee" value="{{ data.success_fee }}" disabled>
+    </div>
+  </div>
+ </div>
+  <div class="col-md-12">
+    <div class="form-group">
+      <div align="center">
+        <label class="unit"><b>Foto Investasi</b></label>
+          <img src="{{ data.images }}" alt="Bukti Transfer" class="thumbnail" width="250px" height="250px">
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+</div>
+<div align="center" *ngIf="dataDetailListInvest == 0"> 
+  <br><br><br><br><br>
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+</div>
+</section>
+           <!-- </form>
+         </div>
+       </div>
+       <div class="form-group">
+          <div class="col-md-6 col-center">
+            <button class="btn btn-red" (click)="backFund()">Kembali</button>
+          </div>
+       </div> -->
