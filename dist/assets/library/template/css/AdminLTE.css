@@ -5811,3 +5811,26 @@ margin-left: 950px;
     border: none;
     border-bottom: 3px solid #2f445f;
 }
+
+/*custom modal*/
+.btn-info {
+    background-color: #253242;
+    border-color: #253242;
+}
+
+.modal-backdrop { 
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10px 0px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+} 
