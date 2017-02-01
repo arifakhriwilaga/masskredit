@@ -1,34 +1,28 @@
 <section class="content">
- <div class="row">
-   <div class="col-md-4">
-      <div class="box box-solid radius-10" style="border: 100px">
-        <div align="center">
-          <label><h2 style="font-size: 24px;color: orange;">Investor</h2></label>
-        </div>
-        <div class="form-group">
-        <br>
-            <img src="" alt="Foto Diri Investor" class="thumbnail" width="250px" height="250px">
-        </div>
+<div  *ngIf="dataDetailListMyInvest == 0">
+<div class="row">
+  <div align="center"> 
+    <br><br><br><br><br>
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+</div>
+<div  *ngIf="dataDetailListMyInvest == 1">
+<div class="row">
+  <div class="col-md-4">
+    <div class="box box-solid radius-10" style="border: 100px">
+      <div align="center">
+        <label><h2 style="font-size: 24px;color: orange;">Investor</h2></label>
       </div>
-
-     <!--  <div class="box box-solid radius-10">
-        <div align="center">
-          <label><h2 style="font-size: 24px;color: orange;">Form Pinjaman</h2></label>
-        </div>
-        <div class="form-group">
-        <br>
-         <select class="form-control input-md" name="type" id="type">
-            <option value="0" disabled>Pilih Jaminan</option>
-         </select>
-       </div>
-        <div class="form-group">
-         <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="loan_amount" id="loan_amount" value="">
-       </div>
-         <div class="form-group">
-            <button class="btn btn-default" (click)="createInvest(invest)">Kembali</button>
-            <button class="btn btn-red" (click)="createInvest(invest)" style="background-color: #e74c3c;"><font style="color:white">Pinjam Sekarang!</font></button>
-         </div>
-      </div> -->
+      <div class="form-group">
+      <br>
+          <img src="" alt="Foto Diri Investor" class="thumbnail" width="250px" height="250px">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-default" (click)="cancelDetailInvest()">Kembali</button>
+    </div>
+    </div>
   </div>
   <div class="col-md-7">
     <div class="box box-solid radius-10">
@@ -55,24 +49,18 @@
        </div>
      </div>
     <div class="form-group">
-      <div class="col-md-12 clearfix">
-      <br>
-      </div>
+      <!-- null -->
     </div>
     <div class="form-group">
        <div class="col-md-4 clearfix">
          <label class="unit">Tipe Investasi</label>
        </div>
        <div class="col-md-7 clearfix">
-         <select class="form-control input-md" name="type" id="type" disabled>
-            <option value="0" disabled>{{ data.invest_name }}</option>
-          </select>
+         <input type="text" placeholder="Tipe Investasi" class="form-control input-md" name="tipe" id="tipe" value="{{ data.tipe }}" disabled>
        </div>
     </div>
     <div class="form-group">
-      <div class="col-md-12 clearfix">
-      <br>
-      </div>
+      <!-- null -->
     </div>
    <div class="form-group">
      <div class="col-md-4 clearfix">
@@ -83,48 +71,44 @@
       </div>
    </div>
    <div class="form-group">
-      <div class="col-md-12 clearfix">
-      <br>
-      </div>
+      <!-- null -->
     </div>
      <div class="form-group">
      <div class="col-md-4 clearfix">
        <label class="unit">Batas Penawaran</label>
      </div>
        <div class="col-md-7 clearfix">
-         <input  type="text" placeholder="Batas Akhir Penawaran" name="due_date" class="form-control input-md" id="due_date" value="" disabled>
+         <input  type="text" placeholder="Batas Akhir Penawaran" name="due_date" class="form-control input-md" id="due_date" value="{{ data.due_date }}" disabled>
        </div>
      </div>
      <div class="form-group">
-      <div class="col-md-12 clearfix">
-      <br>
-      </div>
+      <!-- null -->
     </div>
       <div class="form-group">
       <div class="col-md-4 clearfix">
        <label class="unit">Bunga</label>
       </div>
-      <div class="col-md-7 clearfix">
+      <div class="col-md-5 clearfix">
        <input type="text" placeholder="Bunga" class="form-control input-md" name="interest" id="interest" value="{{ data.interest }}" disabled>
       </div>
+       <label class="unit">%/Bulan</label>
      </div>
      <div class="form-group">
-      <div class="col-md-12 clearfix">
-      <br>
-      </div>
+      <!-- null -->
     </div>
     <div class="form-group">
       <div class="col-md-4 clearfix">
         <label class="unit">Tenor</label>
       </div>
-      <div class="col-md-7 clearfix">
-       <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" value="{{ data.tenor }}" disabled>
+      <div class="col-md-5">
+       <!-- <div class="col-md-10 clearfix"> -->
+         <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" value="{{ data.tenor }}" disabled>
+       <!-- </div> -->
       </div>
+       <label class="unit">Bulan</label>
      </div>
      <div class="form-group">
-      <div class="col-md-12 clearfix">
-      <br>
-      </div>
+      <!-- null -->
     </div>
      <div class="form-group">
      <div class="col-md-4 clearfix">
@@ -135,9 +119,7 @@
       </div>
      </div>
      <div class="form-group">
-      <div class="col-md-12 clearfix">
-      <br>
-      </div>
+      <!-- null -->
     </div>
      <div class="form-group">
      <div class="col-md-4 clearfix">
@@ -159,7 +141,7 @@
     </div>
     </div>
   </div>
- </div>
+</div>
 <div class="row">
   <div class="col-xs-12">
  <label><h2 style="font-size: 30px;color: orange;">Daftar Peminjam</h2></label>
@@ -194,12 +176,30 @@
   </div>  
   </div>
 </div>
+</div>
+
+ <h2>Modal Example</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </section>
-           <!-- </form>
-         </div>
-       </div>
-       <div class="form-group">
-          <div class="col-md-6 col-center">
-            <button class="btn btn-red" (click)="backFund()">Kembali</button>
-          </div>
-       </div> -->

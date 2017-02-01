@@ -80,6 +80,8 @@ export class ProfileComponent {
 	}
 
 	private enable:number
+	private dataProfile = 0;
+
 	ngOnInit(){
 		// jQuery("input").prop("disabled", true);
 		// jQuery("#batal").hide();
@@ -88,39 +90,39 @@ export class ProfileComponent {
 		// this.disableField();	
 
 		// dynamic data angsuran
-		var counter = 1;
-		jQuery("#addButton").click(function(){
-			if(counter > 5) {
-				alert("Only 5 textbox");
-				return false;
-			}
+		// var counter = 1;
+		// jQuery("#addButton").click(function(){
+		// 	if(counter > 5) {
+		// 		alert("Only 5 textbox");
+		// 		return false;
+		// 	}
 
 
-			var newTextBoxDiv = jQuery(document.createElement('div'))
-			.attr("id",'TextBoxDiv' + counter).attr("class",'blockElement');
+		// 	var newTextBoxDiv = jQuery(document.createElement('div'))
+		// 	.attr("id",'TextBoxDiv' + counter).attr("class",'blockElement');
 
-			newTextBoxDiv.after().html(
-				'<label>Angsuran</label>' +
-				'<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md jumlah-angsuran" name="textbox1' + counter + 
-				'" id="textbox1' + counter + '" value="">' +
-				'<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md description-angsuran" name="textbox2' + counter + 
-				'" id="textbox2' + counter + '" value="">'
-			);
-			newTextBoxDiv.appendTo("#TextBoxesGroup");
-			counter++;
-			console.log(counter)
-		});
+		// 	newTextBoxDiv.after().html(
+		// 		'<label>Angsuran</label>' +
+		// 		'<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md jumlah-angsuran" name="textbox1' + counter + 
+		// 		'" id="textbox1' + counter + '" value="">' +
+		// 		'<input type="text" placeholder="Deskripsi Angsuran" class="form-control input-md description-angsuran" name="textbox2' + counter + 
+		// 		'" id="textbox2' + counter + '" value="">'
+		// 	);
+		// 	newTextBoxDiv.appendTo("#TextBoxesGroup");
+		// 	counter++;
+		// 	console.log(counter)
+		// });
 
-		jQuery("#removeButton").click(function(){
-			if(counter <= 1){
-				alert("No more textbove remove");
-				return false;
-			}	
-			counter--;
-			console.log(counter)
-			jQuery("#TextBoxDiv" + counter).remove();
+		// jQuery("#removeButton").click(function(){
+		// 	if(counter <= 1){
+		// 		alert("No more textbove remove");
+		// 		return false;
+		// 	}	
+		// 	counter--;
+		// 	console.log(counter)
+		// 	jQuery("#TextBoxDiv" + counter).remove();
 
-		});
+		// });
 
 	}
 
@@ -503,6 +505,7 @@ export class ProfileComponent {
 						
 						// object bank
 						this.data.no_rekening 	= response.data.profile.complement_user.no_rekening;
+						this.dataProfile = 1;
 						
 					},
 					(err:any) => {

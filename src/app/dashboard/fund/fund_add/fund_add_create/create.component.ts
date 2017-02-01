@@ -65,7 +65,7 @@ export class CreateComponent {
 	            this.data.nama_lengkap	= response.data.profile.name;
 	            // this.data.bank_name		= response.data.profile.complement_user.no_rekening;
 	            // this.data.no_rekening
-	            console.log(response);
+	            // console.log(response);
 	          },
 	          (err:any) => {
 	            var error   = JSON.parse(err._body)
@@ -110,7 +110,6 @@ export class CreateComponent {
 					var message 	= response.meta.message;
 					var banks 		= response.data.tipe_bank;
 					this.banks 		= banks;
-					console.log(response);
 					// this.router.navigateByUrl('/dashboard/fund');
 				},
 				(err:any) => {
@@ -149,10 +148,10 @@ export class CreateComponent {
 	// objek request Add Fund
 	public data = {
 		access_token: this.access_token,
-	  	date		: '',
-	  	no_reference: '',
-	  	nama_lengkap: '',
-	  	bank_name	: 0,
+  	date		: '',
+  	no_reference: '',
+  	nama_lengkap: '',
+  	bank_name	: 0,
 		no_rekening	: '',
 		amount		: '',		
 	}
@@ -163,13 +162,13 @@ export class CreateComponent {
 	// get id bank name
 	getBankName(id){
 		this.data.bank_name = id;
-		console.log(this.data)
+		// console.log(this.data)
 	}
 
   	createFund(data) {
 		if(jQuery("#createForm").valid()) {	
 		// if(true) {
-	  		console.log(this.data)
+	  		// console.log(this.data)
 				
 			// API Add Fund
 			this.http.post('http://masscredit-api.stagingapps.net/user/fund/add',this.data,this.options)
@@ -178,9 +177,9 @@ export class CreateComponent {
 				(response : any) => {
 					var code 		= response.meta.code;
 					var message 	= response.meta.message;
-					console.log(code,message);
+					// console.log(code,message);
 					alert("Penambahan dana berhasil, harap konfirmasi dana")
-					this.router.navigateByUrl('/dashboard');
+					this.router.navigateByUrl('/dashboard/fund');
 				},
 				(err:any) => {
 					var error   = JSON.parse(err._body)

@@ -53,8 +53,8 @@ export class LoanApprovedComponent {
 				});	
 	}
 
-	backFund(){
-		this.router.navigateByUrl('/dashboard/fund')
+	backIndexInvest(){
+		this.router.navigateByUrl('/dashboard/user-action/user-invest/detail/', this.data_detail_invest.invest_id)
 	}
 
 }

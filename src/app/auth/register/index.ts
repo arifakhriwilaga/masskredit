@@ -1,13 +1,13 @@
 // Module
-import { BrowserModule }                                       from '@angular/platform-browser';
-import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA }    from '@angular/core';
-import { RouterModule, Routes, ActivatedRoute }                from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-import { HttpModule }                                          from '@angular/http';
-import { FormsModule, ReactiveFormsModule, FormBuilder }                    from '@angular/forms';
-import { RegisterService }                                     from './register.service';
-// import { JqueryService }                                     from './jquery.register';
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { RegisterService } from './register.service';
 import { CommonModule  }              from '@angular/common';
+// import { JqueryService }                                     from './jquery.register';
 
 
 // Component Register
@@ -45,19 +45,15 @@ export const routes = [
       {    
         path: 'step-1', 
         canActivate : [ AuthGuardVerify ],
-        loadChildren: () => System.import('./step1').then((comp: any) => comp.default) 
+        loadChildren: () => System.import('./step_register').then((comp: any) => comp.default) 
       },
       {    
         path: 'finish', 
         // canActivate : [ AuthGuardVerify ],
         component   : FinishStep1Component, 
-      },
-
-       
+      }, 
     ]
-
   }
-
 ];  
 
 @NgModule({

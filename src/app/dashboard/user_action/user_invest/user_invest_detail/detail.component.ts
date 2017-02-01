@@ -37,21 +37,18 @@ export class DetailComponent {
 		public data = { };
 
 		public dataBorrower = [];
+		private dataDetailListMyInvest = 0;
 
 	ngOnInit(){
-
-
 	// Objek for get id on route
 	let param = this.activatedRoute.params.subscribe( params => {
 		let id = params['id'];
 		this.data_detail_invest.invest_id = id
   });
-
 	// API list borrower
 	this.getListBorrower();
 	// API list borrower
 	this.getDetailMyInvest();
-			
 	}
 
 	backFund(){
@@ -73,10 +70,20 @@ export class DetailComponent {
 	    this.http.post('https://masscredit-api.stagingapps.net/user/investment/detail',this.data_detail_invest,this.options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
+					// console.log(response);
+					
+			// console.log(response);
+					this.dataDetailListMyInvest = 1;
 					this.data = response.data;
 					// console.log(this.data)
 				});	
 	}
 
+	cancelDetailInvest(){
+		this.router.navigateByUrl("/dashboard/user-action/user-invest");
+	}
 
+	showForm(){
+		jQuery("#formDetail").show();
+	}
 }

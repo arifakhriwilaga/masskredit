@@ -1,16 +1,15 @@
-<!-- Main content -->
-  <br>
-  <div class="col-xs-12">
-  <br>
+<div class="row">
+  <div align="center" *ngIf="dataListMyInvest == 0"> 
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
   </div>
-  <div class="col-xs-12">
-  <h1> </h1>
-  <div class="col-md-12">
-  <!-- Tab panes -->
+  <br>
+</div>
+<!-- Main content -->
+<div class="row">
+  <div class="col-xs-12" *ngIf="dataListMyInvest == 1">
   <div class="tab-content ">
       <div role="tabpanel" class="tab-pane active" id="investasi">
-      <br>
-      <br>
       <div class="box-body data-tables table-responsive">
         <table class="table table-hover" id="example2">
           <thead>
@@ -31,7 +30,7 @@
               <td>{{ data.type_invest }}</td>
               <td>{{ data.amount }}</td>
               <td>
-                <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id]"><i aria-hidden="true" class="fa fa-trash"></i></a>
+                <!-- <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id]"><i aria-hidden="true" class="fa fa-trash"></i></a> -->
                 <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></a>
               </td>
             </tr>
@@ -54,10 +53,7 @@
         </ul>
       </nav>      
       </div>
+      <br><br>
     </div>
   </div>
-  </div>
-  <div class="col-xs-12">
-  <br>
 </div>
-<!-- /.content -->

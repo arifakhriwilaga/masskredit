@@ -1,6 +1,5 @@
-import { Routes, RouterModule } from '@angular/router';
-import { NoContentComponent }   from './no-content';
-import { DataResolver }         from './app.resolver';
+import { Routes } from '@angular/router';
+
 // Guard Dashboard
 import { AuthGuardEntryDashboard }   from './authguard/auth-guard-entry-dashboard.service';
 
@@ -9,16 +8,18 @@ import { VerifyEmailComponent }          from './verify_email';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  // { path: 'coba', component: CobaComponent },
-  { path: 'home', 	   loadChildren: () => System.import('./home').then((comp: any) => comp.default), },
+  { path: 'home', 	   
+    loadChildren: () => System.import('./home').then((comp: any) => comp.default) 
+  },
   { path: 'auth',
-    loadChildren: () => System.import('./auth').then((comp: any) => comp.default), 
+    loadChildren: () => System.import('./auth').then((comp: any) => comp.default) 
   },
   { 
-	// canActivate : [ AuthGuardEntryDashboard ],
   	path: 'dashboard', 
   	loadChildren: () => System.import('./dashboard').then((comp: any) => comp.default) 
   },
-  { path: 'verify-email/:access_code', component: VerifyEmailComponent },
+
+  //route for verify-email 
+  // { path: 'verify-email/:access_code', component: VerifyEmailComponent },
 
 ];

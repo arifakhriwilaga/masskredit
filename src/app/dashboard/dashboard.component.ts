@@ -19,17 +19,17 @@ export class DashboardComponent implements OnInit{
   public data_user : Global;
 
     // object for pass to header dashboard
-    // name : string ;
-    // last_login : string    = "";
-    // user_class : string    = "";
-    // user_status : string   = "";
-    // profile_image : string = "";
-    // investor : string      = "";
-    // borrower : string      = "";
-    // avg_reviews : string   = "";
-    // fund_history : string  = "";
-    // account_summary : string = "";
-    // is_complete : string = "";
+    name : string ;
+    last_login : string    = "";
+    user_class : string    = "";
+    user_status : string   = "";
+    profile_image : string = "";
+    investor : string      = "";
+    borrower : string      = "";
+    avg_reviews : string   = "";
+    fund_history : string  = "";
+    account_summary : string = "";
+    is_complete : string = "";
 
   ngOnInit(){
     this.getProfile();
@@ -52,50 +52,47 @@ export class DashboardComponent implements OnInit{
   }
 
   public profile         = [];
-  // public account_summary = {};
-  getProfile(){
-    // object for get token
-    let token = {
-      'access_token' : localStorage.getItem("access_token")
-    }
-    
-    // set header
-    let headers = new Headers({ 
-       'Content-Type': 'application/json',
-       'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-     });
-    let options = new RequestOptions({ headers: headers });
-    // console.log(token)
+ 
+  // object for get token
+  private token = {
+    'access_token' : JSON.parse(localStorage.getItem("access_token"))
+  }
+  
+  private profileUrl = "https://masscredit-api.stagingapps.net/user/credential/profile";
+  
+  // set header
+  private headers = new Headers({ 
+     'Content-Type': 'application/json',
+     'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+   });
+  private options = new RequestOptions({ headers: this.headers });
+
    
-    console.log("Sedang mengambil data....")
-    // http request data
-    this.http.post('http://masscredit-api.stagingapps.net/user/credential/profile',token,options)
+  getProfile(){
+    this.http.post(this.profileUrl,this.token,this.options)
       .map(response => response.json())
-      .subscribe(
-        (response : any) => {
-          this.data_user = response;
-          console.log(this.data_user)
+      .subscribe((response : any) => {
+          // this.data_user = response;
+          // console.log(this.data_user)
           // alert("get profile")
           // console.log(response);
-          // this.profile         = response.data.profile.name;
-          // this.account_summary = response.data.account_summary;
+          this.profile         = response.data.profile.name;
+          this.account_summary = response.data.account_summary;
 
-          // this.name = response.data.profile.name;  
-          // // this.name           = this.globalService.data;
-          // this.last_login     = response.data.profile.last_login;
-          // this.user_class     = response.data.profile.user_score.user_class;
-          // this.user_status    = response.data.profile.user_score.user_status;
-          // this.profile_image  = response.data.profile.profile_image;
-          // this.account_summary= response.data.account_summary.balance;
-          // this.investor     = response.data.profile.user_score.investor;
-          // this.borrower     = response.data.profile.user_score.borrower;
-          // this.avg_reviews  = response.data.profile.user_score.avg_reviews;
-          // this.fund_history = response.data.profile.user_score.fund_history;
-          // this.is_complete  = response.data.profile.is_complete;
-
-          // console.log(this.profile);
-        },
-        (err:any) => {
+          this.name = response.data.profile.name;  
+          // this.name           = this.globalService.data;
+          this.last_login     = response.data.profile.last_login;
+          this.user_class     = response.data.profile.user_score.user_class;
+          this.user_status    = response.data.profile.user_score.user_status;
+          this.profile_image  = response.data.profile.profile_image;
+          this.account_summary= response.data.account_summary.balance;
+          this.investor     = response.data.profile.user_score.investor;
+          this.borrower     = response.data.profile.user_score.borrower;
+          this.avg_reviews  = response.data.profile.user_score.avg_reviews;
+          this.fund_history = response.data.profile.user_score.fund_history;
+          this.is_complete  = response.data.profile.is_complete;
+        
+        },(err:any) => {
           var error   = JSON.parse(err._body)
           var message = error.meta.message
             if(message == "unauthorized") {
@@ -103,7 +100,7 @@ export class DashboardComponent implements OnInit{
               return this.router.navigateByUrl('/dashboard/sign-out')
               
             }  
-        }
+          }
       );
   }
 }    

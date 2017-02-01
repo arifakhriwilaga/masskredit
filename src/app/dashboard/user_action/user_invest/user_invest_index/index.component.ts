@@ -24,6 +24,7 @@ export class IndexComponent {
 	}
 
 	private invest = [];
+	private dataListMyInvest = 0;
 
 	ngOnInit(){
 		this.getListInvest();
@@ -39,7 +40,8 @@ export class IndexComponent {
 				let code 		= response.meta.code;
 				let message 	= response.meta.message;					
 				this.invest = response.data.investments;
-				console.log(response);
+				this.dataListMyInvest = 1;
+				// console.log(response);
 				// console.log(code,message);
 				// this.router.navigateByUrl('/dashboard/invest');
 			},

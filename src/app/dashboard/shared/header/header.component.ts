@@ -32,14 +32,20 @@ export class HeaderComponent implements OnInit{
 		private http : Http,
 		private dashboardComponent : DashboardComponent,
 		private router : Router,
-		private dataUser:Global
+		// private dataUser:Global
 		// private globalService : GlobalService
 	){ }
 
-	private data = this.dataUser.data;
+	// private data = this.dataUser.data;
+	// private global = this.dataUser.name;
+	private data = Global	
+
+	returnName(){
+
+	}
 	
 	getDataGlobal(){
-		console.log(this.data)
+		// console.log(this.data)
 	    // console.log(this.globalService.data);
  	}
 

@@ -31,10 +31,10 @@ export class LoginService {
 			.map(response => response.json())
 			.subscribe(
 				(response:any) => { 
-					var access_token 		= response.data.access_token;
+					var access_token 		= JSON.stringify(response.data.access_token);
 					var code 		= response.meta.code;
 					if(code == "200") {
-						localStorage.setItem('access_token',access_token);
+						localStorage.setItem("access_token",access_token);
 						return this.router.navigateByUrl('/dashboard');
 					}else{
 						alert("Register gagal");

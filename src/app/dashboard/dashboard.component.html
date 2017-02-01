@@ -1,8 +1,8 @@
-<body class="hold-transition skin-blue sidebar-mini">
+<div class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 <!-- <input type="text" name="value" id="value" placeholder="VALUE" value="{{ name }}" [(ngModel)]='name'> -->
 	<header-dashboard [dataName]="name" [dataLastLogin]="last_login" [dataUserClass]="user_class" [dataUserStatus]="user_status" [dataAccountSummary]="account_summary" [dataFundHistory]="fund_history"></header-dashboard>
 	<sidebar-dashboard></sidebar-dashboard>
 	<router-outlet></router-outlet>
 </div>
-</body>
+</div>

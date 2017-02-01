@@ -36,6 +36,8 @@ export class DetailComponent {
 			fund_id : '',
 		}
 
+		public dataDetailListMyInvest = 0;
+
 	ngOnInit(){
 
 	// Objek for get id on route
@@ -46,14 +48,12 @@ export class DetailComponent {
 		// console.log(this.data_detail)
   	});
 			  	// API detail fund
-		console.log("Sedang mengambil data....")
-	    this.http.post('http://masscredit-api.stagingapps.net/user/fund/get-detail',this.data_get_detail_fund,this.options)
+		  this.http.post('http://masscredit-api.stagingapps.net/user/fund/get-detail',this.data_get_detail_fund,this.options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
 					let data = response.data;
 					let bank_name = response.data.bank;
-					console.log(response)
-
+		
 					if(bank_name == 1) {
 						this.bank = "BCA";
 					}
@@ -77,7 +77,6 @@ export class DetailComponent {
 					}
 
 					this.detail = data
-					console.log(data);
 					// this.image = response.data.images[0];
 					// console.log(this.image);
 					
