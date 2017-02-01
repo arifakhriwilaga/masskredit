@@ -89,7 +89,7 @@ export class ConfirmComponent {
                     // this.data.struct_image = "asjdasd786"
                     console.log(this.data);
 			          
-			        this.http.post('http://masscredit-api.stagingapps.net/user/fund/confirm',this.data,this.options)
+			        this.http.post('https://masscredit-api.stagingapps.net/user/fund/confirm',this.data,this.options)
 			           .map(response => response.json())
 			           .subscribe(
 			                   (response : any) => {

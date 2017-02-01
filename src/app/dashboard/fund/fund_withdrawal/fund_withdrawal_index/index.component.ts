@@ -46,7 +46,7 @@ export class IndexComponent {
 
 
 	ngOnInit(){
-		this.http.post('http://masscredit-api.stagingapps.net/user/withdrawal/get-list', this.data_get_list_fund, this.options)
+		this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/get-list', this.data_get_list_fund, this.options)
 					.map(response => response.json())
 					.subscribe(
 						(response : any) => {
@@ -101,7 +101,7 @@ export class IndexComponent {
 		// console.log(id)
 		let page = id;
 
-		this.http.get('http://masscredit-api.stagingapps.net/user/fund/get-list/' + this.acces_token + '/funds.json?limit=' + this.limit + '&page=' + page, this.options)
+		this.http.get('https://masscredit-api.stagingapps.net/user/fund/get-list/' + this.acces_token + '/funds.json?limit=' + this.limit + '&page=' + page, this.options)
 					.map(response => response.json())
 					.subscribe(
 						(response : any) => {

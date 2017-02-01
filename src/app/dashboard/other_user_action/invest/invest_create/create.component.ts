@@ -132,7 +132,7 @@ export class CreateComponent {
   
   // api send data
   sendDataInvest(){
-  	this.http.post('http://masscredit-api.stagingapps.net/user/investment/new',
+  	this.http.post('https://masscredit-api.stagingapps.net/user/investment/new',
 		this.invest,
 		this.options)
 		.map(response => response.json())

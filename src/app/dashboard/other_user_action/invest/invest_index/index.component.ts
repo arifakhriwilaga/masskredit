@@ -38,7 +38,7 @@ export class IndexComponent implements OnInit {
 	}
 
 	getListInvest(){
-		this.http.post('http://masscredit-api.stagingapps.net/user/loan/getlist',
+		this.http.post('https://masscredit-api.stagingapps.net/user/loan/getlist',
 		this.access_token,
 		this.options)
 		.map(response => response.json())

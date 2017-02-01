@@ -63,7 +63,7 @@ export class DetailComponent {
 
 	getDetailInvest(){
 	// API detail invest
-  this.http.post('http://masscredit-api.stagingapps.net/user/loan/detail',this.data_detail_invest,this.options)
+  this.http.post('https://masscredit-api.stagingapps.net/user/loan/detail',this.data_detail_invest,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
 			// console.log(response)

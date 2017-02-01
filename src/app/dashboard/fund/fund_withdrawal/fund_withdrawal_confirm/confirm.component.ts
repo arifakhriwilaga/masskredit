@@ -42,7 +42,7 @@ export class ConfirmComponent {
 		}
 
 		// Request for get no reference
-		this.http.post('http://masscredit-api.stagingapps.net/user/fund/no-reference',data_get_no_reference,this.options)
+		this.http.post('https://masscredit-api.stagingapps.net/user/fund/no-reference',data_get_no_reference,this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
@@ -91,7 +91,7 @@ export class ConfirmComponent {
 		if(jQuery("#confirmForm").valid()) {
 		// if(true) {	
 		 // API request data confirm
-	        this.http.post('http://masscredit-api.stagingapps.net/user/withdrawal/confirm',this.data,this.options)
+	        this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/confirm',this.data,this.options)
 	           .map(response => response.json())
 	           .subscribe(
 	                   (response : any) => {

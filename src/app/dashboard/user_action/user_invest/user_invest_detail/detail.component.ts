@@ -86,4 +86,29 @@ export class DetailComponent {
 	showForm(){
 		jQuery("#formDetail").show();
 	}
+
+	public loaderBorrowerApproved = 0;
+	public getDetailBorrower = {
+		access_token : this.access_token,
+		borrower_id : null
+	}
+
+	public dataDetailBorrower = {};
+
+	showDetailBorrowerApproved(id:any){
+		this.getDetailBorrower.borrower_id = id;
+		jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
+		// API detail invest
+	    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/detail',this.getDetailBorrower,this.options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				console.log(response);
+				this.dataDetailBorrower = response.data;
+				this.loaderBorrowerApproved = 1;
+			});	
+	}
+	hideDetailBorrowerApproved(){
+		jQuery('#myModal').modal('toggle');
+		this.loaderBorrowerApproved = 0;
+	}
 }

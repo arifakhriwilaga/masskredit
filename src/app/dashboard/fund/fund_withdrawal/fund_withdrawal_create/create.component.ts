@@ -21,7 +21,7 @@ export class CreateComponent {
 	ngOnInit() {
 
 		// Request for get profile
-		this.http.post('http://masscredit-api.stagingapps.net/user/credential/profile',this.data_access_token,this.options)
+		this.http.post('https://masscredit-api.stagingapps.net/user/credential/profile',this.data_access_token,this.options)
 	        .map(response => response.json())
 	        .subscribe(
 	          (response : any) => {
@@ -79,7 +79,7 @@ export class CreateComponent {
 		});
 
 		// Request for get no reference
-		this.http.post('http://masscredit-api.stagingapps.net/user/fund/no-reference',this.data,this.options)
+		this.http.post('https://masscredit-api.stagingapps.net/user/fund/no-reference',this.data,this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
@@ -87,7 +87,6 @@ export class CreateComponent {
 					var message 	= response.meta.message;
 					var no_reference= response.data.no_reference;
 					this.data.no_reference = no_reference;
-					console.log(code,message);
 					// this.router.navigateByUrl('/dashboard/fund');
 				},
 				(err:any) => {
@@ -102,7 +101,7 @@ export class CreateComponent {
 			);			
 
 		// Request for get data bank
-		this.http.get('http://masscredit-api.stagingapps.net/master/bank',this.options)
+		this.http.get('https://masscredit-api.stagingapps.net/master/bank',this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
@@ -172,7 +171,7 @@ export class CreateComponent {
 	  		console.log(this.data)
 				
 			// API Add Fund
-			this.http.post('http://masscredit-api.stagingapps.net/user/withdrawal/add',this.data,this.options)
+			this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/add',this.data,this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {

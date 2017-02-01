@@ -200,7 +200,7 @@ export class RegisterStepComponent  {
 					//API Register 
 					this.register;
 					// console.log(this.register)
-						this.http.post('http://masscredit-api.stagingapps.net/user/credential/register',
+						this.http.post('https://masscredit-api.stagingapps.net/user/credential/register',
 						register, 
 						options)
 						.map(response => response.json())
@@ -293,7 +293,7 @@ export class RegisterStepComponent  {
 	getProvinsi(id){
 
 		this.id_provinsi = id;
-		console.log(id);
+		// console.log(id);
 		let headers = new Headers({ 
 		 	'Content-Type': 'application/json',
 		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
@@ -311,13 +311,13 @@ export class RegisterStepComponent  {
 	    let options = new RequestOptions({ headers: headers });
 
 		// Get data Kota
-		this.http.post('http://masscredit-api.stagingapps.net/master/kota',
+		this.http.post('https://masscredit-api.stagingapps.net/master/kota',
 			Dataprovinsi,
 			options)
 				.map(responseKota => responseKota.json())
 				.subscribe((responseKota : any) => {
 					this.kota = responseKota.data.kota
-					console.log("Kota",this.kota)
+					// console.log("Kota",this.kota)
 
 				});
 

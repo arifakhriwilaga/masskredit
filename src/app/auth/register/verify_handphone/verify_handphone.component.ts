@@ -52,7 +52,7 @@ export class VerifyHandphoneComponent {
 				console.log('Gagal Verify');
 
 			}else{
-				this.http.post('http://masscredit-api.stagingapps.net/user/credential/getverificationcode',
+				this.http.post('https://masscredit-api.stagingapps.net/user/credential/getverificationcode',
 				nomor,
 				options)
 				.map(data => data.json())

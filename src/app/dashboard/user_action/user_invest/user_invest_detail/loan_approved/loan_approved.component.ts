@@ -46,9 +46,10 @@ export class LoanApprovedComponent {
 		// console.log(this.data_detail)
   	});
 			  	// API detail fund
-	    this.http.post('http://masscredit-api.stagingapps.net/user/investment/detail',this.data_detail_invest,this.options)
+	    this.http.post('https://masscredit-api.stagingapps.net/user/investment/detail',this.data_detail_invest,this.options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
+					// console.log(response);
 					this.data = response.data;
 				});	
 	}

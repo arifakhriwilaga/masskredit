@@ -49,7 +49,7 @@ export class IndexComponent {
 
  	
 
-		this.http.post('http://masscredit-api.stagingapps.net/user/fund/get-list', this.data_get_list_fund, this.options)
+		this.http.post('https://masscredit-api.stagingapps.net/user/fund/get-list', this.data_get_list_fund, this.options)
 							.map(response => response.json())
 							.subscribe(
 								(response : any) => {
@@ -112,7 +112,7 @@ export class IndexComponent {
 
 	 	}
 
-		this.http.post('http://masscredit-api.stagingapps.net/user/fund/get-list',data_get_list_fund, this.options)
+		this.http.post('https://masscredit-api.stagingapps.net/user/fund/get-list',data_get_list_fund, this.options)
 							.map(response => response.json())
 							.subscribe(
 								(response : any) => {

@@ -47,12 +47,11 @@ export class DetailComponent {
   	});
 			  	// API detail fund
 		console.log("Sedang mengambil data....")
-	    this.http.post('http://masscredit-api.stagingapps.net/user/withdrawal/get-detail',this.data_get_detail_fund,this.options)
+	    this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/get-detail',this.data_get_detail_fund,this.options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
 					let data = response.data;
 					let bank_name = response.data.bank;
-					console.log(response)
 
 					if(bank_name == 1) {
 						this.bank = "BCA";
