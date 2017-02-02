@@ -43,6 +43,7 @@ export class VerifyComponent implements OnInit{
 
 	confirmInvest(){
 		if(jQuery("#confirmInvestForm").valid()) {
+			this.detail.dataDetailInvest = 3;
 			this.detail.postLoan();
 			// alert("data valid")
 			// this.sendDataInvest();
