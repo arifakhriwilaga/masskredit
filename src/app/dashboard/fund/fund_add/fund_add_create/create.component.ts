@@ -27,7 +27,7 @@ export class CreateComponent {
 
 	    });
 
-	    jQuery( "#createForm" ).validate({
+	  jQuery( "#createForm" ).validate({
 		  rules: {
 		    nama_lengkap: {
 		      required: true
