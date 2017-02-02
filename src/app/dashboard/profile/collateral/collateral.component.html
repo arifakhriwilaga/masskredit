@@ -13,8 +13,8 @@
 </tr>
 </thead>
 <tbody>
-<tr *ngFor="let data of collateral">
-   <td>{{ data.collateral_id }}</td>
+<tr *ngFor="let data of collateral; let i = 'index';">
+   <td>{{ i+1 }}</td>
   <td>
     <img src="{{ data.collateral_file_one }}" alt="File" style="width:150px; height:150px;border-radius:0px">
   </td>
@@ -24,7 +24,9 @@
   <td>
     <img src="{{ data.collateral_file_three }}" alt="File" style="width:150px; height:150px;border-radius:0px">
   </td>
-  <td><span class="warranty">{{ data.collateral_type }}</span></td>
+  <td *ngIf="data.collateral_type == 1"><span class="warranty">Rumah</span></td>
+  <td *ngIf="data.collateral_type == 2"><span class="warranty">Motor</span></td>
+  <td *ngIf="data.collateral_type == 3"><span class="warranty">Mobil</span></td>
   <td>{{ data.collateral_estimate_price }}</td>
   <td>{{ data.collateral_description }}</td>
   <td>
@@ -38,6 +40,7 @@
 <br>
 <div class="form-horizontal clearfix row white-bg detail-page form-space">
 <div *ngIf="formCollateral == 1">
+<form id="collateralForm" name="collateralForm">
   <div class="blockElementCollateral">
       <!-- content jaminan -->
       <div class="form-group">
@@ -59,7 +62,12 @@
 			<input type="text" placeholder="Taksiran Harga Jaminan" class="form-control input-md" name="collateral_estimate_price" id="collateral_estimate_price" value="" [(ngModel)]="data.collateral_estimate_price">
 		 </div>
 		 <div class="col-xs-5">
-			<input type="text" placeholder="Jenis Jaminan" class="form-control input-md" name="collateral_type" id="collateral_type" value="" [(ngModel)]="data.collateral_type">
+			<select class="form-control input-md" name="collateral_type" id="collateral_type" (change)="getCollateralType($event.target.value)" [(ngModel)]="data.collateral_type">
+        <option value="0" disabled>Tipe Jaminan</option>
+        <option *ngFor="let type of dataCollateralType" [value]="type.collateral_type_id">
+            {{ type.desc_collateral_type }}
+        </option>
+      </select>
 		</div>
 		</div>
 		<div class="form-group">
@@ -76,6 +84,7 @@
 			</div>
 		</div>
 	</div>
+</form>
 </div>
 <div class="form-group" *ngIf="formCollateral != 1">
 	<div class="col-xs-12">
