@@ -5,7 +5,7 @@ import { CreateComponent } from './../create.component';
 declare var jQuery:any;
 @Component({
 	selector: 'verify',
-	template: ` 
+	template: `
 	<form class="form-horizontal clearfix row" name="confirmInvestForm" id="confirmInvestForm">
 	  <div class="col-md-12">
 	    <div class="form-group">
@@ -28,6 +28,7 @@ declare var jQuery:any;
 export class VerifyComponent implements OnInit{ 
 	constructor(private create:CreateComponent, private router:Router) { }
 	private invest = this.create.invest;
+	public dataConfirmInvest = 0;
 
 	ngOnInit(){
 		jQuery( "#confirmInvestForm" ).validate({
@@ -41,11 +42,14 @@ export class VerifyComponent implements OnInit{
 
 	cancelConfirmInvest(){
 		
-		this.router.navigateByUrl("/dashboard/action/invest");
+		this.router.navigateByUrl("/dashboard/other-user-action/invest");
 	}
 
 	confirmInvest(){
 		if(jQuery("#confirmInvestForm").valid()) {
+			this.create.dataDetailInvest = 1;
+			// this.dataConfirmInvest = 1;
+			this.create.dataInvest = 3;
 			this.create.sendDataInvest();
 		}
 		else{
