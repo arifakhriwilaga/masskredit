@@ -78,11 +78,12 @@ export class DetailComponent {
 
 	postLoan(){
 		// console.log(this.loan);
-		this.http.post('http://masscredit-api.stagingapps.net/other-user/loan/new',this.loan,this.options)
+		this.http.post('https://masscredit-api.stagingapps.net/other-user/loan/new',this.loan,this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
 				this.data = response.data;
+				this.dataDetailInvest = 0;
 					alert("Peminjaman berhasil, harap menunggu konfirmasi investor");
 					this.router.navigateByUrl('/dashboard/other-user-action/invest');
 				},
@@ -99,11 +100,14 @@ export class DetailComponent {
 						}
 						if(message == "Anda harus mempunyai jaminan untuk melakukan pinjaman.") {
 							alert("Anda harus mempunyai jaminan untuk melakukan pinjaman")				
+							this.dataDetailInvest = 1;
 						}
 						if(message == "Jumlah yang anda masukan melebihi jumlah invest.") {
 							alert("Jumlah pinjaman melebihi jumlah investasi")				
+							this.dataDetailInvest = 1;
 						}
 						if(message == "Password salah!") {
+							this.dataDetailInvest = 1;
 							alert("Password salah!")				
 						}
 
