@@ -103,6 +103,9 @@ export class DetailComponent {
 						if(message == "Jumlah yang anda masukan melebihi jumlah invest.") {
 							alert("Jumlah pinjaman melebihi jumlah investasi")				
 						}
+						if(message == "Password salah!") {
+							alert("Password salah!")				
+						}
 
 				}
 			);	
