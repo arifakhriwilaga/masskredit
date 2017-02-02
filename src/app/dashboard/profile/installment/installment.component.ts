@@ -19,6 +19,7 @@ export class InstallmentComponent {
 
 	private node :any;
 	private node1 :any;
+	private formInstallment = 0;
 
 	ngOnInit(){
 		// dynamic data angsuran
