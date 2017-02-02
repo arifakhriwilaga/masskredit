@@ -84,20 +84,26 @@ export class DetailComponent {
 				(response : any) => {
 				this.data = response.data;
 					alert("Peminjaman berhasil, harap menunggu konfirmasi investor");
-					this.router.navigateByUrl('/dashboard/action/invest');
+					this.router.navigateByUrl('/dashboard/other-user-action/invest');
 				},
 				(err:any) => {
 					var error   = JSON.parse(err._body)
 					var message = error.meta.message
 					var code = error.meta.code
-						if(code == "400") {
-							alert("Maaf saldo anda tidak mencukupi")
-							return this.router.navigateByUrl('/dashboard/action/invest')					
-						}
+						// if(code == "400") {
+						// 	alert("Maaf saldo anda tidak mencukupi");				
+						// }
 						if(message == "unauthorized") {
 							alert("Maaf session anda telah habis silahkan login kembali")
 							return this.router.navigateByUrl('/dashboard/sign-out')					
 						}
+						if(message == "Anda harus mempunyai jaminan untuk melakukan pinjaman.") {
+							alert("Anda harus mempunyai jaminan untuk melakukan pinjaman")				
+						}
+						if(message == "Jumlah yang anda masukan melebihi jumlah invest.") {
+							alert("Jumlah pinjaman melebihi jumlah investasi")				
+						}
+
 				}
 			);	
 	}

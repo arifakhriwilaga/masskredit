@@ -25,7 +25,7 @@ declare var jQuery:any;
 
 export class VerifyComponent implements OnInit{ 
 	constructor(private detail:DetailComponent, private router:Router) { }
-	private invest = this.detail.data_detail_invest;
+	private invest = this.detail.loan;
 
 	ngOnInit(){
 		jQuery( "#confirmInvestForm" ).validate({

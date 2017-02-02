@@ -22,6 +22,14 @@ export class CollateralComponent{
 
 	ngOnInit(){ 
 		this.getDataCollateral();
+		this.getDataCollateralType();
+		// jQuery( "#collateralForm" ).validate({
+		//   rules: {
+		//     collateral_type: {
+		//       required: true
+		//     }
+		//   }
+		// });
 
 	}
 
@@ -31,7 +39,7 @@ export class CollateralComponent{
 		access_token : this.token,
 		// objek jaminan
 		collateral_description: null,
-		collateral_type : null,
+		collateral_type : 0,
 		collateral_estimate_price: null,
 		collateral_image_one 	: null,
 		collateral_image_two 	: null,
@@ -60,7 +68,12 @@ export class CollateralComponent{
 	public formCollateral = 0;
 
 	submitCollateral(data){
-		this.encodeImages()
+		console.log();
+		if(data.collateral_type == 0) {
+			alert("Silahkan pilih tipe jaminan")
+		}else{
+			this.encodeImages()
+		}
 	}
 
 	addCollateral(){
@@ -215,11 +228,16 @@ export class CollateralComponent{
 						(err:any) => {
 							var error   = JSON.parse(err._body)
 							var message = error.meta.message
-								if(message == "unauthorized") {
-									alert("Maaf session anda telah habis silahkan login kembali")
-									return this.router.navigateByUrl('/dashboard/sign-out')
-									
-								}	
+							if(message == "unauthorized") {
+								alert("Maaf session anda telah habis silahkan login kembali")
+								return this.router.navigateByUrl('/dashboard/sign-out')
+								
+							}
+							if(message == "Add Collateral tidak dapat dilakukan, masih dalam proses persetujuan.") {
+								alert("Add collateral yang sebelumnya, masih dalam proses persetujuan.")
+								// return this.router.navigateByUrl('/dashboard/sign-out')
+								
+							}	
 						
 						}
 					);
@@ -238,8 +256,8 @@ export class CollateralComponent{
 	}
 
 	getDetailCollateral(id){
-		console.log(id)
-		jQuery('#myModal').modal('show') 
+		// console.log(id)
+		// jQuery('#myModal').modal('show') 
 	}
 
 	removeCollateral(id){
@@ -261,7 +279,7 @@ export class CollateralComponent{
 							var code = response.meta.code;
 							console.log(response);
 							if(code == 200) {
-								alert("List Jaminan berhasil dihapus")
+								alert("List Jaminan berhasil dihapus, harap menunggu konfirmasi")
 								this.getDataCollateral()
 							}
 							else{
@@ -311,6 +329,34 @@ export class CollateralComponent{
 								
 							}	
 					
+					}
+				);
+	}
+	getCollateralType(id){
+		this.data.collateral_type = id;
+	}
+
+	public dataCollateralType = [];
+	getDataCollateralType(){
+		let headers = new Headers({ 
+			 	'Content-Type': 'application/json',
+			 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+		 	});
+
+		let options = new RequestOptions({ headers: headers });
+		// console.log(this.data)
+		this.http.get('http://masscredit-api.stagingapps.net//master/collateral-type',options)
+				.map(response => response.json())
+				.subscribe(
+					(response : any) => {						
+						console.log(response)
+						var code = response.meta.code;
+						if(code == 200) {
+							this.dataCollateralType = response.data.collateral_type;
+						}
+						else{
+							alert("Gagal menambahkan data");
+						}
 					}
 				);
 	}

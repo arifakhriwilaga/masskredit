@@ -16,7 +16,7 @@ export class PersonalComponent {
 	this.data = this.profileComponent.data;
 	// this.profile = this.profileComponent.profile;
 	// this.complement_data = this.complement_data;
-	console.log(this.profileComponent.profile)
+	// console.log(this.profileComponent.profile)
 	}
 
 	ngOnInit(){
@@ -65,6 +65,7 @@ export class PersonalComponent {
 			this.profileComponent.data.jumlah_anak		= 0;
 		}
 		this.editDataPribadi = 0;
+		this.profileComponent.dataProfile = 0;
 		jQuery("#personal").prop("disabled", true);
 		this.profileComponent.updateProfile();
 	}

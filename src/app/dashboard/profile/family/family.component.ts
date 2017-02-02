@@ -29,6 +29,7 @@ export class FamilyComponent {
 	cancelDataKerabat(){
 		jQuery("#family").prop("disabled", true);
 		this.editDataKerabat = 0;
+		this.profileComponent.dataProfile = 0;
 		this.profileComponent.getProfile();
 	}
 
@@ -36,6 +37,7 @@ export class FamilyComponent {
 		// jQuery(".data-diri").prop("disabled", true);
 		jQuery("#family").prop("disabled", true);
 		this.editDataKerabat = 0;
+		this.profileComponent.dataProfile = 0;
 		this.profileComponent.updateProfile();
 	}
 }
