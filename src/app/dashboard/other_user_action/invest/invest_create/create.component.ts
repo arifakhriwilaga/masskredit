@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { ValidationServiceInvestasi } from './validationservice.component';
+import { VerifyComponent } from './verify_component';
 
 declare var jQuery:any;
 
@@ -62,8 +63,9 @@ export class CreateComponent {
 	}
 	
 	private token = JSON.parse(localStorage.getItem("access_token"));
-	private dataInvest = 0;
+	public dataInvest = 0;
   private tipeInvest:any;
+  public dataDetailInvest = 0;
 
   getTipeInvestasi(id){
   	this.tipeInvest = id;
@@ -141,6 +143,7 @@ export class CreateComponent {
 				var code 		= response.meta.code;
 				var message 	= response.meta.message;					
 				// console.log(code,message);
+				this.dataDetailInvest = 0;
 				alert("Investasi berhasil dibuat");
 				this.router.navigateByUrl('/dashboard/other-user-action/invest');
 			},
@@ -152,10 +155,21 @@ export class CreateComponent {
 					alert("Maaf session anda telah habis silahkan login kembali")
 					return this.router.navigateByUrl('/dashboard/sign-out')					
 				}
-				if(code == "400") {
+				if(message == "Password salah!") {
+					// this.verify.dataConfirmInvest = 0;
+					this.dataInvest = 1;
+					this.dataDetailInvest = 0;
 					alert("Password anda salah")
 					// return this.router.navigateByUrl('/dashboard/sign-out')					
 				}
+				if(message == "Saldo Anda tidak mencukupi.") {
+					// this.verify.dataConfirmInvest = 0;
+					this.dataInvest = 1;
+					this.dataDetailInvest = 0;
+					alert("Saldo anda tidak mencukupi")
+					// return this.router.navigateByUrl('/dashboard/sign-out')					
+				}
+
 			}
 		);
   }
