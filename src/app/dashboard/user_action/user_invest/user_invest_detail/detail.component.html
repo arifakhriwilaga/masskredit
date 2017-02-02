@@ -17,7 +17,7 @@
       </div>
       <div class="form-group">
       <br>
-          <img src="" alt="Foto Diri Investor" class="thumbnail" width="250px" height="250px">
+          <img src="{{ data.foto_diri }}" alt="Foto Diri Investor" class="thumbnail" width="250px" height="250px">
       </div>
       <div class="form-group">
         <button class="btn btn-default" (click)="cancelDetailInvest()">Kembali</button>
@@ -165,9 +165,9 @@
         <td>{{ dataBorrower.loan_amount }}</td>
         <td>{{ dataBorrower.status }}</td>
         <td *ngIf="dataBorrower.status == 'Tunda'">
-          <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id ,'loan-not-been-approved', dataBorrower.id]"><i aria-hidden="true" class="fa fa-search"></i></a>
+          <button class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id ,'loan-not-been-approved', dataBorrower.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
         </td>
-        <td *ngIf="dataBorrower.status == 'Setuju'">
+        <td *ngIf="dataBorrower.status == 'Setuju' || dataBorrower.status == 'Tolak'">
           <button class="pull-right" (click)="showDetailBorrowerApproved(dataBorrower.id)">
             <i aria-hidden="true" class="fa fa-search"></i>
           </button>
@@ -204,7 +204,7 @@
         <div  *ngIf="loaderBorrowerApproved == 1">
           <div class="row">
             <div class="col-md-4">
-             <img src="../img/check.png" alt="Foto Peminjam">
+             <img src="{{ dataDetailBorrower.borrower_image }}" alt="Foto Peminjam">
             </div>
             <div class="col-md-8">
               <div class="form-group">
