@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit{
     fund_history : string  = "";
     account_summary : string = "";
     is_complete : string = "";
+    // profile_image : null;
 
   ngOnInit(){
     this.getProfile();
