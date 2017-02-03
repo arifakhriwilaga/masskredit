@@ -209,7 +209,7 @@ export class CollateralComponent{
 
 
 			// console.log(this.data)
-			this.http.post('http://masscredit-api.stagingapps.net/user/collateral/add',this.data,options)
+			this.http.post('https://masscredit-api.stagingapps.net/user/collateral/add',this.data,options)
 					.map(response => response.json())
 					.subscribe(
 						(response : any) => {
@@ -272,7 +272,7 @@ export class CollateralComponent{
 
 
 			// console.log(this.data)
-			this.http.post('http://masscredit-api.stagingapps.net/user/collateral/delete',this.dataRemove,options)
+			this.http.post('https://masscredit-api.stagingapps.net/user/collateral/delete',this.dataRemove,options)
 					.map(response => response.json())
 					.subscribe(
 						(response : any) => {
@@ -312,7 +312,7 @@ export class CollateralComponent{
 
 		let options = new RequestOptions({ headers: headers });
 		// console.log(this.data)
-		this.http.post('http://masscredit-api.stagingapps.net/user/collateral/get-list',this.access_token,options)
+		this.http.post('https://masscredit-api.stagingapps.net/user/collateral/get-list',this.access_token,options)
 				.map(response => response.json())
 				.subscribe(
 					(response : any) => {
@@ -349,7 +349,7 @@ export class CollateralComponent{
 
 		let options = new RequestOptions({ headers: headers });
 		// console.log(this.data)
-		this.http.get('http://masscredit-api.stagingapps.net//master/collateral-type',options)
+		this.http.get('https://masscredit-api.stagingapps.net//master/collateral-type',options)
 				.map(response => response.json())
 				.subscribe(
 					(response : any) => {						
