@@ -24,8 +24,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of invest">
-            <td>{{ data.id }}</td>
+          <tr *ngFor="let data of invest; let i = 'index'">
+            <td>{{ i + 1 }}</td>
             <td>
               {{ data.nama_investor }}
             </td>
