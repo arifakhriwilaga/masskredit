@@ -234,7 +234,7 @@ export class CollateralComponent{
 								
 							}
 							if(message == "Add Collateral tidak dapat dilakukan, masih dalam proses persetujuan.") {
-								alert("Add collateral yang sebelumnya, masih dalam proses persetujuan.")
+								alert("Perubahan collateral yang sebelumnya, masih dalam proses persetujuan.")
 								// return this.router.navigateByUrl('/dashboard/sign-out')
 								
 							}	
@@ -290,11 +290,15 @@ export class CollateralComponent{
 						(err:any) => {
 							var error   = JSON.parse(err._body)
 							var message = error.meta.message
-								if(message == "unauthorized") {
-									alert("Maaf session anda telah habis silahkan login kembali")
-									return this.router.navigateByUrl('/dashboard/sign-out')
-									
-								}	
+							if(message == "unauthorized") {
+								alert("Maaf session anda telah habis silahkan login kembali")
+								return this.router.navigateByUrl('/dashboard/sign-out')
+							}	
+							if(message == "Delete collateral tidak dapat dilakukan, masih dalam proses persetujuan.") {
+								alert("Perubahan collateral yang sebelumnya, masih dalam proses persetujuan.")
+								// return this.router.navigateByUrl('/dashboard/sign-out')
+								
+							}	
 						
 						}
 					);
