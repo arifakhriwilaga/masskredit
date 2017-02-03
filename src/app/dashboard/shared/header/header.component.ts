@@ -24,6 +24,8 @@ export class HeaderComponent implements OnInit{
 	@Input('dataUserStatus') incomingDataUserStatus: string	
 	@Input('dataAccountSummary') incomingDataAccountSummary: string
 	@Input('dataFundHistory') incomingDataFundHistory: string
+	@Input('dataProfileImage') incomingDataProfileImage
+	
 	// @Input('dashboardData') incomingDataName: string	
 
 
