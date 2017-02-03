@@ -53,6 +53,22 @@
       <input type="text" placeholder="Nama Investasi" class="form-control input-md" name="invest_name" id="invest_name" value="{{ data.loan_name }}" disabled>
     </div>
  </div>
+ <div class="form-group">
+    <div class="col-md-4 clearfix">
+      <label class="unit">Jumlah Investasi</label>
+    </div>
+    <div class="col-md-7 clearfix">
+      <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="amount" id="amount" value="{{ data.amount }}" disabled>
+    </div>
+ </div>
+ <div class="form-group">
+    <div class="col-md-4 clearfix">
+      <label class="unit">Sisa Investasi</label>
+    </div>
+    <div class="col-md-7 clearfix">
+      <input type="text" placeholder="Sisa Investasi" class="form-control input-md" name="sisa" id="sisa" value="{{ data.sisa }}" disabled>
+    </div>
+ </div>
   <div class="form-group">
     <!-- null -->
   </div>
@@ -91,11 +107,12 @@
   </div>
   <div class="form-group">
     <div class="col-md-4 clearfix">
-      <label class="unit">Bunga</label>
+     <label class="unit">Bunga</label>
     </div>
-    <div class="col-md-7 clearfix">
-      <input type="text" placeholder="Bunga" class="form-control input-md" name="interest" id="interest" value="{{ data.interest }}" disabled>
+    <div class="col-md-5 clearfix">
+     <input type="text" placeholder="Bunga" class="form-control input-md" name="interest" id="interest" value="{{ data.interest }}" disabled>
     </div>
+     <label class="unit">%/Bulan</label>
   </div>
   <div class="form-group">
     <!-- null -->
@@ -104,31 +121,15 @@
     <div class="col-md-4 clearfix">
       <label class="unit">Tenor</label>
     </div>
-    <div class="col-md-7 clearfix">
-      <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" value="{{ data.tenor }}" disabled>
+    <div class="col-md-5">
+     <!-- <div class="col-md-10 clearfix"> -->
+       <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" value="{{ data.tenor }}" disabled>
+     <!-- </div> -->
     </div>
+    <label class="unit">Bulan</label>
   </div>
   <div class="form-group">
     <!-- null -->
-  </div>
-  <div class="form-group">
-    <div class="col-md-4 clearfix">
-      <label class="unit">Charge Fee</label>
-    </div>
-    <div class="col-md-7 clearfix">
-      <input type="text" placeholder="Charge Fee" class="form-control input-md" name="charge_fee" id="charge_fee" value="{{ data.charge_fee }}" disabled>
-    </div>
-  </div>
-  <div class="form-group">
-    <!-- null -->
-  </div>
-  <div class="form-group">
-    <div class="col-md-4 clearfix">
-      <label class="unit">Success Fee</label>
-    </div>
-    <div class="col-md-7 clearfix">
-      <input type="text" placeholder="Success Fee" class="form-control input-md" name="success_fee" id="success_fee" value="{{ data.success_fee }}" disabled>
-    </div>
   </div>
  </div>
   <div class="col-md-12">
