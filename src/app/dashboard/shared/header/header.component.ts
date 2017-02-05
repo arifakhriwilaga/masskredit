@@ -1,13 +1,12 @@
 import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
+import { Router }	   from '@angular/router';
 import { LoginService } from './../../../auth/login/login.service';
 import { DashboardComponent } from './../../dashboard.component';
 import { ProfileComponent } from './../../profile/profile.component';
 import { Global } from './../../../global.service';
-
-
-import { Router }	   from '@angular/router';
-
+import { User, UserService } from './../../user.service';
+// import { User } from './../../user';
 
 @Component({
 	selector: 'header-dashboard',
@@ -15,8 +14,7 @@ import { Router }	   from '@angular/router';
 	providers: [LoginService, Global]
 })
 
-
-export class HeaderComponent implements OnInit{
+export class HeaderComponent{
 	// recieve data from dashboard 
 	@Input('dataName') incomingDataName: string	
 	@Input('dataLastLogin') incomingDataLastLogin: string	
@@ -25,44 +23,29 @@ export class HeaderComponent implements OnInit{
 	@Input('dataAccountSummary') incomingDataAccountSummary: string
 	@Input('dataFundHistory') incomingDataFundHistory: string
 	@Input('dataProfileImage') incomingDataProfileImage
+	@Input() incomingDataUser:User;
 	
 	// @Input('dashboardData') incomingDataName: string	
-
-
 	constructor (
-		// private loginService:LoginService, 
 		private http : Http,
 		private dashboardComponent : DashboardComponent,
 		private router : Router,
-		// private dataUser:Global
-		// private globalService : GlobalService
+		private userService:UserService,
 	){ }
 
-	// private data = this.dataUser.data;
-	// private global = this.dataUser.name;
-	private data = Global	
-
-	returnName(){
-
+	public userShare = null;
+	ngOnInit(){
+		// console.log(this.userShare)
+		this.getDataHeader();
+		// console.log()
 	}
-	
-	getDataGlobal(){
-		// console.log(this.data)
-	    // console.log(this.globalService.data);
- 	}
 
- 	ngOnInit(){	}	
- 	
-	// public incomingDataName = "";
-	private last_login 		= { };
-	private user_class 		= { };
-	private user_status 	= { };
-	private profile_image 	= { };
-	private investor		= { };
-	private borrower 		= { };
-	private avg_reviews		= { };
-	private fund_history	= { };
-	private account_summary = { };
-	private is_complete 	= { };
+	getDataHeader(): void{
+		// alert("dari get header")
+		this.userService.getUser().then(data => {
+    	this.userShare = data;
+    	// console.log(data)
+    });
+	}
 
 }
