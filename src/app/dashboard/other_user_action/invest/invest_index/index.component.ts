@@ -25,6 +25,8 @@ export class IndexComponent implements OnInit {
 	}
 
 	private invest = [];
+	// private dataInvest = [];
+	private amount = {};
 	private dataListInvest = 0;
 
 	private data: Observable<Array<any>>
@@ -47,10 +49,32 @@ export class IndexComponent implements OnInit {
 				let code 		= response.meta.code;
 				let message 	= response.meta.message;					
 				this.invest = response.data.loans;
-				this.dataListInvest = 1;
-				// console.log(response);
-				// console.log(code,message);
-				// this.router.navigateByUrl('/dashboard/invest');
+				for(let i = 0; i < this.invest.length; i++){
+					let dataAmount = this.invest[i]
+					let amount = dataAmount['amount'];
+					// condition make delimiter
+					var _minus = false;
+					var b:any = amount.toString();
+					if (b<0) _minus = true;
+						b=b.replace(".","");
+						b=b.replace("-","");
+						let c = "";
+						let panjang = b.length;
+						let j = 0;
+					for (let i = panjang; i > 0; i--){
+						j = j + 1;
+						if (((j % 3) == 1) && (j != 1)){
+							c = b.substr(i-1,1) + "." + c;
+							// console.log(c)
+						} else {
+							c = b.substr(i-1,1) + c;
+						}
+					}
+					if (_minus) c = "-" + c ;
+					let idr = "Rp.";
+					dataAmount['amount'] = idr.concat(c);
+					this.dataListInvest = 1;
+				}
 			},
 			(err:any) => {
 				var error   = JSON.parse(err._body)
@@ -66,5 +90,4 @@ export class IndexComponent implements OnInit {
 	linkCreateInvest(){
 		this.router.navigateByUrl("/dashboard/other-user-action/invest/create");
 	}
-
 }
