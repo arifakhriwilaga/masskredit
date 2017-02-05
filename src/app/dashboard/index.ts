@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DataResolver } from './app.resolver';
+import { UserService } from './user.service';
+
 
 // Auth Guard Dashboard
 import { AuthGuard } from './../authguard/auth-guard.service';
@@ -12,14 +14,14 @@ import { AuthGuard } from './../authguard/auth-guard.service';
 import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from './shared/sidebar';
 import { HeaderComponent } from './shared/header';
-import { ContentComponent } from './content';
+import { LoaderComponent } from './loader';
 import { SignOutComponent } from './sign-out';
 
 export const routes = [
   { path: '', component: DashboardComponent,
     // canActivate : [ AuthGuard ],
     children: [
-      { path: '', component: ContentComponent },
+      { path: '', component: LoaderComponent },
       { path: 'profile',         loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
       { path: 'fund',            loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
       { path: 'complement-user', loadChildren: () => System.import('./complement_user').then((comp: any) => comp.default) },
@@ -35,7 +37,7 @@ export const routes = [
     DashboardComponent,
     HeaderComponent,
     SidebarComponent,
-    ContentComponent,
+    LoaderComponent,
     SignOutComponent, 
   ],
   imports: [ 
@@ -44,7 +46,7 @@ export const routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule
   ],
-  providers: []
+  providers: [UserService]
 })	
 
 export default class DashboardModule {
