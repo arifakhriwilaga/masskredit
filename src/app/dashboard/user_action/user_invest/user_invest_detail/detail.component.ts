@@ -35,9 +35,13 @@ export class DetailComponent {
 		}
 
 		public data = { };
+		// public dataAmount = [];
+		public dataSalary = { };
+		public dataBorrowerAmount = { };
 
 		public dataBorrower = [];
 		private dataDetailListMyInvest = 0;
+		public dataAmount = { }
 
 	ngOnInit(){
 	// Objek for get id on route
@@ -61,7 +65,32 @@ export class DetailComponent {
 				.map(response => response.json())
 				.subscribe((response : any) => {
 					this.dataBorrower = response.data.borrower;
-					// console.log(this.dataBorrower)
+					for(let i = 0; i < this.dataBorrower.length; i++){
+						let dataAmount = this.dataBorrower[i]
+						let amount = dataAmount['loan_amount'];
+						// console.log(amount)
+						// condition make delimiter
+						var _minus = false;
+						var b:any = amount.toString();
+						if (b<0) _minus = true;
+							b=b.replace(".","");
+							b=b.replace("-","");
+							let c = "";
+							let panjang = b.length;
+							let j = 0;
+						for (let i = panjang; i > 0; i--){
+							j = j + 1;
+							if (((j % 3) == 1) && (j != 1)){
+								c = b.substr(i-1,1) + "." + c;
+								// console.log(c)
+							} else {
+								c = b.substr(i-1,1) + c;
+							}
+						}
+						if (_minus) c = "-" + c ;
+						let idr = "Rp.";
+						dataAmount['loan_amount'] = idr.concat(c);
+					}
 				});
 	}
 
@@ -70,12 +99,30 @@ export class DetailComponent {
 	    this.http.post('https://masscredit-api.stagingapps.net/user/investment/detail',this.data_detail_invest,this.options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
-					// console.log(response);
-					
-			// console.log(response);
-					this.dataDetailListMyInvest = 1;
 					this.data = response.data;
-					// console.log(this.data)
+					this.dataDetailListMyInvest = 1;
+					let amount = response.data.amount;
+					// condition make delimiter
+					var _minus = false;
+					var b:any = amount.toString();
+					if (b<0) _minus = true;
+						b=b.replace(".","");
+						b=b.replace("-","");
+						let c = "";
+						let panjang = b.length;
+						let j = 0;
+					for (let i = panjang; i > 0; i--){
+						j = j + 1;
+						if (((j % 3) == 1) && (j != 1)){
+							c = b.substr(i-1,1) + "." + c;
+							// console.log(c)
+						} else {
+							c = b.substr(i-1,1) + c;
+						}
+					}
+					if (_minus) c = "-" + c ;
+					let idr = "Rp.";
+					this.dataAmount =  idr.concat(c);
 				});	
 	}
 
@@ -102,13 +149,72 @@ export class DetailComponent {
 	    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/detail',this.getDetailBorrower,this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
-				console.log(response);
+				// this.dataAmount.push(response.data.amount,response.data.borrower_amount);	
 				this.dataDetailBorrower = response.data;
-				this.loaderBorrowerApproved = 1;
+				this.dataSalary = response.data.amount
+				this.dataBorrowerAmount = response.data.borrower_amount
+				this.delimiterSalary(this.dataSalary);
 			});	
 	}
 	hideDetailBorrowerApproved(){
 		jQuery('#myModal').modal('toggle');
 		this.loaderBorrowerApproved = 0;
+	}
+
+	delimiterSalary(dataSalary:any){
+		try{
+			// condition make delimiter
+			var _minus = false;
+			var b:any = dataSalary.toString();
+			if (b<0) _minus = true;
+				b=b.replace(".","");
+				b=b.replace("-","");
+				let c = "";
+				let panjang = b.length;
+				let j = 0;
+			for (let i = panjang; i > 0; i--){
+				j = j + 1;
+				if (((j % 3) == 1) && (j != 1)){
+					c = b.substr(i-1,1) + "." + c;
+					// console.log(c)
+				} else {
+					c = b.substr(i-1,1) + c;
+				}
+			}
+			if (_minus) c = "-" + c ;
+			let idr = "Rp.";
+			this.dataSalary = idr.concat(c);
+		}finally{
+			this.delimiterBorrowerAmount(this.dataBorrowerAmount);
+		}
+	}
+
+	delimiterBorrowerAmount(dataBorrowerAmount:any){
+		try{
+			// condition make delimiter
+			var _minus = false;
+			var b:any = dataBorrowerAmount.toString();
+			if (b<0) _minus = true;
+				b=b.replace(".","");
+				b=b.replace("-","");
+				let c = "";
+				let panjang = b.length;
+				let j = 0;
+			for (let i = panjang; i > 0; i--){
+				j = j + 1;
+				if (((j % 3) == 1) && (j != 1)){
+					c = b.substr(i-1,1) + "." + c;
+					// console.log(c)
+				} else {
+					c = b.substr(i-1,1) + c;
+				}
+			}
+			if (_minus) c = "-" + c ;
+			let idr = "Rp.";
+			this.dataBorrowerAmount = idr.concat(c);
+		}finally{
+			this.loaderBorrowerApproved = 1;
+			return true;
+		}
 	}
 }
