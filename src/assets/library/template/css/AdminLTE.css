@@ -5812,7 +5812,7 @@ margin-left: 950px;
     border-bottom: 3px solid #2f445f;
 }
 
-/*custom modal*/
+/*update css*/
 .btn-info {
     background-color: #253242;
     border-color: #253242;
@@ -5834,3 +5834,18 @@ margin-left: 950px;
     border: 1px solid #888;
     width: 100%;
 } 
+
+.main-header .logo .logo-lg img {
+    height: 35px;
+    margin-top: 15px;
+}
+
+.btn-primary {
+    background-color: #2e445f;
+    border-color: #2d435f;
+    margin-left : 10px;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary.hover {
+    background-color: #415b7d;
+}
