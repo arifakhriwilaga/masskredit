@@ -4,11 +4,11 @@ import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DataResolver } from './app.resolver';
-import { UserService } from './user.service';
+// import { UserService } from './user.service';
 
 
 // Auth Guard Dashboard
-import { AuthGuard } from './../authguard/auth-guard.service';
+// import { AuthGuard } from './../authguard/auth-guard.service';
 
 // Component
 import { DashboardComponent } from './dashboard.component';
@@ -46,7 +46,7 @@ export const routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule
   ],
-  providers: [UserService]
+  providers: []
 })	
 
 export default class DashboardModule {
