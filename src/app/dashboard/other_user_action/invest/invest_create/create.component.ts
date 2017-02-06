@@ -39,6 +39,8 @@ export class CreateComponent {
 		    },
 		  }
 		});
+		jQuery('#interest').mask('00000');
+		jQuery('#tenor').mask('00');
 	}
 
 	// set header
