@@ -5,7 +5,7 @@ import { LoginService } from './../../../auth/login/login.service';
 import { DashboardComponent } from './../../dashboard.component';
 import { ProfileComponent } from './../../profile/profile.component';
 import { Global } from './../../../global.service';
-import { User, UserService } from './../../user.service';
+// import { User, UserService } from './../../user.service';
 // import { User } from './../../user';
 
 @Component({
@@ -23,29 +23,15 @@ export class HeaderComponent{
 	@Input('dataAccountSummary') incomingDataAccountSummary: string
 	@Input('dataFundHistory') incomingDataFundHistory: string
 	@Input('dataProfileImage') incomingDataProfileImage
-	@Input() incomingDataUser:User;
+	// @Input() incomingDataUser:User;
 	
 	// @Input('dashboardData') incomingDataName: string	
 	constructor (
 		private http : Http,
 		private dashboardComponent : DashboardComponent,
 		private router : Router,
-		private userService:UserService,
+		// private userService:UserService,
 	){ }
 
 	public userShare = null;
-	ngOnInit(){
-		// console.log(this.userShare)
-		this.getDataHeader();
-		// console.log()
-	}
-
-	getDataHeader(): void{
-		// alert("dari get header")
-		this.userService.getUser().then(data => {
-    	this.userShare = data;
-    	// console.log(data)
-    });
-	}
-
 }
