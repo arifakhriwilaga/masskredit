@@ -40,8 +40,10 @@ export class DetailComponent {
 		loan_amount : null,
 		password: null
 		// collateral_type: 0
-
 	}
+
+	public dataAmount = { };
+	public dataRestAmount = { };
 
 	public dataDetailInvest = 0;
 	public dataDetailListInvest = 0;
@@ -55,6 +57,9 @@ export class DetailComponent {
 		this.data_detail_invest.loan_id = id;
 	});
 		this.getDetailInvest();
+
+			jQuery('#loan_amount').mask('000000000000');
+
 	}
 
 	cancelDetailInvest(){
@@ -66,9 +71,11 @@ export class DetailComponent {
   this.http.post('https://masscredit-api.stagingapps.net/user/loan/detail',this.data_detail_invest,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			console.log(response)
+			// alert("dari detail")
 			this.data = response.data;
-			this.dataDetailListInvest = 1;
+			this.dataAmount = response.data.amount;
+			this.dataRestAmount = response.data.sisa;
+			this.delimiterAmount(this.dataAmount);
 		});
 	}
 
@@ -113,6 +120,63 @@ export class DetailComponent {
 
 				}
 			);	
+	}
+
+	delimiterAmount(dataAmount:any){
+		try{
+			// condition make delimiter
+			var _minus = false;
+			var b:any = dataAmount.toString();
+			if (b<0) _minus = true;
+				b=b.replace(".","");
+				b=b.replace("-","");
+				let c = "";
+				let panjang = b.length;
+				let j = 0;
+			for (let i = panjang; i > 0; i--){
+				j = j + 1;
+				if (((j % 3) == 1) && (j != 1)){
+					c = b.substr(i-1,1) + "." + c;
+					// console.log(c)
+				} else {
+					c = b.substr(i-1,1) + c;
+				}
+			}
+			if (_minus) c = "-" + c ;
+			let idr = "Rp.";
+			this.dataAmount = idr.concat(c);
+		}finally{
+			this.delimiterRestAmount(this.dataRestAmount);
+		}
+	}
+
+	delimiterRestAmount(dataRestAmount:any){
+		try{
+			// condition make delimiter
+			var _minus = false;
+			var b:any = dataRestAmount.toString();
+			if (b<0) _minus = true;
+				b=b.replace(".","");
+				b=b.replace("-","");
+				let c = "";
+				let panjang = b.length;
+				let j = 0;
+			for (let i = panjang; i > 0; i--){
+				j = j + 1;
+				if (((j % 3) == 1) && (j != 1)){
+					c = b.substr(i-1,1) + "." + c;
+					// console.log(c)
+				} else {
+					c = b.substr(i-1,1) + c;
+				}
+			}
+			if (_minus) c = "-" + c ;
+			let idr = "Rp.";
+			this.dataRestAmount = idr.concat(c);
+		}finally{
+			this.dataDetailListInvest = 1;
+			return true;
+		}
 	}
 
 
