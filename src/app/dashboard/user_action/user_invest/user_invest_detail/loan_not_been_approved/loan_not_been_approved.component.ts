@@ -43,6 +43,8 @@ export class LoanNotBeenApprovedComponent {
       approval_status: null, 
       password: null
 		}
+		public dataSalary = { };
+		public dataBorrowerAmount = { };
 
 		public dataApproveBorrower = 0;
 
@@ -59,10 +61,12 @@ export class LoanNotBeenApprovedComponent {
 		    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/detail',this.data_borrower,this.options)
 					.map(response => response.json())
 					.subscribe((response : any) => {
-						// console.log(response);
+						console.log(response);
 						this.data = response.data;
 						this.dataApprove.invest_id = response.data.invest_id;
-						this.dataDetailBorrower = 1;
+						this.dataSalary = response.data.amount;
+						this.dataBorrowerAmount = response.data.borrower_amount;
+						this.delimiterSalary(this.dataSalary)
 					});	
 	}
 
@@ -98,5 +102,62 @@ export class LoanNotBeenApprovedComponent {
             }  
           }
 			);	
+	}
+
+	delimiterSalary(dataSalary:any){
+		try{
+			// condition make delimiter
+			var _minus = false;
+			var b:any = dataSalary.toString();
+			if (b<0) _minus = true;
+				b=b.replace(".","");
+				b=b.replace("-","");
+				let c = "";
+				let panjang = b.length;
+				let j = 0;
+			for (let i = panjang; i > 0; i--){
+				j = j + 1;
+				if (((j % 3) == 1) && (j != 1)){
+					c = b.substr(i-1,1) + "." + c;
+					// console.log(c)
+				} else {
+					c = b.substr(i-1,1) + c;
+				}
+			}
+			if (_minus) c = "-" + c ;
+			let idr = "Rp.";
+			this.dataSalary = idr.concat(c);
+		}finally{
+			this.delimiterBorrowerAmount(this.dataBorrowerAmount);
+		}
+	}
+
+	delimiterBorrowerAmount(dataBorrowerAmount:any){
+		try{
+			// condition make delimiter
+			var _minus = false;
+			var b:any = dataBorrowerAmount.toString();
+			if (b<0) _minus = true;
+				b=b.replace(".","");
+				b=b.replace("-","");
+				let c = "";
+				let panjang = b.length;
+				let j = 0;
+			for (let i = panjang; i > 0; i--){
+				j = j + 1;
+				if (((j % 3) == 1) && (j != 1)){
+					c = b.substr(i-1,1) + "." + c;
+					// console.log(c)
+				} else {
+					c = b.substr(i-1,1) + c;
+				}
+			}
+			if (_minus) c = "-" + c ;
+			let idr = "Rp.";
+			this.dataBorrowerAmount = idr.concat(c);
+		}finally{
+			this.dataDetailBorrower = 1;
+			return true;
+		}
 	}
 }
