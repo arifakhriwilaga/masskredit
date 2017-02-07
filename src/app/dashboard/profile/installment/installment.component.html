@@ -10,33 +10,14 @@
 	</tr>
 	</thead>
 	<tbody>
-	<tr>
-	  <td></td>
-	  <td><span class="warranty"></span></td>
-	  <td></td>
+	<tr *ngFor="let data of dataListInstallment, let i = 'index'">
+	  <td>{{ i+1 }}</td>
+	  <td>{{ data.installment_amount }}</td>
+	  <td><span class="warranty">{{ data.installment_description }}</span></td>
 	  <td>
-	    <!-- <a class="pull-right" href="#/dashboard/profile">
-	    	<i aria-hidden="true" class="fa fa-trash-o"></i>
-	    </a>
-	    <a class="pull-right" href="#/dashboard/profile">
-	    	<i aria-hidden="true" class="fa fa-search"></i>
-	    </a> -->
+	    <a class="pull-right" href="#/dashboard/profile"><i aria-hidden="true" class="fa fa-trash-o" (click)="removeInstallment(data.installment_id)"></i></a>
 	  </td>
 	</tr>
-	<!-- <tr *ngFor="let data of collateral">
-	   <td>{{ data.collateral_id }}</td> -->
-	  <!-- <td>
-	    <img src="../../assets/img/user4-128x128.jpg">
-	  </td>
-	  <td>Warung Kelontongan</td> -->
-	  <!-- <td><span class="warranty">{{ data.collateral_type }}</span></td>
-	  <td>{{ data.collateral_estimate_price }}</td>
-	  <td>{{ data.collateral_description }}</td>
-	  <td>
-	    <a class="pull-right" href="#/dashboard/profile"><i aria-hidden="true" class="fa fa-trash-o" (click)="removeCollateral(data.collateral_id)"></i></a>
-	    <a class="pull-right" href="#/dashboard/profile"><i aria-hidden="true" class="fa fa-search" (click)="getDetailCollateral(data.collateral_id)"></i></a>
-	  </td>
-	</tr> -->
 	</tbody>
 	</table>
 	</div>
@@ -51,25 +32,23 @@
   <div class="blockElementCollateral">
 		<div class="form-group">
 		 <div class="col-xs-12">
-			<textarea type="text" placeholder="Jumlah Angsuran" class="form-control input-md" name="installment_amount" id="installment_amount" value="" [(ngModel)]="data.installment_amount"></textarea>
+			<input type="text" placeholder="Jumlah Angsuran" class="form-control input-md" name="jumlah_angsuran" id="jumlah_angsuran" value="" [(ngModel)]="data.jumlah_angsuran">
 		 </div> 
 		</div>
 		<div class="form-group">
 		 <div class="col-xs-12">
-			<textarea type="text" placeholder="Deskripsi Angsuran" class="form-control input-md" name="installment_description" id="installment_description" value="" [(ngModel)]="data.installment_description"></textarea>
+			<textarea type="text" placeholder="Deskripsi Angsuran" class="form-control input-md" name="description_angsuran" id="description_angsuran" value="" [(ngModel)]="data.description_angsuran"></textarea>
 		 </div> 
 		</div>
+</div>
+</form>
 		<div class="form-group">
 			<div class="col-xs-6">
 				<input type='button' value='Batal' id='cancelInstallment' (click)="cancelCollateral()">
 				<input type='button' value='Simpan' id='addInstallment' (click)="submitInstallment(data)">
 			</div>
-			<div class="col-xs-6">
-			</div>
 		</div>
 	</div>
-</form>
-</div>
 <div class="form-group" *ngIf="formInstallment != 1">
 	<div class="col-xs-12">
 		<button id='addCollateral' (click)="showFormCollateral()">Tambah</button>
