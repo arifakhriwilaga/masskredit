@@ -23,6 +23,12 @@ export class PersonalComponent {
 		if(this.profileComponent.data.status_perkawinan <= 0) {
 				jQuery("#jumlahanak").prop("disabled", true);
 		}
+		jQuery('.datepicker').datepicker({
+      format	: 'yyyy-mm-dd',
+      // startDate : '2015-01-01',
+      // minDate	: '01/01/2015'
+
+    });
 	}
 
 	public complement_data = { };
@@ -37,36 +43,39 @@ export class PersonalComponent {
 	}
 
 	private statusMarried:any;
-	private inputAnak = "desabled";
 	getStatusMarried(id){
+		this.profileComponent.data.status_perkawinan = id;
 		this.statusMarried = id;
-		if(id == 2) {
-			this.profileComponent.data.status_perkawinan = 2;
-		}else{
-			jQuery("#jumlahanak").prop("disabled", false);
-			this.profileComponent.data.status_perkawinan = 1;
-		}
+	}
+
+	private gender:any;
+	getGender(id){
+		this.profileComponent.data.jenis_kelamin = id;
+		// console.log(this.profileComponent.data.jenis_kelamin)
+		// this.statusMarried = id;
 	}
 
 	cancelDataPribadi(){
 		// jQuery(".data-diri").prop("disabled", true);
+		// this.editDataPribadi = 0;
 		jQuery("#personal").prop("disabled", true);
-		if(this.statusMarried == 1) {
-			this.statusMarried = null;
-		}
-
-		this.editDataPribadi = 0;
+		this.profileComponent.dataProfile = 0;
 		this.profileComponent.getProfile();
 	}
 
 	updateDataPribadi(data){
+		// console.log(data)
 		// jQuery(".data-diri").prop("disabled", true);
-		if(this.profileComponent.data.status_perkawinan == 2) {
+		// this.editDataPribadi = 0;
+		// get value mulai_bekerja
+		let value_date = jQuery("#tanggal_lahir").val();
+		this.profileComponent.data.tanggal_lahir = value_date;
+
+		if(this.profileComponent.data.status_perkawinan == 0) {
 			this.profileComponent.data.jumlah_anak		= 0;
 		}
-		this.editDataPribadi = 0;
-		this.profileComponent.dataProfile = 0;
 		jQuery("#personal").prop("disabled", true);
+		this.profileComponent.dataProfile = 0;
 		this.profileComponent.updateProfile();
 	}
 
