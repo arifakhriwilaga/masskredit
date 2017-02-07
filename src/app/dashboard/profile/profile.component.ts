@@ -33,6 +33,11 @@ export class ProfileComponent {
 		nama_lengkap		: null,
 		alamat_email		: null,
 		phone_number		: null,
+		jenis_kelamin		: 0,
+		tempat_lahir		: null,
+		tanggal_lahir		: null,
+		alamat		: null,
+		nama_gadis_ibu_kandung : null,
 
 		// objek keluarga
 		status_perkawinan	: 0,
@@ -65,12 +70,12 @@ export class ProfileComponent {
 	  	
 	  	// objek pendapatan lain 1
 	  	
-	  pendapatan_lain_1	: 0,
+	  pendapatan_lain_1	: 2,
 		sumber_pendapatan_lain_1 : null,
 		jumlah_pendapatan_lain_1 : this.number,
 	  	
 	  	// objek pendapatan lain 2
-	  pendapatan_lain_2	: 0,
+	  pendapatan_lain_2	: 2,
 		sumber_pendapatan_lain_2 : null,
 		jumlah_pendapatan_lain_2 : this.number,
 		// step4
@@ -105,20 +110,25 @@ export class ProfileComponent {
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
-					console.log(response);
+					// console.log(response);
 					let pendapatan_lain_1 = response.data.profile.complement_user.pendapatan_lain_1;
 				  let pendapatan_lain_2 = response.data.profile.complement_user.pendapatan_lain_2; 
-				  	if(pendapatan_lain_1 == null) {
-					  	this.data.pendapatan_lain_1	= 2
-					  	this.data.pendapatan_lain_2	= 2
-				  			
-				  	}
+			  	if(pendapatan_lain_1 == null) {
+				  	this.data.pendapatan_lain_1	= 0;
+				  	this.data.pendapatan_lain_2	= 0
+			  	}
 
 					// entry data to object, before edit profile
 					this.profile			= response.data.profile;
 					this.complement_data	= response.data.profile.complement_user;
 					this.data.nama_lengkap 	= response.data.profile.name;
+					this.data.jenis_kelamin = response.data.profile.jenis_kelamin;
+					this.data.tempat_lahir	= response.data.profile.tempat_lahir;
+					this.data.tanggal_lahir = response.data.profile.tanggal_lahir;
+					this.data.alamat	= response.data.profile.alamat;
+					this.data.nama_gadis_ibu_kandung = response.data.profile.complement_user.nama_gadis_ibu_kandung,
 					this.data.alamat_email 	= response.data.profile.email;						
+
 
 					this.data.phone_number	= response.data.profile.phone_number;
 
@@ -137,6 +147,9 @@ export class ProfileComponent {
 					
 					this.data.nama_usaha 	  				= response.data.profile.complement_user.nama_usaha,
 					this.data.tahun_perusahaan_berdiri 		= response.data.profile.complement_user.tahun_perusahaan_berdiri;
+					if(response.data.profile.complement_user.tahun_perusahaan_berdiri == 0) {
+				  	this.data.tahun_perusahaan_berdiri	= null;
+			  	}
 					this.data.jenis_perusahaan 		  		= response.data.profile.complement_user.jenis_perusahaan;
 					this.data.pendapatan_bersih_perusahaan	= response.data.profile.complement_user.pendapatan_bersih_perusahaan;
 
@@ -186,6 +199,7 @@ export class ProfileComponent {
 
 	// for request change profile data to server
 	updateProfile(){
+		console.log(this.data)
 		this.data.access_token = this.acces_token
 		let headers = new Headers({ 
 		 	'Content-Type': 'application/json',
@@ -307,7 +321,7 @@ export class ProfileComponent {
 		if(this.data.sumber_pendapatan == 1){
 			this.sumberPendapatan = null;
 		}
-		if(this.data.sumber_pendapatan == 2){
+		if(this.data.sumber_pendapatan == 0){
 			this.sumberPendapatan = null;
 		}
 		jQuery("#job").prop("disabled", true);
@@ -317,7 +331,7 @@ export class ProfileComponent {
 	}
 
 	updateDataPekerjaan(data){
-		if(this.data.sumber_pendapatan == 0){
+		if(this.data.sumber_pendapatan == 2){
 			this.data.nama_perusahaan = "";
 			this.data.mulai_bekerja = "";
 			this.data.jabatan =	"";
@@ -340,7 +354,7 @@ export class ProfileComponent {
 			this.data.pendapatan_bersih_perusahaan = 0;
 		}
 
-		if(this.data.sumber_pendapatan == 2) {
+		if(this.data.sumber_pendapatan == 0) {
 			this.data.nama_perusahaan = "";
 			this.data.mulai_bekerja = "";
 			this.data.jabatan =	"";
@@ -348,6 +362,8 @@ export class ProfileComponent {
 			this.data.gaji_per_bulan = 0;
 			this.data.tlp_perusahaan = "";
 		}
+		let value_date = jQuery("#mulai_bekerja").val();
+		this.data.mulai_bekerja = value_date;
 		this.editDataPekerjaan = 0;
 		jQuery("#job").prop("disabled", true);
 		this.dataProfile = 0;
@@ -358,24 +374,15 @@ export class ProfileComponent {
 	private pendapatanLainFirst:any;
 	getPendapatanLainFirst(id){
 		this.pendapatanLainFirst = id;
-		if(id == 2) {
-			this.data.pendapatan_lain_1 = 2;		
-		}
-		else{
-		  this.data.pendapatan_lain_1 = 1;
-		}
+		this.data.pendapatan_lain_1 = id;
+		console.log(this.data.pendapatan_lain_1)
 	}
 
 	private pendapatanLainSecond:any;
 	getPendapatanLainSecond(id){
 		this.pendapatanLainSecond = id;
-		if(id == 2) {
-			// objek pendapatan lain 1
-			this.data.pendapatan_lain_2 = 2;
-		}
-		else{
-			this.data.pendapatan_lain_2 = 1;
-		}
+		this.data.pendapatan_lain_2 = id;
+		console.log(this.data.pendapatan_lain_2)
 	}
 
 	// condition for section data pribadi
@@ -395,27 +402,27 @@ export class ProfileComponent {
 	updateDataPendapatanLain(){
 		if(this.data.pendapatan_lain_1 == 0) {
 			// objek pendapatan lain 1
-			this.data.pendapatan_lain_1 = 2;
+			this.data.pendapatan_lain_1 = 0;
 			this.data.sumber_pendapatan_lain_1 	= "";
 			this.data.jumlah_pendapatan_lain_1 	= 0;	
 
 			// objek pendapatan lain 2
-			this.data.pendapatan_lain_2 = 2;
+			this.data.pendapatan_lain_2 = 0;
 			this.data.sumber_pendapatan_lain_2 	= "";
 			this.data.jumlah_pendapatan_lain_2 	= 0;
 		}
 
-		if(this.data.pendapatan_lain_1 == 2) {
+		if(this.data.pendapatan_lain_1 == 0) {
 			// objek pendapatan lain 1	
 			this.data.sumber_pendapatan_lain_1 	= "";
 			this.data.jumlah_pendapatan_lain_1 	= 0;	
 
 			// objek pendapatan lain 2
-			this.data.pendapatan_lain_2 = 2;
+			this.data.pendapatan_lain_2 = 0;
 			this.data.sumber_pendapatan_lain_2 	= "";
 			this.data.jumlah_pendapatan_lain_2 	= 0;
 
-		}if(this.data.pendapatan_lain_2 == 2) {
+		}if(this.data.pendapatan_lain_2 == 0) {
 			this.data.sumber_pendapatan_lain_2 	= "";
 			this.data.jumlah_pendapatan_lain_2 	= 0;		
 		}
@@ -524,7 +531,9 @@ export class ProfileComponent {
 
 	cancelDataBank(){
 		jQuery("#bank").prop("disabled", true);
-		this.editDataBank = 0;
+		this.dataProfile = 0;
+		this.getProfile();
+		// this.editDataBank = 0;
 	}
 
 	updateDataBank(data){
@@ -551,8 +560,9 @@ export class ProfileComponent {
 				 this.data.foto_tabungan = image;
 				}
 			}finally{
-				this.editDataBank = 0;
 				jQuery("#bank").prop("disabled", true);
+				this.dataProfile = 0;
+				this.editDataBank = 0;
 				this.updateProfile()	
 			}
 
