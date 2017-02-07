@@ -47,50 +47,77 @@ export class IndexComponent {
 
 	ngOnInit(){
 		this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/get-list', this.data_get_list_fund, this.options)
-					.map(response => response.json())
-					.subscribe(
-						(response : any) => {
-							// for rr
-							var kosong:null;
-							var code 		= response.meta.code;
-							var message 	= response.meta.message;
-							var withdrawal	= response.data.withdrawal;
-							var current_page= response.data.paging.current_page;
-							var per_page 	= response.data.paging.per_page;
-							var total		= response.data.paging.total;;
-							this.withdrawals= withdrawal;
-							this.current_page	= current_page;
-							// this.per_page 		= per_page;
-							// this.total 			= total;
-							console.log(response)
-							if(code == 200) {
-								var total_pagination = Math.ceil(total/this.limit) //round up
-								this.total_pagination = total_pagination
-								
-								for (var i = 1; i <= total_pagination; i++) {
-									this.array_total.push(i)
-								}
+			.map(response => response.json())
+			.subscribe(
+				(response : any) => {
+					// for rr
+					var kosong:null;
+					var code 		= response.meta.code;
+					var message 	= response.meta.message;
+					var withdrawal	= response.data.withdrawal;
+					var current_page= response.data.paging.current_page;
+					var per_page 	= response.data.paging.per_page;
+					var total		= response.data.paging.total;;
+					this.withdrawals = withdrawal;
+					for(let i = 0; i < this.withdrawals.length; i++){
+						let dataAmount = this.withdrawals[i]
+						let amount = dataAmount['amount'];
+						// condition make delimiter
+						var _minus = false;
+						var b:any = amount.toString();
+						if (b<0) _minus = true;
+							b=b.replace(".","");
+							b=b.replace("-","");
+							let c = "";
+							let panjang = b.length;
+							let j = 0;
+						for (let i = panjang; i > 0; i--){
+							j = j + 1;
+							if (((j % 3) == 1) && (j != 1)){
+								c = b.substr(i-1,1) + "." + c;
+								// console.log(c)
+							} else {
+								c = b.substr(i-1,1) + c;
 							}
-							// console.log(code)
-							// console.log('current page', this.current_page,'per page', this.per_page,'total',this.total)
-							// if(code == 200) {
-							// 	alert("Profile berhasil diupate")
-							// 	// return this.router.navigateByUrl('/dashboard/profile')
-							// }
-							// else{
-							// 	alert("Profile gagal diupdate")
-							// }
-						},
-						(err:any) => {
-				            var error   = JSON.parse(err._body)
-				            var message = error.meta.message
-				              if(message == "unauthorized") {
-				                alert("Maaf session anda telah habis silahkan login kembali")
-				                return this.router.navigateByUrl('/dashboard/sign-out')
-				                
-				              } 
-				        }
-					);
+						}
+						if (_minus) c = "-" + c ;
+						let idr = "Rp.";
+						dataAmount['amount'] = idr.concat(c);
+						// this.collateral = 1;
+					}
+					// page
+					this.current_page	= current_page;
+					// this.per_page 		= per_page;
+					// this.total 			= total;
+					console.log(response)
+					if(code == 200) {
+						var total_pagination = Math.ceil(total/this.limit) //round up
+						this.total_pagination = total_pagination
+						
+						for (var i = 1; i <= total_pagination; i++) {
+							this.array_total.push(i)
+						}
+					}
+					// console.log(code)
+					// console.log('current page', this.current_page,'per page', this.per_page,'total',this.total)
+					// if(code == 200) {
+					// 	alert("Profile berhasil diupate")
+					// 	// return this.router.navigateByUrl('/dashboard/profile')
+					// }
+					// else{
+					// 	alert("Profile gagal diupdate")
+					// }
+				},
+				(err:any) => {
+		            var error   = JSON.parse(err._body)
+		            var message = error.meta.message
+		              if(message == "unauthorized") {
+		                alert("Maaf session anda telah habis silahkan login kembali")
+		                return this.router.navigateByUrl('/dashboard/sign-out')
+		                
+		              } 
+		        }
+			);
 	}
 
 	linkFundWithdrawal(){
