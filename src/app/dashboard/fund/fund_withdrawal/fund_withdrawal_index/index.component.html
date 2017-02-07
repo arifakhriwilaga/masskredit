@@ -5,12 +5,6 @@
       Tarik
     </button>
   </div>
-  <br>
-  <div class="col-xs-12">
-  <br>
-  </div>
-  <div class="col-xs-12">
-  <h1> </h1>
   <div class="col-md-12">
   <!-- Tab panes -->
   <div class="tab-content ">
@@ -29,8 +23,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of withdrawals">
-              <td>{{ data.id }}</td>
+            <tr *ngFor="let data of withdrawals; let i ='index'">
+              <td>{{ i + 1 }}</td>
               <td>
                 {{ data.no_reference }}
               </td>
@@ -63,7 +57,6 @@
       </nav>      
       </div>
     </div>
-  </div>
   </div>
   <div class="col-xs-12">
   <br>
