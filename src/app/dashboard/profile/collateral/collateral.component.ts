@@ -41,9 +41,9 @@ export class CollateralComponent{
 		collateral_description: null,
 		collateral_type : 0,
 		collateral_estimate_price: null,
-		collateral_image_one 	: null,
-		collateral_image_two 	: null,
-		collateral_image_three: null,
+		// collateral_image_one 	: null,
+		// collateral_image_two 	: null,
+		// collateral_image_three: null,
 	}
 
 	// object remove collateral
@@ -68,7 +68,7 @@ export class CollateralComponent{
 	public formCollateral = 0;
 
 	submitCollateral(data){
-		console.log();
+		// console.log();
 		if(data.collateral_type == 0) {
 			alert("Silahkan pilih tipe jaminan")
 		}else{
@@ -120,7 +120,7 @@ export class CollateralComponent{
 			);
 			newTextBoxDivCollateral.appendTo("#TextBoxesGroupCollateral");
 			counterdua++;
-			console.log(counterdua)
+			// console.log(counterdua)
 	}
 
 	encodeImage(file){
@@ -214,9 +214,9 @@ export class CollateralComponent{
 					.subscribe(
 						(response : any) => {
 							var code = response.meta.code;
-							console.log(response);
+							// console.log(response);
 							if(code == 200) {
-								alert("Jaminan berhasil ditambahkan")
+								alert("Jaminan berhasil ditambahkan, harap menunggu konfirmasi")
 								this.formCollateral = 0;
 								this.getDataCollateral()
 							}
@@ -277,7 +277,7 @@ export class CollateralComponent{
 					.subscribe(
 						(response : any) => {
 							var code = response.meta.code;
-							console.log(response);
+							// console.log(response);
 							if(code == 200) {
 								alert("List Jaminan berhasil dihapus, harap menunggu konfirmasi")
 								this.getDataCollateral()
@@ -319,6 +319,33 @@ export class CollateralComponent{
 						var code = response.meta.code;
 						if(code == 200) {
 							this.collateral = response.data.collateral;
+							// console.log(response)
+							for(let i = 0; i < this.collateral.length; i++){
+								let dataEstimate = this.collateral[i]
+								let estimate = dataEstimate['collateral_estimate_price'];
+								// condition make delimiter
+								var _minus = false;
+								var b:any = estimate.toString();
+								if (b<0) _minus = true;
+									b=b.replace(".","");
+									b=b.replace("-","");
+									let c = "";
+									let panjang = b.length;
+									let j = 0;
+								for (let i = panjang; i > 0; i--){
+									j = j + 1;
+									if (((j % 3) == 1) && (j != 1)){
+										c = b.substr(i-1,1) + "." + c;
+										// console.log(c)
+									} else {
+										c = b.substr(i-1,1) + c;
+									}
+								}
+								if (_minus) c = "-" + c ;
+								let idr = "Rp.";
+								dataEstimate['collateral_estimate_price'] = idr.concat(c);
+								// this.collateral = 1;
+								}
 						}
 						else{
 							alert("Gagal menambahkan data")
@@ -338,6 +365,7 @@ export class CollateralComponent{
 	}
 	getCollateralType(id){
 		this.data.collateral_type = id;
+		// console.log(id)
 	}
 
 	public dataCollateralType = [];
@@ -353,7 +381,7 @@ export class CollateralComponent{
 				.map(response => response.json())
 				.subscribe(
 					(response : any) => {						
-						console.log(response)
+						// console.log(response)
 						var code = response.meta.code;
 						if(code == 200) {
 							this.dataCollateralType = response.data.collateral_type;
