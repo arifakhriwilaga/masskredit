@@ -23,7 +23,7 @@ export class VerifyCodeComponent {
 		private registerService	: RegisterService, 
 	) {	}
 
-	ngAfterViewInit() {
+	ngOnInit() {
 		jQuery(function($){
 			jQuery('#verification_code').mask('00000');
 		});
@@ -44,8 +44,8 @@ export class VerifyCodeComponent {
 	};
 	// send code verify
 	sendVerify(code:any)  {
-		
 		if(jQuery("#verifyCodeForm").valid()) {
+			jQuery("#load").button('loading');
 			let headers = new Headers({ 
 				'Content-Type': 'application/json',
 				'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
@@ -57,10 +57,9 @@ export class VerifyCodeComponent {
 			return this.http.post('https://masscredit-api.stagingapps.net/user/credential/verifycode',code, options)
 			.map( (data) => data.json() )
 			.subscribe(
-
 				(data) => {
-				console.log("Verify Success..");
-				alert("Verify Success..!")
+				// console.log("Verify Success..");
+				// alert("Verify Success..!")
 				localStorage.setItem('access_code', data.data.access_code);
 				this.router.navigateByUrl('/auth/register/step-1');
 				},
@@ -69,6 +68,8 @@ export class VerifyCodeComponent {
 					var message = error.meta.message
 						if(message == "Verifikasi salah.") {
 							alert("Maaf nomor verifikasi salah!")
+							jQuery("#load").button('reset');
+
 						}
 				}
 			);
@@ -76,7 +77,6 @@ export class VerifyCodeComponent {
 
 		else{
 			alert("Code Verifikasi anda salah");
-			console.log('Gagal Verify');
 		}
 	}
 	private nomor = {
@@ -85,31 +85,27 @@ export class VerifyCodeComponent {
 	private register = this.registerService.dataRegister();
 	// private getNomor =;
 	resendHandphone()  {
-			let headers = new Headers({ 
-				'Content-Type': 'application/json',
-				'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
-			});
-	    	let options = new RequestOptions({ headers: headers });
-			
-			console.log("Sedang mengirim data....");
+		jQuery('#load-resend').button('loading');
 
+		let headers = new Headers({ 
+			'Content-Type': 'application/json',
+			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
+		});
+  	let options = new RequestOptions({ headers: headers });
 
-				this.http.post('http://masscredit-api.stagingapps.net/user/credential/getverificationcode',
-				this.nomor,
-				options)
-				.map(data => data.json())
-				.subscribe((data : any) => {
-					var verify 	= JSON.stringify(this.nomor)
-					var code 	= data.data.verification_code;
-					console.log("Verify code :",code)
-					alert(code);
-				});
-			
-			
-		
-			console.log("This valid");
-			// code...
-
+		this.http.post('http://masscredit-api.stagingapps.net/user/credential/getverificationcode',
+		this.nomor,
+		options)
+		.map(data => data.json())
+		.subscribe(
+			(data : any) => {
+				jQuery('#load-resend').button('reset');
+				var verify 	= JSON.stringify(this.nomor)
+				var code 	= data.data.verification_code;
+				// console.log("Verify code :",code)
+				alert(code);
+			},
+		);
 	}
 
 }
