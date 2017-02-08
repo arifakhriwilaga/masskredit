@@ -34,6 +34,14 @@ export class DetailComponent {
 			invest_id : '',
 		}
 
+		public data_history_payment = {
+			access_token : this.access_token,
+			invest_id : '',
+			borrower_id : '',
+			page:1,
+      limit:10
+		}
+
 		public data = { };
 		// public dataAmount = [];
 		public dataSalary = { };
@@ -42,17 +50,21 @@ export class DetailComponent {
 		public dataBorrower = [];
 		private dataDetailListMyInvest = 0;
 		public dataAmount = { }
+		public dataPayment = [];
 
 	ngOnInit(){
-	// Objek for get id on route
-	let param = this.activatedRoute.params.subscribe( params => {
-		let id = params['id'];
-		this.data_detail_invest.invest_id = id
-  });
-	// API list borrower
-	this.getListBorrower();
-	// API list borrower
-	this.getDetailMyInvest();
+		// Objek for get id on route
+		let param = this.activatedRoute.params.subscribe( params => {
+			let id = params['id'];
+			this.data_detail_invest.invest_id = id;
+	  	this.data_history_payment.invest_id = id;
+	  });
+		// API list borrower
+		this.getListBorrower();
+		// API list borrower
+		this.getDetailMyInvest();
+		// // API list history payment
+		// this.getHistoryPayment();
 	}
 
 	backFund(){
@@ -153,6 +165,7 @@ export class DetailComponent {
 				this.dataDetailBorrower = response.data;
 				this.dataSalary = response.data.amount
 				this.dataBorrowerAmount = response.data.borrower_amount
+				this.getHistoryPayment(id);
 				this.delimiterSalary(this.dataSalary);
 			});	
 	}
@@ -216,5 +229,15 @@ export class DetailComponent {
 			this.loaderBorrowerApproved = 1;
 			return true;
 		}
+	}
+
+	getHistoryPayment(id:any){
+		this.data_history_payment.borrower_id = id;
+		// API history payment
+    this.http.post('https://masscredit-api.stagingapps.net/user/payment-history/get-list',this.data_history_payment,this.options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				this.dataPayment = response.data.history_payment;
+			});
 	}
 }
