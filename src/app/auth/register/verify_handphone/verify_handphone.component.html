@@ -13,9 +13,7 @@
             <input  type="text" placeholder="087-872-98XX" class="form-control input-md" maxlength="15" minlength="9" id="phone" name="phone" [(ngModel)]="nomor.phone_number">
           </div>
           <div class="col-xs-2">
-            <button  class="btn btn-red" (click)="sendHandphone(nomor)">
-              Kirim
-            </button>
+            <button type="submit" (click)="sendHandphone(nomor)" name="singlebutton" class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Kirim</button>
           </div>
         </div>
       </div>
