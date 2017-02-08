@@ -277,6 +277,7 @@ export class ProfileComponent {
 	cancelDataPribadiPhoto(){
 		this.editDataPribadiPhoto = 0;
 		this.dataProfile = 0;
+		this.getProfile();
 	}
 
 	updateDataPribadiPhoto(){
@@ -492,6 +493,7 @@ export class ProfileComponent {
 
 	cancelDataPenunjang(){
 		this.editDataPenunjang = 0;
+		this.dataProfile = 0;
 		this.getProfile();
 	}
 
