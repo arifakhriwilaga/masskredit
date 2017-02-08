@@ -165,9 +165,9 @@ export class ProfileComponent {
 				  	// object pendapatan lain 1
 					this.data.pendapatan_lain_1 	= response.data.profile.complement_user.pendapatan_lain_1;
 					this.pendapatanLainFirst 			= response.data.profile.complement_user.pendapatan_lain_1;
+				  this.convertIdr(response.data.profile.complement_user.jumlah_pendapatan_lain_1)	
 					this.data.sumber_pendapatan_lain_1 	= response.data.profile.complement_user.sumber_pendapatan_lain_1;
 					this.data.jumlah_pendapatan_lain_1 	= response.data.profile.complement_user.jumlah_pendapatan_lain_1;
-				  	
 				  	// object pendapatan lain 2
 					this.data.pendapatan_lain_2 	= response.data.profile.complement_user.pendapatan_lain_2;
 					this.pendapatanLainSecond 			= response.data.profile.complement_user.pendapatan_lain_2;
@@ -197,9 +197,34 @@ export class ProfileComponent {
 		return readerFile;
 	}
 
+	convertIdr(data:any){
+		// condition make delimiter
+		var _minus = false;
+		var b:any = data.toString();
+		if (b<0) _minus = true;
+			b=b.replace(".","");
+			b=b.replace("-","");
+			let c = "";
+			let panjang = b.length;
+			let j = 0;
+		for (let i = panjang; i > 0; i--){
+			j = j + 1;
+			if (((j % 3) == 1) && (j != 1)){
+				c = b.substr(i-1,1) + "." + c;
+				// console.log(c)
+			} else {
+				c = b.substr(i-1,1) + c;
+			}
+		}
+		if (_minus) c = "-" + c ;
+		let idr = "Rp.";
+		console.log(idr.concat(c))
+		return idr.concat(c);
+
+	}
 	// for request change profile data to server
 	updateProfile(){
-		console.log(this.data)
+		// console.log(this.data)
 		this.data.access_token = this.acces_token
 		let headers = new Headers({ 
 		 	'Content-Type': 'application/json',
