@@ -22,7 +22,7 @@ export class VerifyHandphoneComponent {
 	}	
 
 	// call jquery
-	ngAfterViewInit() {
+	ngOnInit() {
 		jQuery(function($){
 			jQuery('#phone').mask('000-000-000000');
 		});
@@ -41,6 +41,7 @@ export class VerifyHandphoneComponent {
     // send nomor handphone	
 	sendHandphone(nomor:any)  {
 		if(jQuery("#verifyForm").valid()) {
+	    jQuery("#load").button('loading');
 
 			let headers = new Headers({ 
 				'Content-Type': 'application/json',
@@ -62,23 +63,24 @@ export class VerifyHandphoneComponent {
 						var code 	= data.data.verification_code;
 						var header 	= data;
 						// console.log(header.meta);
-						console.log("Verify code :",code)
+						// console.log("Verify code :",code)
 						alert(code);
 						// console.log(data);
 						localStorage.setItem("verify_handphone", verify)
 						this.router.navigateByUrl("/auth/register/verify-code") // return view verify code for now		
 					},
 					(err:any) => {
-			            var error   = JSON.parse(err._body)
-			            var message = error.meta.message
-			              if(message == "No Handphone sudah terdaftar") {
-			                alert("Maaf no handphone telah terdaftar")
-			              }  
-			        }
+	            var error   = JSON.parse(err._body)
+	            var message = error.meta.message
+	              if(message == "No Handphone sudah terdaftar") {
+	                alert("Maaf no handphone telah terdaftar")
+							    jQuery("#load").button('reset');
+	              }  
+	        }
 				);
 			}
 		}else{
-			console.log("Data doesn't valid");
+			alert("Data tidak valid");
 		}
 	}
 
