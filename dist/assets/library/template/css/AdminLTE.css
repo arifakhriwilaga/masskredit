@@ -5840,7 +5840,7 @@ margin-left: 950px;
     margin-top: 15px;
 }
 
-.btn-primary {
+/*.btn {
     background-color: #2e445f;
     border-color: #2d435f;
     margin-left : 10px;
@@ -5848,4 +5848,8 @@ margin-left: 950px;
 
 .btn-primary:hover, .btn-primary:active, .btn-primary.hover {
     background-color: #415b7d;
+}*/
+
+.btn:hover, btn.hover{
+  opacity:0.9
 }
