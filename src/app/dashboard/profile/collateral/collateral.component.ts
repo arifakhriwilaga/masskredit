@@ -220,11 +220,13 @@ export class CollateralComponent{
 							if(code == 200) {
 								alert("Jaminan berhasil ditambahkan, harap menunggu konfirmasi")
 								this.formCollateral = 0;
-								this.getDataCollateral()
+								return this.router.navigateByUrl('/dashboard')
+								// this.getDataCollateral()
+								
 							}
 							else{
 								alert("Gagal menambahkan data")
-								// return this.router.navigateByUrl('/dashboard')
+								return this.router.navigateByUrl('/dashboard')
 							}
 						},
 						(err:any) => {
@@ -282,7 +284,8 @@ export class CollateralComponent{
 							// console.log(response);
 							if(code == 200) {
 								alert("List Jaminan berhasil dihapus, harap menunggu konfirmasi")
-								this.getDataCollateral()
+								return this.router.navigateByUrl('/dashboard')
+								// this.getDataCollateral()
 							}
 							else{
 								alert("Gagal menambahkan data")
