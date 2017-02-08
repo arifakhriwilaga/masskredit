@@ -3,6 +3,8 @@ import { ValidationServiceInvestasi }						from './validationservice.component';
 import { Headers, Http, RequestOptions, URLSearchParams }	from '@angular/http';
 import { Router }        									from '@angular/router';
 
+
+declare var jQuery:any;
 @Component({
 	//moduleId: module.id,
 	selector: 'index',
@@ -89,7 +91,7 @@ export class IndexComponent {
 					this.current_page	= current_page;
 					// this.per_page 		= per_page;
 					// this.total 			= total;
-					console.log(response)
+					// console.log(response)
 					if(code == 200) {
 						var total_pagination = Math.ceil(total/this.limit) //round up
 						this.total_pagination = total_pagination
@@ -144,9 +146,9 @@ export class IndexComponent {
 							this.current_page	= current_page;
 							// this.per_page 		= per_page;
 							// this.total 			= total;
-							console.log(this.current_page)
+							// console.log(this.current_page)
 							if(code == 200) {
-								console.log("Success get list")
+								// console.log("Success get list")
 								// // var convert_string	 = String(total_pagination)
 								// var convert_string	 = total_pagination.valueOf()
 								// array_total 	 = JSON.parse("[" + convert_string +"]");
@@ -172,6 +174,94 @@ export class IndexComponent {
 				              } 
 				        }
 					);
+	}
+
+	public loaderDana = 0;
+	public dataDetailDana = {
+		access_token : JSON.parse(localStorage.getItem("access_token")),
+		withdrawal_id : '',
+	}
+
+	public dataDetailBorrower = {};
+	public detail = { };
+	public bank = { };
+	public dataAmount = { }
+
+	showDetailDana(id:any){
+		this.dataDetailDana.withdrawal_id = id;
+		jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
+		// API detail invest
+	    this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/get-detail',this.dataDetailDana,this.options)
+				.map(response => response.json())
+				.subscribe((response : any) => {
+					let data = response.data;
+					let bank_name = response.data.bank;
+
+					if(bank_name == 1) {
+						this.bank = "BCA";
+					}
+					if(bank_name == 2) {
+						this.bank = "Mandiri";
+					}
+					if(bank_name == 3) {
+						this.bank = "Danamon";
+					}
+					if(bank_name == 4) {
+						this.bank = "Sinarmas";
+					}
+					if(bank_name == 5) {
+						this.bank = "BNI";
+					}
+					if(bank_name == 6) {
+						this.bank = "Niaga";
+					}
+					if(bank_name == 'undefined') {
+						this.bank = "";
+					}
+					this.dataAmount = response.data.amount;
+					this.delimiterAmount(this.dataAmount);
+
+					this.detail = data
+					// console.log(data);
+					// this.image = response.data.images[0];
+					// console.log(this.image);
+					
+					// console.log(this.detail);
+				});	
+	}
+
+	delimiterAmount(dataAmount:any){
+		try{
+			// condition make delimiter
+			var _minus = false;
+			var b:any = dataAmount.toString();
+			if (b<0) _minus = true;
+				b=b.replace(".","");
+				b=b.replace("-","");
+				let c = "";
+				let panjang = b.length;
+				let j = 0;
+			for (let i = panjang; i > 0; i--){
+				j = j + 1;
+				if (((j % 3) == 1) && (j != 1)){
+					c = b.substr(i-1,1) + "." + c;
+					// console.log(c)
+				} else {
+					c = b.substr(i-1,1) + c;
+				}
+			}
+			if (_minus) c = "-" + c ;
+			let idr = "Rp.";
+			this.dataAmount = idr.concat(c);
+		}finally{
+			this.loaderDana = 1;
+			return true;
+		}
+	}
+
+	hideDetailDana(){
+		jQuery('#myModal').modal('toggle');
+		this.loaderDana = 0;
 	}
 
 
