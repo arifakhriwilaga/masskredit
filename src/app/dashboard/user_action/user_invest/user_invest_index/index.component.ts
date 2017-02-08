@@ -64,8 +64,8 @@ export class IndexComponent {
 				if (_minus) c = "-" + c ;
 				let idr = "Rp.";
 				dataAmount['amount'] = idr.concat(c);
-				this.dataListMyInvest = 1;
 				}
+				this.dataListMyInvest = 1;
 			},
 			(err:any) => {
 				var error   = JSON.parse(err._body)
