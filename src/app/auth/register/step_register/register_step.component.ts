@@ -184,8 +184,9 @@ export class RegisterStepComponent  {
 
 	sendRegister(register) {	
 		if(jQuery("#registerForm").valid()) {	
-			let x : any = document.getElementById("phone_number");
-			let phone_number = x.value;
+			// let x : any = document.getElementById("phone_number");
+			// let phone_number = x.value;
+			let phone_number = JSON.parse(localStorage.getItem("verify_handphone"));
 				// this.register.no_handphone		= document.getElementById("no_handphone")
 				let tanggal_lahir 	= jQuery("#tanggal_lahir").val();
 				this.register.tanggal_lahir = tanggal_lahir;
