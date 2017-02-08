@@ -36,6 +36,8 @@ export class DetailComponent {
 			fund_id : '',
 		}
 
+		public dataAmount = { }
+
 	ngOnInit(){
 
 	// Objek for get id on route
@@ -46,7 +48,7 @@ export class DetailComponent {
 		// console.log(this.data_detail)
   	});
 			  	// API detail fund
-		console.log("Sedang mengambil data....")
+		// console.log("Sedang mengambil data....")
 	    this.http.post('https://masscredit-api.stagingapps.net/user/fund/get-detail',this.data_get_detail_fund,this.options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
@@ -77,6 +79,9 @@ export class DetailComponent {
 					}
 
 					this.detail = data
+					this.dataAmount = response.data.amount;
+					this.delimiterAmount(this.dataAmount);
+
 					// this.image = response.data.images[0];
 					// console.log(this.image);
 					
@@ -84,6 +89,33 @@ export class DetailComponent {
 				});	
 	}
 
+	delimiterAmount(dataAmount:any){
+		try{
+			// condition make delimiter
+			var _minus = false;
+			var b:any = dataAmount.toString();
+			if (b<0) _minus = true;
+				b=b.replace(".","");
+				b=b.replace("-","");
+				let c = "";
+				let panjang = b.length;
+				let j = 0;
+			for (let i = panjang; i > 0; i--){
+				j = j + 1;
+				if (((j % 3) == 1) && (j != 1)){
+					c = b.substr(i-1,1) + "." + c;
+					// console.log(c)
+				} else {
+					c = b.substr(i-1,1) + c;
+				}
+			}
+			if (_minus) c = "-" + c ;
+			let idr = "Rp.";
+			this.dataAmount = idr.concat(c);
+		}finally{
+			return true;
+		}
+	}
 	backFund(){
 		this.router.navigateByUrl('/dashboard/fund')
 	}
