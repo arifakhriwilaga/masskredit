@@ -184,72 +184,85 @@ export class RegisterStepComponent  {
 
 	sendRegister(register) {	
 		if(jQuery("#registerForm").valid()) {	
+			jQuery("#load").button('loading');
 			// let x : any = document.getElementById("phone_number");
 			// let phone_number = x.value;
 			let phone_number = JSON.parse(localStorage.getItem("verify_handphone"));
-				// this.register.no_handphone		= document.getElementById("no_handphone")
-				let tanggal_lahir 	= jQuery("#tanggal_lahir").val();
-				this.register.tanggal_lahir = tanggal_lahir;
-				this.register.phone_number		= phone_number;
-					let headers = new Headers({ 
-					 	'Content-Type': 'application/json',
-					 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-				 		});
+			// this.register.no_handphone		= document.getElementById("no_handphone")
+			let tanggal_lahir 	= jQuery("#tanggal_lahir").val();
+			this.register.tanggal_lahir = tanggal_lahir;
+			this.register.phone_number		= phone_number;
+			let headers = new Headers({ 
+			 	'Content-Type': 'application/json',
+			 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	 		});
 
-				    let options = new RequestOptions({ headers: headers });
+	    let options = new RequestOptions({ headers: headers });
 
-					//API Register 
-					this.register;
-					// console.log(this.register)
-						this.http.post('https://masscredit-api.stagingapps.net/user/credential/register',
-						register, 
-						options)
-						.map(response => response.json())
-						.subscribe(
-							(response:any) => { 
-								// console.log(response)
-								var code 		= response.meta.code;
-												
-								if(code == "200") {
-									localStorage.removeItem("access_code");
-									localStorage.removeItem("verify_handphone");
-									// alert("Registrasi berhasil, cek email untuk verifikasi")
-									return this.router.navigateByUrl('/auth/register/finish');
-								}else{
-									alert("Register gagal")
-									return this.router.navigateByUrl('/auth/register/step-1')
-								}
+			//API Register
+			this.http.post('https://masscredit-api.stagingapps.net/user/credential/register',
+			register, 
+			options)
+			.map(response => response.json())
+			.subscribe(
+				(response:any) => { 
+					// console.log(response)
+					var code 		= response.meta.code;
+									
+					if(code == "200") {
+						localStorage.removeItem("access_code");
+						localStorage.removeItem("verify_handphone");
+						// alert("Registrasi berhasil, cek email untuk verifikasi")
+						return this.router.navigateByUrl('/auth/register/finish');
+					}else{
+						alert("Register gagal")
+						return this.router.navigateByUrl('/auth/register/step-1')
+					}
 
-							},
-							(err:any) => {
-								var error   = JSON.parse(err._body)
-								var message = error.meta.message
-									if(message == "Email sudah terdaftar") {
-										alert("Maaf Email sudah terdaftar")
-									}
-									if(message == "Password dan Confirm Password tidak sama") {
-										alert("Password dan Confirm Password tidak sama")
-									}
-									if(message == "No Handphone sudah terdaftar") {
-										alert("No Handphone sudah terdaftar")
-									}
-									else{
-										// console.log(message)
-									}
-							}
-						);
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+						if(message == "Email sudah terdaftar") {
+							alert("Maaf Email sudah terdaftar")
+							jQuery("#load").button('reset');
+						
+						}if(message == "Password dan Confirm Password tidak sama") {
+							alert("Password dan Confirm Password tidak sama")
+							jQuery("#load").button('reset');
+
+						}if(message == "No Handphone sudah terdaftar") {
+							alert("No Handphone sudah terdaftar")
+							jQuery("#load").button('reset');
+						
+						}else{
+								// console.log(message)
+						}
+					}
+				);
 				
 		}
-		
 		else{
 			alert("Data tidak valid")
+			jQuery("#load").button('reset');
+			
 		}
 	}
 
+	// outRegister(){
+	// 	this.router.navigateByUrl('/auth/register');
+	// }
+
 	cancelRegister() {
+
+		jQuery("#load-reject").button('loading');
 		localStorage.removeItem("access_code");
 		localStorage.removeItem("verify_handphone");
-		this.router.navigateByUrl('/auth/register');
+	  setTimeout(function() {
+	      jQuery("#load-reject").button('reset');
+	      out;
+	  }, 8000);
+		let out = this.router.navigateByUrl('/auth/register');
 
 			// let data = {
 			// 	phone_number : JSON.parse(localStorage.getItem("verify_handphone"))
