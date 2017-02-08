@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { User } from './login';
 
-
+declare var jQuery:any
 @Injectable ()
 export class LoginService {
 	constructor (private http:Http, private router:Router) { }
@@ -54,8 +54,16 @@ export class LoginService {
 				(err:any) => {
 					var error   = JSON.parse(err._body);
 					var code = error.meta.code;
-						if(code == "404") {
+					let message = error.meta.message;
+						if(message == "Account not found") {
 							alert("Akun tidak ditemukan.")
+						  var $this = jQuery("#load");
+				      $this.button('reset');
+						}
+						if(message == null) {
+							alert("Akun tidak ditemukan.")
+						  var $this = jQuery("#load");
+				      $this.button('reset');
 						}
 				}
 			);
