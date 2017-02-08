@@ -49,6 +49,7 @@ export class InstallmentComponent {
  	private options = new RequestOptions({ headers: this.headers });
 
 	ngOnInit(){
+		jQuery('#jumlah_angsuran').mask('000000000000');
 		// dynamic data angsuran
 		var counter = 1;
 		jQuery("#addButton").click(function(){
@@ -56,6 +57,7 @@ export class InstallmentComponent {
 				alert("Only 5 textbox");
 				return false;
 			}
+
 
 
 		// 	var newTextBoxDiv = jQuery(document.createElement('div'))
