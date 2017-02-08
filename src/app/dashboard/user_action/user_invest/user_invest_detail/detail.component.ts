@@ -192,13 +192,29 @@ export class DetailComponent {
 		// API detail invest
 	    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/detail',this.getDetailBorrower,this.options)
 			.map(response => response.json())
-			.subscribe((response : any) => {
-				// this.dataAmount.push(response.data.amount,response.data.borrower_amount);	
-				this.dataDetailBorrower = response.data;
-				this.dataSalary = response.data.amount
-				this.dataBorrowerAmount = response.data.borrower_amount
-				this.delimiterSalary(this.dataSalary);
-			});	
+			.subscribe(
+				(response : any) => {
+					let code = response.meta.code
+					if(code == 200) {
+						this.dataDetailBorrower = response.data;
+						this.dataSalary = response.data.amount
+						this.dataBorrowerAmount = response.data.borrower_amount
+						this.delimiterSalary(this.dataSalary);
+					}
+					else{
+						alert("Data Detail Borrower gagal diambil")
+					}
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+					var code = error.meta.code
+					if(message == "unauthorized") {
+						alert("Maaf session anda telah habis silahkan login kembali")
+						return this.router.navigateByUrl('/dashboard/sign-out')					
+					}
+				}
+			);	
 	}
 	hideDetailBorrowerApproved(){
 		jQuery('#myModal').modal('toggle');
@@ -268,9 +284,26 @@ export class DetailComponent {
 		// API history payment
     this.http.post('https://masscredit-api.stagingapps.net/user/payment-history/get-list',this.data_history_payment,this.options)
 			.map(response => response.json())
-			.subscribe((response : any) => {
+			.subscribe(
+				(response : any) => {
 				// console.log(response)
-				this.dataPayment = response.data.history_payment;
-			});
+				let code = response.meta.code;
+					if(code == 200) {
+						this.dataPayment = response.data.history_payment;
+					}
+					else{
+						alert("Data gagal diambil");
+					}
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+					var code = error.meta.code
+					if(message == "unauthorized") {
+						alert("Maaf session anda telah habis silahkan login kembali")
+						return this.router.navigateByUrl('/dashboard/sign-out')					
+					}
+				}
+			);
 	}
 }
