@@ -218,7 +218,7 @@ export class ProfileComponent {
 		}
 		if (_minus) c = "-" + c ;
 		let idr = "Rp.";
-		console.log(idr.concat(c))
+		// console.log(idr.concat(c))
 		return idr.concat(c);
 
 	}
