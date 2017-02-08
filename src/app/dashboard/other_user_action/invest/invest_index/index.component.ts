@@ -73,8 +73,8 @@ export class IndexComponent implements OnInit {
 					if (_minus) c = "-" + c ;
 					let idr = "Rp.";
 					dataAmount['amount'] = idr.concat(c);
-					this.dataListInvest = 1;
 				}
+					this.dataListInvest = 1;
 			},
 			(err:any) => {
 				var error   = JSON.parse(err._body)
