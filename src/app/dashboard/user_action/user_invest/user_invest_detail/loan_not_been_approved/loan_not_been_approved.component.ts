@@ -61,7 +61,7 @@ export class LoanNotBeenApprovedComponent {
 		    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/detail',this.data_borrower,this.options)
 					.map(response => response.json())
 					.subscribe((response : any) => {
-						console.log(response);
+						// console.log(response);
 						this.data = response.data;
 						this.dataApprove.invest_id = response.data.invest_id;
 						this.dataSalary = response.data.amount;
@@ -97,8 +97,9 @@ export class LoanNotBeenApprovedComponent {
 				(err : any) => {
 					var error   = JSON.parse(err._body)
           var code = error.meta.code
-            if(code == "400") {
-              alert("Password anda salah")              
+          var message = error.meta.message
+            if(message == "Password salah!") {
+              alert("Password salah!")              
             }  
           }
 			);	
