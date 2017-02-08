@@ -42,8 +42,9 @@ export class IndexComponent {
  		access_token : this.acces_token,
  		page : this.page,
  		limit : this.limit
-
  	}
+
+ 	public dataListFundAdd = 0;
 
 
 	ngOnInit(){
@@ -54,6 +55,7 @@ export class IndexComponent {
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
+					// console.log(response)
 					// for rr
 					var kosong:null;
 					var code 		= response.meta.code;
@@ -94,6 +96,7 @@ export class IndexComponent {
 
 					// page
 					this.current_page	= current_page;
+					this.dataListFundAdd = 1;
 					// this.per_page 		= per_page;
 					// this.total 			= total;
 					// console.log(this.current_page)
