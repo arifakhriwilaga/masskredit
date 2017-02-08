@@ -28,6 +28,13 @@ export class LoginComponent {
 		jQuery(function($){
 			jQuery('#username').mask('000-000-000000');
 		});
+		jQuery('.btn').on('click', function() {
+		  var $this = jQuery("#load");
+		  $this.button('loading');
+		   //  setTimeout(function() {
+		   //     $this.button('reset');
+		   // }, 8000);
+		});
 	}
 
 	login(user){
