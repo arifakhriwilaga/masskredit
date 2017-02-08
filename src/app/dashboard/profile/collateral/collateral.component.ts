@@ -23,6 +23,8 @@ export class CollateralComponent{
 	ngOnInit(){ 
 		this.getDataCollateral();
 		this.getDataCollateralType();
+		jQuery('#collateral_estimate_price').mask('000000000000');
+
 		// jQuery( "#collateralForm" ).validate({
 		//   rules: {
 		//     collateral_type: {
