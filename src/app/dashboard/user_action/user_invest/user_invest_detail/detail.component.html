@@ -299,8 +299,8 @@
                   <td>
                     {{ dataPayment.installment_order }}
                   </td>
-                  <td>{{ dataPayment.payment_date }}</td>
                   <td>{{ dataPayment.due_date }}</td>
+                  <td>{{ dataPayment.payment_date }}</td>
                   <td>{{ dataPayment.status }}</td>
                   <td *ngIf="dataBorrower.status == 'Tunda'">
                     <button class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id ,'loan-not-been-approved', dataBorrower.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
