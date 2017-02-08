@@ -13,16 +13,18 @@
                <input type="text" class="form-control" placeholder="Verification Code" maxlength="5" id="verification_code" [(ngModel)]="code.verification_code" name="verification_code">
                 </div>
                 <div class="col-xs-2">
-                  <button  class="btn btn-red" (click)="sendVerify(code)">
+                <button type="submit" (click)="sendVerify(code)" name="singlebutton" class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Verifikasi</button>
+                  <!-- <button  class="btn btn-red" (click)="sendVerify(code)">
                     Verifikasi
-                  </button>
+                  </button> -->
                 </div>
                 <div class="col-xs-1">
                 </div>
                 <div class="col-xs-2">
-                  <button type="button" class="btn btn-batal" data-dismiss="modal" (click)="resendHandphone()">
+                <button type="submit" (click)="resendHandphone()" name="singlebutton" class="btn btn-batal" id="load-resend" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Resend</button>
+                  <!-- <button type="button" class="btn btn-batal" data-dismiss="modal" (click)="resendHandphone()">
                     Resend
-                  </button>
+                  </button> -->
                 </div>
               </div>
           </div>
