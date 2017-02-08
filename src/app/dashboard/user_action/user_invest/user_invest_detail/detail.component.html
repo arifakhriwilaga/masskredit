@@ -278,6 +278,44 @@
              </div> 
             </div>
           </div>
+          <div class="row">
+            <div class="col-xs-12">
+           <label><h2 style="font-size: 30px;color: orange;">Riwayat Pembayaran</h2></label>
+            <div class="box-body data-tables table-responsive">
+            <table class="table table-hover" id="example2">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Angsuran Ke</th>
+                  <th>Tanggal Jatuh Tempo</th>
+                  <th>Tanggal Pembayaran</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dataPayment of dataPayment, let i ='index'">
+                  <td>{{ i + 1 }}</td>
+                  <td>
+                    {{ dataPayment.installment_order }}
+                  </td>
+                  <td>{{ dataPayment.payment_date }}</td>
+                  <td>{{ dataPayment.due_date }}</td>
+                  <td>{{ dataPayment.status }}</td>
+                  <td *ngIf="dataBorrower.status == 'Tunda'">
+                    <button class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id ,'loan-not-been-approved', dataBorrower.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
+                  </td>
+                  <td *ngIf="dataBorrower.status == 'Setuju' || dataBorrower.status == 'Tolak'">
+                    <button class="pull-right" (click)="showDetailBorrowerApproved(dataBorrower.id)">
+                      <i aria-hidden="true" class="fa fa-search"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </div>  
+            </div>
+          </div>
         </div>
         </div>
         <div class="modal-footer">
