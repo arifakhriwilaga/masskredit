@@ -46,6 +46,8 @@ export class IndexComponent {
 
  	}
 
+ 	public dataListFundWithdrawal = 0;
+
 
 	ngOnInit(){
 		this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/get-list', this.data_get_list_fund, this.options)
@@ -87,7 +89,8 @@ export class IndexComponent {
 						dataAmount['amount'] = idr.concat(c);
 						// this.collateral = 1;
 					}
-					// page
+					
+					this.dataListFundWithdrawal = 1;
 					this.current_page	= current_page;
 					// this.per_page 		= per_page;
 					// this.total 			= total;
@@ -196,7 +199,7 @@ export class IndexComponent {
 				.subscribe((response : any) => {
 					let data = response.data;
 					let bank_name = response.data.bank;
-
+					
 					if(bank_name == 1) {
 						this.bank = "BCA";
 					}
