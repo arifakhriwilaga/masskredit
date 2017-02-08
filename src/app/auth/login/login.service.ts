@@ -33,8 +33,19 @@ export class LoginService {
 				(response:any) => { 
 					var access_token 		= JSON.stringify(response.data.access_token);
 					var code 		= response.meta.code;
+					var getToken = localStorage.getItem("access_token");
 					if(code == "200") {
+						let token = {value: access_token, timestamp: new Date().getTime()}
+						// localStorage.setItem("access_token",JSON.stringify(token));
 						localStorage.setItem("access_token",access_token);
+						// if(getToken == null) {
+						// }else{
+						// 	if(now-setupTime > hours*60*60*1000) {
+						// 		localStorage.clear();
+						// 		localStorage.setItem("access_token",JSON.stringify(access_token));
+						// 	}	
+						// }
+						// localStorage.setItem("access_token",access_token);
 						return this.router.navigateByUrl('/dashboard');
 					}else{
 						alert("Register gagal");
