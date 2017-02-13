@@ -1,12 +1,12 @@
 // inject modul angular
 import { Component } from '@angular/core';
+import { Headers, Http, RequestOptions }	   from '@angular/http';
 
 // inject service login
 import { LoginService }	from './login.service';
 
 // inject object login
 import { User } from './login';
-import { Headers, Http, RequestOptions }	   from '@angular/http';
 
 // declare object jQuery for usage function jQuery
 declare var jQuery:any
@@ -20,25 +20,18 @@ declare var jQuery:any
 export class LoginComponent {
 	constructor(private loginService : LoginService, private http:Http){ }
 	
-	// declare object
+	// declare object request
 	private user = { User };
 
-	// call function jquery mask
 	ngOnInit(){
-		jQuery(function($){
-			jQuery('#username').mask('000-000-000000');
-		});
-		jQuery('.btn').on('click', function() {
-		  var $this = jQuery("#load");
-		  $this.button('loading');
-		   //  setTimeout(function() {
-		   //     $this.button('reset');
-		   // }, 8000);
-		});
+		// call function jquery mask
+		jQuery('#username').mask('000-000-000000');
 	}
 
 	login(user){
-		this.loginService.login(user);
+		let $this = jQuery("#load");
+    $this.button('loading');
+		this.loginService.postLogin(user);
 	}
 
  }
