@@ -1,0 +1,34 @@
+<div class="form-account form-login-register" id="register">
+  <br>
+  <br>
+  <h2>Registrasi</h2>
+  <p>Silahkan masukkan nomor verifikasi yang anda terima melalui SMS</p>
+  <br>
+  <form class="form-horizontal clearfix row" id="verifyCodeForm">
+     <div class="col-xs-12">
+        <div class="row">
+          <div align="center">
+              <div class="form-group" style="width:60%">
+                <div class="col-xs-6">
+               <input type="text" class="form-control" placeholder="Verification Code" maxlength="5" id="verification_code" [(ngModel)]="code.verification_code" name="verification_code">
+                </div>
+                <div class="col-xs-2">
+                <button type="submit" (click)="sendVerify(code)" name="singlebutton" class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Verifikasi</button>
+                  <!-- <button  class="btn btn-red" (click)="sendVerify(code)">
+                    Verifikasi
+                  </button> -->
+                </div>
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-2">
+                <button type="submit" (click)="resendHandphone()" name="singlebutton" class="btn btn-batal" id="load-resend" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Resend</button>
+                  <!-- <button type="button" class="btn btn-batal" data-dismiss="modal" (click)="resendHandphone()">
+                    Resend
+                  </button> -->
+                </div>
+              </div>
+          </div>
+        </div>
+     </div>
+  </form>
+</div>
