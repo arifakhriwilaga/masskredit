@@ -34,6 +34,9 @@ export class StepRegisterComponent  {
 
 	private nomor = "";
 	ngOnInit(){
+
+		jQuery('#messagelogin').hide();
+
 	
 		this.nomor = JSON.parse(localStorage.getItem("verify_handphone"));
 		jQuery('.datepicker').datepicker({
@@ -93,9 +96,17 @@ export class StepRegisterComponent  {
 		}
 	}
 
+	hideNotif() {
+		jQuery('#myModal').modal('toggle');
+		this.router.navigateByUrl('/auth/login');
+	}
+
 	cancelRegister() {
 		localStorage.removeItem("access-code");
 		localStorage.removeItem("verify-handphone");
 		let out = this.router.navigateByUrl('/auth/login');
 	}
+	// toast(){
+	// 	jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
+	// }
 }
