@@ -26,7 +26,7 @@ export class VerifyCodeComponent {
 
 	ngOnInit() {
 		// call function jquery mask
-		jQuery('#verification_code').mask('00000');
+		jQuery('#verification_code').mask('000000');
 		// call function jquery validate
 		jQuery( "#verifyCodeForm" ).validate({
 		  rules: {
