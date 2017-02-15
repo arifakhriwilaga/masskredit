@@ -4,32 +4,25 @@ import { RouterModule }          from '@angular/router';
 import { HttpModule }            from '@angular/http';
 import { FormsModule }           from '@angular/forms';
 import { CommonModule }          from '@angular/common';
-// import { LocalStorageService }   from 'angular-2-local-storage';
 
+// component create
+import { CreateComponent } from './create.component';
+import { FormComponent } from './form';
 
-// debugger;
-// Component
-import { CreateComponent }        from './create.component';
-
-export const routes = [
-  { path:'', component: CreateComponent},
-] 
+export const routes = [{ path:'', component: CreateComponent}] 
 
 @NgModule({
-  declarations: [
-    CreateComponent, // declarations LoginComponent
+  declarations: [ 
+    CreateComponent, 
+    FormComponent 
   ],
-  imports: [ // import Angular's modules
+  imports: [
     HttpModule,
     FormsModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  // exports: [LoginComponent],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-    // LocalStorageService,
-    // LoginComponent,
-  ]
+  providers: [ ]
 })
 
 export default class CreateModule { 
