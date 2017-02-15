@@ -30,7 +30,8 @@ export class StepRegisterService {
 				if(code == "200") {
 					localStorage.removeItem("access-code");
 					localStorage.removeItem("verify-handphone");
-					return this.router.navigateByUrl('/auth/register/finish');
+					this.showNotif();
+					// return this.router.navigateByUrl('/auth/register/finish');
 				}else{
 					alert("Register gagal")
 					return this.router.navigateByUrl('/auth/register/step-1')
@@ -55,6 +56,10 @@ export class StepRegisterService {
 					console.log(message)
 				}
 			});   
+	}
+
+	showNotif() {
+		jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
 	}
 }
 
