@@ -1,204 +1,171 @@
-import { Component, OnInit }								from '@angular/core';
-import { CreateService }									from './create.service';
-import { FormGroup, FormBuilder, Validators, FormControl } 	from '@angular/forms';
-import { ValidationServiceInvestasi } 					   	from './validationservice.component';
-import { Headers, Http, RequestOptions }	   				from '@angular/http';
-import { Router }        					   				from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
+import { FormGroup} from '@angular/forms';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
+import { CreateService } from './create.service';
+// import { ValidationServiceInvestasi }	from './validationservice.component';
 
 declare var jQuery:any;
-declare var image:void;
 
 @Component({
 	selector: 'create',
 	templateUrl: 'create.component.html',
-	providers: [CreateService]
 })
 
-export class CreateComponent {
-	constructor(private service : CreateService, private http : Http, private router : Router) { }
+export class CreateComponent implements OnInit{ 
+	constructor(
+		private router : Router, 
+		private http : Http
+	) { }
 
-	ngOnInit() {
+	public dataFundAdd = 0;
 
-		jQuery('.datepicker').datepicker({
-	      format	: 'yyyy-mm-dd',
-	      // startDate : '2015-01-01',
-	      // minDate	: '01/01/2015'
+	// set headers
+  private headers = new Headers({ 
+		'Content-Type': 'application/json',
+		'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
+	})
+	private options = new RequestOptions({ headers: this.headers })
 
-	    });
-
-	  jQuery( "#createForm" ).validate({
-		  rules: {
-		    nama_lengkap: {
-		      required: true
-		    },
-		    bank_name: {
-		      required: true,
-		      // email	  : true
-		    },
-		    no_rekening: {
-		      required: true
-		    },
-		    amount: {
-		      required: true
-		    },
-		    date: {
-		      required: true
-		    },
-		  }
-		});
-
-		// Mask
-		jQuery(function($){
-			jQuery('#amount').mask('000000000000');
-			jQuery('#no_rekening').mask('000000000000000');
-
-			
-		});
-
-		// Request for get profile
-		this.http.post('https://masscredit-api.stagingapps.net/user/credential/profile',this.data_access_token,this.options)
-	        .map(response => response.json())
-	        .subscribe(
-	          (response : any) => {
-	            // console.log(response);
-	            this.data.nama_lengkap	= response.data.profile.name;
-	            // this.data.bank_name		= response.data.profile.complement_user.no_rekening;
-	            // this.data.no_rekening
-	            // console.log(response);
-	          },
-	          (err:any) => {
-	            var error   = JSON.parse(err._body)
-	            var message = error.meta.message
-	              if(message == "unauthorized") {
-	                alert("Maaf session anda telah habis silahkan login kembali")
-	                return this.router.navigateByUrl('/dashboard/sign-out')
-	                
-	              }  
-	          }
-        );
-
-		// Request for get no reference
-		this.http.post('https://masscredit-api.stagingapps.net/user/fund/no-reference',this.data,this.options)
-			.map(response => response.json())
-			.subscribe(
-				(response : any) => {
-					var code 		= response.meta.code;
-					var message 	= response.meta.message;
-					var no_reference= response.data.no_reference;
-					this.data.no_reference = no_reference;
-					// this.router.navigateByUrl('/dashboard/fund');
-				},
-				(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-						if(message == "unauthorized") {
-							alert("Maaf session anda telah habis silahkan login kembali")
-							return this.router.navigateByUrl('/dashboard/sign-out')
-							
-						}	
-				}
-			);			
-
-		// Request for get data bank
-		this.http.get('https://masscredit-api.stagingapps.net/master/bank',this.options)
-			.map(response => response.json())
-			.subscribe(
-				(response : any) => {
-					var code 		= response.meta.code;
-					var message 	= response.meta.message;
-					var banks 		= response.data.tipe_bank;
-					this.banks 		= banks;
-					// this.router.navigateByUrl('/dashboard/fund');
-				},
-				(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-						if(message == "unauthorized") {
-							alert("Maaf session anda telah habis silahkan login kembali")
-							return this.router.navigateByUrl('/dashboard/sign-out')
-							
-						}	
-				}
-			);			
-		
-		// Get date
-		let date = jQuery("#date").datepicker("setDate", new Date());
-		let value_date = jQuery("#date").val();
-		this.data.date = value_date;
-	}
-	
-
-	// Headers
-  	public headers = new Headers({ 
-			'Content-Type': 'application/json',
-			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
-		})
-	public options = new RequestOptions({ headers: this.headers })
-
-	// Get access_token in localstorage
+	// get access_token in localstorage
 	access_token = JSON.parse(localStorage.getItem("access_token"));
 	
 	// objek request Get No Reference
-	public data_access_token = {
+	private data_access_token = {
 		access_token : this.access_token
 	}
 
-	// objek request Add Fund
+	// object request Add Fund
 	public data = {
-		access_token: this.access_token,
-  	date		: '',
-  	no_reference: '',
-  	nama_lengkap: '',
-  	bank_name	: 0,
-		no_rekening	: '',
-		amount		: '',		
+		access_token : this.access_token,
+  	date : null,
+  	no_reference : null,
+  	nama_lengkap : null,
+  	bank_name : 0,
+		no_rekening	: null,
+		amount : null,
+		other_bank : null,
+		tujuan_bank: 0,
+		no_rekening_tujuan : null
 	}
 
-	// objek for save data bang when success get data bank on API
+	// object save data bank when success get data bank on API
 	public banks = [];
 
-	// get id bank name
-	getBankName(id){
-		this.data.bank_name = id;
-		// console.log(this.data)
+	// object save data bank when success get data bank on API
+	public bank_masscredit = [];
+
+	private listData = 0;
+	private lastBank = null;
+
+	// declare object url bank
+	private bankUrl = 'https://masscredit-api.stagingapps.net/master/bank';
+	
+
+	// declare object url bank
+	private bankmasscreditkUrl = "https://masscredit-api.stagingapps.net/master/bank-masscredit";
+	
+	// declare object url profile
+	private profileUrl = 'https://masscredit-api.stagingapps.net/user/credential/profile';
+	
+	// declare object url no-reference
+	private noreferenceUrl = 'https://masscredit-api.stagingapps.net/user/fund/no-reference';
+
+
+	ngOnInit(){
+		// request get profile
+ 		 this.getProfile();
+		// request get bank
+ 		 this.getBank();
+ 		 // request get no reference
+ 		 this.getNoReference();
+ 		 // request get bank masscredit
+ 		 this.getBankMasscredit();
 	}
 
-  	createFund(data) {
-		if(jQuery("#createForm").valid()) {	
-		// if(true) {
-	  		// console.log(this.data)
-				
-			// API Add Fund
-			this.http.post('https://masscredit-api.stagingapps.net/user/fund/add',this.data,this.options)
-			.map(response => response.json())
-			.subscribe(
-				(response : any) => {
-					var code 		= response.meta.code;
-					var message 	= response.meta.message;
-					// console.log(code,message);
-					alert("Penambahan dana berhasil, harap konfirmasi dana")
-					this.router.navigateByUrl('/dashboard/fund');
-				},
-				(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-						if(message == "unauthorized") {
-							alert("Maaf session anda telah habis silahkan login kembali")
-							return this.router.navigateByUrl('/dashboard/sign-out')
-							
-						}	
+  // request get data bank masscredit
+  getBankMasscredit(){
+	this.http.get(this.bankmasscreditkUrl,this.options)
+		.map(response => response.json())
+		.subscribe((response : any) => {
+			this.bank_masscredit 		= response.data.tipe_bank;
+		},(err:any) => {
+			var error   = JSON.parse(err._body);
+			var message = error.meta.message;
+			if(message == "unauthorized") {
+				alert("Maaf session anda telah habis silahkan login kembali");
+				this.router.navigateByUrl('/dashboard/sign-out');
+			}	
+		});
+  }
+
+	// request get no reference
+  getNoReference(){
+	this.http.post(this.noreferenceUrl,this.data,this.options)
+		.map(response => response.json())
+		.subscribe((response : any) => {
+			var code 		= response.meta.code;
+			var message 	= response.meta.message;
+			var no_reference= response.data.no_reference;
+			this.data.no_reference = no_reference;
+			this.listData = 3;
+			// console.log(this.listData)
+			if(this.listData == 3) {
+				this.dataFundAdd = 1;
+			}
+		},(err:any) => {
+			var error   = JSON.parse(err._body);
+			var message = error.meta.message;
+				if(message == "unauthorized") {
+					alert("Maaf session anda telah habis silahkan login kembali");
+					this.router.navigateByUrl('/dashboard/sign-out');
+				}	
+		});
+  }
+
+  // request get data bank
+  getBank(){
+	this.http.get(this.bankUrl,this.options)
+		.map(response => response.json())
+		.subscribe((response : any) => {
+			this.banks 		= response.data.tipe_bank;
+			this.listData = 2;
+			let lengthBank = this.banks.length;
+			this.lastBank = this.banks.length+1;
+			let newBank = {
+				id_tipe_bank : lengthBank+1,
+				desc_tipe_bank : "Lainnya"
+			};
+			for (let i = 0; i < lengthBank; i++) {
+				if(i == lengthBank-1) {
+					this.banks.push(newBank);
 				}
-			);				
-		}
-		else{
-			alert("Data tidak valid")
-		}
-  		
-	  }
+			}
+		},(err:any) => {
+			var error   = JSON.parse(err._body);
+			var message = error.meta.message;
+			if(message == "unauthorized") {
+				alert("Maaf session anda telah habis silahkan login kembali");
+				this.router.navigateByUrl('/dashboard/sign-out');
+			}	
+		});
+  }
 
-	  cancelFund(){
-	  	return this.router.navigateByUrl('/dashboard/fund');
-	  }
 
+  // request get profile
+  getProfile(){
+		this.http.post(this.profileUrl,this.data_access_token,this.options)
+      .map(response => response.json())
+      .subscribe((response : any) => {
+        // console.log(response);
+        this.data.nama_lengkap	= response.data.profile.name;
+	    },(err:any) => {
+	      var error   = JSON.parse(err._body);
+	      var message = error.meta.message;
+	      if(message == "unauthorized") {
+	        alert("Maaf session anda telah habis silahkan login kembali");
+	        this.router.navigateByUrl('/dashboard/sign-out');
+	      }  
+	    });
+  }
 }
