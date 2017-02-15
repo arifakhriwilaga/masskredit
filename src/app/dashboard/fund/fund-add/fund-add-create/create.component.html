@@ -1,62 +1,16 @@
 <section class="content">
- <div class="row">
-   <div class="col-md-12">
-     <div class="box bg-transparent">
-       <div class="box-header">
-         <h2 class="box-title pull-left">Tambah Dana</h2>
-       </div>
-       <div class="box-body">
-         <div class="form-login-register">
-           <form class="form-horizontal clearfix row" name="createForm" id="createForm">
-              <div class="col-md-12">
-                   <div class="form-group">
-                     <div class="col-md-10 clearfix">
-                       <input type="text" placeholder="Nominal Referensi" class="form-control input-md" name="no_reference" id="no_reference" [(ngModel)]="data.no_reference" disabled>
-                     </div>
-                   </div>
-                  <div class="form-group">
-                   <div class="col-md-10 clearfix">
-                     <input type="text" placeholder="Nama Lengkap" class="form-control input-md" name="nama_lengkap" id="nama_lengkap" [(ngModel)]="data.nama_lengkap" disabled>
-                   </div>
-                 </div>
-                  <div class="form-group">
-                    <div class="col-md-10 clearfix">
-                     <select class="form-control input-md" name="bank_name" id="bank_name" (change)="getBankName($event.target.value)" [(ngModel)]="data.bank_name">
-                          <option value="0" disabled>Bank</option>
-                          <option *ngFor="let bank of banks" [value]="bank.id_tipe_bank">
-                            {{ bank.desc_tipe_bank }}
-                          </option>
-                       </select>
-                    </div>
-                  </div>
-                   <div class="form-group">
-                     <div class="col-md-10 clearfix">
-                       <input type="text" placeholder="Nomor Rekening" class="form-control input-md" name="no_rekening" id="no_rekening" [(ngModel)]="data.no_rekening">
-                      </div>
-                   </div>
-                   <div class="form-group">
-                     <div class="col-md-12">
-                         <input  type="text" placeholder="Tanggal" name="date" class="form-control input-md datepicker" id="date" disabled>
-                     </div>
-                   </div>
-                    <div class="form-group">
-                    <div class="col-md-10 clearfix">
-                       <input type="text" placeholder="Nominal" class="form-control input-md" name="amount" id="amount" [(ngModel)]="data.amount">
-                    </div>
-                   </div>                   
-               <div class="col-md-12">
-               </div>
-                 <div class="form-group">
-                    <div class="col-md-6 col-center">
-                      <a href="#/dashboard/fund" class="btn btn-default">Batal</a>
-                      <button class="btn btn-red" type="submit" (click)="createFund(data)">Simpan</button>
-                    </div>
-                 </div>
-              </div>
-           </form>
-         </div>
-       </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div align="center" *ngIf="dataFundAdd == 0"> 
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+      </div>
+      <br>
     </div>
-   </div>
- </div>
+    <div class="row" *ngIf="dataFundAdd == 1">
+      <form-add-fund [dataBank]="banks" [dataLastBank]="lastBank" [dataBankMasscredit]="bank_masscredit"></form-add-fund>
+    </div>
+  </div>
+</div>
 </section>
