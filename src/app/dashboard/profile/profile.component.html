@@ -1,352 +1,273 @@
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Main content -->
   <section class="content">
   <div *ngIf="dataProfile == 0"> 
-  <div class="row" align="center">
-    <br><br><br><br><br>
-    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-    <span class="sr-only">Loading...</span>
-  </div>
+    <div class="row" align="center">
+      <br><br><br><br><br>
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
   <div *ngIf="dataProfile == 1">
-  <div class="row">
-    <div class="col-xs-12">
-    <div class="box bg-transparent">
-    <div class="form-group clearfix">
-      <div class="box-header">
-        <h2 class="box-title pull-left">Profile</h2>
+    <div class="row">
+      <div class="col-xs-11">
+      <div class="pull-right">
+        <button *ngIf="buttonProfile == 0" class="btn btn-default" (click)="enableEditProfile()">Edit Profile</button>
+        <button *ngIf="buttonProfile == 1" class="btn btn-default" (click)="cancelEditProfile()">Batal</button>
+        <button *ngIf="buttonProfile == 1" class="btn btn-default" (click)="submitEditProfile(data)">Simpan</button>
+      </div>
       </div>
     </div>
-    </div>
-      <!-- Photo Pribadi / belum dimasukkan kedalam section component karena global sevice masih gagal -->
-      <div class="col-xs-4">
-        <div class="box box-solid radius-10">
-        <div class="box-header">
-          <i class="fa fa-user" aria-hidden="true"></i>
-          <h3 class="box-title">
-            Photo Pribadi
-          </h3>
-          <h3 class="box-title pull-right" *ngIf="editDataPribadiPhoto == 0">
-            <a href="#/dashboard/profile" (click)="enableDataDiriPhoto()">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-          </h3>
-        </div>
-        <hr>
-        <div class="box-body">
-          <div class="form-group">
-            <div class="box-img-detail">
-              <img src="{{ profile.profile_image }}" alt="Photo Profile">
-              <br>
-              <input type="file" name="foto_diri" id="foto_diri" *ngIf="editDataPribadiPhoto == 1">
+    <fieldset id="profile" disabled>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box bg-transparent">
+          <div class="form-group clearfix">
+            <div class="box-header">
+            <!-- <div style="margin: auto;" align="center">
+              <h2 class="box-title">Profile</h2>
+            </div> -->
             </div>
           </div>
-          <br>
-          <div class="form-group" *ngIf="editDataPribadiPhoto == 1">
-             <div class="col-xs-12 col-center">
-                <button class="btn btn-default" (click)="cancelDataPribadiPhoto()">
-                  Batal
-                </button>
-                <button class="btn btn-red" (click)="updateDataPribadiPhoto()">
-                  Simpan
-                </button>
-             </div>
+        </div>
+        <!-- Photo Pribadi / belum dimasukkan kedalam section component karena global sevice masih gagal -->
+        <div class="col-xs-4">
+          <div class="box box-solid radius-10">
+            <div class="box-header">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <h3 class="box-title">Photo Pribadi</h3>
+            </div>
+            <hr>
+            <div class="box-body">
+              <div class="form-group">
+                <div class="box-img-detail">
+                  <img src="{{ profile.profile_image }}" alt="Photo Profile">
+                  <br>
+                  <input type="file" name="foto_diri" id="foto_diri" *ngIf="buttonProfile == 1">
+                </div>
+              </div>
+              <br>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
         <!-- Data Pribadi -->
         <personal></personal>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <!-- component data kerabat -->
-      <family></family>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="box box-solid radius-10">
-      <div class="box-header">
-        <i class="fa fa-briefcase" aria-hidden="true"></i>
-        <h3 class="box-title">
-          Data Pekerjaan
-        </h3>
-        <h3 class="box-title pull-right" *ngIf="editDataPekerjaan == 0">
-          <a href="#/dashboard/profile" (click)="enableDataPekerjaan()">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </a>
-        </h3>
-      </div>
-      <hr>
-      <div class="box-body">
-      <fieldset id="job" disabled>
-      <!-- Data Pekerjaan -->
-      <div class="form-group clearfix">
-        <div class="col-xs-3">
-          <label class="unit">Pekerjaan</label>
-        </div>
-        <div class="col-xs-7">
-         <select class="with-unit form-control input-md data-pekerjaan" name="sumber_pendapatan" id="sumber_pendapatan" (change)="getSumberPendapatan($event.target.value)" [(ngModel)]="data.sumber_pendapatan">
-            <option value="2" disabled>Sumber Pendapatan</option>
-            <option [value]="1">Kerja</option>
-            <option [value]="0">Usaha</option>
-         </select>
-        </div>
-      </div>
-
-      <!-- Data component if work -->
-      <work *ngIf="sumberPendapatan == 1 || data.sumber_pendapatan == 1"></work>
-      
-      <!-- Data component if business -->
-      <business *ngIf="sumberPendapatan == 0 || data.sumber_pendapatan == 0"></business>
-      
-      <div class="col-xs-12" *ngIf="editDataPekerjaan == 1">
-          <div class="form-group">
-             <div class="col-xs-6 col-center">
-                <button class="btn btn-default" (click)="cancelDataPekerjaan()">
-                  Batal
-                </button>
-                <button class="btn btn-red" (click)="updateDataPekerjaan(data)">
-                  Simpan
-                </button>
-             </div>
-          </div> 
-      </div>
-      </fieldset>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- component data kerabat -->
+        <family></family>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-7">
-      <div class="box box-solid radius-10">
-        <div class="box-header">
-          <i class="fa fa-dollar" aria-hidden="true"></i>
-          <h3 class="box-title">
-            Data Pendapatan Lain
-          </h3>
-          <h3 class="box-title pull-right" *ngIf="editDataPendapatanLain == 0">
-            <a href="#/dashboard/profile" (click)="enableDataPendapatanLain()">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-          </h3>
-        </div>
-        <hr>
-        <div class="box-body">
-        <fieldset id="other-income" disabled>
-        <!-- Pendapatan lain 1 -->
-        <!-- <div *ngIf="complement_data.pendapatan_lain_1 == 1"> -->
-        <div class="form-group clearfix">
-        <div class="col-xs-4">
-          <label class="unit">Pendapatan Lain</label>
-        </div>
-        <div class="col-xs-8">
-          <select class=" with-unit form-control input-md" name="pendapatan_lain_1" id="pendapatan_lain_1" (change)="getPendapatanLainFirst($event.target.value)" [(ngModel)]="data.pendapatan_lain_1">
-              <option value="2" disabled>Pendapatan Lain</option>
-              <option [value]="1">Ya</option>
-              <option [value]="0">Tidak</option>
-          </select>
-        </div>
-        </div>
-
-        <div *ngIf="pendapatanLainFirst == 1">
-        <div class="form-group clearfix">
-        <div class="col-xs-4">
-          <label class="unit">Sumber Pendapatan Lain</label>
-        </div>
-        <div class="col-xs-8">
-          <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1" [(ngModel)]="data.sumber_pendapatan_lain_1">
-        </div>
-        </div>
-
-        <div class="form-group clearfix">
-        <div class="col-xs-4">
-          <label class="unit">Jumlah Pendapatan Lain</label>
-        </div>
-        <div class="col-xs-8">
-          <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}"  name="jumlah_pendapatan_lain_1" id="jumlah_pendapatan_lain_1" [(ngModel)]="data.jumlah_pendapatan_lain_1">
-        </div>
-        </div>
-      <!-- end -->
-      <!-- Pendapatan lain 2 -->
-      <br><br>
-        <div class="form-group clearfix">
-        <div class="col-xs-4">
-          <label class="unit">Pendapatan Lainnya</label>
-        </div>
-        <div class="col-xs-8">
-            <select class=" with-unit form-control input-md" name="pendapatan_lain_2" id="pendapatan_lain_2" (change)="getPendapatanLainSecond($event.target.value)" [(ngModel)]="data.pendapatan_lain_2">
-              <option value="2" disabled>Pendapatan Lainnya</option>
-              <option [value]="1">Ya</option>
-              <option [value]="0">Tidak</option>
-          </select>
-        </div>
-        </div>
-        <div *ngIf="pendapatanLainSecond == 1">
-        <!-- <div *ngIf="complement_data.pendapatan_lain_2 == 1"> -->
-        <div class="form-group clearfix">
-        <div class="col-xs-4">
-          <label class="unit">Sumber Pendapatan Lainnya</label>
-        </div>
-        <div class="col-xs-8">
-          <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2" [(ngModel)]="data.sumber_pendapatan_lain_2">
-        </div>
-        </div>
-        <div class="form-group clearfix">
-        <div class="col-xs-4">
-          <label class="unit">Jumlah Pendapatan Lainnya</label>
-        </div>
-        <div class="col-xs-8">
-          <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2" [(ngModel)]="data.jumlah_pendapatan_lain_2">
-        </div>
-        </div>
-        </div>
-        </div>  <!-- end pendapatan lain 1 -->
-         <div class="col-xs-12" *ngIf="editDataPendapatanLain == 1">
-            <div class="form-group">
-               <div class="col-xs-6 col-center">
-                  <button class="btn btn-default" (click)="cancelDataPendapatanLain()">
-                    Batal
-                  </button>
-                  <button class="btn btn-red" (click)="updateDataPendapatanLain(data)">
-                    Simpan
-                  </button>
-               </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-solid radius-10">
+          <div class="box-header">
+            <i class="fa fa-briefcase" aria-hidden="true"></i>
+            <h3 class="box-title">Data Pekerjaan</h3>
+          </div>
+          <hr>
+          <div class="box-body">
+          <!-- <fieldset id="profile" disabled> -->
+            <!-- Data Pekerjaan -->
+            <div class="form-group clearfix">
+              <div class="col-xs-3">
+                <label class="unit">Pekerjaan</label>
+              </div>
+              <div class="col-xs-7">
+              <select class="with-unit form-control input-md data-pekerjaan" name="sumber_pendapatan" id="sumber_pendapatan" (change)="getSumberPendapatan($event.target.value)" [(ngModel)]="data.sumber_pendapatan">
+                  <option value="2" disabled>Sumber Pendapatan</option>
+                  <option [value]="1">Kerja</option>
+                  <option [value]="0">Usaha</option>
+              </select>
+              </div>
             </div>
-        </div>
-      </fieldset>
-      </div>
-      </div>
-    </div>
-    <div class="col-xs-5">
-      <div class="box box-solid radius-10">
-        <div class="box-header">
-          <i class="fa fa-credit-card" aria-hidden="true"></i>
-          <h3 class="box-title">
-            Data Angsuran
-          </h3>
-        </div>
-        <hr>
-        <div class="box-body">
-          <installment></installment>
-        </div> 
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-    <div class="box box-solid radius-10">
-      <div class="box-header">
-        <i class="fa fa-file" aria-hidden="true"></i>
-        <h3 class="box-title">
-          Data Jaminan
-        </h3>
-      </div>
-      <hr>
-      <div class="box-body">
-        <collateral></collateral>
-      </div> 
-    </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-7">
-    <div class="box box-solid radius-10">
-     <div class="box-header">
-        <i class="fa fa-image" aria-hidden="true"></i>
-        <h3 class="box-title">
-          Data Penunjang
-        </h3>
-        <h3 class="box-title pull-right" *ngIf="editDataPenunjang == 0">
-          <a href="#/dashboard/profile" (click)="enableDataPenunjang()">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </a>
-        </h3>
-      </div>
-      <hr>
-      <div class="box-body">
-        <!-- component data penunjang -->
-        <div align="center">
-          <div class="col-xs-6">
-          <label class="unit">Foto NPWP</label>
-            <img src="{{ complement_data.foto_npwp }}" alt="Photo NPWP" class="thumbnail" width="250px" height="250px">
-            <input type="file" name="foto_npwp" id="foto_npwp" *ngIf="editDataPenunjang == 1">
+            <!-- Data component if work -->
+            <work *ngIf="sumberPendapatan == 1 || data.sumber_pendapatan == 1"></work>
             
-          </div>
-          <div class="col-xs-6">
-          <label class="unit">Foto Identitas</label>
-            <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
-            <input type="file" name="foto_identitas" id="foto_identitas" *ngIf="editDataPenunjang == 1">
+            <!-- Data component if business -->
+            <business *ngIf="sumberPendapatan == 0 || data.sumber_pendapatan == 0"></business>
+          <!-- </fieldset> -->
           </div>
         </div>
-        <div class="col-xs-12" *ngIf="editDataPenunjang == 1">
-            <div class="form-group">
-               <div class="col-xs-6 col-center">
-                  <button class="btn btn-default" (click)="cancelDataPenunjang()">
-                    Batal
-                  </button>
-                  <button class="btn btn-red" (click)="updateDataPenunjang(data)">
-                    Simpan
-                  </button>
-               </div>
-            </div>
-        </div>   
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-7">
+        <div class="box box-solid radius-10">
+          <div class="box-header">
+            <i class="fa fa-dollar" aria-hidden="true"></i>
+            <h3 class="box-title">Data Pendapatan Lain</h3>
+          </div>
+          <hr>
+          <div class="box-body">
+          <!-- <fieldset id="profile" disabled> -->
+            <div class="form-group clearfix">
+            <div class="col-xs-4">
+              <label class="unit">Pendapatan Lain</label>
+            </div>
+            <div class="col-xs-8">
+              <select class=" with-unit form-control input-md" name="pendapatan_lain_1" id="pendapatan_lain_1" (change)="getPendapatanLainFirst($event.target.value)" [(ngModel)]="data.pendapatan_lain_1">
+                  <option value="2" disabled>Pendapatan Lain</option>
+                  <option [value]="1">Ya</option>
+                  <option [value]="0">Tidak</option>
+              </select>
+            </div>
+            </div>
+
+            <div *ngIf="pendapatanLainFirst == 1">
+              <div class="form-group clearfix">
+              <div class="col-xs-4">
+                <label class="unit">Sumber Pendapatan Lain</label>
+              </div>
+              <div class="col-xs-8">
+                <input type="text" placeholder="Sumber Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_1 }}" name="sumber_pendapatan_lain_1" id="sumber_pendapatan_lain_1" [(ngModel)]="data.sumber_pendapatan_lain_1">
+              </div>
+              </div>
+
+              <div class="form-group clearfix">
+              <div class="col-xs-4">
+                <label class="unit">Jumlah Pendapatan Lain</label>
+              </div>
+              <div class="col-xs-8">
+                <input type="text" placeholder="Jumlah Pendapatan Lain 1" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_1 }}"  name="jumlah_pendapatan_lain_1" id="jumlah_pendapatan_lain_1" [(ngModel)]="data.jumlah_pendapatan_lain_1">
+              </div>
+              </div> <!-- end -->
+
+              <!-- Pendapatan lain 2 -->
+              <br><br>
+              <div class="form-group clearfix">
+              <div class="col-xs-4">
+                <label class="unit">Pendapatan Lainnya</label>
+              </div>
+              <div class="col-xs-8">
+                <select class=" with-unit form-control input-md" name="pendapatan_lain_2" id="pendapatan_lain_2" (change)="getPendapatanLainSecond($event.target.value)" [(ngModel)]="data.pendapatan_lain_2">
+                  <option value="2" disabled>Pendapatan Lainnya</option>
+                  <option [value]="1">Ya</option>
+                  <option [value]="0">Tidak</option>
+                </select>
+              </div>
+              </div>
+              <div *ngIf="pendapatanLainSecond == 1">
+                <!-- <div *ngIf="complement_data.pendapatan_lain_2 == 1"> -->
+                <div class="form-group clearfix">
+                <div class="col-xs-4">
+                  <label class="unit">Sumber Pendapatan Lainnya</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text" placeholder="Sumber Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.sumber_pendapatan_lain_2 }}" name="sumber_pendapatan_lain_2" id="sumber_pendapatan_lain_2" [(ngModel)]="data.sumber_pendapatan_lain_2">
+                </div>
+                </div>
+                <div class="form-group clearfix">
+                <div class="col-xs-4">
+                  <label class="unit">Jumlah Pendapatan Lainnya</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text" placeholder="Jumlah Pendapatan Lain 2" class="with-unit form-control input-md" value="{{ complement_data.jumlah_pendapatan_lain_2 }}" name="jumlah_pendapatan_lain_2" id="jumlah_pendapatan_lain_2" [(ngModel)]="data.jumlah_pendapatan_lain_2">
+                </div>
+                </div>
+              </div>
+            </div>  <!-- end pendapatan lain 1 -->
+          <!-- </fieldset> -->
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-xs-5">
-    <div class="box box-solid radius-10">
-       <div class="box-header">
+    <div class="row">
+      <div class="col-xs-7">
+        <div class="box box-solid radius-10">
+          <div class="box-header">
+            <i class="fa fa-image" aria-hidden="true"></i>
+            <h3 class="box-title">Data Penunjang</h3>
+          </div>
+          <hr>
+          <div class="box-body">
+            <!-- component data penunjang -->
+            <div align="center">
+            <div class="col-xs-6">
+            <label class="unit">Foto NPWP</label>
+              <img src="{{ complement_data.foto_npwp }}" alt="Photo NPWP" class="thumbnail" width="250px" height="250px">
+              <input type="file" name="foto_npwp" id="foto_npwp" *ngIf="buttonProfile == 1">
+              
+            </div>
+            <div class="col-xs-6">
+            <label class="unit">Foto Identitas</label>
+              <img src="{{ complement_data.foto_identitas }}" alt="Photo Identitas" class="thumbnail" width="250px" height="250px">
+              <input type="file" name="foto_identitas" id="foto_identitas" *ngIf="buttonProfile == 1">
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5">
+      <div class="box box-solid radius-10">
+        <div class="box-header">
           <i class="fa fa-bank" aria-hidden="true"></i>
-          <h3 class="box-title">
-            Data Bank
-          </h3>
-          <h3 class="box-title pull-right" *ngIf="editDataBank == 0">
-            <a href="#/dashboard/profile" (click)="enableDataBank()">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-          </h3>
+          <h3 class="box-title">Data Bank</h3>
         </div>
         <hr>
         <div class="box-body">
-        <fieldset id="bank" disabled>
-          <!-- component data bank -->
-          <!-- <bank></bank> -->
+        <!-- <fieldset id="profile" disabled> -->
         <div class="col-xs-12">
           <div class="form-group">
             <label class="unit">Foto Tabungan</label>
             <img src="{{ complement_data.foto_tabungan }}" alt="Photo Tabungan" class="thumbnail" width="250px" height="250px">
-            <input type="file" name="foto_tabungan" id="foto_tabungan" *ngIf="editDataBank == 1">
+            <input type="file" name="foto_tabungan" id="foto_tabungan" *ngIf="buttonProfile == 1">
           </div>
         </div>
         <div class="form-group">
         <div class="col-xs-4">
-            <label class="unit">No Rekening</label>
+          <label class="unit">Bank</label>
         </div>
         <div class="col-xs-12">
-            <input type="text" placeholder="No Rekening" class="with-unit form-control input-md data-bank" value="{{ complement_data.no_rekening }}" [(ngModel)]="data.no_rekening">
+          <select class="form-control input-md" name="bank" id="bank" (change)="getBankName($event.target.value)" [(ngModel)]="data.bank">
+            <option value="0">Bank</option>
+            <option *ngFor="let bank of banks" [value]="bank.id_tipe_bank">
+              {{ bank.desc_tipe_bank }}
+            </option>
+          </select>
         </div>
         </div>
-          <div class="col-xs-12" *ngIf="editDataBank == 1">
-              <div class="form-group">
-                 <div class="col-xs-6 col-center">
-                    <button class="btn btn-default" (click)="cancelDataBank()">
-                      Batal
-                    </button>
-                    <button class="btn btn-red" (click)="updateDataBank(data)">
-                      Simpan
-                    </button>
-                 </div>
-              </div>
-          </div>
-        </fieldset>
+        <div class="form-group">
+        <div class="col-xs-4">
+          <label class="unit">No Rekening</label>
+        </div>
+        <div class="col-xs-12">
+          <input type="text" placeholder="No Rekening" class="with-unit form-control input-md data-bank" value="{{ complement_data.no_rekening }}" [(ngModel)]="data.no_rekening">
+        </div>
+        </div>
+        <!-- </fieldset> -->
+        </div>
+      </div>
       </div>
     </div>
+    </fieldset>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-solid radius-10">
+          <div class="box-header">
+            <i class="fa fa-file" aria-hidden="true"></i>
+            <h3 class="box-title">Data Jaminan</h3>
+          </div>
+          <hr>
+          <div class="box-body">
+            <collateral></collateral>
+          </div> 
+        </div>
+      </div>
+      <div class="col-xs-5">
+        <div class="box box-solid radius-10">
+          <div class="box-header">
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+            <h3 class="box-title">Data Angsuran</h3>
+          </div>
+          <hr>
+          <div class="box-body">
+            <installment></installment>
+          </div> 
+        </div>
+      </div>
     </div>
-  </div>
   </div>
   </section>
 </div>
