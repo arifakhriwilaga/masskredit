@@ -41,12 +41,11 @@ export class CreateComponent implements OnInit{
   	date : null,
   	no_reference : null,
   	nama_lengkap : null,
-  	bank_name : 0,
+  	bank_id : 0,
 		no_rekening	: null,
 		amount : null,
-		other_bank : null,
-		tujuan_bank: 0,
-		no_rekening_tujuan : null
+		nama_bank_lainnya : null,
+		id_bank_masscredit: 0,
 	}
 
 	// object save data bank when success get data bank on API
@@ -128,19 +127,20 @@ export class CreateComponent implements OnInit{
 	this.http.get(this.bankUrl,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
+			// console.log(response)
 			this.banks 		= response.data.tipe_bank;
-			this.listData = 2;
-			let lengthBank = this.banks.length;
-			this.lastBank = this.banks.length+1;
-			let newBank = {
-				id_tipe_bank : lengthBank+1,
-				desc_tipe_bank : "Lainnya"
-			};
-			for (let i = 0; i < lengthBank; i++) {
-				if(i == lengthBank-1) {
-					this.banks.push(newBank);
-				}
-			}
+			// this.listData = 2;
+			// let lengthBank = this.banks.length;
+			// this.lastBank = this.banks.length+1;
+			// let newBank = {
+			// 	id_tipe_bank : lengthBank+1,
+			// 	desc_tipe_bank : "Lainnya"
+			// };
+			// for (let i = 0; i < lengthBank; i++) {
+			// 	if(i == lengthBank-1) {
+			// 		this.banks.push(newBank);
+			// 	}
+			// }
 		},(err:any) => {
 			var error   = JSON.parse(err._body);
 			var message = error.meta.message;
