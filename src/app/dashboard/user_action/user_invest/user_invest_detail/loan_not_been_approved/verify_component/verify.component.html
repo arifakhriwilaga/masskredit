@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="modalFormConfirm" style="z-index:9000;">
 <div class="modal-dialog">
   <div class="modal-content">
@@ -10,32 +9,23 @@
           <label>
             <h2 style="font-size: 24px;color: orange;">Konfirmasi Investasi</h2>
           </label>
-          <div align="center" *ngIf="dataConfirm == 0"> 
-            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-          </div>
-          <div *ngIf="dataConfirm == 1">
-            <div class="row">
-              <div class="input-group" align="center">
-							<form name="confirmInvestForm" id="confirmInvestForm">
-						    <div class="form-group">
-					        <input type="password" name="password" placeholder="Password" class="form-control input-md" id="password" [(ngModel)]="invest.password">
-						    </div>
-					  	</form>
-					    <div class="form-group">
-			          <button class="btn btn-default" (click)="cancelConfirmInvest()">Batal</button>
-			          <button class="btn btn-red" (click)="confirmInvest(invest)"style="background-color: #e74c3c;">
-			          	<font style="color:white">Verifikasi</font>
-			          </button> 
-					    </div>
+          <div class="row">
+            <div class="input-group" align="center">
+            <form name="confirmInvestForm" id="confirmInvestForm">
+              <div class="form-group">
+                <input type="text" name="otp" placeholder="Code OTP" class="form-control input-md" id="otp" [(ngModel)]="invest.otp" disabled>
               </div>
+              <div class="form-group">
+                <input type="password" name="password" placeholder="Password" class="form-control input-md" id="password" [(ngModel)]="invest.password">
+              </div>
+            </form>
             </div>
           </div>
         </div>
         <div class="form-group">
         <div class="col-md-6 col-center">
           <button href="#/dashboard/fund/fund-withdrawal" class="btn btn-default" (click)="cancelConfirmInvest()">Batal</button>
-          <button class="btn btn-red" (click)="submitConfirmInvest(data)">Konfirmasi</button>
+          <button class="btn btn-red" (click)="submitConfirmInvest(invest)">Konfirmasi</button>
         </div>
         </div>
         </div>
