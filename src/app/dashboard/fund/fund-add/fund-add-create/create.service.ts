@@ -40,6 +40,7 @@ export class CreateService {
 	
 	// request post fund
   postFundAdd(data:any){
+		// console.log(data)
 		this.http.post(this.postFundUrl,data,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
