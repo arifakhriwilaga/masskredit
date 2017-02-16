@@ -24,6 +24,9 @@
             </tr>
           </thead>
           <tbody>
+            <tr *ngIf="dataArrayNull == 1">
+              <td colspan="5" align="center">Data belum tersedia</td>
+            </tr>
             <tr *ngFor="let data of withdrawals; let i ='index'">
               <td>{{ i + 1 }}</td>
               <td>
