@@ -23,16 +23,20 @@
             <div class="form-group">
               <div class="col-md-10 clearfix">
                <span class="required">*</span>
-                <label>Nama Bank :</label>
-                <select class="form-control input-md" name="bank_name" id="bank_name" (change)="getBankName($event.target.value)" [(ngModel)]="data.bank_name">
+                <label>Bank :</label>
+                <select class="form-control input-md" name="bank_name" id="bank_name" (change)="getBankName($event.target.value)" [(ngModel)]="data.bank_id">
                   <option value="0" disabled>Bank</option>
                   <option *ngFor="let bank of banks" [value]="bank.id_tipe_bank">
                     {{ bank.desc_tipe_bank }}
                   </option>
                 </select>
-                <br>
-                <div *ngIf="lastBank == bank">
-                  <input type="text" placeholder="Nama Bank" class="form-control input-md" name="other_bank" id="other_bank" [(ngModel)]="data.other_bank">
+              </div>
+              <br>
+            </div>
+            <div class="form-group">
+              <div class="col-md-10 clearfix">
+                <div *ngIf="bank == -1">
+                  <input type="text" placeholder="Nama Bank" class="form-control input-md" name="other_bank" id="other_bank" [(ngModel)]="data.nama_bank_lainnya">
                 </div>
               </div>
             </div>
@@ -57,27 +61,36 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="col-md-10 clearfix">
+              <div class="col-md-5 clearfix">
               <span class="required">*</span>
-              <label>Pilih no rekening masscredit :</label>
-              <select class="form-control input-md" name="tujuan_bank" id="tujuan_bank" (change)="getTujuanBank($event.target.value)" [(ngModel)]="data.tujuan_bank">
+              <label>Pilih Bank MassCredit :</label>
+              <select class="form-control input-md" name="tujuan_bank" id="tujuan_bank" (change)="getTujuanBank($event.target.value)" [(ngModel)]="data.id_bank_masscredit">
                 <option value="0" disabled>Bank</option>
                 <option *ngFor="let bank of bank_masscredit" [value]="bank.id_tipe_bank">
                   {{ bank.nama_bank }}
                 </option>
               </select>
-              <br>
             </div>
+            <div class="col-md-5 clearfix">  
+              <div *ngIf="idBankMasscredit == 0">
+              <label>No Rekening MassCredit :</label>
+              <fieldset disabled>
+                <input type="text" placeholder="No Rekening Tujuan" class="form-control input-md">
+              </fieldset>
+              </div>
+              <div *ngFor="let bank of bank_masscredit">
+                <div *ngIf="idBankMasscredit == bank.id_tipe_bank">
+                <label>No Rekening MassCredit :</label>
+                <fieldset disabled>
+                  <input type="text" placeholder="No Rekening Tujuan" class="form-control input-md" name="no_rekening_tujuan" id="no_rekening_tujuan" value="{{ bank.no_rekening+bank.id_tipe_bank }}">
+                </fieldset>
+                </div>
+              </div>
+            </div>
+              <br>
             </div>
             <div class="form-group">
               <div class="col-md-10 clearfix">
-              <fieldset disabled>
-              <div *ngFor="let bank of bank_masscredit">
-                <div *ngIf="idBankMasscredit == bank.id_tipe_bank">
-                  <input type="text" placeholder="No Rekening Tujuan" class="form-control input-md" name="no_rekening_tujuan" id="no_rekening_tujuan" value="{{ bank.no_rekening+bank.id_tipe_bank }}">
-                </div>
-              </div>
-              </fieldset>
               </div>
             </div>
         </div>
