@@ -50,15 +50,14 @@ export class DetailComponent {
 
 	ngOnInit(){
 
-	// Objek for get id on route
-	let param = this.activatedRoute.params.subscribe( params => {
-		let id = params['id'];
-		this.loan.invest_id = id;
-		this.data_detail_invest.loan_id = id;
-	});
+		// Objek for get id on route
+		let param = this.activatedRoute.params.subscribe( params => {
+			let id = params['id'];
+			this.loan.invest_id = id;
+			this.data_detail_invest.loan_id = id;
+		});
 		this.getDetailInvest();
-
-			jQuery('#loan_amount').mask('000000000000');
+		jQuery('#loan_amount').mask('000000000000');
 
 	}
 
@@ -71,6 +70,7 @@ export class DetailComponent {
   this.http.post('https://masscredit-api.stagingapps.net/user/loan/detail',this.data_detail_invest,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
+			console.log(response)
 			// alert("dari detail")
 			this.data = response.data;
 			this.dataAmount = response.data.amount;
