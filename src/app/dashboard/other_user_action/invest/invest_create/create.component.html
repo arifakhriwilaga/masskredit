@@ -19,7 +19,7 @@
                  <div class="form-group">
                      <div class="col-md-12">
                        <span class="required">*</span>
-                       <select class="form-control input-md" name="type" id="type" (change)="getTipeInvestasi($event.target.value)" [(ngModel)]="invest.invest_type">
+                       <select class="form-control input-md" name="invest_type" id="invest_type" (change)="getTipeInvestasi($event.target.value)" [(ngModel)]="invest.invest_type">
                           <option value="0" disabled>Tipe Investasi</option>
                           <option [value]="1">Jaminan</option>
                           <option [value]="2">Tanpa Jaminan</option>
