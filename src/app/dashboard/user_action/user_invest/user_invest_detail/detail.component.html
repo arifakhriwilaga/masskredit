@@ -13,11 +13,11 @@
   <div class="col-md-4">
     <div class="box box-solid radius-10" style="border: 100px">
       <div align="center">
-        <label><h2 style="font-size: 24px;color: orange;">Investor</h2></label>
+        <label><h2 style="font-size: 24px;color: orange;">Investasi</h2></label>
       </div>
       <div class="form-group">
       <br>
-          <img src="{{ data.foto_diri }}" alt="Foto Diri Investor" class="thumbnail" width="250px" height="250px">
+          <img src="{{ data.images[0] }}" alt="Foto Diri Investor" class="thumbnail" width="250px" height="250px">
       </div>
       <div class="form-group">
         <button class="btn btn-default" (click)="cancelDetailInvest()">Kembali</button>
@@ -32,14 +32,14 @@
     </div>
     <br>
    <div class="col-md-12 clearfix"> 
-     <div class="form-group">
+    <!--  <div class="form-group">
        <div class="col-md-4 clearfix">
          <label class="unit">ID Investasi</label>
        </div>
        <div class="col-md-7 clearfix">
          <input type="text" placeholder="ID Investasi" class="form-control input-md" name="id" id="id" value="{{ data.id }}" disabled>
        </div>
-     </div>
+     </div> -->
      <div class="form-group">
        <div class="col-md-4 clearfix">
          <label class="unit">Nama Investasi</label>
@@ -138,14 +138,6 @@
       </div>
      </div> -->
      </div>
-    <div class="col-md-12">
-      <div class="form-group">
-      <div align="center">
-        <label class="unit"><b>Foto Investasi</b></label>
-          <img src="{{ data.images }}" alt="Bukti Transfer" class="thumbnail" width="250px" height="250px">
-      </div>
-      </div>
-    </div>
     </div>
     </div>
   </div>
@@ -165,6 +157,9 @@
       </tr>
     </thead>
     <tbody>
+      <tr *ngIf="dataArrayNull == 1">
+        <td colspan="5" align="center">Data belum tersedia</td>
+      </tr>
       <tr *ngFor="let dataBorrower of dataBorrower, let i ='index'">
         <td>{{ i + 1 }}</td>
         <td>
