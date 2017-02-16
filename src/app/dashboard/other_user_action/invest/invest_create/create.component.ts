@@ -20,7 +20,7 @@ export class CreateComponent {
     jQuery( "#investForm" ).validate({
 		  rules: {
 		    invest_name: {
-		      required: true
+		    	required:true
 		    },
 		    invest_type: {
 		      required: true,
@@ -37,7 +37,10 @@ export class CreateComponent {
 		    description: {
 		      required: true
 		    },
-		  }
+		  },
+		  // messages:{
+		  // 	invest_name : "Invest nama dibutuhkan"
+		  // }
 		});
 		jQuery('#interest').mask('00000');
 		jQuery('#tenor').mask('00');
