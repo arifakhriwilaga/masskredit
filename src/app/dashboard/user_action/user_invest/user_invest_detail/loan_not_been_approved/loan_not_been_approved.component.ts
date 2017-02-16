@@ -45,12 +45,14 @@ export class LoanNotBeenApprovedComponent {
       borrower_id: null,
       invest_id: null,
       approval_status: null, 
-      password: null
+      password: null,
+      otp: null,
 		}
 		public dataSalary = { };
 		public dataBorrowerAmount = { };
 
 		public dataApproveBorrower = 0;
+		private formConfirm = 0;
 
 	ngOnInit(){
 		// Objek for get id on route
@@ -76,16 +78,16 @@ export class LoanNotBeenApprovedComponent {
 
 	approveInvest(){
 		this.dataApprove.approval_status = 1;
-		this.dataApproveBorrower = 1;
+		this.getOtp()
 	}
 
 	rejectInvest(){
 		this.dataApprove.approval_status = 0;
-		this.dataApproveBorrower = 1;
+		this.getOtp()
 	}
 
 	sendDataApprove(){
-		console.log(this.dataApprove);
+		// console.log(this.dataApprove);
 		// API approve
     this.http.post('https://masscredit-api.stagingapps.net/user/investment/approve',this.dataApprove,this.options)
 			.map(response => response.json())
@@ -95,6 +97,7 @@ export class LoanNotBeenApprovedComponent {
 					let code = response.meta.code
 					if(code == "200") {
 						alert("Investasi berhasil");
+						jQuery('#modalFormConfirm').modal("toggle");
 						this.router.navigateByUrl("/dashboard/user-action/user-invest");
 					}
 				},
@@ -104,7 +107,10 @@ export class LoanNotBeenApprovedComponent {
           var message = error.meta.message
             if(message == "Password salah!") {
               alert("Password salah!")              
+            }if(message == "Verifikasi salah.") {
+              alert("Verifikasi salah.")              
             }  
+            
           }
 			);	
 	}
@@ -172,12 +178,8 @@ export class LoanNotBeenApprovedComponent {
 		this.http.post(this.otpUrl,this.otp,this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
-				// console.log(response);
-				let code = response.meta.code
-				if(code == "200") {
-					alert("Investasi berhasil");
-					this.router.navigateByUrl("/dashboard/user-action/user-invest");
-				}
+				this.dataApprove.otp = response.data.otp
+				this.formConfirm = 1;
 			},(err : any) => {
 				var error   = JSON.parse(err._body)
         var code = error.meta.code
