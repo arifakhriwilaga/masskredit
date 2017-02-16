@@ -3,10 +3,12 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable }	from 'rxjs/Observable';
 import { FormGroup}	from '@angular/forms';
 import { Router } from '@angular/router';
+// import { FormComponent } from './form';
+import { DataConfirm } from './form-confirm/form-confirm';
 
 @Injectable ()
 export class CreateService {
-	constructor (private http:Http, private router:Router) { }
+	constructor (private http:Http, private router:Router, private dataConfirm:DataConfirm) { }
 
 	// set headers
   private headers = new Headers({ 
@@ -14,27 +16,7 @@ export class CreateService {
 		'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
 	})
 	private options = new RequestOptions({ headers: this.headers })
-
-	// // get access_token in localstorage
-	// access_token = JSON.parse(localStorage.getItem("access_token"));
 	
-	// // objek request Get No Reference
-	// private data_access_token = {
-	// 	access_token : this.access_token
-	// }
-
-	// object request Add Fund
-	// private data = {
-	// 	access_token : this.access_token,
- //  	date : null,
- //  	no_reference : null,
- //  	nama_lengkap : null,
- //  	bank_name : 0,
-	// 	no_rekening	: null,
-	// 	amount : null,
-	// 	other_bank : null
-	// }
-
 	// declare object url bank
 	private postFundUrl = 'https://masscredit-api.stagingapps.net/user/withdrawal/add';
 	
@@ -43,11 +25,14 @@ export class CreateService {
 		this.http.post(this.postFundUrl,data,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			var code 		= response.meta.code;
-			var message 	= response.meta.message;
-			// console.log(code,message);
-			alert("Penarikan dana berhasil, menunggu konfirmasi dana");
-			this.router.navigateByUrl('/dashboard/fund');
+			var code = response.meta.code;
+			var message = response.meta.message;
+			this.dataConfirm.id = response.data.id;
+			this.dataConfirm.verification_code = response.data.verification_code;
+			// this.formcomponent.formConfirm = 1;
+			// console.log(response);
+			// alert("Pnarikan dana berhasil, menunggu konfirmasi dana");
+			// this.router.navigateByUrl('/dashboard/fund');
 		},(err:any) => {
 			var error   = JSON.parse(err._body);
 			var message = error.meta.message;
@@ -57,7 +42,4 @@ export class CreateService {
 			}	
 		});	
   }
-
-	
-
 }
