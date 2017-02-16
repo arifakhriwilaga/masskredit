@@ -69,8 +69,8 @@ export class ConfirmComponent {
 	public data = {
 		access_token: this.token,
 		fund_id: '',
-	  	struct_image: null,
-	  	confirm_date: '',	
+  	struct_image: null,
+  	confirm_date: '',	
 	}
 
 
