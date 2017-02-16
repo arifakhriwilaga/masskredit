@@ -18,16 +18,21 @@
           <tr>
             <th>No.</th>
             <th>Investor</th>
+            <th>Investasi</th>
             <th>Tipe</th>
             <th>Nominal Investasi</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
+          <tr *ngIf="dataArrayNull == 1">
+            <td colspan="5" align="center">Data belum tersedia</td>
+          </tr>
           <tr *ngFor="let data of invest; let i = 'index'">
             <td>{{ i + 1 }}</td>
-            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Investor" style="border-radius: 80px;width:70px;height:70px">{{ data.nama_investor }}</td>
-            <td>{{ data.type_invest }}</td>
+            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Investor" style="border-radius: 80px;width:55px;height:55px">{{ data.nama_investor }}</td>
+            <td><img src="{{ data.image_invest }}" alt="Investasi" style="border-radius: 5px;width:70px;height:70px"></td>
+            <td><span  class="warranty">{{ data.type_invest }}</span></td>
             <td>{{ data.amount }}</td>
             <td>
               <a class="pull-right" [routerLink]="['/dashboard/other-user-action/invest/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></a>
