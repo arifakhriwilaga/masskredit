@@ -41,7 +41,7 @@ export class CreateComponent implements OnInit{
   	date : null,
   	no_reference : null,
   	nama_lengkap : null,
-  	bank_name : 0,
+  	bank : null,
 		no_rekening	: null,
 		amount : null,
 		other_bank : null
@@ -49,6 +49,8 @@ export class CreateComponent implements OnInit{
 
 	// object save data bank when success get data bank on API
 	public banks = [];
+
+	private formConfirm = 0;
 
 	private listData = 0;
 	private lastBank = null;
@@ -66,8 +68,6 @@ export class CreateComponent implements OnInit{
 	ngOnInit(){
 		// request get profile
  		 this.getProfile();
-		// request get bank
- 		 this.getBank();
  		 // request get no reference
  		 this.getNoReference();
 	}
@@ -96,34 +96,6 @@ export class CreateComponent implements OnInit{
 		});
   }
 
-  // request get data bank
-  getBank(){
-	this.http.get(this.bankUrl,this.options)
-		.map(response => response.json())
-		.subscribe((response : any) => {
-			this.banks 		= response.data.tipe_bank;
-			this.listData = 2;
-			let lengthBank = this.banks.length;
-			this.lastBank = this.banks.length+1;
-			let newBank = {
-				id_tipe_bank : lengthBank+1,
-				desc_tipe_bank : "Lainnya"
-			};
-			for (let i = 0; i < lengthBank; i++) {
-				if(i == lengthBank-1) {
-					this.banks.push(newBank);
-				}
-			}
-		},(err:any) => {
-			var error   = JSON.parse(err._body);
-			var message = error.meta.message;
-			if(message == "unauthorized") {
-				alert("Maaf session anda telah habis silahkan login kembali");
-				this.router.navigateByUrl('/dashboard/sign-out');
-			}	
-		});
-  }
-
   // request get profile
   getProfile(){
 		this.http.post(this.profileUrl,this.data_access_token,this.options)
@@ -131,6 +103,27 @@ export class CreateComponent implements OnInit{
       .subscribe((response : any) => {
         // console.log(response);
         this.data.nama_lengkap	= response.data.profile.name;
+        let bank	= response.data.profile.complement_user.bank;
+        let no_rekening	= response.data.profile.complement_user.no_rekening;
+        if(bank == 0) {
+        	this.data.bank = "Belum diisi";
+        	this.data.no_rekening = "Belum diisi";
+        }if(bank == 1) {
+        	this.data.bank = "BCA";
+        }if(bank == 2) {
+        	this.data.bank = "Mandiri";
+        }if(bank == 3) {
+        	this.data.bank = "Danamon";
+        }if(bank == 4) {
+        	this.data.bank = "BNI";
+        }if(bank == 5) {
+        	this.data.bank = "Niaga";
+        };
+        if(no_rekening == "") {
+        	this.data.no_rekening = "Belum diisi";
+        }else{
+        	this.data.no_rekening = no_rekening;
+        }
 	    },(err:any) => {
 	      var error   = JSON.parse(err._body);
 	      var message = error.meta.message;
