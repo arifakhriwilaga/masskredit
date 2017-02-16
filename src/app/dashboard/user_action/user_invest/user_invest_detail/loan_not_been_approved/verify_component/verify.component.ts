@@ -6,22 +6,8 @@ declare var jQuery:any;
 
 @Component({
 	selector: 'verify',
-	template: `
-		<form name="confirmInvestForm" id="confirmInvestForm">
-	    <div class="form-group">
-        <input type="password" name="password" placeholder="Password" class="form-control input-md" id="password" [(ngModel)]="invest.password">
-	    </div>
-  	</form>
-	    <div class="form-group">
-          <button class="btn btn-default" (click)="cancelConfirmInvest()">Batal</button>
-          <button class="btn btn-red" (click)="confirmInvest(invest)"style="background-color: #e74c3c;">
-          	<font style="color:white">Verifikasi</font>
-          </button> 
-	    </div>
-  `
+	templateUrl: 'verify.component.html',
 })
-
-
 
 export class VerifyComponent implements OnInit{ 
 	constructor(private dataApprove:LoanNotBeenApprovedComponent, private router:Router) { }
