@@ -26,8 +26,26 @@ export class FormComponent {
 	) { }
 
 	private data = this.createComponent.data;
+	// set headers
+  private headers = new Headers({ 
+		'Content-Type': 'application/json',
+		'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
+	})
+	private options = new RequestOptions({ headers: this.headers })
 	
+	// declare object url bank
+	private postFundUrl = 'https://masscredit-api.stagingapps.net/user/withdrawal/add';
+	
+	// object for condition incomingDataBank || incomingDataNoRekening is null
+	private dataBank = null;
+	private dataNoRekening = null;
+	public formConfirm = 0;
+
+	private id = null;
+	private verification_code = null;
+
 	ngOnInit() {
+		// console.log(this.incomingDataNoRekening)
 		// get date
 		let date = jQuery("#date").datepicker("setDate", new Date());
 		let value_date = jQuery("#date").val();
@@ -50,25 +68,43 @@ export class FormComponent {
 		jQuery('#amount').mask('000000000000');
 	}
 
-	// get id bank name
-	private bank = 0;
-	getBankName(id){
-		this.createComponent.data.bank_name = id;
-		this.bank = id;
-	}
-
   cancelFund(){
-  this.router.navigateByUrl('/dashboard/fund');
+  	this.router.navigateByUrl('/dashboard/fund');
   }
 
   createWithdrawal(data) {
-	
 		if(jQuery("#createForm").valid()) {
-			this.createService.postFundWithdrawal(data);
+		// this.router.navigateByUrl('/dashboard/fund/fund-withdrawal/confirm');
+		this.postFundWithdrawal(data);
 		}
 		else{
 			alert("Data tidak valid");
 		}
+  }
+
+	// request post fund
+  postFundWithdrawal(data:any){
+		this.http.post(this.postFundUrl,data,this.options)
+		.map(response => response.json())
+		.subscribe((response : any) => {
+			// console.log(response);
+			// var code = response.meta.code;
+			this.id = response.data.id;
+			this.verification_code = JSON.parse(response.data.verification_code);
+			this.formConfirm = 1;
+
+			// console.log(this.id,this.verification_code);
+			
+			// alert("Pnarikan dana berhasil, menunggu konfirmasi dana");
+			// this.router.navigateByUrl('/dashboard/fund');
+		},(err:any) => {
+			var error   = JSON.parse(err._body);
+			var message = error.meta.message;
+			if(message == "unauthorized") {
+				alert("Maaf session anda telah habis silahkan login kembali");
+				this.router.navigateByUrl('/dashboard/sign-out');
+			}	
+		});	
   }
 
 }
