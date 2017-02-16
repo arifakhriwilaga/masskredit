@@ -34,6 +34,10 @@ export class LoanNotBeenApprovedComponent {
 			borrower_id : '',
 		}
 
+		public otp ={
+			access_token : this.access_token,
+		}
+
 		public dataDetailBorrower = 0;
 		public data = { };
 		public dataApprove = {
@@ -160,5 +164,27 @@ export class LoanNotBeenApprovedComponent {
 			this.dataDetailBorrower = 1;
 			return true;
 		}
+	}
+
+	private otpUrl = "https://masscredit-api.stagingapps.net/user/investment/approval-otp";
+	public dataConfirm = 0;
+	getOtp(){
+		this.http.post(this.otpUrl,this.otp,this.options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// console.log(response);
+				let code = response.meta.code
+				if(code == "200") {
+					alert("Investasi berhasil");
+					this.router.navigateByUrl("/dashboard/user-action/user-invest");
+				}
+			},(err : any) => {
+				var error   = JSON.parse(err._body)
+        var code = error.meta.code
+        var message = error.meta.message
+          if(message == "Password salah!") {
+            alert("Password salah!")              
+          }  
+      });	
 	}
 }
