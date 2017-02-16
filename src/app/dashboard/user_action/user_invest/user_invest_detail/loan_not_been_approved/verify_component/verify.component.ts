@@ -15,20 +15,27 @@ export class VerifyComponent implements OnInit{
 	private approvalStatus = this.dataApprove.dataApprove.approval_status;
 
 	ngOnInit(){
+		jQuery('#modalFormConfirm').modal({backdrop: 'static', keyboard: false});
 		jQuery( "#confirmInvestForm" ).validate({
 		  rules: {
 		    password: {
+		      required: true
+		    },
+		    otp: {
 		      required: true
 		    },
 		  }
 		});
 	}
 
+	// private data = this.dataApprove
+
 	cancelConfirmInvest(){
+		jQuery('#modalFormConfirm').modal("toggle");
 		this.router.navigateByUrl("/dashboard/user-action/user-invest");
 	}
 
-	confirmInvest(){
+	submitConfirmInvest(data:any){
 		if(jQuery("#confirmInvestForm").valid()) {
 			if(this.approvalStatus == 1) {
 				this.dataApprove.sendDataApprove();
@@ -37,7 +44,7 @@ export class VerifyComponent implements OnInit{
 			}
 		}
 		else{
-			alert("Harap masukan password");
+			alert("Data tidak valid");
 		}
 	}
 }
