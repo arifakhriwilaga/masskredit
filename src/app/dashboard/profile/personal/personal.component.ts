@@ -4,7 +4,6 @@ import { ProfileComponent }	from './../profile.component';
 declare var jQuery:any;
 
 @Component({
-	//moduleId: module.id,
 	selector: 'personal',
 	templateUrl: 'personal.component.html'
 })
@@ -14,9 +13,6 @@ export class PersonalComponent {
 	constructor(private profileComponent: ProfileComponent) {
 	// initial objek in complement data
 	this.data = this.profileComponent.data;
-	// this.profile = this.profileComponent.profile;
-	// this.complement_data = this.complement_data;
-	// console.log(this.profileComponent.profile)
 	}
 
 	ngOnInit(){
@@ -25,9 +21,6 @@ export class PersonalComponent {
 		}
 		jQuery('.datepicker').datepicker({
       format	: 'yyyy-mm-dd',
-      // startDate : '2015-01-01',
-      // minDate	: '01/01/2015'
-
     });
 	}
 
@@ -51,23 +44,15 @@ export class PersonalComponent {
 	private gender:any;
 	getGender(id){
 		this.profileComponent.data.jenis_kelamin = id;
-		// console.log(this.profileComponent.data.jenis_kelamin)
-		// this.statusMarried = id;
 	}
 
 	cancelDataPribadi(){
-		// jQuery(".data-diri").prop("disabled", true);
-		// this.editDataPribadi = 0;
 		jQuery("#personal").prop("disabled", true);
 		this.profileComponent.dataProfile = 0;
 		this.profileComponent.getProfile();
 	}
 
 	updateDataPribadi(data){
-		// console.log(data)
-		// jQuery(".data-diri").prop("disabled", true);
-		// this.editDataPribadi = 0;
-		// get value mulai_bekerja
 		let value_date = jQuery("#tanggal_lahir").val();
 		this.profileComponent.data.tanggal_lahir = value_date;
 
