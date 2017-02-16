@@ -8,13 +8,19 @@ import { CommonModule }          from '@angular/common';
 // component create
 import { CreateComponent } from './create.component';
 import { FormComponent } from './form';
+import { MessageComponent } from './message';
+import { FormConfirmComponent } from './form-confirm';
+import { DataConfirm } from './form-confirm/form-confirm';
+
 
 export const routes = [{ path:'', component: CreateComponent}] 
 
 @NgModule({
   declarations: [ 
     CreateComponent, 
-    FormComponent 
+    FormComponent,
+    MessageComponent,
+    FormConfirmComponent
   ],
   imports: [
     HttpModule,
@@ -22,7 +28,7 @@ export const routes = [{ path:'', component: CreateComponent}]
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [ ]
+  providers: [ DataConfirm ]
 })
 
 export default class CreateModule { 
