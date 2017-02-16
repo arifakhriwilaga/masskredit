@@ -30,13 +30,13 @@ export class FormComponent {
 	
 	ngOnInit() {
 		// get date
-		let date = jQuery("#date").datepicker("setDate", new Date());
-		let value_date = jQuery("#date").val();
-		this.data.date = value_date;
-		// function jquery datepicker
-		jQuery('.datepicker').datepicker({
-	      format	: 'yyyy-mm-dd'
-	  });
+		// let date = jQuery("#date").datepicker("setDate", new Date());
+		// let value_date = jQuery("#date").val();
+		// this.data.date = value_date;
+		// // function jquery datepicker
+		// jQuery('.datepicker').datepicker({
+	 //      format	: 'yyyy-mm-dd'
+	 //  });
 
 		// function jquery validation
 	  jQuery( "#createForm" ).validate({
@@ -65,7 +65,7 @@ export class FormComponent {
 	// get id bank name
 	private bank = 0;
 	getBankName(id){
-		this.createComponent.data.bank_name = id;
+		this.createComponent.data.bank_id = id;
 		this.bank = id;
 		// console.log(this.lastBank)
 	}
@@ -73,7 +73,7 @@ export class FormComponent {
 	// get id tujuan-bank
 	private idBankMasscredit = 0;
 	getTujuanBank(id){
-		this.createComponent.data.tujuan_bank = id;
+		this.createComponent.data.id_bank_masscredit = id;
 		this.idBankMasscredit = id;
 		// console.log(this.tujuan_bank_masscredit)
 	}
