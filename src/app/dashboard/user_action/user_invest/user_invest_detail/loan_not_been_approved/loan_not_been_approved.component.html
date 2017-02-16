@@ -8,10 +8,6 @@
   </div>
 </div>
 </div>
-  <div *ngIf="dataApproveBorrower == 1">
-    <!-- component password -->
-    <verify></verify>
-  </div>
 <div *ngIf="dataDetailBorrower == 1">
   <div *ngIf="dataApproveBorrower == 0">
     <div class="col-xs-12" align="center">
@@ -23,7 +19,7 @@
        <div class="row">
           <div class="box box-solid radius-10" style="border: 2px">
             <div class="form-group">
-                <img src="" alt="Foto Diri Peminjam" class="thumbnail" width="250px" height="250px">
+                <img src="{{ data.borrower_image }}" alt="Foto Diri Peminjam" class="thumbnail" width="250px" height="250px">
             </div>
           </div>
       </div>
@@ -60,7 +56,7 @@
                 <label class="unit">Salary</label>
               </div>
               <div class="col-xs-7">
-                <input type="text" placeholder="Salary" class="form-control input-md" name="salary" id="salary" value="{{ dataSalary }}" disabled>
+                <input type="text" placeholder="Salary" class="form-control input-md" name="salary" id="salary" value="{{ data.user_class }}" disabled>
               </div>
            </div>
            <div class="form-group">
@@ -103,6 +99,8 @@
           </div>
        </div>
     </div>
+    <!-- modal verify -->
+    <verify *ngIf="formConfirm == 1"></verify>
   </div>
 </div>
 </section>
