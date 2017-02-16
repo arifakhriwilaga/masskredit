@@ -51,6 +51,7 @@ export class DetailComponent {
 		private dataDetailListMyInvest = 0;
 		public dataAmount = { }
 		public dataPayment = [];
+		public dataArrayNull = 0;
 
 	ngOnInit(){
 		// Objek for get id on route
@@ -77,6 +78,10 @@ export class DetailComponent {
 				.map(response => response.json())
 				.subscribe(
 					(response : any) => {
+						// alert(response.data.borrower)
+						if(response.data.borrower == '') {
+							this.dataArrayNull = 1;
+						}
 						this.dataBorrower = response.data.borrower;
 						let code = response.meta.code
 						if(code == 200) {

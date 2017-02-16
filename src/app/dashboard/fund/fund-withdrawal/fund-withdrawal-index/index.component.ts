@@ -47,6 +47,7 @@ export class IndexComponent {
  	}
 
  	public dataListFundWithdrawal = 0;
+ 	private dataArrayNull = 0;
 
 
 	ngOnInit(){
@@ -137,7 +138,9 @@ export class IndexComponent {
 					.map(response => response.json())
 					.subscribe(
 						(response : any) => {
-							// for rr
+							if(response.data.withdrawal == '') {
+								this.dataArrayNull = 1;
+							}	
 							var kosong:null;
 							var code 		= response.meta.code;
 							var message 	= response.meta.message;

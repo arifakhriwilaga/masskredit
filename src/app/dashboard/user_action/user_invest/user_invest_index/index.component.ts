@@ -25,6 +25,7 @@ export class IndexComponent {
 
 	private invest = [];
 	private dataListMyInvest = 0;
+	private dataArrayNull = 0;
 
 	ngOnInit(){
 		this.getListInvest();
@@ -37,6 +38,9 @@ export class IndexComponent {
 		.map(response => response.json())
 		.subscribe(
 			(response : any) => {
+				if(response.data.investments == '') {
+					this.dataArrayNull = 1;
+				}
 				let code 		= response.meta.code;
 				let message 	= response.meta.message;					
 				this.invest = response.data.investments;
