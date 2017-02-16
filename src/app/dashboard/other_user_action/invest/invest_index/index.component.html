@@ -17,7 +17,7 @@
         <thead>
           <tr>
             <th>No.</th>
-            <th>Nama Investor</th>
+            <th>Investor</th>
             <th>Tipe</th>
             <th>Nominal Investasi</th>
             <th></th>
@@ -26,9 +26,7 @@
         <tbody>
           <tr *ngFor="let data of invest; let i = 'index'">
             <td>{{ i + 1 }}</td>
-            <td>
-              {{ data.nama_investor }}
-            </td>
+            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Investor" style="border-radius: 80px;width:70px;height:70px">{{ data.nama_investor }}</td>
             <td>{{ data.type_invest }}</td>
             <td>{{ data.amount }}</td>
             <td>
