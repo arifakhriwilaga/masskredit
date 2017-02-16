@@ -4,7 +4,6 @@ import { ProfileComponent }	from './../profile.component';
 declare var jQuery:any;
 
 @Component({
-	//moduleId: module.id,
 	selector: 'bank',
 	templateUrl: 'bank.component.html'
 })
