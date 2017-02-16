@@ -48,6 +48,8 @@ export class IndexComponent {
  		limit : this.limit
  	}
 
+ 	private dataArrayNull = 0;
+
  	public dataListFundAdd = 0;
 
  	// objek investasi
@@ -69,6 +71,9 @@ export class IndexComponent {
 		this.http.post(this.listfundUrl, this.data_get_list_fund, this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
+				if(response.data.fund == '') {
+					this.dataArrayNull = 1;
+				}		
 				// console.log(response)
 				// for rr
 				var kosong:null;
