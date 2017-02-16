@@ -32,6 +32,9 @@
             </tr>
           </thead>
           <tbody>
+            <tr *ngIf="dataArrayNull == 1">
+              <td colspan="5" align="center">Data belum tersedia</td>
+            </tr>
             <tr *ngFor="let data of funds; let i='index'">
               <td>{{ i+1 }}</td>
               <td>
@@ -39,7 +42,8 @@
               </td>
               <td>{{ data.date }}</td>
               <td>{{ data.amount }}</td>
-              <td>{{ data.confirm_date }}</td>
+              <td>Konfirmasi Admin</td>
+              <!-- <td>{{ data.confirm_date }}</td> -->
               <td>{{ data.status }}</td>
               <td>
                 <button class="pull-right" (click)="showConfirmFund(data.id)">
