@@ -1,5 +1,4 @@
-// export * from './index.component';
-// // Module
+// module
 import { NgModule }      from '@angular/core';
 import { RouterModule }  from '@angular/router';
 import { HttpModule }    from '@angular/http';
@@ -8,10 +7,10 @@ import { CommonModule }  from '@angular/common';
 // import { PaginationModule } from 'ng2-bootstrap';
 // import { LocalStorageService }   from 'angular-2-local-storage';
 
- 
-// debugger;
-// Component
+// component
 import { IndexComponent } from './index.component';
+import { FormConfirmComponent } from './form-confirm';
+
 
 export const routes = [
   { path:'', component: IndexComponent }
@@ -19,20 +18,16 @@ export const routes = [
 
 @NgModule({
   declarations: [
-    IndexComponent, // declarations LoginComponent
+    IndexComponent,
+    FormConfirmComponent
   ],
-  imports: [ // import Angular's modules
+  imports: [
     HttpModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule,
-    // PaginationModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  // exports: [LoginComponent],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-    // 
-  ]
+  providers: [ ]
 })
 
 export default class IndexModule { 
