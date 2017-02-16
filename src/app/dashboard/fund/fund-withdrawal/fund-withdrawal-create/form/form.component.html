@@ -22,17 +22,7 @@
             <div class="form-group">
               <div class="col-md-10 clearfix">
                 <label>Nama Bank :</label>
-                <select class="form-control input-md" name="bank_name" id="bank_name" (change)="getBankName($event.target.value)" [(ngModel)]="data.bank_name">
-                  <option value="0" disabled>Bank</option>
-                  <option *ngFor="let bank of banks" [value]="bank.id_tipe_bank">
-                    {{ bank.desc_tipe_bank }}
-                  </option>
-                </select>
-
-                <br>
-                <div *ngIf="lastBank == bank">
-                  <input type="text" placeholder="Nama Bank" class="form-control input-md" name="other_bank" id="other_bank" [(ngModel)]="data.other_bank">
-                </div>
+                <input type="text" placeholder="Nama Bank" class="form-control input-md" name="other_bank" id="other_bank" [(ngModel)]="data.bank">
               </div>
             </div>
             <div class="form-group">
@@ -60,9 +50,12 @@
       </div>
       </form>
       <div class="col-md-12 col-center">
-        <button class="btn btn-default" (click)="cancelFund()">Batal</button>
-        <button class="btn btn-red" type="submit" (click)="createFund(data)">Simpan</button>
+        <button class="btn btn-default" (click)="cancelWithdrawal()">Batal</button>
+        <button class="btn btn-red" type="submit" (click)="createWithdrawal(data)">Simpan</button>
       </div>
+      <form-confirm *ngIf="formConfirm == 1" [dataVerificationCode]="verification_code" [dataId]="id" ></form-confirm>
+      <message *ngIf="data.bank == 'Belum diisi' || data.no_rekening == 'Belum diisi'"></message>
+
   </div>
   </div>
 </div>
