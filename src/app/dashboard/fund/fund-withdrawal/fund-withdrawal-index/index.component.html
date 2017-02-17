@@ -29,12 +29,10 @@
             </tr>
             <tr *ngFor="let data of withdrawals; let i ='index'">
               <td>{{ i + 1 }}</td>
-              <td>
-                {{ data.no_reference }}
-              </td>
+              <td>{{ data.no_reference }}</td>
               <td>{{ data.amount }}</td>
-              <td>Tanggal konfirmasi admin</td>
-              <td>Tunda/Setuju</td>
+              <td>{{ data.confirm_date }}</td>
+              <td>{{ data.status }}</td>
               <td>
                 <button class="pull-right" (click)="showDetailDana(data.id)">
                   <i aria-hidden="true" class="fa fa-search"></i>
@@ -138,7 +136,7 @@
                 <label class="unit">Tanggal Transfer Admin</label>
               </div>
               <div class="col-xs-7">
-               <input type="text" placeholder="Tanggal Transfer" class="form-control input-md" name="tanggal_transfer" id="tanggal_transfer" value="Tanggal transfer admin" disabled>
+               <input type="text" placeholder="Tanggal Transfer" class="form-control input-md" name="tanggal_transfer" id="tanggal_transfer" value="{{ detail.confirm_date }}" disabled>
               </div>
            </div> 
           </div>
