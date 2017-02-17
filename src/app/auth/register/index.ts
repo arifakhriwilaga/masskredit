@@ -4,17 +4,17 @@ import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-// Component Register
+// component register
 import { RegisterComponent } from './register.component';
 
-// Component Verify
+// component verify
 import { FinishStep1Component } from './finish_step_1';
 
-// Guard Dashboard
-import { AuthGuardVerify } from './../../authguard/auth-guard-verify.service';
-import { AuthGuardVerifyCode } from './../../authguard/auth-guard-verify-code.service';
+// guard dashboard
+import { AuthGuardVerify } from './../../auth-guard/auth-guard-verify.service';
+import { AuthGuardVerifyCode } from './../../auth-guard/auth-guard-verify-code.service';
 
-// Guard Verify
+// guard verify
 // import { AuthGuardVerifyCodeHandphone } from './../../authguard/auth-guard-verify-code-handphone.service';
 import { AuthGuardVerifyHandphone } from './../../authguard/auth-guard-verify-handphone.service';
 
@@ -50,17 +50,16 @@ export const routes = [
 
 @NgModule({
   declarations: [
-    RegisterComponent, // declarations RegisterComponent
+    RegisterComponent,
     FinishStep1Component
 
   ],
-  imports: [ // import Angular's modules
+  imports: [
     HttpModule,
     RouterModule.forChild(routes),
     FormsModule,
-    // CommonModule
   ],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
+  providers: [
     AuthGuardVerify,
     AuthGuardVerifyCode,
     // AuthGuardVerifyHandphone,
