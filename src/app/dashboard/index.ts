@@ -1,4 +1,4 @@
-// Module
+// module
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NgModule } from '@angular/core';

@@ -54,8 +54,7 @@ export class IndexComponent {
 		this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/get-list', this.data_get_list_fund, this.options)
 			.map(response => response.json())
 			.subscribe(
-				(response : any) => {
-					// for rr
+				(response : any) => {					
 					var kosong:null;
 					var code 		= response.meta.code;
 					var message 	= response.meta.message;
@@ -138,6 +137,7 @@ export class IndexComponent {
 					.map(response => response.json())
 					.subscribe(
 						(response : any) => {
+
 							if(response.data.withdrawal == '') {
 								this.dataArrayNull = 1;
 							}	
@@ -200,6 +200,7 @@ export class IndexComponent {
 	    this.http.post('https://masscredit-api.stagingapps.net/user/withdrawal/get-detail',this.dataDetailDana,this.options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
+					console.log(response)
 					let data = response.data;
 					let bank_name = response.data.bank;
 					
