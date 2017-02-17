@@ -43,17 +43,18 @@ export class FormComponent {
 
 	private id = null;
 	private verification_code = null;
+	private bank = this.createComponent.bank;
 
 	ngOnInit() {
 		// console.log(this.incomingDataNoRekening)
 		// get date
-		let date = jQuery("#date").datepicker("setDate", new Date());
-		let value_date = jQuery("#date").val();
-		this.data.date = value_date;
-		// function jquery datepicker
-		jQuery('.datepicker').datepicker({
-	      format	: 'yyyy-mm-dd'
-	  });
+		// let date = jQuery("#date").datepicker("setDate", new Date());
+		// let value_date = jQuery("#date").val();
+		// this.data.date = value_date;
+		// // function jquery datepicker
+		// jQuery('.datepicker').datepicker({
+	 //      format	: 'yyyy-mm-dd'
+	 //  });
 
 		// function jquery validation
 	  jQuery( "#createForm" ).validate({
@@ -68,14 +69,13 @@ export class FormComponent {
 		jQuery('#amount').mask('000000000000');
 	}
 
-  cancelFund(){
+  cancelWithdrawal(){
   	this.router.navigateByUrl('/dashboard/fund');
   }
 
   createWithdrawal(data) {
 		if(jQuery("#createForm").valid()) {
-		// this.router.navigateByUrl('/dashboard/fund/fund-withdrawal/confirm');
-		this.postFundWithdrawal(data);
+			this.postFundWithdrawal(data);
 		}
 		else{
 			alert("Data tidak valid");
@@ -87,16 +87,9 @@ export class FormComponent {
 		this.http.post(this.postFundUrl,data,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			// console.log(response);
-			// var code = response.meta.code;
 			this.id = response.data.id;
 			this.verification_code = JSON.parse(response.data.verification_code);
 			this.formConfirm = 1;
-
-			// console.log(this.id,this.verification_code);
-			
-			// alert("Pnarikan dana berhasil, menunggu konfirmasi dana");
-			// this.router.navigateByUrl('/dashboard/fund');
 		},(err:any) => {
 			var error   = JSON.parse(err._body);
 			var message = error.meta.message;
