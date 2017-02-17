@@ -38,13 +38,13 @@ export class CreateComponent implements OnInit{
 	// object request Add Fund
 	public data = {
 		access_token : this.access_token,
-  	date : null,
   	no_reference : null,
   	nama_lengkap : null,
-  	bank : null,
+  	bank_id : null,
 		no_rekening	: null,
 		amount : null,
-		other_bank : null
+  	// date : null,
+		// other_bank : null
 	}
 
 	// object save data bank when success get data bank on API
@@ -54,6 +54,7 @@ export class CreateComponent implements OnInit{
 
 	private listData = 0;
 	private lastBank = null;
+	public bank = null;
 
 	// declare object url bank
 	private bankUrl = 'https://masscredit-api.stagingapps.net/master/bank';
@@ -105,19 +106,20 @@ export class CreateComponent implements OnInit{
         this.data.nama_lengkap	= response.data.profile.name;
         let bank	= response.data.profile.complement_user.bank;
         let no_rekening	= response.data.profile.complement_user.no_rekening;
+        this.data.bank_id = bank;
         if(bank == 0) {
-        	this.data.bank = "Belum diisi";
+        	this.bank = "Belum diisi";
         	this.data.no_rekening = "Belum diisi";
         }if(bank == 1) {
-        	this.data.bank = "BCA";
+        	this.bank = "BCA";
         }if(bank == 2) {
-        	this.data.bank = "Mandiri";
+        	this.bank = "Mandiri";
         }if(bank == 3) {
-        	this.data.bank = "Danamon";
+        	this.bank = "Danamon";
         }if(bank == 4) {
-        	this.data.bank = "BNI";
+        	this.bank = "BNI";
         }if(bank == 5) {
-        	this.data.bank = "Niaga";
+        	this.bank = "Niaga";
         };
         if(no_rekening == "") {
         	this.data.no_rekening = "Belum diisi";
