@@ -1,38 +1,36 @@
-// Module
-import { NgModule }             from '@angular/core';
-import { CommonModule }         from '@angular/common';
-import { FormsModule }          from '@angular/forms';
-import { RouterModule }         from '@angular/router';
+// module
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-// Guard Dashboard
-import { AuthGuardDashboard }   from './../authguard/auth-guard-dashboard.service';
+// guard dashboard
+import { AuthGuardDashboard } from './../auth-guard/auth-guard-dashboard.service';
 
-// Home Component
-import { HomeComponent }  		  from './home.component';
-import { FooterComponent }      from './shared/footer/footer.component';
-import { HeaderComponent }      from './shared/header/header.component';
-import { ContentComponent }     from './content';
-import { PendanaanComponent }   from './pendanaan';
-import { PinjamanComponent }    from './pinjaman';
+// home component
+import { HomeComponent } from './home.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { ContentComponent } from './content';
+import { PendanaanComponent } from './pendanaan';
+import { PinjamanComponent } from './pinjaman';
 
-
-// Routes Home Base
+// routes home base
 export const routes = [
 	{ path: '', component: HomeComponent,
-  canActivate : [ AuthGuardDashboard ],
+    canActivate : [ AuthGuardDashboard ],
 	    children: [
-	      { path: '',           redirectTo: 'content' },
-	      { path: 'content', 	  component: ContentComponent },
-	      { path: 'pendanaan',  component: PendanaanComponent },
-	      { path: 'pinjaman',   component: PinjamanComponent }, 
+	      { path: '', redirectTo: 'content' },
+	      { path: 'content', component: ContentComponent },
+	      { path: 'pendanaan', component: PendanaanComponent },
+	      { path: 'pinjaman', component: PinjamanComponent }, 
 
 	    ]
   }
 ];
 
-
 @NgModule({
-  declarations: [ // declare component for base home
+  declarations: [
     HomeComponent,
     FooterComponent,
     HeaderComponent,
@@ -40,7 +38,7 @@ export const routes = [
     PendanaanComponent,
     PinjamanComponent
   ],
-  imports: [ // import Angular's modules
+  imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes)
@@ -50,4 +48,3 @@ export const routes = [
 export default class HomeModule {
 	public routes = routes;
 }
-
