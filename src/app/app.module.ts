@@ -1,19 +1,18 @@
-import { NgModule, ApplicationRef }                            from '@angular/core';
-import { BrowserModule }                                       from '@angular/platform-browser';
-import { RouterModule, ActivatedRoute, PreloadAllModules }                        from '@angular/router';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, ActivatedRoute, PreloadAllModules } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-import { LocalStorageService, LOCAL_STORAGE_SERVICE_CONFIG }   from 'angular-2-local-storage';
-import { HttpModule }                                          from '@angular/http';
-import { FormsModule, ReactiveFormsModule }                    from '@angular/forms';
-import { CustomFormsModule }                                   from 'ng2-validation'
-
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { LocalStorageService, LOCAL_STORAGE_SERVICE_CONFIG } from 'angular-2-local-storage';
+// import { CustomFormsModule } from 'ng2-validation'
 
 // Authentication
-import { AuthGuard  }                  from './authguard/auth-guard.service';
-import { AuthGuardDashboard }          from './authguard/auth-guard-dashboard.service';
+import { AuthGuard  }                  from './auth-guard/auth-guard.service';
+import { AuthGuardDashboard }          from './auth-guard/auth-guard-dashboard.service';
 
 // Guard Dashboard
-import { AuthGuardEntryDashboard }   from './authguard/auth-guard-entry-dashboard.service';
+import { AuthGuardEntryDashboard }   from './auth-guard/auth-guard-entry-dashboard.service';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -68,14 +67,9 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    LocalStorageService,
     AuthGuard,
     AuthGuardDashboard,
     AuthGuardEntryDashboard,
-    
-      {
-          provide: LOCAL_STORAGE_SERVICE_CONFIG, useValue: localStorageServiceConfig
-      }
   ]
 })
 
@@ -84,7 +78,7 @@ export class AppModule {
 
   hmrOnInit(store: StoreType) {
     if (!store || !store.state) return;
-    console.log('HMR store', JSON.stringify(store, null, 2));
+    // console.log('HMR store', JSON.stringify(store, null, 2));
     // set state
     this.appState._state = store.state;
     // set input values
