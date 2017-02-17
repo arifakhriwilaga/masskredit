@@ -1,18 +1,16 @@
-// Module
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA }            from '@angular/core';
-import { CommonModule }        from '@angular/common';
-import { FormsModule }         from '@angular/forms';
-import { RouterModule }        from '@angular/router';
+// module
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-// Guard Dashboard
-import { AuthGuardDashboard }   from './../authguard/auth-guard-dashboard.service';
+// guard dashboard
+import { AuthGuardDashboard }   from './../auth-guard/auth-guard-dashboard.service';
 
-// Component
+// component
 import { AuthComponent }       from './auth.component';
 import { FooterComponent }     from './shared/footer';
 import { HeaderComponent }     from './shared/header';
-
-
 
 const routes = [
   { 
@@ -33,28 +31,18 @@ const routes = [
   },
 ];
  
-
-/**
- * `AppModule` is the main entry point into Angular2's bootstraping process
- */
 @NgModule({
   declarations: [
     AuthComponent,
     HeaderComponent,
     FooterComponent,
-    // RegisterComponent,
-    // VerifyComponent,
-    // Step1RegisterComponent
   ],
-  imports: [ // import Angular's modules
+  imports: [
   	CommonModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
 })	
-
-
-
 
 export default class AuthModule {
   public routes = routes;
