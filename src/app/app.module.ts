@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { CustomFormsModule } from 'ng2-validation'
 
 // Authentication
+import { LoginService} from './global-service/login.service';
+
 import { AuthGuard  }                  from './auth-guard/auth-guard.service';
 import { AuthGuardDashboard }          from './auth-guard/auth-guard-dashboard.service';
 
@@ -70,6 +72,7 @@ type StoreType = {
     AuthGuard,
     AuthGuardDashboard,
     AuthGuardEntryDashboard,
+    LoginService
   ]
 })
 
