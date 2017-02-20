@@ -15,7 +15,7 @@ declare var jQuery:any;
 })
 
 export class FormComponent {
-// @Input('dataBank') banks = [];
+@Input('dataBank') bank:string;
 // @Input('dataLastBank') lastBank = null;
 
 	constructor(
@@ -43,7 +43,6 @@ export class FormComponent {
 
 	private id = null;
 	private verification_code = null;
-	private bank = this.createComponent.bank;
 
 	ngOnInit() {
 		// console.log(this.incomingDataNoRekening)
