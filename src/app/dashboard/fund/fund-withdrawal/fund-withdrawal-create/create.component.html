@@ -9,7 +9,7 @@
       <br>
     </div>
     <div class="row" *ngIf="dataFundWithdrawal == 1">
-      <form-add-withdrawal></form-add-withdrawal>
+      <form-add-withdrawal [dataBank]="bank"></form-add-withdrawal>
     </div>
   </div>
 </div>
