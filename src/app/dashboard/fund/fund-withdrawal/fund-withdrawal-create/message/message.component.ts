@@ -23,7 +23,8 @@ export class MessageComponent {
 
   submitComplement() {
 		jQuery('#myModal').modal('toggle');
-		this.router.navigateByUrl('/dashboard/profile');	
+		// this.router.navigateByUrl('/dashboard/profile');	
+		this.router.navigateByUrl('/dashboard');	
   }
 
 }
