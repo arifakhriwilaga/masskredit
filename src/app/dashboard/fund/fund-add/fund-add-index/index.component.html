@@ -24,7 +24,7 @@
             <tr>
               <th>No.</th>
               <th>Nomor Referensi</th>
-              <th>Tanggal</th>
+              <!-- <th>Tanggal</th> -->
               <th>Nominal Rp</th>
               <th>Tanggal Konfirmasi</th>
               <th>Status</th>
@@ -40,13 +40,12 @@
               <td>
                 {{ data.no_reference }}
               </td>
-              <td>{{ data.date }}</td>
+              <!-- <td>{{ data.date }}</td> -->
               <td>{{ data.amount }}</td>
-              <td>Konfirmasi Admin</td>
-              <!-- <td>{{ data.confirm_date }}</td> -->
+              <td>{{ data.confirm_date }}</td>
               <td>{{ data.status }}</td>
               <td>
-                <button class="pull-right" (click)="showConfirmFund(data.id)">
+                <button *ngIf="data.status != 'Disetujui'" class="pull-right" (click)="showConfirmFund(data.id)">
                   Konfimasi
                 </button>
                 <!-- <a class="pull-right" [routerLink]="['/dashboard/fund/confirm', data.id]">
