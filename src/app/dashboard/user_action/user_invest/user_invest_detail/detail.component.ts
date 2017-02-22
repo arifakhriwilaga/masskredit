@@ -130,10 +130,13 @@ export class DetailComponent {
 
 	getDetailMyInvest(){
 		// API detail invest
-	    this.http.post('https://masscredit-api.stagingapps.net/user/investment/detail',this.data_detail_invest,this.options)
+	    this.http.post('https://masscredit-api.stagingapps.net/user/myinvestment/detail',this.data_detail_invest,this.options)
 				.map(response => response.json())
 				.subscribe(
 					(response : any) => {
+						// console.log(response)
+						this.getDetailBorrower.invest_id = response.data.id;
+						this.dataApprove.invest_id = response.data.id;
 						this.data = response.data;
 						let code = response.meta.code;
 						if(code == 200) {
@@ -185,17 +188,20 @@ export class DetailComponent {
 	public loaderBorrowerApproved = 0;
 	public getDetailBorrower = {
 		access_token : this.access_token,
-		borrower_id : null
+		borrower_id : null,
+		invest_id : null
 	}
 
 	public dataDetailBorrower = {};
+
+	private getDetailBorrowerUrl = 'https://masscredit-api.stagingapps.net/user/borrower/detail';
 
 	showDetailBorrowerApproved(id:any){
 		this.getDetailBorrower.borrower_id = id;
 		this.getHistoryPayment(id);
 		jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
 		// API detail invest
-	    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/detail',this.getDetailBorrower,this.options)
+	    this.http.post(this.getDetailBorrowerUrl,this.getDetailBorrower,this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
@@ -221,9 +227,82 @@ export class DetailComponent {
 				}
 			);	
 	}
+
 	hideDetailBorrowerApproved(){
 		jQuery('#myModal').modal('toggle');
 		this.loaderBorrowerApproved = 0;
+	}
+
+	public dataApprove = {
+		access_token: this.access_token,
+    borrower_id: null,
+    invest_id: null,
+    approval_status: null, 
+    password: null,
+    otp: null,
+	}
+	private formConfirm = 0;
+
+	showDetailBorrowerNotApproved(id:any){
+		this.dataApprove.borrower_id = id;
+		this.getDetailBorrower.borrower_id = id;
+		this.getHistoryPayment(id);
+		jQuery('#FormApprove').modal({backdrop: 'static', keyboard: false});
+		// API detail invest
+	    this.http.post(this.getDetailBorrowerUrl,this.getDetailBorrower,this.options)
+			.map(response => response.json())
+			.subscribe(
+				(response : any) => {
+					let code = response.meta.code
+					if(code == 200) {
+						this.dataDetailBorrower = response.data;
+						this.dataSalary = response.data.amount
+						this.dataBorrowerAmount = response.data.borrower_amount
+						this.delimiterSalary(this.dataSalary);
+					}
+					else{
+						alert("Data Detail Borrower gagal diambil")
+					}
+				},
+				(err:any) => {
+					var error   = JSON.parse(err._body)
+					var message = error.meta.message
+					var code = error.meta.code
+					if(message == "unauthorized") {
+						alert("Maaf session anda telah habis silahkan login kembali")
+						return this.router.navigateByUrl('/dashboard/sign-out')					
+					}
+				}
+			);	
+	}
+
+	private postApproveUrl = 'https://masscredit-api.stagingapps.net/user/investment/approve';
+	sendDataApprove(){
+		// API approve
+    this.http.post(this.postApproveUrl,this.dataApprove,this.options)
+			.map(response => response.json())
+			.subscribe(
+				(response : any) => {
+					// console.log(response);
+					let code = response.meta.code
+					if(code == "200") {
+						alert("Investasi berhasil");
+						jQuery('#FormApprove').modal("toggle");
+						this.router.navigateByUrl("/dashboard/user-action/user-invest");
+					}
+				},
+				(err : any) => {
+					var error   = JSON.parse(err._body)
+          var code = error.meta.code
+          var message = error.meta.message
+            if(message == "Password salah!") {
+              alert("Password salah!")              
+            }if(message == "Verifikasi salah.") {
+              alert("Verifikasi salah.")              
+            }  
+            
+          }
+			);	
 	}
 
 	delimiterSalary(dataSalary:any){
@@ -283,11 +362,47 @@ export class DetailComponent {
 		}
 	}
 
+	approveInvest(){
+		this.loaderBorrowerApproved = 0;
+		this.dataApprove.approval_status = 1;
+		this.getOtp()
+	}
+
+	rejectInvest(){
+		this.loaderBorrowerApproved = 0;
+		this.dataApprove.approval_status = 0;
+		this.getOtp()
+	}
+
+	private otpUrl = "https://masscredit-api.stagingapps.net/user/investment/approval-otp";
+	public dataConfirm = 0;
+
+	public otp ={
+		access_token : this.access_token,
+	}
+	getOtp(){
+		this.http.post(this.otpUrl,this.otp,this.options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				this.dataApprove.otp = response.data.otp
+				this.loaderBorrowerApproved = 3;
+			},(err : any) => {
+				var error   = JSON.parse(err._body)
+        var code = error.meta.code
+        var message = error.meta.message
+          // if(message == "Password salah!") {
+          //   alert("Password salah!")              
+          // }  
+      });	
+	}
+
+	private listPaymentUrl = 'https://masscredit-api.stagingapps.net/user/payment-history/get-list';
+
 	getHistoryPayment(id:any){
 		// console.log(id)
 		this.data_history_payment.borrower_id = id;
 		// API history payment
-    this.http.post('https://masscredit-api.stagingapps.net/user/payment-history/get-list',this.data_history_payment,this.options)
+    this.http.post(this.listPaymentUrl,this.data_history_payment,this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
