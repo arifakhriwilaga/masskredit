@@ -32,7 +32,7 @@ export class IndexComponent {
 	}
 
 	getListInvest(){
-		this.http.post('https://masscredit-api.stagingapps.net/user/investment/getlist',
+		this.http.post('https://masscredit-api.stagingapps.net/user/myinvestment/getlist',
 		this.access_token,
 		this.options)
 		.map(response => response.json())
