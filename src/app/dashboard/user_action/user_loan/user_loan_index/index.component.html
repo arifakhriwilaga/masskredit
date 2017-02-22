@@ -1,57 +1,65 @@
+<div class="row">
+  <div align="center" *ngIf="dataListMyInvest == 0"> 
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+  <br>
+</div>
 <!-- Main content -->
-<div class="col-xs-12">
-<h1> </h1>
-<!-- Tab panes -->
-<div class="tab-content ">
-    <div role="tabpanel" class="tab-pane active" id="investasi">
-    <div class="box-body data-tables table-responsive">
-      <table class="table table-hover" id="example2">
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>Nama Investor</th>
-            <th>Tipe</th>
-            <th>Nominal Investasi (Rp)</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- <tr *ngFor="let data of funds">
-            <td>{{ data.id }}</td>
-            <td>
-              {{ data.no_reference }}
-            </td>
-            <td>{{ data.date }}</td>
-            <td>{{ data.amount }}</td>
-            <td>
-              <a *ngIf="data.confirm_date == ''" class="pull-right" [routerLink]="['/dashboard/fund/confirm', data.id]">
-                Konfirmasi
-              </a>
-              <a class="pull-right" [routerLink]="['/dashboard/fund/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></a>
-            </td>
-          </tr> -->
-        </tbody>
-      </table>
-      </div>  
-    <nav aria-label="Page navigation" *ngIf="total_pagination > 1">
-      <ul class="pagination">
-       <!--  <li>
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li> -->
-        <!-- <li *ngFor="let a of array_total"><a href="#/dashboard/fund" id="a" (click)="linkTo(a)">{{ a }}</a></li> -->
-        <!-- <li>
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li> -->
-      </ul>
-    </nav>      
+<div class="row">
+  <div class="col-xs-12" *ngIf="dataListMyInvest == 1">
+  <div class="tab-content ">
+      <div role="tabpanel" class="tab-pane active" id="investasi">
+      <div class="box-body data-tables table-responsive">
+        <table class="table table-hover" id="example2">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Nama Pinjaman</th>
+              <th>Pinjaman</th>
+              <th>Tipe</th>
+              <th>Kategori</th>
+              <th>Nominal Pinjaman</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="dataArrayNull == 1">
+              <td colspan="5" align="center">Data belum tersedia</td>
+            </tr>
+            <tr *ngFor="let data of loans, let i = 'index';">
+              <td>{{ i + 1 }}</td>
+              <td align="left">{{ data.loan_name }}</td>
+              <td><img src="{{ data.image_loan }}" alt="Pinjaman" style="border-radius: 5px;width:70px;height:70px"></td>
+              <td><span class="warranty"></span></td>
+              <td><span class="warranty">{{ data.loan_category }}</span></td>
+              <td>{{ data.amount }}</td>
+              <td>
+                <!-- <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id]"><i aria-hidden="true" class="fa fa-trash"></i></a> -->
+                <!-- <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></a> -->
+                <a class="pull-right" onclick="alert('Belum tersedia')"><i aria-hidden="true" class="fa fa-search"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>  
+      <nav aria-label="Page navigation" *ngIf="total_pagination > 1">
+        <ul class="pagination">
+         <!--  <li>
+            <a href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li> -->
+          <!-- <li *ngFor="let a of array_total"><a href="#/dashboard/fund" id="a" (click)="linkTo(a)">{{ a }}</a></li> -->
+          <!-- <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li> -->
+        </ul>
+      </nav>      
+      </div>
+      <br><br>
     </div>
   </div>
 </div>
-<div class="col-xs-12">
-<br>
-</div>
-<!-- /.content -->
