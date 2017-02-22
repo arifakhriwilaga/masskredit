@@ -10,13 +10,6 @@
            <form class="form-horizontal clearfix row" name="loanForm" id="loanForm">
             <div *ngIf="dataInvest == 0">
             <div class="col-md-6">
-              <fieldset disabled>
-              <div class="form-group">
-                 <div class="col-md-12">
-                    <input type="text" name="no_reference" placeholder="No Reference" class="form-control input-md" id="no_reference" [(ngModel)]="loan.loan_name">
-                 </div>
-               </div>
-              </fieldset>
                <div class="form-group">
                  <div class="col-md-12">
                     <span class="required">*</span>
@@ -98,6 +91,7 @@
                 </div>
                 </div>
             </div>
+            <verify *ngIf="dataInvest == 3"></verify>
          </div>
        </div>
       <div align="center" *ngIf="dataInvest == 1"> 
