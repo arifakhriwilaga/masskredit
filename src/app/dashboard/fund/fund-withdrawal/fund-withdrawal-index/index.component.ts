@@ -55,13 +55,16 @@ export class IndexComponent {
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {					
+					if(response.data.withdrawal == '') {
+						this.dataArrayNull = 1;
+					}	
 					var kosong:null;
 					var code 		= response.meta.code;
 					var message 	= response.meta.message;
 					var withdrawal	= response.data.withdrawal;
 					var current_page= response.data.paging.current_page;
 					var per_page 	= response.data.paging.per_page;
-					var total		= response.data.paging.total;;
+					var total		= response.data.paging.total;
 					this.withdrawals = withdrawal;
 					for(let i = 0; i < this.withdrawals.length; i++){
 						let dataAmount = this.withdrawals[i]
