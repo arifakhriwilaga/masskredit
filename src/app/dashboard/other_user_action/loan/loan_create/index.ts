@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 // component
 import { CreateComponent } from './create.component';
 import { DueDateComponent } from './datepicker_component';
-// import { VerifyComponent }        from './verify_component';
+import { VerifyComponent }        from './verify_component';
 
 
 export const routes = [
@@ -19,6 +19,7 @@ export const routes = [
   declarations: [
     CreateComponent,
     DueDateComponent,
+    VerifyComponent
   ],
   imports: [ 
     HttpModule,
