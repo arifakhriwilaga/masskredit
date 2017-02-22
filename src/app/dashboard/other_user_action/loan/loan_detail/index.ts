@@ -1,14 +1,15 @@
 // Module
-import { NgModule }              from '@angular/core';
-import { RouterModule }          from '@angular/router';
-import { HttpModule }            from '@angular/http';
-import { FormsModule }           from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 // import { LocalStorageService }   from 'angular-2-local-storage';
-
 
 // debugger;
 // Component
-import { DetailComponent }        from './detail.component';
+import { DetailComponent } from './detail.component';
+import { VerifyComponent } from './verify_component';
 
 export const routes = [
   { path:'', component: DetailComponent},
@@ -17,10 +18,12 @@ export const routes = [
 @NgModule({
   declarations: [
     DetailComponent, // declarations LoginComponent
+    VerifyComponent
   ],
   imports: [ // import Angular's modules
     HttpModule,
     FormsModule,
+    CommonModule,
     RouterModule.forChild(routes)
   ],
   // exports: [LoginComponent],

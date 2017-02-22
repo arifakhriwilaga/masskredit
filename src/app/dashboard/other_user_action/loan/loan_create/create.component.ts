@@ -1,11 +1,11 @@
-import { Component, OnInit } 						  	   from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ValidationServiceInvestasi } 					   from './validationservice.component';
-import { Headers, Http, RequestOptions }	   from '@angular/http';
-import { Router }        					   from '@angular/router';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
+import { ValidationServiceInvestasi } from './validationservice.component';
+import { VerifyComponent } from './verify_component';
 
 declare var jQuery:any;
-declare var image:void;
 
 @Component({
 	selector: 'create',
@@ -15,28 +15,18 @@ declare var image:void;
 export class CreateComponent {
 	constructor(private http: Http, private router:Router) { }
 
-	
-
 	ngOnInit() {
-		jQuery('.datepicker').datepicker({
-	      format	: 'yyyy/mm/dd',
-	      // startDate : '2015-01-01',
-	      // minDate	: '01/01/2015'
-
-	    });
-	    jQuery( "#investasiForm" ).validate({
+		this.getLoanCategory()
+		// validation
+    jQuery( "#loanForm" ).validate({
 		  rules: {
-		    invest_name: {
-		      required: true
+		    loan_name: {
+		    	required:true
 		    },
-		    type: {
+		    loan_category: {
 		      required: true,
-		      // email	  : true
 		    },
-		    images1: {
-		      required: true
-		    },
-		    masa_berlaku: {
+		    due_date: {
 		      required: true
 		    },
 		    amount: {
@@ -45,131 +35,148 @@ export class CreateComponent {
 		    tenor: {
 		      required: true
 		    },
-		    collateral: {
-		      required: true
-		    },
 		    description: {
 		      required: true
 		    },
-		  }
+		    interest: {
+		      required: true
+		    }
+		  },
+		  // messages:{
+		  // 	invest_name : "Invest nama dibutuhkan"
+		  // }
 		});
+		jQuery('#interest').mask('00000');
+		jQuery('#tenor').mask('00');
+		jQuery('#amount').mask('0000000000');
+
 	}
 
-	private image:void;
+	// set header
+  private headers = new Headers({ 
+		'Content-Type': 'application/json',
+		'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
+	});
+	private options = new RequestOptions({ headers: this.headers });
 
-	private token = JSON.parse(localStorage.getItem("access_token"));
-		
-	// objek investasi
-	public investasi = {
-		access_token: this.token,
-	  	invest_name: 'My invest',
-	  	type: '0',
-	  	description: 'Motor',
-		images1: this.image,
-		images2: this.image,
-		images3: this.image,
-	  	due_date: '',
-	  	amount: null,
-	  	interest: null,
-	  	tenor: null,
-	  	collateral: true,
-	  	fee: true
-		
+	// object Url 
+	private postLoanUrl = 'https://masscredit-api.stagingapps.net/user/loan/new';
+	private getCategoryLoanUrl = 'https://masscredit-api.stagingapps.net/master/loan-category';
+
+	// object loan
+	public loan = {
+		access_token: JSON.parse(localStorage.getItem("access_token")),
+	  loan_name: null,
+	  loan_category: 0,
+	  other_category: null,
+		image: null,
+	  description: null,
+  	amount: null,
+  	due_date: '',
+  	interest: null,
+  	tenor: null,
+  	password: null
 	}
 
+	private loan_category = {
+		access_token: JSON.parse(localStorage.getItem("access_token")),
+	}
 
+	public loan_categories= [];
+	private dataInvest = 0;
+	
+	private categoryLoan:any;
+  getLoanCategory(){
+  	this.http.get(this.getCategoryLoanUrl, this.options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				this.loan_categories 		= response.data.loan_categories;
+			},(err:any) => {
+				var message = err.meta.message;
+				if(message == "unauthorized") {
+					alert("Maaf session anda telah habis silahkan login kembali")
+					return this.router.navigateByUrl('/dashboard/sign-out');
+				}
+			});
+  }
 
+  getLoanCategoryId(id){
+  	this.categoryLoan = id;
+  	// console.log(id)
+  }
 
-  	createInvestasi(investasi) {
-		if(jQuery("#investasiForm").valid()) {	
-	  		// this.investasi = investasi;
-	  		this.investasi.due_date = jQuery("#masa_berlaku").datepicker("getDate");
-	  		// console.log(investasi);
-	  		
-	  		// debugger
-	  		let readerFileA = new FileReader();
-	  		
+	cancelLoan(){
+		this.router.navigateByUrl("/dashboard/other-user-action/loan");
+	}
+
+	// function for encode image
+	createLoan(loan){
+		if(jQuery("#loanForm").valid()) {
+	  	this.loan.due_date = jQuery("#due_date").val();
+
+			let readerFileA = new FileReader();
 			readerFileA.onload = function(event, varty) {
-				let fileA = event.target.result.split(',')[1];
-				this.investasi.images1 = fileA;
-				console.log(fileA);
-			}.bind(this);
+				try{
+					let image = event.target.result.split(',')[1];
+					if(image == "AQID") {
+						this.loan.image = null;
+					}
 
-			let readerFileB = new FileReader();
-			readerFileB.onload = function(event, varty) {
-				let fileB = event.target.result.split(',')[1];
-				this.investasi.images2 = fileB;
-				
-				// console.log(fileB)
+					if(image != "AQID") {
+					 this.loan.image = image;
+					}
+				}finally{
+					// console.log(this.invest)
+					this.postLoan()
+				}
 			}.bind(this)
 
-			let readerFileC = new FileReader();
-			readerFileC.onload = function(event, varty) {
-				let fileC = event.target.result.split(',')[1];
-				this.investasi.images3 = fileC;
-
-				console.log(this.investasi)
-
-			  	let headers = new Headers({ 
-						'Content-Type': 'application/json',
-						'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
-					});
-		    	let options = new RequestOptions({ headers: headers });
-					
-					this.http.post('http://masscredit-api.stagingapps.net/user/investment/new',
-					investasi,
-					options)
-					.map(response => response.json())
-					.subscribe(
-						(response : any) => {
-							var code 		= response.meta.code;
-							var message 	= response.meta.message;
-							
-							console.log(code,message);
-
-							this.router.navigateByUrl('/dashboard/pinjaman');
-						},
-						(err:any) => {
-							var error   = JSON.parse(err._body)
-							var message = error.meta.message
-								if(message == "unauthorized") {
-									alert("Maaf session anda telah habis silahkan login kembali")
-									return this.router.navigateByUrl('/dashboard/sign-out')
-									
-								}	
-						}
-					);				
-			}.bind(this)
-
-			// var reader = new FileReader();
-			console.log(this.investasi)
-
-			let x : any = document.getElementById("image1");
-			let y : any = document.getElementById("image2");
-			let z : any = document.getElementById("image3");
+			let x : any = document.getElementById("images");
 			var file_x =	x.files[0];
-			var file_y =	y.files[0];
-			var file_z =	z.files[0];
 
-			// debugger
-			
+			var objectBlob	= new Uint8Array([1,2,3]);
+			var arrayBlob	= objectBlob.buffer;
+			var image_default = new Blob([arrayBlob]);
+
+
+			if(file_x == undefined) {
+				file_x = image_default;
+			}
 			var encode_x  = readerFileA.readAsDataURL(file_x);
-			var encode_y  = readerFileB.readAsDataURL(file_y);
-			var encode_z  = readerFileC.readAsDataURL(file_z);
-			this.investasi.images1	= encode_x;
-			this.investasi.images2 	= encode_y;
-			this.investasi.images3	= encode_z;
 		}
 		else{
-			alert("Data tidak valid");
+			alert("Data tidak valid")
 		}
-  		
   }
 
-  private tipeInvest:any;
-  getTipeInvestasi(id){
-  	this.tipeInvest = id;
-  	console.log(id)
-  }
+  // api send data
+  postLoan(){
+  	// console.log(this.loan);
+  	this.http.post(this.postLoanUrl,this.loan,this.options)
+		.map(response => response.json())
+		.subscribe((response : any) => {
+			var code 		= response.meta.code;
+			var message 	= response.meta.message;					
+			// console.log(code,message);
+			alert("Pinjaman berhasil dibuat");
+			this.router.navigateByUrl('/dashboard/other-user-action/loan');
+		},(err:any) => {
+			var error   = JSON.parse(err._body)
+			var message = error.meta.message
+			var code = error.meta.code
+			
+			if(message == "unauthorized") {
+				alert("Maaf session anda telah habis silahkan login kembali")
+				return this.router.navigateByUrl('/dashboard/sign-out')					
+			
+			}if(message == "Saldo Anda tidak mencukupi.") {
+				// this.verify.dataConfirmInvest = 0;
+				this.dataInvest = 1;
+				// this.dataDetailInvest = 0;
+				alert("Saldo anda tidak mencukupi")
+				// return this.router.navigateByUrl('/dashboard/sign-out')					
+			}
 
+		});
+  }
 }

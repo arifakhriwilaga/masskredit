@@ -1,126 +1,109 @@
 <section class="content">
  <div class="row">
    <div class="col-md-12">
-     <div class="box bg-transparent">
+    <div class="box bg-transparent">
        <div class="box-header">
-         <h2 class="box-title pull-left">Tambah Investasi</h2>
+         <h2 class="box-title pull-left">Tambah Pinjaman</h2>
        </div>
        <div class="box-body">
          <div class="form-login-register">
-           <form class="form-horizontal clearfix row" name="investasiForm" id="investasiForm">
-              <div class="col-md-6">
-                 <div class="form-group">
-                   <div class="col-md-12">
-                       <span class="required">*</span>
-                       <input type="text" name="invest_name" placeholder="Nama Investasi" class="form-control input-md" id="invest_name" [(ngModel)]="investasi.invest_name">
-                   </div>
-                 </div>
-                 <div class="form-group">
-                     <div class="col-md-12">
-                       <span class="required">*</span>
-                       <select class="form-control input-md" name="type" id="type" (change)="getTipeInvestasi($event.target.value)" [(ngModel)]="investasi.type">
-                          <option value="0" disabled>Tipe Investasi</option>
-                          <option [value]="1">Jaminan</option>
-                          <option [value]="2">Tanpa Jaminan</option>
-                       </select>
-                     </div>
-                 </div>
-                  <div class="form-group" *ngIf="tipeInvest == 1">
-                     <div class="col-md-12">
-                       <span class="required">*</span>
-                       <textarea placeholder="Deskripsi" class="form-control input-md"   name="description" id="description" [(ngModel)]="investasi.description">
-                          <font color="red">
-                          </font>
-                       </textarea>
-                     </div>
-                 </div>
-                 <div class="form-group">
-                   <div class="col-md-12">
-                     <div class="input-group">
-                       <input type="text" class="form-control" readonly>
-                       <label class="input-group-btn">
-                         <span class="btn btn-primary">
-                           Browse&hellip; <input type="file" style="display: none;" name="`s1" id="image1">
-                         </span>
-                       </label>
-                     </div>
-                   </div>
-                  <div class="col-md-12">
-                    <div class="input-group">
-                     <input type="text" class="form-control" readonly>                       
-                       <label class="input-group-btn">
-                         <span class="btn btn-primary">
-                           Browse&hellip; <input type="file" style="display: none;" name="images2" id="image2">
-                         </span>
-                       </label>
-                    </div>
-                  </div>
-                   <div class="col-md-12">
-                     <div class="input-group">
-                       <input type="text" class="form-control" readonly>
-                       <label class="input-group-btn">
-                         <span class="btn btn-primary">
-                           Browse&hellip; <input type="file" style="display: none;" name="images3" id="image3">
-                         </span>
-                       </label> 
-                      </div>
-                    </div>
-                 </div>
-                 <div class="form-group">
+           <form class="form-horizontal clearfix row" name="loanForm" id="loanForm">
+            <div *ngIf="dataInvest == 0">
+            <div class="col-md-6">
+              <fieldset disabled>
+              <div class="form-group">
                  <div class="col-md-12">
+                    <input type="text" name="no_reference" placeholder="No Reference" class="form-control input-md" id="no_reference" [(ngModel)]="loan.loan_name">
+                 </div>
+               </div>
+              </fieldset>
+               <div class="form-group">
+                 <div class="col-md-12">
+                    <span class="required">*</span>
+                    <input type="text" name="loan_name" placeholder="Nama pinjaman" class="form-control input-md" id="loan_name" [(ngModel)]="loan.loan_name">
+                 </div>
+               </div>
+               <div class="form-group">
+                   <div class="col-md-12">
                      <span class="required">*</span>
-                     <input  type="text" placeholder="Masa Berlaku " name="masa_berlaku" class="form-control input-md datepicker" id="masa_berlaku">
-                 </div>
-                 </div>
+                     <select class="form-control input-md" name="loan_category" id="loan_category" (change)="getLoanCategoryId($event.target.value)" [(ngModel)]="loan.loan_category">
+                        <option value="0" disabled>Kategori Pinjaman</option>
+                        <option *ngFor="let data of loan_categories" [value]="data.id">
+                          {{ data.description }}
+                        </option>
+                     </select>
+                   </div>
                </div>
-               <div class="col-md-6">
-                 <fieldset>
-                   <div class="form-group">
-                     <div class="col-md-10 clearfix">
-                       <span class="required">*</span>
-                       <input type="text" placeholder="Nominal Investasi" class="form-control input-md" name="amount" id="amount" [(ngModel)]="investasi.amount">
-                     </div>
-                       <label class="unit">Rupiah</label>
-                   </div>
-                   <div class="form-group">
-                     <div class="col-md-10 clearfix">
-                       <input type="text" placeholder="Bunga" class="form-control input-md"  name="interest" id="interest" [(ngModel)]="investasi.interest">
-                     </div>
-                       <label class="unit">%/bulan</label>
-                   </div>
-                   <div class="form-group">
-                     <div class="col-md-10 clearfix">
-                       <span class="required">*</span>
-                       <input type="text" placeholder="Tenor" class="form-control input-md" maxlength="2" minlength="1"  name="tenor" id="tenor" [(ngModel)]="investasi.tenor">
-                      </div>
-                      <label class="unit">Bulan</label>
-                   </div>
-                    <div class="form-group">
-                    <div class="col-md-10 clearfix">
-                       <span class="required">*</span>
-                       <input type="text" placeholder="Collateral" class="form-control input-md" name="collateral" id="collateral" [(ngModel)]="investasi.collateral">
-                    </div>
-                      <label class="unit">Bulan</label>
-                   </div>
-                   <div class="form-group">
-                     <div class="col-md-12">
-                       <input type="text" placeholder="Charge Free" class="form-control input-md" readonly>
-                     </div>
-                   </div>
-                   
-                 </fieldset>
-               </div>
-               <div class="col-md-12">
-                 <div class="form-group">
-                    <div class="col-md-6 col-center">
-                      <a href="#/dashboard/investasi" class="btn btn-default">Batal</a>
-                      <button class="btn btn-red" (click)="createInvestasi(investasi)">Simpan</button>
-                    </div>
+              <div class="form-group">
+                 <div class="col-md-12">
+                    <span class="required">*</span>
+                    <input type="text" id="other_category" name="other_category" [(ngModel)]="loan.other_category" placeholder="Nama Category" class="form-control input-md">
                  </div>
               </div>
-           </form>
+                <div class="form-group">
+                   <div class="col-md-12">
+                     <span class="required">*</span>
+                     <textarea placeholder="Deskripsi" class="form-control input-md"   name="description" id="description" [(ngModel)]="loan.description">
+                     </textarea>
+                   </div>
+               </div>
+            </div>
+             <div class="col-md-6">
+              <div class="form-group">
+                 <div class="col-md-12">
+                    <label>Foto Pinjaman</label>
+                    <input type="file" id="images">
+                 </div>
+              </div>
+               <div class="form-group">
+                 <div class="col-md-10">
+                   <span class="required">*</span>
+                   <input type="text" placeholder="Nominal Investasi" class="form-control input-md" name="amount" id="amount" [(ngModel)]="loan.amount">
+                 </div>
+                   <label class="unit">Rupiah</label>
+               </div>
+                <!-- component due-date -->
+                <due-date></due-date>
+                
+               <div class="form-group">
+                 <div class="col-md-10 clearfix">
+                  <span class="required">*</span>
+                  <input type="text" placeholder="Bunga" class="form-control input-md"  name="interest" id="interest" [(ngModel)]="loan.interest">
+                 </div>
+                   <label class="unit">%/bulan</label>
+               </div>
+               <div class="form-group">
+                 <div class="col-md-10 clearfix">
+                   <span class="required">*</span>
+                   <input type="text" placeholder="Tenor" class="form-control input-md" maxlength="2" minlength="1"  name="tenor" id="tenor" [(ngModel)]="loan.tenor">
+                  </div>
+                  <label class="unit">Bulan</label>
+               </div>
+<!--                  <div class="form-group">
+                 <div class="col-md-12">
+                   <input type="text" placeholder="Charge Free" class="form-control input-md" readonly>
+                 </div>
+               </div> -->
+             </div>
+             </div>
+         </form>
+            <div *ngIf="dataInvest == 0">
+                <div class="col-md-12">
+                <div class="form-group">
+                  <div class="col-md-6 col-center">
+                    <!-- <a href="#/dashboard/investasi" class="btn btn-default">Batal</a> -->
+                    <button class="btn btn-default" (click)="cancelLoan()">Batal</button>
+                    <button class="btn btn-red" (click)="createLoan(loan)">Simpan</button>
+                  </div>
+                </div>
+                </div>
+            </div>
          </div>
        </div>
+      <div align="center" *ngIf="dataInvest == 1"> 
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
    </div>
  </div>
