@@ -44,7 +44,7 @@ export class StepRegisterComponent  {
 	  });
 
 		jQuery('#kode_pos').mask('00000');
-		jQuery( "#registerForm" ).validate({
+		jQuery("#registerForm").validate({
 		  rules: {
 		    nama_lengkap: {
 		      required: true
@@ -77,7 +77,8 @@ export class StepRegisterComponent  {
 		    status_rumah: {
 		      required: true
 		    }
-		  }
+		  },
+		  // message : jQuery("#registerForm"){
 		});
 	}
 
