@@ -32,19 +32,14 @@ export const routes = [
 
 /* modul */
 @NgModule({
-  declarations: [
-    UserActionComponent
-  ],
-  imports: [ // import Angular's modules
-  	// ReactiveFormsModule,
+  declarations: [ UserActionComponent ],
+  imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule
   ],
-  // providers: [InvestasiService, ValidationServiceInvestasi]
-  
-  providers: [UserActionService]
+  providers: [ UserActionService ]
 })	
 
 
