@@ -11,7 +11,7 @@ const createURL = 'https://private-f1c97-masscredit.apiary-mock.com/mobile/user/
 const indexURL  = 'https://private-f1c97-masscredit.apiary-mock.com/mobile/user/investment/getlist';
 
 @Injectable ()
-export class UserLoanService {
+export class UserService {
 	private headers  		= new Headers ({'Content-Type' : 'application/json'}); //URL to web API
 	private token = localtoken + token_tambah ;
 

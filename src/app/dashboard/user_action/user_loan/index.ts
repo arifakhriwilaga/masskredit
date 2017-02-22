@@ -6,10 +6,13 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { HttpModule }                                          from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormBuilder }       from '@angular/forms';
 import { CommonModule  }                                       from '@angular/common';
+// import { RegisterService }                                     from './register.service';
+// import { JqueryService }                                     from './jquery.register';
 
 
 // Component
 import { UserLoanComponent }        from './user_loan.component';
+// import { IndexComponent }        from './index/index.component';
 
 export const routes = [
   { 
@@ -26,7 +29,7 @@ export const routes = [
           loadChildren: () => System.import('./user_loan_create').then((comp: any) => comp.default) 
         },
         {    
-          path: 'detail/:id',
+          path: 'detail/:id', 
           loadChildren: () => System.import('./user_loan_detail').then((comp: any) => comp.default) 
         },
       ]      
@@ -35,19 +38,14 @@ export const routes = [
 
 
 @NgModule({
-  declarations: [
-    UserLoanComponent, // declarations LoginComponent
-    // IndexComponent
-  ],
-  imports: [ // import Angular's modules
+  declarations: [ UserLoanComponent ],
+  imports: [
     HttpModule,
     FormsModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-      // 
-  ]
+  providers: [ ]
 })
 
 export default class UserLoanModule { 
