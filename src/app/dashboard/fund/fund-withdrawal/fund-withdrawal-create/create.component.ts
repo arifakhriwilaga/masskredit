@@ -117,8 +117,10 @@ export class CreateComponent implements OnInit{
         }if(bank == 3) {
         	this.bank = "Danamon";
         }if(bank == 4) {
-        	this.bank = "BNI";
+        	this.bank = "Sinarmas";
         }if(bank == 5) {
+        	this.bank = "BNI";
+        }if(bank == 6) {
         	this.bank = "Niaga";
         };
         if(no_rekening == "") {
