@@ -3,16 +3,16 @@
 <div class="col-md-4">
   <div class="box box-solid radius-10" style="border: 2px">
     <div align="center">
-      <label><h2 style="font-size: 24px;color: orange;">Investasi</h2></label>
+      <label><h2 style="font-size: 24px;color: orange;">Pinjaman</h2></label>
     </div>
     <div class="form-group">
     <br>
-    <img src="{{ data.images }}" alt="Foto Investasi" class="thumbnail" width="250px" height="250px">
+    <img src="{{ data.images }}" alt="Foto Pinjaman" class="thumbnail" width="250px" height="250px">
     </div>
   </div>
   <div class="box box-solid radius-10">
     <div align="center">
-      <label><h2 style="font-size: 24px;color: orange;">Form Pinjaman</h2></label>
+      <label><h2 style="font-size: 24px;color: orange;">Form Investasi</h2></label>
     </div>
 <!--         <div class="form-group">
     <br>
@@ -22,11 +22,13 @@
    </div> -->
     <div *ngIf="dataDetailInvest == 0">
     <div class="form-group">
-      <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="loan_amount" id="loan_amount" value="" [(ngModel)]="loan.loan_amount">
+      <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="loan_amount" id="loan_amount" value="" [(ngModel)]="loan.loan_amount">
     </div>
     <div class="form-group">
       <button class="btn btn-default" (click)="cancelDetailInvest()">Kembali</button>
-      <button class="btn btn-red" (click)="makeLoan(loan)" style="background-color: #e74c3c;"><font style="color:white">Pinjam Sekarang!</font></button>
+      <!-- <button class="btn btn-red" (click)="makeLoan(loan)" style="background-color: #e74c3c;"><font style="color:white">Investasi Sekarang!</font></button> -->
+      <button class="btn btn-red" style="background-color: #e74c3c;" onclick="alert("belum tersedia")"><font style="color:white">Investasi Sekarang!</font></button>
+
     </div>
     </div>
     <!-- component password -->
@@ -41,32 +43,32 @@
   <div class="box box-solid radius-10">
   <div class="box-body">
   <div align="center">
-   <label><h2 style="font-size: 24px;color: orange;">Detail Investasi</h2></label>
+   <label><h2 style="font-size: 24px;color: orange;">Detail Pinjaman</h2></label>
   </div>
   <br>
   <div class="col-md-12 clearfix"> 
   <div class="form-group">
     <div class="col-md-4 clearfix">
-      <label class="unit">Nama Investasi</label>
+      <label class="unit">Nama Pinjaman</label>
     </div>
     <div class="col-md-7 clearfix">
-      <input type="text" placeholder="Nama Investasi" class="form-control input-md" name="invest_name" id="invest_name" value="{{ data.loan_name }}" disabled>
+      <input type="text" placeholder="Nama Pinjaman" class="form-control input-md" name="loan_name" id="loan_name" value="{{ data.invest_name }}" disabled>
     </div>
  </div>
  <div class="form-group">
     <div class="col-md-4 clearfix">
-      <label class="unit">Jumlah Investasi</label>
+      <label class="unit">Jumlah Pinjaman</label>
     </div>
     <div class="col-md-7 clearfix">
-      <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="amount" id="amount" value="{{ dataAmount }}" disabled>
+      <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="amount" id="amount" value="{{ dataAmount }}" disabled>
     </div>
  </div>
  <div class="form-group">
     <div class="col-md-4 clearfix">
-      <label class="unit">Sisa Investasi</label>
+      <label class="unit">Sisa Pinjaman</label>
     </div>
     <div class="col-md-7 clearfix">
-      <input type="text" placeholder="Sisa Investasi" class="form-control input-md" name="sisa" id="sisa" value="{{ dataRestAmount }}" disabled>
+      <input type="text" placeholder="Sisa Pinjaman" class="form-control input-md" name="sisa" id="sisa" value="{{ dataRestAmount }}" disabled>
     </div>
  </div>
   <div class="form-group">
@@ -74,7 +76,7 @@
   </div>
   <div class="form-group">
      <div class="col-md-4 clearfix">
-       <label class="unit">Tipe Investasi</label>
+       <label class="unit">Tipe Pinjaman</label>
      </div>
      <div class="col-md-7 clearfix">
       <input type="text" placeholder="Tipe Invest" class="form-control input-md" name="invest_name" id="invest_name" value="{{ data.tipe }}" disabled>
@@ -142,11 +144,3 @@
   <span class="sr-only">Loading...</span>
 </div>
 </section>
-           <!-- </form>
-         </div>
-       </div>
-       <div class="form-group">
-          <div class="col-md-6 col-center">
-            <button class="btn btn-red" (click)="backFund()">Kembali</button>
-          </div>
-       </div> -->
