@@ -13,21 +13,16 @@ export const routes = [
 ] 
 
 @NgModule({
-  declarations: [
-    IndexComponent, // declarations LoginComponent
-  ],
-  imports: [ // import Angular's modules
+  declarations: [ IndexComponent ],
+  imports: [
     HttpModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    // PaginationModule.forRoot(),
     RouterModule.forChild(routes)
+    // PaginationModule.forRoot(),
   ],
-  // exports: [LoginComponent],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-    // 
-  ]
+  providers: [ ]
 })
 
 export default class IndexModule { 
