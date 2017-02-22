@@ -4,6 +4,7 @@ import { Observable }	from 'rxjs/Observable';
 import { FormGroup}	from '@angular/forms';
 import { Router } from '@angular/router';
 
+declare var jQuery:any;
 @Injectable ()
 export class CreateService {
 	constructor (private http:Http, private router:Router) { }
@@ -40,19 +41,19 @@ export class CreateService {
 	
 	// request post fund
   postFundAdd(data:any){
+		let $this = jQuery("#load");
 		// console.log(data)
 		this.http.post(this.postFundUrl,data,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			var code 		= response.meta.code;
-			var message 	= response.meta.message;
-			// console.log(code,message);
+  		$this.button('reset');
 			alert("Penambahan dana berhasil, harap konfirmasi dana");
 			this.router.navigateByUrl('/dashboard/fund');
 		},(err:any) => {
 			var error   = JSON.parse(err._body);
 			var message = error.meta.message;
 			if(message == "unauthorized") {
+    		$this.button('reset');
 				alert("Maaf session anda telah habis silahkan login kembali");
 				this.router.navigateByUrl('/dashboard/sign-out');
 			}	
