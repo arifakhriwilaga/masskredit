@@ -15,7 +15,7 @@
 	  <td>{{ data.installment_amount }}</td>
 	  <td><span class="warranty">{{ data.installment_description }}</span></td>
 	  <td>
-	    <a class="pull-right" href="#/dashboard/profile"><i aria-hidden="true" class="fa fa-trash-o" (click)="removeInstallment(data.installment_id)"></i></a>
+	    <button class="pull-right"><i aria-hidden="true" class="fa fa-trash-o" (click)="removeInstallment(data.installment_id)"></i></button>
 	  </td>
 	</tr>
 	</tbody>
