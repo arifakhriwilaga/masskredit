@@ -168,7 +168,9 @@
         <td>{{ dataBorrower.loan_amount }}</td>
         <td>{{ dataBorrower.status }}</td>
         <td *ngIf="dataBorrower.status == 'Tunda'">
-          <button class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id ,'loan-not-been-approved', dataBorrower.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
+          <button class="pull-right" (click)="showDetailBorrowerNotApproved(dataBorrower.id)">
+            <i aria-hidden="true" class="fa fa-search"></i>
+          </button>
         </td>
         <td *ngIf="dataBorrower.status == 'Setuju' || dataBorrower.status == 'Tolak'">
           <button class="pull-right" (click)="showDetailBorrowerApproved(dataBorrower.id)">
@@ -182,8 +184,6 @@
   </div>
 </div>
 </div>
-  <!-- Trigger the modal with a button -->
-  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" (click)="showDetailBorrowerApproved(dataBorrower.id)">Open Modal</button> -->
 
   <!-- Modal -->
   <div class="modal fade modal-lg" id="myModal" style="z-index:9000;">
@@ -297,14 +297,7 @@
                   <td>{{ dataPayment.due_date }}</td>
                   <td>{{ dataPayment.payment_date }}</td>
                   <td>{{ dataPayment.status }}</td>
-                  <td *ngIf="dataBorrower.status == 'Tunda'">
-                    <button class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id ,'loan-not-been-approved', dataBorrower.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
-                  </td>
-                  <td *ngIf="dataBorrower.status == 'Setuju' || dataBorrower.status == 'Tolak'">
-                    <button class="pull-right" (click)="showDetailBorrowerApproved(dataBorrower.id)">
-                      <i aria-hidden="true" class="fa fa-search"></i>
-                    </button>
-                  </td>
+                 <!--  -->
                 </tr>
               </tbody>
             </table>
@@ -315,6 +308,111 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" (click)="hideDetailBorrowerApproved(dataBorrower.id)">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal Approved -->
+  <div class="modal fade modal-lg" id="FormApprove" style="z-index:9000;">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Detail Peminjam</h4>
+        </div>
+        <div class="modal-body">
+        <div  *ngIf="loaderBorrowerApproved == 0">
+          <div class="row">
+            <div align="center"> 
+              <br><br><br><br><br>
+              <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+        <div  *ngIf="loaderBorrowerApproved == 1">
+          <div class="row">
+            <div class="col-md-4">
+             <img src="{{ dataDetailBorrower.borrower_image }}" alt="Foto Peminjam">
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label class="unit">Nama Lengkap</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="Nama Lengkap" class="form-control input-md" name="full_name" id="full_name" value="{{ dataDetailBorrower.borrower_name }}" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label class="unit">Borrower</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="Borrower" class="form-control input-md" name="borrower" id="borrower" value="{{ dataDetailBorrower.borrower }}" disabled>
+                </div>
+             </div>
+             <div class="form-group">
+                <div class="col-xs-4">
+                  <label class="unit">Credit</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="Credit" class="form-control input-md" name="credit" id="credit" value="{{ dataDetailBorrower.fund_history }}" disabled>
+                </div>
+             </div>
+             <div class="form-group">
+                <div class="col-xs-4">
+                  <label class="unit">Salary</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="Salary" class="form-control input-md" name="salary" id="salary" value="{{ dataDetailBorrower.user_class }}" disabled>
+                </div>
+             </div>
+             <div class="form-group">
+                <div class="col-xs-4">
+                  <label class="unit">Review</label>
+                </div>
+                <div class="col-xs-7">
+                  <div class="unit">
+                      <!-- <i class="fa fa-star-half-full full" area-hidden="true"></i> -->
+                      <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+                      <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+                      <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+                      <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px; color: orange"></i>
+                      <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+                      <!-- <span class="bs-glyphicons-list">
+                      <span class="glyphicon glyphicon-star star-color star-full"></span>
+                      <span class="glyphicon glyphicon-star star-color font half"></span>
+                      </span> -->
+                      <!-- <span>({{ avg_reviews }} %)</span> -->
+                      <span>({{ dataDetailBorrower.avg_reviews }} %)</span>
+                  </div>
+                </div>
+             </div>
+             <div class="form-group">
+                <div class="col-xs-4">
+                  <label class="unit">Jumlah Pinjaman</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="Nilai Pinjaman" class="form-control input-md" name="nilai_pinjaman" id="nilai_pinjaman" value="{{ dataBorrowerAmount }}" disabled>
+                </div>
+             </div> 
+            </div>
+          </div>
+          <div class="row">
+             <div class="col-md-12">
+               <div class="form-group">
+                  <div class="col-md-6 col-center">
+                    <button class="btn btn-default" (click)="rejectInvest()">Tolak</button>
+                    <button class="btn btn-red" (click)="approveInvest()">Setuju</button>
+                  </div>
+               </div>
+            </div>
+            <!-- modal verify -->
+          </div>
+        </div>
+        <verify *ngIf="loaderBorrowerApproved == 3"></verify>
         </div>
       </div>
     </div>
