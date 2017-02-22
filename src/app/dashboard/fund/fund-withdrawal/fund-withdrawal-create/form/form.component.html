@@ -42,7 +42,7 @@
               <div class="col-md-10 clearfix">
               <span class="required">*</span>
                 <label>Nominal :</label>
-                <input type="text" placeholder="Nominal" class="form-control input-md" name="amount" id="amount" [(ngModel)]="data.amount">
+                <input type="text" placeholder="Nominal" class="form-control input-md" name="amount" id="amount" [(ngModel)]="data.amount" required>
               </div>
             </div>
             <div class="form-group">
@@ -51,7 +51,7 @@
       </form>
       <div class="col-md-12 col-center">
         <button class="btn btn-default" (click)="cancelWithdrawal()">Batal</button>
-        <button class="btn btn-red" type="submit" (click)="createWithdrawal(data)">Simpan</button>
+        <button class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading.." name="singlebutton" type="submit" (click)="createWithdrawal(data)">Simpan</button>
       </div>
       <form-confirm *ngIf="formConfirm == 1" [dataVerificationCode]="verification_code" [dataId]="id" ></form-confirm>
       <message *ngIf="data.bank == 'Belum diisi' || data.no_rekening == 'Belum diisi'"></message>
