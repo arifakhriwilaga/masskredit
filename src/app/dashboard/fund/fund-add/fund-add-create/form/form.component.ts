@@ -84,6 +84,8 @@ export class FormComponent {
 
 	createFund(data) {
 		if(jQuery("#createForm").valid()) {
+			let $this = jQuery("#load");
+    	$this.button('loading');
 			this.createService.postFundAdd(data);
 		}
 		else{
