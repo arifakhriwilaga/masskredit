@@ -83,7 +83,7 @@ export class CreateComponent {
 	}
 
 	public loan_categories= [];
-	private dataInvest = 0;
+	public dataInvest = 0;
 	
 	private categoryLoan:any;
   getLoanCategory(){
@@ -126,8 +126,9 @@ export class CreateComponent {
 					 this.loan.image = image;
 					}
 				}finally{
+					this.dataInvest = 3;
 					// console.log(this.invest)
-					this.postLoan()
+					// this.postLoan()
 				}
 			}.bind(this)
 
@@ -155,10 +156,10 @@ export class CreateComponent {
   	this.http.post(this.postLoanUrl,this.loan,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			var code 		= response.meta.code;
-			var message 	= response.meta.message;					
+			var code = response.meta.code;
+			var message = response.meta.message;					
 			// console.log(code,message);
-			alert("Pinjaman berhasil dibuat");
+			alert("Investasi berhasil dibuat");
 			this.router.navigateByUrl('/dashboard/other-user-action/loan');
 		},(err:any) => {
 			var error   = JSON.parse(err._body)
@@ -169,11 +170,9 @@ export class CreateComponent {
 				alert("Maaf session anda telah habis silahkan login kembali")
 				return this.router.navigateByUrl('/dashboard/sign-out')					
 			
-			}if(message == "Saldo Anda tidak mencukupi.") {
-				// this.verify.dataConfirmInvest = 0;
-				this.dataInvest = 1;
-				// this.dataDetailInvest = 0;
-				alert("Saldo anda tidak mencukupi")
+			}if(message == "Password salah!") {
+				this.dataInvest = 0;
+				alert("Password salah")
 				// return this.router.navigateByUrl('/dashboard/sign-out')					
 			}
 
