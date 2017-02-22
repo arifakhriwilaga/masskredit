@@ -83,12 +83,12 @@ export class ProfileComponent {
 	  // object data other-income-1
 	  pendapatan_lain_1	: 2,
 		sumber_pendapatan_lain_1 : null,
-		jumlah_pendapatan_lain_1 : this.number,
+		jumlah_pendapatan_lain_1 : null,
 	  	
 	  // object data other-income-2
 	  pendapatan_lain_2	: 2,
 		sumber_pendapatan_lain_2 : null,
-		jumlah_pendapatan_lain_2 : this.number,
+		jumlah_pendapatan_lain_2 : null,
 		
 		// object data penunjang
 		foto_identita : null,
@@ -135,12 +135,14 @@ export class ProfileComponent {
 		this.http.post(this.profileUrl,this.token,this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
-				// console.log(response);
+				console.log(response);
 				let pendapatan_lain_1 = response.data.profile.complement_user.pendapatan_lain_1;
 			  let pendapatan_lain_2 = response.data.profile.complement_user.pendapatan_lain_2; 
 		  	if(pendapatan_lain_1 == null) {
 			  	this.data.pendapatan_lain_1	= 2;
-			  	this.data.pendapatan_lain_2	= 2
+			  	this.data.pendapatan_lain_2	= 2;
+			  	this.data.jumlah_pendapatan_lain_1	= null;
+			  	this.data.jumlah_pendapatan_lain_2	= null;
 		  	}
 				// entry data to object, before edit profile
 				// object personal
@@ -159,7 +161,12 @@ export class ProfileComponent {
 				this.data.status_perkawinan	= response.data.profile.complement_user.status_perkawinan;
 				this.data.jumlah_anak = response.data.profile.complement_user.jumlah_anak;
 
+				let responseSumberPendapatan = response.data.profile.complement_user.sumber_pendapatan;
 				// object data job
+				// if(responseSumberPendapatan == 0) {
+				//   this.data.sumber_pendapatan	= 
+				// 	// code...
+				// }
 			  this.data.sumber_pendapatan	= response.data.profile.complement_user.sumber_pendapatan;
 
 				// if work
@@ -186,13 +193,13 @@ export class ProfileComponent {
 				this.data.no_tlp = response.data.profile.complement_user.no_tlp;
 				this.data.pekerjaan_kerabat = response.data.profile.complement_user.pekerjaan_kerabat;
 			  	
-			  	// object data other-income-1
+			  // object data other-income-1
 				this.data.pendapatan_lain_1 = response.data.profile.complement_user.pendapatan_lain_1;
 				this.pendapatanLainFirst = response.data.profile.complement_user.pendapatan_lain_1;
 			  this.convertIdr(response.data.profile.complement_user.jumlah_pendapatan_lain_1)	
 				this.data.sumber_pendapatan_lain_1 = response.data.profile.complement_user.sumber_pendapatan_lain_1;
 				this.data.jumlah_pendapatan_lain_1 = response.data.profile.complement_user.jumlah_pendapatan_lain_1;
-			  	// object other-income-2
+			  // object other-income-2
 				this.data.pendapatan_lain_2 = response.data.profile.complement_user.pendapatan_lain_2;
 				this.pendapatanLainSecond = response.data.profile.complement_user.pendapatan_lain_2;
 				
@@ -383,8 +390,10 @@ export class ProfileComponent {
 			this.data.tlp_perusahaan = "";
 		}
 
-		let value_date = jQuery("#mulai_bekerja").val();
-		this.data.mulai_bekerja = value_date;
+		let dateWork = jQuery("#mulai_bekerja").val();
+		this.data.mulai_bekerja = dateWork;
+		let dateBorn = jQuery("#tanggal_lahir").val();
+		this.data.tanggal_lahir = dateBorn;
 
 		let x : any = document.getElementById("foto_identitas");
 		let y : any = document.getElementById("foto_npwp");
