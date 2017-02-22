@@ -122,7 +122,8 @@ export class InstallmentComponent {
 					var message 	= response.meta.message;
 					if(code == 200) {
             this.formInstallment = 0;
-						alert("Angsuran berhasil ditambah, harap menunggu konfirmasi")
+						alert("Angsuran berhasil ditambah, harap menunggu konfirmasi");
+            return this.router.navigateByUrl('/dashboard')
 					}
 					else{
 						alert("Angsuran gagal diupdate")
@@ -212,7 +213,6 @@ export class InstallmentComponent {
 
 	removeInstallment(id){
 		this.dataRemove.installment_id = id;
-		alert("dari remove")
 		// console.log(this.data)
 		this.http.post('https://masscredit-api.stagingapps.net/user/installment/delete',this.dataRemove,this.options)
 			.map(response => response.json())
@@ -222,7 +222,8 @@ export class InstallmentComponent {
 					// console.log(response);
 					if(code == 200) {
 						alert("Angsuran berhasil dihapus, harap menunggu konfirmasi")
-						this.getListInstallment()
+						return this.router.navigateByUrl('/dashboard')
+						// this.getListInstallment()
 					}
 					else{
 						alert("Gagal menambahkan data")
