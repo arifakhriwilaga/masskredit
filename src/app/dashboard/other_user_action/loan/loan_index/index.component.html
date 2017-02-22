@@ -2,12 +2,12 @@
 <br>
 <div  *ngIf="dataListLoan == 1">
 <div class="col-xs-12" align="right">
-  <!-- <button class="add-advance-search" (click)="linkCreateLoan()">
-    Tambah
-  </button> -->
-  <button class="add-advance-search" onclick="alert('Belum tersedia')">
+  <button class="add-advance-search" (click)="linkCreateLoan()">
     Tambah
   </button>
+  <!-- <button class="add-advance-search" onclick="alert('Belum tersedia')">
+    Tambah
+  </button> -->
 </div>
 <br>
 <div class="col-xs-12">
@@ -21,7 +21,7 @@
           <tr>
             <th>No.</th>
             <th>Gambar</th>
-            <th>Nama Lengkap</th>
+            <th>Pinjaman</th>
             <th>Nilai</th>
             <th>Kategori</th>
             <th>Nominal (Rp)</th>
@@ -29,22 +29,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngIf="dataArrayNull == 1">
             <td colspan="6" align="center">Data belum tersedia</td>
-          </tr> 
-          <!-- <tr *ngIf="dataArrayNull == 1">
-            <td colspan="5" align="center">Data belum tersedia</td>
           </tr>
           <tr *ngFor="let data of invest; let i = 'index'">
             <td>{{ i + 1 }}</td>
-            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Investor" style="border-radius: 80px;width:55px;height:55px">{{ data.nama_investor }}</td>
-            <td><img src="{{ data.image_invest }}" alt="Investasi" style="border-radius: 5px;width:70px;height:70px"></td>
-            <td><span  class="warranty">{{ data.type_invest }}</span></td>
+            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Borrower" style="border-radius: 80px;width:55px;height:55px">{{ data.nama_borrower }}</td>
+            <td><img src="{{ data.image_invest }}" alt="Profile Borrower" style="border-radius: 5px;width:70px;height:70px"></td>
+            <td>
+              Borrower: {{ data.user_score_borrower }} <br>
+              Salary: {{ data.user_class }} <br>
+              Class: {{ data.user_score_credit }} 
+            </td>
+            <td><span  class="warranty">{{ data.loan_category }}</span></td>
             <td>{{ data.amount }}</td>
             <td>
-              <a class="pull-right" [routerLink]="['/dashboard/other-user-action/invest/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></a>
+              <button class="pull-right" [routerLink]="['/dashboard/other-user-action/loan/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
             </td>
-          </tr> -->
+          </tr>
         </tbody>
       </table>
       </div>  
