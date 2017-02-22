@@ -74,6 +74,8 @@ export class FormComponent {
 
   createWithdrawal(data) {
 		if(jQuery("#createForm").valid()) {
+		  let $this = jQuery("#load");
+    	$this.button('loading');
 			this.postFundWithdrawal(data);
 		}
 		else{
@@ -90,11 +92,16 @@ export class FormComponent {
 			this.verification_code = JSON.parse(response.data.verification_code);
 			this.formConfirm = 1;
 		},(err:any) => {
+			let $this = jQuery("#load"); // not available $this on 'let' so create $this on var
 			var error   = JSON.parse(err._body);
 			var message = error.meta.message;
 			if(message == "unauthorized") {
+		    $this.button('reset');
 				alert("Maaf session anda telah habis silahkan login kembali");
 				this.router.navigateByUrl('/dashboard/sign-out');
+			}if(message == "Saldo anda tidak mencukupi.") {
+		    $this.button('reset');
+				alert("Saldo anda tidak mencukupi.");
 			}	
 		});	
   }
