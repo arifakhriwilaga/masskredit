@@ -24,13 +24,13 @@ export class IndexComponent implements OnInit {
 
 	private invest = [];
 	private amount = {};
-	private dataListLoan = 1;
+	private dataListLoan = 0;
 	private dataArrayNull = 0;
+	private listLoanUrl = 'https://masscredit-api.stagingapps.net/user/investment/getlist';
 
 	private data: Observable<Array<any>>
 	ngOnInit(){
-		// setTimeout(() => {this.dataListLoan = 1},1000);
-
+		setTimeout(() => {this.getListLoan()},1000);
 	}
 
 	listInvestasi() {
@@ -40,55 +40,52 @@ export class IndexComponent implements OnInit {
 	getListLoan(){
 		setTimeout( () => {
 		// alert("Hello"); 
-			this.http.post('https://masscredit-api.stagingapps.net/user/loan/getlist',
-			this.access_token,
-			this.options)
+			this.http.post(this.listLoanUrl,this.access_token,this.options)
 			.map(response => response.json())
-			.subscribe(
-				(response : any) => {
-					let code 		= response.meta.code;
-					let message 	= response.meta.message;
-					if(response.data.loans == '') {
-						this.dataArrayNull = 1;
-					}		
-					this.invest = response.data.loans;
-					for(let i = 0; i < this.invest.length; i++){
-						let dataAmount = this.invest[i]
-						let amount = dataAmount['amount'];
-						// condition make delimiter
-						var _minus = false;
-						var b:any = amount.toString();
-						if (b<0) _minus = true;
-							b=b.replace(".","");
-							b=b.replace("-","");
-							let c = "";
-							let panjang = b.length;
-							let j = 0;
-						for (let i = panjang; i > 0; i--){
-							j = j + 1;
-							if (((j % 3) == 1) && (j != 1)){
-								c = b.substr(i-1,1) + "." + c;
-								// console.log(c)
-							} else {
-								c = b.substr(i-1,1) + c;
-							}
-						}
-						if (_minus) c = "-" + c ;
-						let idr = "Rp.";
-						dataAmount['amount'] = idr.concat(c);
+			.subscribe((response : any) => {
+				console.log(response);
+				// let code 		= response.meta.code;
+				// let message 	= response.meta.message;
+				// if(response.data.loans == '') {
+				// 	this.dataArrayNull = 1;
+				// }		
+				this.invest = response.data.investments;
+				// for(let i = 0; i < this.invest.length; i++){
+				// 	let dataAmount = this.invest[i]
+				// 	let amount = dataAmount['amount'];
+				// 	// condition make delimiter
+				// 	var _minus = false;
+				// 	var b:any = amount.toString();
+				// 	if (b<0) _minus = true;
+				// 		b=b.replace(".","");
+				// 		b=b.replace("-","");
+				// 		let c = "";
+				// 		let panjang = b.length;
+				// 		let j = 0;
+				// 	for (let i = panjang; i > 0; i--){
+				// 		j = j + 1;
+				// 		if (((j % 3) == 1) && (j != 1)){
+				// 			c = b.substr(i-1,1) + "." + c;
+				// 			// console.log(c)
+				// 		} else {
+				// 			c = b.substr(i-1,1) + c;
+				// 		}
+				// 	}
+				// 	if (_minus) c = "-" + c ;
+				// 	let idr = "Rp.";
+				// 	dataAmount['amount'] = idr.concat(c);
+				// }
+					this.dataListLoan = 1;
+			},(err:any) => {
+				var error   = JSON.parse(err._body)
+				var message = error.meta.message
+					if(message == "unauthorized") {
+						alert("Maaf session anda telah habis silahkan login kembali")
+						return this.router.navigateByUrl('/dashboard/sign-out')					
 					}
-						this.dataListLoan = 1;
-				},
-				(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-						if(message == "unauthorized") {
-							alert("Maaf session anda telah habis silahkan login kembali")
-							return this.router.navigateByUrl('/dashboard/sign-out')					
-						}
-				}
-			) 
-		},1);
+			}
+		) 
+	},1);
 	}
 
 	linkCreateLoan(){
