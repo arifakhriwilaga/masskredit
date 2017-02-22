@@ -129,7 +129,7 @@
           <label class="unit">No Handphone</label>
         </div>
         <div class="col-xs-9">
-          <input type="text" placeholder="No Handphone" class="with-unit form-control input-md data-diri" value="{{ profile.phone_number }}" [(ngModel)]="data.phone_number">
+          <input type="text" placeholder="No Handphone" class="with-unit form-control input-md data-diri" value="{{ profile.phone_number }}" [(ngModel)]="data.phone_number" disabled>
         </div>
         </div>
         <div class="form-group">
@@ -149,33 +149,6 @@
           <div class="col-xs-12">
           <br>
           </div>
-        </div>
-        <div class="form-group">
-        <div class="col-xs-3">
-          <label class="unit">Status Perkawinan</label>
-        </div>
-        <div class="col-xs-9">
-          <select class="with-unit form-control input-md data-diri" name="status_perkawinan" id="status_perkawinan" (change)="getStatusMarried($event.target.value)" [(ngModel)]="data.status_perkawinan">
-              <option value="2" disabled>Status Perkawinan</option>
-              <option [value]="1">Menikah</option>
-              <option [value]="0">Belum Menikah</option>
-          </select>
-        </div>
-        </div>
-        <div class="form-group">
-          <div class="col-xs-12">
-          <br>
-          </div>
-        </div>
-        <div *ngIf="statusMarried == 1 || data.status_perkawinan == 1">
-         <div class="form-group">
-          <div class="col-xs-3">
-            <label class="unit">Jumlah Anak</label>
-          </div>
-          <div class="col-xs-9">
-            <input type="text" placeholder="Jumlah Anak" class="with-unit form-control input-md" id="jumlahanak" value="{{ complement_data.jumlah_anak }}" [(ngModel)]="data.jumlah_anak">
-          </div>
-        </div>
         </div>
       </div>
       <div class="col-xs-12" *ngIf="editDataPribadi == 1">
