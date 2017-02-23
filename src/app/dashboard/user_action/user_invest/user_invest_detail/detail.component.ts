@@ -31,6 +31,11 @@ export class DetailComponent {
 		// objek for save data when after request detail
 		public data_detail_invest = {
 			access_token : this.access_token,
+			loan_id : '',
+		}
+
+		public data_list_borrower = {
+			access_token : this.access_token,
 			invest_id : '',
 		}
 
@@ -57,7 +62,8 @@ export class DetailComponent {
 		// Objek for get id on route
 		let param = this.activatedRoute.params.subscribe( params => {
 			let id = params['id'];
-			this.data_detail_invest.invest_id = id;
+			this.data_detail_invest.loan_id = id;
+			this.data_list_borrower.invest_id = id;
 	  	this.data_history_payment.invest_id = id;
 	  });
 		// API list borrower
@@ -74,7 +80,7 @@ export class DetailComponent {
 
 	getListBorrower(){
 		// API detail invest
-	    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/getlist',this.data_detail_invest,this.options)
+	    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/getlist',this.data_list_borrower,this.options)
 				.map(response => response.json())
 				.subscribe(
 					(response : any) => {
@@ -130,7 +136,7 @@ export class DetailComponent {
 
 	getDetailMyInvest(){
 		// API detail invest
-	    this.http.post('https://masscredit-api.stagingapps.net/user/myinvestment/detail',this.data_detail_invest,this.options)
+	    this.http.post('https://masscredit-api.stagingapps.net/user/loan/detail',this.data_detail_invest,this.options)
 				.map(response => response.json())
 				.subscribe(
 					(response : any) => {
