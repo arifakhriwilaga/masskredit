@@ -34,10 +34,10 @@ export class DetailComponent {
 	}
 
 	public data = { };
-	public loan = {
+	public invest = {
 		access_token: this.access_token,
-		invest_id: null,
-		loan_amount : null,
+		loan_id: null,
+		invest_amount : null,
 		password: null
 		// collateral_type: 0
 	}
@@ -54,7 +54,7 @@ export class DetailComponent {
 		let param = this.activatedRoute.params.subscribe( params => {
 			let id = params['id'];
 			// console.log(id);
-			this.loan.invest_id = id;
+			this.invest.loan_id = id;
 			this.data_detail_loan.invest_id = id;
 		});
 		this.getDetailInvest();
@@ -71,7 +71,7 @@ export class DetailComponent {
   this.http.post('https://masscredit-api.stagingapps.net/user/investment/detail',this.data_detail_loan,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			console.log(response)
+			// console.log(response)
 			// alert("dari detail")
 			this.data = response.data;
 			this.dataAmount = response.data.amount;
@@ -80,20 +80,21 @@ export class DetailComponent {
 		});
 	}
 
-	makeLoan(loan){
+	makeInvest(invest){
 		this.dataDetailInvest = 1;
 	}
 
-	postLoan(){
+	postInvestUrl = 'https://masscredit-api.stagingapps.net/other-user/investment/new';
+	postInvest(){
 		// console.log(this.loan);
-		this.http.post('https://masscredit-api.stagingapps.net/other-user/loan/new',this.loan,this.options)
+		this.http.post(this.postInvestUrl,this.invest,this.options)
 			.map(response => response.json())
 			.subscribe(
 				(response : any) => {
 				this.data = response.data;
 				this.dataDetailInvest = 0;
-					alert("Peminjaman berhasil, harap menunggu konfirmasi investor");
-					this.router.navigateByUrl('/dashboard/other-user-action/invest');
+					alert("Investasi berhasil, harap menunggu konfirmasi borrower");
+					this.router.navigateByUrl('/dashboard/other-user-action/loan');
 				},
 				(err:any) => {
 					var error   = JSON.parse(err._body)
@@ -105,18 +106,22 @@ export class DetailComponent {
 						if(message == "unauthorized") {
 							alert("Maaf session anda telah habis silahkan login kembali")
 							return this.router.navigateByUrl('/dashboard/sign-out')					
-						}
-						if(message == "Anda harus mempunyai jaminan untuk melakukan pinjaman.") {
+						
+						}if(message == "Anda harus mempunyai jaminan untuk melakukan pinjaman.") {
 							alert("Anda harus mempunyai jaminan untuk melakukan pinjaman")				
 							this.dataDetailInvest = 1;
-						}
-						if(message == "Jumlah yang anda masukan melebihi jumlah invest.") {
-							alert("Jumlah pinjaman melebihi jumlah investasi")				
+						
+						}if(message == "Jumlah yang anda masukan melebihi jumlah pinjaman.") {
+							alert("Jumlah investasi melebihi jumlah pinjaman")				
 							this.dataDetailInvest = 1;
-						}
-						if(message == "Password salah!") {
+						
+						}if(message == "Password salah!") {
 							this.dataDetailInvest = 1;
-							alert("Password salah!")				
+							alert("Password salah!")
+
+						}if(message == "Saldo Anda tidak mencukupi.") {
+							this.dataDetailInvest = 1;
+							alert("Saldo Anda tidak mencukupi.")				
 						}
 
 				}
