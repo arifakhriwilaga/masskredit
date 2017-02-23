@@ -22,12 +22,12 @@
    </div> -->
     <div *ngIf="dataDetailInvest == 0">
     <div class="form-group">
-      <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="loan_amount" id="loan_amount" value="" [(ngModel)]="loan.loan_amount">
+      <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="loan_amount" id="loan_amount" value="" [(ngModel)]="invest.invest_amount">
     </div>
     <div class="form-group">
       <button class="btn btn-default" (click)="cancelDetailInvest()">Kembali</button>
-      <!-- <button class="btn btn-red" (click)="makeLoan(loan)" style="background-color: #e74c3c;"><font style="color:white">Investasi Sekarang!</font></button> -->
-      <button class="btn btn-red" style="background-color: #e74c3c;" onclick="alert("belum tersedia")"><font style="color:white">Investasi Sekarang!</font></button>
+      <button class="btn btn-red" (click)="makeInvest(invest)" style="background-color: #e74c3c;"><font style="color:white">Investasi Sekarang!</font></button>
+      <!-- <button class="btn btn-red" style="background-color: #e74c3c;" onclick="alert("belum tersedia")"><font style="color:white">Investasi Sekarang!</font></button> -->
 
     </div>
     </div>
