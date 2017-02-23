@@ -21,11 +21,9 @@ declare var jQuery:any;
   `
 })
 
-
-
 export class VerifyComponent implements OnInit{ 
 	constructor(private detail:DetailComponent, private router:Router) { }
-	private invest = this.detail.loan;
+	private invest = this.detail.invest;
 
 	ngOnInit(){
 		jQuery( "#confirmInvestForm" ).validate({
@@ -38,13 +36,13 @@ export class VerifyComponent implements OnInit{
 	}
 
 	cancelConfirmInvest(){
-		this.router.navigateByUrl("/dashboard/other-user-action/invest");
+		this.router.navigateByUrl("/dashboard/other-user-action/loan");
 	}
 
 	confirmInvest(){
 		if(jQuery("#confirmInvestForm").valid()) {
 			this.detail.dataDetailInvest = 3;
-			this.detail.postLoan();
+			this.detail.postInvest();
 			// alert("data valid")
 			// this.sendDataInvest();
 		}
