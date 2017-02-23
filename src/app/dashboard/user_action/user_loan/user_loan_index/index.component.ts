@@ -1,9 +1,8 @@
-import { Component } 		from '@angular/core';
-import { Headers, Http, RequestOptions }	   				from '@angular/http';
-import { Router }        					   from '@angular/router';
+import { Component } from '@angular/core';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
-	//moduleId: module.id,
 	selector: 'index',
 	templateUrl: 'index.component.html'
 })
@@ -24,7 +23,7 @@ export class IndexComponent {
 	}
 
 	private loans = [];
-	private dataListMyInvest = 0;
+	private dataListMyLoan = 0;
 	private dataArrayNull = 0;
 
 	ngOnInit(){
@@ -38,40 +37,40 @@ export class IndexComponent {
 		.map(response => response.json())
 		.subscribe(
 			(response : any) => {
-				console.log(response);
-				this.dataListMyInvest = 1
-				if(response.data.investments == '') {
+				// console.log(response);
+				// this.dataListMyInvest = 1
+				if(response.data.loans == '') {
 					this.dataArrayNull = 1;
 				}
 				let code 		= response.meta.code;
 				let message 	= response.meta.message;					
 				this.loans = response.data.loans;
-				// for(let i = 0; i < this.invest.length; i++){
-				// let dataAmount = this.invest[i]
-				// let amount = dataAmount['amount'];
-				// // condition make delimiter
-				// var _minus = false;
-				// var b:any = amount.toString();
-				// if (b<0) _minus = true;
-				// 	b=b.replace(".","");
-				// 	b=b.replace("-","");
-				// 	let c = "";
-				// 	let panjang = b.length;
-				// 	let j = 0;
-				// for (let i = panjang; i > 0; i--){
-				// 	j = j + 1;
-				// 	if (((j % 3) == 1) && (j != 1)){
-				// 		c = b.substr(i-1,1) + "." + c;
-				// 		// console.log(c)
-				// 	} else {
-				// 		c = b.substr(i-1,1) + c;
-				// 	}
-				// }
-				// if (_minus) c = "-" + c ;
-				// let idr = "Rp.";
-				// dataAmount['amount'] = idr.concat(c);
-				// }
-				// this.dataListMyInvest = 1;
+				for(let i = 0; i < this.loans.length; i++){
+				let dataAmount = this.loans[i]
+				let amount = dataAmount['amount'];
+				// condition make delimiter
+				var _minus = false;
+				var b:any = amount.toString();
+				if (b<0) _minus = true;
+					b=b.replace(".","");
+					b=b.replace("-","");
+					let c = "";
+					let panjang = b.length;
+					let j = 0;
+				for (let i = panjang; i > 0; i--){
+					j = j + 1;
+					if (((j % 3) == 1) && (j != 1)){
+						c = b.substr(i-1,1) + "." + c;
+						// console.log(c)
+					} else {
+						c = b.substr(i-1,1) + c;
+					}
+				}
+				if (_minus) c = "-" + c ;
+				let idr = "Rp.";
+				dataAmount['amount'] = idr.concat(c);
+				}
+				this.dataListMyLoan = 1;
 			},
 			(err:any) => {
 				var error   = JSON.parse(err._body)
