@@ -10,7 +10,6 @@ import { CreateComponent } from './create.component';
 import { DueDateComponent } from './datepicker_component';
 import { VerifyComponent }        from './verify_component';
 
-
 export const routes = [
   { path:'', component: CreateComponent},
 ] 
