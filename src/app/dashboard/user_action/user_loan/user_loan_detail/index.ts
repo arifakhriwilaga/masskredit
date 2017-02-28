@@ -14,7 +14,7 @@ import { VerifyComponent } from './part/verify_component';
 export const routes = [
   { path:'', component: DetailComponent},
   {    
-    path: 'loan-approved/:loanId', 
+    path: 'loan-approved/:investorId', 
     loadChildren: () => System.import('./loan-approved').then((comp: any) => comp.default) 
   },
   // {    
