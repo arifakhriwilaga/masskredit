@@ -36,7 +36,7 @@ export class IndexComponent {
 		this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			// console.log(response);
+			console.log(response);
 			// this.dataListMyInvest = 1
 			if(response.data.loans == '') {
 				this.dataArrayNull = 1;
@@ -45,8 +45,15 @@ export class IndexComponent {
 			let message 	= response.meta.message;					
 			this.loans = response.data.loans;
 			for(let i = 0; i < this.loans.length; i++){
-			let dataAmount = this.loans[i]
-			let amount = dataAmount['amount'];
+			let data = this.loans[i]
+			let type_invest = data['type_invest'];
+			let loan_category = data['loan_category'];
+			if(type_invest == "") {
+				data['type_invest'] = "-";
+			}if(loan_category == "") {
+				data['loan_category'] = "-";
+			}
+			let amount = data['amount'];
 			// condition make delimiter
 			var _minus = false;
 			var b:any = amount.toString();
@@ -67,7 +74,7 @@ export class IndexComponent {
 			}
 			if (_minus) c = "-" + c ;
 			let idr = "Rp.";
-			dataAmount['amount'] = idr.concat(c);
+			data['amount'] = idr.concat(c);
 			}
 			this.dataListMyLoan = 1;
 		},(err:any) => {
@@ -78,6 +85,15 @@ export class IndexComponent {
 					return this.router.navigateByUrl('/dashboard/sign-out')					
 				}
 		});
+	}
+
+	detailAddLoan(loanId:number){
+		this.router.navigateByUrl('/dashboard/user-action/user-loan/detail/'+loanId)
+	}
+
+	detailGiveLoan(loanId:number,investorId:number){
+		// console.log(loanId,investorId);
+		this.router.navigateByUrl('/dashboard/user-action/user-loan/detail/'+loanId+'/loan-approved/'+investorId)
 	}
 
 }
