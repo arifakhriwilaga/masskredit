@@ -195,8 +195,8 @@ export class DetailComponent {
 		this.router.navigateByUrl("/dashboard/user-action/user-invest");
 	}
 
-	showDetailInvestorApproved(investId:any,loanId:any){
-		this.router.navigate(['/dashboard/user-action/user-loan/detail/',investId,'loan-approved',loanId])
+	showDetailInvestorApproved(loanId:any,investorId:any){
+		this.router.navigate(['/dashboard/user-action/user-loan/detail/',loanId,'loan-approved',investorId])
 	}
 
 	public loaderBorrowerApproved = 0;
@@ -211,12 +211,12 @@ export class DetailComponent {
 
 	public dataDetailBorrower = {};
 	showPart = 'false';
-	showDetailInvestorNotApproved(loanId:any,investId:any){
+	showDetailInvestorNotApproved(loanId:any,investorId:any){
 		let partTrue = 'true';
 		this.statusPart = 'true';
 		this.showPart = partTrue;
 		this.loanId = loanId;
-		this.investId = investId;
+		this.investId = investorId;
 	}
 
 	onHide2(agreed: string) {
