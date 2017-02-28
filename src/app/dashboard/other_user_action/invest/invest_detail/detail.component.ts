@@ -65,12 +65,13 @@ export class DetailComponent {
 		this.router.navigateByUrl("/dashboard/other-user-action/invest");
 	}
 
+	detailInvestUrl = 'https://masscredit-api.stagingapps.net/user/loan/detail';
 	getDetailInvest(){
 	// API detail invest
-  this.http.post('https://masscredit-api.stagingapps.net/user/loan/detail',this.data_detail_invest,this.options)
+  this.http.post(this.detailInvestUrl,this.data_detail_invest,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			console.log(response)
+			// console.log(response)
 			// alert("dari detail")
 			this.data = response.data;
 			this.dataAmount = response.data.amount;
