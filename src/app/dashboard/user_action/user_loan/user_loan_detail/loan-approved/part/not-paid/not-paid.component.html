@@ -1,0 +1,121 @@
+<section class="content">
+<!-- Modal -->
+<div class="modal fade modal-lg" id="NotPaidForm" style="z-index:9000;">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" (click)="hideInstallmentNotPaid(0)">&times;</button>
+      <h4 class="modal-title">Detail Angsuran</h4>
+    </div>
+    <div class="modal-body">
+    <div  *ngIf="loaderInstallmentNotPaid == 0">
+    <div class="row">
+      <div align="center"> 
+        <br><br><br><br><br>
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    </div>
+    <div  *ngIf="loaderInstallmentNotPaid == 1">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Angsuran ke</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Angsuran ke" class="form-control input-md" name="angsuran_ke" id="angsuran_ke" value="{{ dataDetailInstallment.dataInstallment.installment_order }}" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Tanggal Jatuh Tempo</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Tanggal Jatuh Tempo" class="form-control input-md" name="tanggal_jatuh_tempo" id="tanggal_jatuh_tempo" value="{{ dataDetailInstallment.dataInstallment.due_date }}" disabled>
+          </div>
+       </div>
+      <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Status</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Status" class="form-control input-md" name="status" id="status" value="{{ dataDetailInstallment.dataInstallment.status }}" disabled>
+          </div>
+       </div>
+       <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Pokok</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Pokok" class="form-control input-md" name="pokok" id="pokok" value="{{ dataDetailInstallment.dataInstallment.pokok }}" disabled>
+          </div>
+       </div>
+      </div>
+      <div class="col-md-6">
+       <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Bunga</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Bunga" class="form-control input-md" name="bunga" id="bunga" value="{{ dataDetailInstallment.dataInstallment.bunga }}" disabled>
+          </div>
+       </div>
+       <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Charge</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Charge" class="form-control input-md" name="charge" id="charge" value="{{ dataDetailInstallment.dataInstallment.charge_fee }}" disabled>
+          </div>
+       </div>
+       <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Denda</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Denda" class="form-control input-md" name="denda" id="denda" value="{{ dataDetailInstallment.dataInstallment.denda }}" disabled>
+          </div>
+       </div>
+       <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Total Pembayaran</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Total Pembayaran" class="form-control" name="total_pembayaran" id="total_pembayaran" value="{{ dataDetailInstallment.dataInstallment.total_payment }}" disabled>
+          </div>
+       </div>
+       <div class="form-group">
+          <div class="col-xs-5">
+            <label class="unit">Tanggal Pembayaran</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Tangal Pembayaran" class="form-control" name="tanggal_pembayaran" id="tanggal_pembayaran" value="-" disabled>
+          </div>
+       </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <div class="form-group">
+        <div class="col-md-6 col-center">
+          <button class="btn btn-red" (click)="paidInstallment()">Bayar</button>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    <div  *ngIf="loaderInstallmentNotPaid == 2">
+      <div class="row">
+      <div class="col-xs-12">
+        <verify [dataDetailInstallment]="dataDetailInstallment" (onHide)="hideInstallmentNotPaid($event)"></verify>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+</section>
