@@ -1,8 +1,9 @@
-import { Component, OnInit } 						  	   from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ValidationServiceInvestasi } 					   from './validationservice.component';
-import { Headers, Http, RequestOptions }	   from '@angular/http';
-import { Router, ActivatedRoute }        					   from '@angular/router';
+import { ValidationServiceInvestasi } from './validationservice.component';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DetailService } from './detail.service';
 
 declare var jQuery:any;
 declare var image:void;
@@ -10,134 +11,99 @@ declare var image:void;
 @Component({
 	selector: 'detail',
 	templateUrl: 'detail.component.html',
+	providers: [DetailService]
 })
 
 export class DetailComponent {
-	constructor(private http: Http, private router:Router, private activatedRoute :ActivatedRoute) { }
 
-			
-		// set header
-		public headers = new Headers({ 
-			 	'Content-Type': 'application/json',
-			 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-		});
-  	public options = new RequestOptions({ headers: this.headers });
+	constructor(
+		private http: Http, 
+		private router:Router, 
+		private activatedRoute :ActivatedRoute,
+		private detailService:DetailService
+	) {	
+		detailService.Part$.subscribe(statusPart2 => {
+			this.showPart = 'false';
+		} )
+	}
 
-  		// param url
-		public access_token = JSON.parse(localStorage.getItem("access_token"));
-		public  invest_id	    = ''; 
-		
 
-		// objek for save data when after request detail
-		public data_detail_invest = {
-			access_token : this.access_token,
-			invest_id : '',
-		}
+	statusPart:string;
 
-		public data_history_payment = {
-			access_token : this.access_token,
-			invest_id : '',
-			borrower_id : '',
-			page:1,
-      limit:10
-		}
+	// set header
+	public headers = new Headers({ 
+	 	'Content-Type': 'application/json',
+	 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	});
+	public options = new RequestOptions({ headers: this.headers });
 
-		public data = { };
-		// public dataAmount = [];
-		public dataSalary = { };
-		public dataBorrowerAmount = { };
+	public access_token = JSON.parse(localStorage.getItem("access_token"));
+	
+	public data_history_payment = {
+		access_token : this.access_token,
+		invest_id : null,
+		borrower_id : null,
+		page : 1,
+    limit : 10
+	}
 
-		public dataBorrower = [];
-		private dataDetailListMyInvest = 0;
-		public dataAmount = { }
-		public dataPayment = [];
-		public dataArrayNull = 0;
+	public data = { };
+	public dataSalary = { };
+	public dataBorrowerAmount = { };
+
+	public dataPayment = [];
+
+	public statusChanges:null;
 
 	ngOnInit(){
-		// Objek for get id on route
+		// object for get id on route
 		let param = this.activatedRoute.params.subscribe( params => {
 			let id = params['id'];
 			this.data_detail_invest.invest_id = id;
+			this.data_list_investor.loan_id = id;
 	  	this.data_history_payment.invest_id = id;
 	  });
 		// API list borrower
-		// this.getListBorrower();
+		this.getListInvestor();
 		// API list borrower
 		this.getDetailMyLoan();
-		// // API list history payment
-		// this.getHistoryPayment();
 	}
 
-	backFund(){
-		this.router.navigateByUrl('/dashboard/fund')
+	ngDoCheck(){
+		if(this.statusChanges == 1) {
+			this.getListInvestor();
+		}
 	}
 
-	private listInvestorUrl = 'https://masscredit-api.stagingapps.net/user/borrower/getlist';
+	statusInvestor(status:any){
+		// console.log(status);
+		this.statusChanges = status;
+	}
+
+	private listInvestorUrl = 'https://masscredit-api.stagingapps.net/user/investor/getlist';
+	public data_list_investor = {
+		access_token : this.access_token,
+		loan_id : '',
+	}
+	public dataInvestor = [];
+	public dataArrayNull = 0;
 	getListInvestor(){
-		// API detail invest
-	    this.http.post(this.listInvestorUrl,this.data_detail_invest,this.options)
-				.map(response => response.json())
-				.subscribe((response : any) => {
-					// alert(response.data.borrower)
-					if(response.data.borrower == '') {
-						this.dataArrayNull = 1;
-					}
-					this.dataBorrower = response.data.borrower;
-					let code = response.meta.code
-					if(code == 200) {
-						for(let i = 0; i < this.dataBorrower.length; i++){
-							let dataAmount = this.dataBorrower[i]
-							let amount = dataAmount['loan_amount'];
-							// console.log(amount)
-							// condition make delimiter
-							var _minus = false;
-							var b:any = amount.toString();
-							if (b<0) _minus = true;
-								b=b.replace(".","");
-								b=b.replace("-","");
-								let c = "";
-								let panjang = b.length;
-								let j = 0;
-							for (let i = panjang; i > 0; i--){
-								j = j + 1;
-								if (((j % 3) == 1) && (j != 1)){
-									c = b.substr(i-1,1) + "." + c;
-									// console.log(c)
-								} else {
-									c = b.substr(i-1,1) + c;
-								}
-							}
-							if (_minus) c = "-" + c ;
-							let idr = "Rp.";
-							dataAmount['loan_amount'] = idr.concat(c);
-						}
-					}else{
-						alert("Gagal get list Borrower")
-					}
-
-				},(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-					var code = error.meta.code
-					if(message == "unauthorized") {
-						alert("Maaf session anda telah habis silahkan login kembali")
-						return this.router.navigateByUrl('/dashboard/sign-out')					
-					}
-				});
-	}
-
-	private detailLoanUrl= 'https://masscredit-api.stagingapps.net/user/investment/detail';
-	getDetailMyLoan(){
-		// API detail invest
-	    this.http.post(this.detailLoanUrl,this.data_detail_invest,this.options)
-				.map(response => response.json())
-				.subscribe((response : any) => {
-					console.log(response)
-					this.data = response.data;
-					let code = response.meta.code;
-					if(code == 200) {
-						let amount = response.data.amount;
-						// condition make delimiter
+    this.http.post(this.listInvestorUrl,this.data_list_investor,this.options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				// this.statusChanges = null;
+				if(response.data.investor == '') {
+					this.dataArrayNull = 1;
+				}
+				if(this.statusChanges == 1) {
+					this.statusChanges = null;
+				}
+				this.dataInvestor = response.data.investor;
+				let code = response.meta.code
+				if(code == 200) {
+					for(let i = 0; i < this.dataInvestor.length; i++){
+						let dataAmount = this.dataInvestor[i]
+						let amount = dataAmount['invest_amount'];
 						var _minus = false;
 						var b:any = amount.toString();
 						if (b<0) _minus = true;
@@ -146,64 +112,73 @@ export class DetailComponent {
 							let c = "";
 							let panjang = b.length;
 							let j = 0;
-						for (let i = panjang; i > 0; i--){
-							j = j + 1;
-							if (((j % 3) == 1) && (j != 1)){
-								c = b.substr(i-1,1) + "." + c;
-								// console.log(c)
-							} else {
-								c = b.substr(i-1,1) + c;
+							for (let i = panjang; i > 0; i--){
+								j = j + 1;
+								if (((j % 3) == 1) && (j != 1)){
+									c = b.substr(i-1,1) + "." + c;
+									// console.log(c)
+								}else{
+									c = b.substr(i-1,1) + c;
+								}
 							}
-						}
 						if (_minus) c = "-" + c ;
 						let idr = "Rp.";
-						this.dataAmount =  idr.concat(c);
-						this.dataDetailListMyInvest = 1;
+						dataAmount['loan_amount'] = idr.concat(c);
 					}
-				},(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-					var code = error.meta.code
-					if(message == "unauthorized") {
-						alert("Maaf session anda telah habis silahkan login kembali")
-						return this.router.navigateByUrl('/dashboard/sign-out')					
-					}
-				});	
-	}
-
-	cancelDetailInvest(){
-		this.router.navigateByUrl("/dashboard/user-action/user-invest");
-	}
-
-	showForm(){
-		jQuery("#formDetail").show();
-	}
-
-	public loaderBorrowerApproved = 0;
-	public getDetailBorrower = {
-		access_token : this.access_token,
-		borrower_id : null
-	}
-
-	public dataDetailBorrower = {};
-
-	showDetailBorrowerApproved(id:any){
-		this.getDetailBorrower.borrower_id = id;
-		this.getHistoryPayment(id);
-		jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
-		// API detail invest
-    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/detail',this.getDetailBorrower,this.options)
-		.map(response => response.json())
-		.subscribe((response : any) => {
-				let code = response.meta.code
-				if(code == 200) {
-					this.dataDetailBorrower = response.data;
-					this.dataSalary = response.data.amount
-					this.dataBorrowerAmount = response.data.borrower_amount
-					this.delimiterSalary(this.dataSalary);
+				}else{
+					alert("Gagal get list Investor");
 				}
-				else{
-					alert("Data Detail Borrower gagal diambil")
+
+			},(err:any) => {
+				var error   = JSON.parse(err._body);
+				var message = error.meta.message;
+				var code = error.meta.code;
+				if(message == "unauthorized") {
+					alert("Maaf session anda telah habis silahkan login kembali")
+					return this.router.navigateByUrl('/dashboard/sign-out')					
+				}
+			});
+	}
+
+	private detailLoanUrl= 'https://masscredit-api.stagingapps.net/user/investment/detail';
+	public data_detail_invest = {
+		access_token : this.access_token,
+		invest_id : '',
+	}
+	private dataDetailListMyInvest = 0;
+	public dataAmount = { }
+
+	getDetailMyLoan(){
+		// API detail invest
+    this.http.post(this.detailLoanUrl,this.data_detail_invest,this.options)
+			.map(response => response.json())
+			.subscribe((response : any) => {
+				this.data = response.data;
+				let code = response.meta.code;
+				if(code == 200) {
+					let amount = response.data.amount;
+					// condition make delimiter
+					var _minus = false;
+					var b:any = amount.toString();
+					if (b<0) _minus = true;
+						b=b.replace(".","");
+						b=b.replace("-","");
+						let c = "";
+						let panjang = b.length;
+						let j = 0;
+					for (let i = panjang; i > 0; i--){
+						j = j + 1;
+						if (((j % 3) == 1) && (j != 1)){
+							c = b.substr(i-1,1) + "." + c;
+							// console.log(c)
+						} else {
+							c = b.substr(i-1,1) + c;
+						}
+					}
+					if (_minus) c = "-" + c ;
+					let idr = "Rp.";
+					this.dataAmount =  idr.concat(c);
+					this.dataDetailListMyInvest = 1;
 				}
 			},(err:any) => {
 				var error   = JSON.parse(err._body)
@@ -215,164 +190,36 @@ export class DetailComponent {
 				}
 			});	
 	}
-	hideDetailBorrowerApproved(){
-		jQuery('#myModal').modal('toggle');
-		this.loaderBorrowerApproved = 0;
+
+	cancelDetailInvest(){
+		this.router.navigateByUrl("/dashboard/user-action/user-invest");
 	}
 
-	public dataApprove = {
-			access_token: this.access_token,
-      borrower_id: null,
-      invest_id: null,
-      approval_status: null, 
-      password: null,
-      otp: null,
-		}
-	private formConfirm = 0;
-
-	showDetailBorrowerNotApproved(id:any){
-		this.getDetailBorrower.borrower_id = id;
-		this.getHistoryPayment(id);
-		jQuery('#FormApproved').modal({backdrop: 'static', keyboard: false});
-		// API detail invest
-	    this.http.post('https://masscredit-api.stagingapps.net/user/borrower/detail',this.getDetailBorrower,this.options)
-			.map(response => response.json())
-			.subscribe(
-				(response : any) => {
-					let code = response.meta.code
-					if(code == 200) {
-						this.dataDetailBorrower = response.data;
-						this.dataSalary = response.data.amount
-						this.dataBorrowerAmount = response.data.borrower_amount
-						this.delimiterSalary(this.dataSalary);
-					}
-					else{
-						alert("Data Detail Borrower gagal diambil")
-					}
-				},
-				(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-					var code = error.meta.code
-					if(message == "unauthorized") {
-						alert("Maaf session anda telah habis silahkan login kembali")
-						return this.router.navigateByUrl('/dashboard/sign-out')					
-					}
-				}
-			);	
+	showDetailInvestorApproved(investId:any,loanId:any){
+		this.router.navigate(['/dashboard/user-action/user-loan/detail/',investId,'loan-approved',loanId])
 	}
 
-	sendDataApprove(){
-		// API approve
-    this.http.post('https://masscredit-api.stagingapps.net/user/myinvestment/approve',this.dataApprove,this.options)
-			.map(response => response.json())
-			.subscribe(
-				(response : any) => {
-					// console.log(response);
-					let code = response.meta.code
-					if(code == "200") {
-						alert("Investasi berhasil");
-						jQuery('#modalFormConfirm').modal("toggle");
-						this.router.navigateByUrl("/dashboard/user-action/user-invest");
-					}
-				},
-				(err : any) => {
-					var error   = JSON.parse(err._body)
-          var code = error.meta.code
-          var message = error.meta.message
-            if(message == "Password salah!") {
-              alert("Password salah!")              
-            }if(message == "Verifikasi salah.") {
-              alert("Verifikasi salah.")              
-            }  
-            
-          }
-			);	
+	public loaderBorrowerApproved = 0;
+	public getDetailBorrower = {
+		access_token : this.access_token,
+		borrower_id : null,
+		invest_id : null
 	}
 
-	delimiterSalary(dataSalary:any){
-		try{
-			// condition make delimiter
-			var _minus = false;
-			var b:any = dataSalary.toString();
-			if (b<0) _minus = true;
-				b=b.replace(".","");
-				b=b.replace("-","");
-				let c = "";
-				let panjang = b.length;
-				let j = 0;
-			for (let i = panjang; i > 0; i--){
-				j = j + 1;
-				if (((j % 3) == 1) && (j != 1)){
-					c = b.substr(i-1,1) + "." + c;
-					// console.log(c)
-				} else {
-					c = b.substr(i-1,1) + c;
-				}
-			}
-			if (_minus) c = "-" + c ;
-			let idr = "Rp.";
-			this.dataSalary = idr.concat(c);
-		}finally{
-			this.delimiterBorrowerAmount(this.dataBorrowerAmount);
-		}
+	public loanId:number;
+	public investId:number;
+
+	public dataDetailBorrower = {};
+	showPart = 'false';
+	showDetailInvestorNotApproved(loanId:any,investId:any){
+		let partTrue = 'true';
+		this.statusPart = 'true';
+		this.showPart = partTrue;
+		this.loanId = loanId;
+		this.investId = investId;
 	}
 
-	delimiterBorrowerAmount(dataBorrowerAmount:any){
-		try{
-			// condition make delimiter
-			var _minus = false;
-			var b:any = dataBorrowerAmount.toString();
-			if (b<0) _minus = true;
-				b=b.replace(".","");
-				b=b.replace("-","");
-				let c = "";
-				let panjang = b.length;
-				let j = 0;
-			for (let i = panjang; i > 0; i--){
-				j = j + 1;
-				if (((j % 3) == 1) && (j != 1)){
-					c = b.substr(i-1,1) + "." + c;
-					// console.log(c)
-				} else {
-					c = b.substr(i-1,1) + c;
-				}
-			}
-			if (_minus) c = "-" + c ;
-			let idr = "Rp.";
-			this.dataBorrowerAmount = idr.concat(c);
-		}finally{
-			this.loaderBorrowerApproved = 1;
-			return true;
-		}
-	}
-
-	getHistoryPayment(id:any){
-		// console.log(id)
-		this.data_history_payment.borrower_id = id;
-		// API history payment
-    this.http.post('https://masscredit-api.stagingapps.net/user/payment-history/get-list',this.data_history_payment,this.options)
-			.map(response => response.json())
-			.subscribe(
-				(response : any) => {
-				// console.log(response)
-				let code = response.meta.code;
-					if(code == 200) {
-						this.dataPayment = response.data.history_payment;
-					}
-					else{
-						alert("Data gagal diambil");
-					}
-				},
-				(err:any) => {
-					var error   = JSON.parse(err._body)
-					var message = error.meta.message
-					var code = error.meta.code
-					if(message == "unauthorized") {
-						alert("Maaf session anda telah habis silahkan login kembali")
-						return this.router.navigateByUrl('/dashboard/sign-out')					
-					}
-				}
-			);
-	}
+	onHide2(agreed: string) {
+		this.showPart = agreed;
+  }
 }
