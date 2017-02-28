@@ -52,15 +52,15 @@ export class LoanApprovedComponent implements OnInit{
 
 	ngOnInit(){
 		let param = this.activatedRoute.params.subscribe( params => {
-			let investor_id = params['id'];
-			let loan_id = params['loanId'];
-			if(investor_id != null && loan_id != null) {
-				this.data_list_installment.loan_id = loan_id;
-				this.data_list_installment.investor_id = investor_id;
-				this.data_investor.investor_id = investor_id;
-				this.data_investor.loan_id = loan_id;
-				this.detailInstallment.dataLoan = loan_id; // for payment
-				this.detailInstallment.dataInvestor = investor_id; // for payment
+			let loanId = params['id'];
+			let investorId = params['investorId'];
+			if(loanId != null && investorId != null) {
+				this.data_list_installment.loan_id = loanId;
+				this.data_list_installment.investor_id = investorId;
+				this.data_investor.investor_id = investorId;
+				this.data_investor.loan_id = loanId;
+				this.detailInstallment.dataLoan = loanId; // for payment
+				this.detailInstallment.dataInvestor = investorId; // for payment
 				if(this.data_investor.investor_id != null && this.data_investor.loan_id != null) {
 					this.getDetailInvestor();
 				}
