@@ -31,14 +31,12 @@
               <td>{{ i + 1 }}</td>
               <td align="left">{{ data.loan_name }}</td>
               <td><img src="{{ data.image_loan }}" alt="Pinjaman" style="border-radius: 5px;width:70px;height:70px"></td>
-              <td><span class="warranty"></span></td>
-              <td><span class="warranty">{{ data.loan_category }}</span></td>
+              <td>{{ data.type_invest }}</td>
+              <td>{{ data.loan_category }}</td>
               <td>{{ data.amount }}</td>
               <td>
-                <!-- <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id]"><i aria-hidden="true" class="fa fa-trash"></i></a> -->
-                <!-- <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></a> -->
-                <button class="pull-right" [routerLink]="['/dashboard/user-action/user-loan/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
-                <!-- <button class="pull-right" onclick="alert('Belum tersedia')"><i aria-hidden="true" class="fa fa-search"></i></button> -->
+                <button class="pull-right" *ngIf="data.loan_category != '-'" (click)="detailAddLoan(data.id)"><i aria-hidden="true" class="fa fa-search"></i></button>
+                <button class="pull-right" *ngIf="data.loan_category == '-'" (click)="detailGiveLoan(data.id,data.investor_id)"><i aria-hidden="true" class="fa fa-search"></i></button>
               </td>
             </tr>
           </tbody>
