@@ -18,6 +18,7 @@
               <th>Nama Investasi</th>
               <th>Investasi</th>
               <th>Tipe</th>
+              <th>Kategori</th>
               <th>Nominal Investasi</th>
               <th></th>
             </tr>
@@ -30,7 +31,8 @@
               <td>{{ i + 1 }}</td>
               <td align="left">{{ data.invest_name }}</td>
               <td><img src="{{ data.image_invest }}" alt="Investasi" style="border-radius: 5px;width:70px;height:70px"></td>
-              <td><span class="warranty">{{ data.type_invest }}</span></td>
+              <td>{{ data.type_invest }}</td>
+              <td>{{ data.loan_category }}</td>
               <td>{{ data.amount }}</td>
               <td>
                 <!-- <a class="pull-right" [routerLink]="['/dashboard/user-action/user-invest/detail', data.id]"><i aria-hidden="true" class="fa fa-trash"></i></a> -->
