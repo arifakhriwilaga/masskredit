@@ -1,0 +1,106 @@
+<section class="content">
+<!-- Modal -->
+<div class="modal fade modal-lg" id="FormApprove" style="z-index:9000;">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" (click)="hideDetailInvestor(false)">&times;</button>
+      <h4 class="modal-title">Detail Investor</h4>
+    </div>
+    <div class="modal-body">
+    <div  *ngIf="loaderDetailInvestor == 0">
+    <div class="row">
+      <div align="center"> 
+        <br><br><br><br><br>
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    </div>
+    <div  *ngIf="loaderDetailInvestor == 1">
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{{ dataDetailInvestor.investor_image }}" alt="Foto Investor">
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label class="unit">Nama Lengkap</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Nama Lengkap" class="form-control input-md" name="full_name" id="full_name" value="{{ dataDetailInvestor.investor_name }}" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label class="unit">investor</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="investor" class="form-control input-md" name="investor" id="investor" value="{{ dataDetailInvestor.investor }}" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label class="unit">Credit</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Credit" class="form-control input-md" name="credit" id="credit" value="{{ dataDetailInvestor.fund_history }}" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label class="unit">Salary</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Salary" class="form-control input-md" name="salary" id="salary" value="{{ dataDetailInvestor.user_class }}" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label class="unit">Review</label>
+          </div>
+          <div class="col-xs-7">
+            <div class="unit">
+              <!-- <i class="fa fa-star-half-full full" area-hidden="true"></i> -->
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px; color: orange"></i>
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+              <!-- <span class="bs-glyphicons-list">
+              <span class="glyphicon glyphicon-star star-color star-full"></span>
+              <span class="glyphicon glyphicon-star star-color font half"></span>
+              </span> -->
+              <!-- <span>({{ avg_reviews }} %)</span> -->
+              <span>({{ dataDetailInvestor.avg_reviews }} %)</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label class="unit">Jumlah Investasi</label>
+          </div>
+          <div class="col-xs-7">
+            <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="nilai_pinjaman" id="nilai_pinjaman" value="{{ dataInvestorAmount }}" disabled>
+          </div>
+       </div> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <div class="form-group">
+        <div class="col-md-6 col-center">
+          <button class="btn btn-default" (click)="rejectInvest()">Tolak</button>
+          <button class="btn btn-red" (click)="approveInvest()">Setuju</button>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    <verify *ngIf="loaderDetailInvestor == 2" (hideDetailInvestor)="hideDetailInvestor($event)" (showLoader)="showLoader($event)"></verify> 
+    </div>
+  </div>
+  </div>
+</div>
+</section>
