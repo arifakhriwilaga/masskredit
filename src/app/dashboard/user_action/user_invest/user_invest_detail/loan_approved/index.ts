@@ -1,33 +1,29 @@
-// Module
-import { NgModule }              from '@angular/core';
-import { RouterModule }          from '@angular/router';
-import { HttpModule }            from '@angular/http';
-import { FormsModule }           from '@angular/forms';
-// import { LocalStorageService }   from 'angular-2-local-storage';
+// module
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-
-// debugger;
-// Component
-import { LoanApprovedComponent }        from './loan_approved.component';
-
+// component
+import { LoanApprovedComponent } from './loan_approved.component';
+import { DetailPaymentComponent } from './detail-payment';
 export const routes = [
   { path:'', component: LoanApprovedComponent},
 ] 
 
 @NgModule({
-  declarations: [
-    LoanApprovedComponent, // declarations LoginComponent
+  declarations: [ 
+    LoanApprovedComponent,
+    DetailPaymentComponent
   ],
-  imports: [ // import Angular's modules
+  imports: [ 
     HttpModule,
     FormsModule,
+    CommonModule,
     RouterModule.forChild(routes)
   ],
-  // exports: [LoginComponent],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-    // LocalStorageService,
-    // LoginComponent,
-  ]
+  providers: [ ]
 })
 
 export default class LoanApprovedModule { 
