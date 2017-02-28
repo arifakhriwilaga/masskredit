@@ -1,122 +1,119 @@
-<section class="content">
-  <div class="col-xs-12">
-    <div class="row" align="center">
-      <label><h2 style="font-size: 24px;color: orange;">Detail Peminjam</h2></label>
+<div  *ngIf="loaderDetailBorrower == 0">
+  <div class="row">
+    <div align="center"> 
+      <br><br><br><br><br>
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
-<div class="col-md-4">
-   <div class="row">
-      <div class="box box-solid radius-10" style="border: 2px">
-        <div class="form-group">
-            <img src="" alt="Foto Diri Peminjam" class="thumbnail" width="250px" height="250px">
-        </div>
-      </div>
-  </div>
 </div>
-<div class="col-md-7">
+<div  *ngIf="loaderDetailBorrower == 1">
   <div class="row">
-      <div class="box box-solid radius-10" style="border: 2px">
-        <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Nama Lengkap</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Nama Lengkap" class="form-control input-md" name="full_name" id="full_name" disabled>
+    <h2 align="center">Detail Borrower</h2>
+    <br>
+    <div class="col-md-4">
+     <img src="{{ dataDetailBorrower.borrower_image }}" alt="Foto Peminjam">
+    </div>
+    <div class="col-md-8">
+      <div class="form-group">
+        <div class="col-xs-4">
+          <label class="unit">Nama Lengkap</label>
+        </div>
+        <div class="col-xs-7">
+          <input type="text" placeholder="Nama Lengkap" class="form-control input-md" name="full_name" id="full_name" value="{{ dataDetailBorrower.borrower_name }}" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-4">
+          <label class="unit">Borrower</label>
+        </div>
+        <div class="col-xs-7">
+          <input type="text" placeholder="Borrower" class="form-control input-md" name="borrower" id="borrower" value="{{ dataDetailBorrower.borrower }}" disabled>
+        </div>
+     </div>
+     <div class="form-group">
+        <div class="col-xs-4">
+          <label class="unit">Credit</label>
+        </div>
+        <div class="col-xs-7">
+          <input type="text" placeholder="Credit" class="form-control input-md" name="credit" id="credit" value="{{ dataDetailBorrower.fund_history }}" disabled>
+        </div>
+     </div>
+     <div class="form-group">
+        <div class="col-xs-4">
+          <label class="unit">Salary</label>
+        </div>
+        <div class="col-xs-7">
+          <input type="text" placeholder="Salary" class="form-control input-md" name="salary" id="salary" value="{{ dataDetailBorrower.user_class }}" disabled>
+        </div>
+     </div>
+     <div class="form-group">
+        <div class="col-xs-4">
+          <label class="unit">Review</label>
+        </div>
+        <div class="col-xs-7">
+          <div class="unit">
+              <!-- <i class="fa fa-star-half-full full" area-hidden="true"></i> -->
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px; color: orange"></i>
+              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+              <!-- <span class="bs-glyphicons-list">
+              <span class="glyphicon glyphicon-star star-color star-full"></span>
+              <span class="glyphicon glyphicon-star star-color font half"></span>
+              </span> -->
+              <!-- <span>({{ avg_reviews }} %)</span> -->
+              <span>({{ dataDetailBorrower.avg_reviews }} %)</span>
           </div>
         </div>
-        <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Borrower</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Borrower" class="form-control input-md" name="borrower" id="borrower" disabled>
-          </div>
-       </div>
-       <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Credit</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Credit" class="form-control input-md" name="credit" id="credit" disabled>
-          </div>
-       </div>
-       <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Salary</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Salary" class="form-control input-md" name="salary" id="salary" disabled>
-          </div>
-       </div>
-       <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Review</label>
-          </div>
-          <div class="col-xs-7">
-            <div class="unit">
-                <!-- <i class="fa fa-star-half-full full" area-hidden="true"></i> -->
-                <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
-                <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
-                <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
-                <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px; color: orange"></i>
-                <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
-                <!-- <span class="bs-glyphicons-list">
-                <span class="glyphicon glyphicon-star star-color star-full"></span>
-                <span class="glyphicon glyphicon-star star-color font half"></span>
-                </span> -->
-                <!-- <span>({{ avg_reviews }} %)</span> -->
-                <span>(12.000 user)</span>
-            </div>
-          </div>
-       </div>
-       <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Jaminan</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Jaminan" class="form-control input-md" name="jaminan" id="jaminan" disabled>
-          </div>
-       </div>
-       <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Bunga</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Bunga" class="form-control input-md" name="bunga" id="bunga" disabled>
-          </div>
-       </div>
-       <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Tenor</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" disabled>
-          </div>
-       </div>
-       <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Taksiran Harga Masscredit</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Taksiran" class="form-control input-md" name="taksiran" id="taksiran" disabled>
-          </div>
-       </div>
-       <div class="form-group">
-          <div class="col-xs-4">
-            <label class="unit">Nilai Pinjaman</label>
-          </div>
-          <div class="col-xs-7">
-            <input type="text" placeholder="Nilai Pinjaman" class="form-control input-md" name="nilai_pinjaman" id="nilai_pinjaman" disabled>
-          </div>
-       </div>
-      </div>
+     </div>
+     <div class="form-group">
+        <div class="col-xs-4">
+          <label class="unit">Jumlah Pinjaman</label>
+        </div>
+        <div class="col-xs-7">
+          <input type="text" placeholder="Nilai Pinjaman" class="form-control input-md" name="nilai_pinjaman" id="nilai_pinjaman" value="{{ dataBorrowerAmount }}" disabled>
+        </div>
+     </div> 
+    </div>
   </div>
+  <div class="row">
+    <div class="col-xs-12">
+   <label><h2 style="font-size: 30px;color: orange;">Riwayat Pembayaran</h2></label>
+    <div class="box-body data-tables table-responsive">
+    <table class="table table-hover" id="example2">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Angsuran Ke</th>
+          <th>Tanggal Jatuh Tempo</th>
+          <th>Tanggal Pembayaran</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dataPayment of dataPayment, let i ='index'">
+          <td>{{ i + 1 }}</td>
+          <td>{{ dataPayment.installment_order }}</td>
+          <td>{{ dataPayment.due_date }}</td>
+          <td>{{ dataPayment.payment_date }}</td>
+          <td>{{ dataPayment.status }}</td>
+          <td *ngIf="dataPayment.status == 'Belum Bayar'">
+            <button class="pull-right" (click)="showNotPaidForm(dataPayment.history_payment_id)"><i aria-hidden="true" class="fa fa-search"></i></button>
+          </td>
+          <td *ngIf="dataPayment.status == 'Lunas'">
+            <button class="pull-right" (click)="showPaidForm(dataPayment.history_payment_id)">
+              <i aria-hidden="true" class="fa fa-search"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>  
+    </div>
+  </div>
+  <detail-payment *ngIf="showDetailPayment == 1" [dataDetailPayment]="detailPayment" (onHide)="onHide($event)"></detail-payment>
 </div>
-<div class="col-md-12">
-   <div class="form-group">
-      <div class="col-md-6 col-center">
-        <button class="btn btn-default" (click)="backIndexInvest()">Kembali</button>
-      </div>
-   </div>
-</div>
-</section>
+<br>
