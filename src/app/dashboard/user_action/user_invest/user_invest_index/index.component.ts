@@ -91,4 +91,12 @@ export class IndexComponent {
 		});
 	}
 
+	detailAddInvest(investId:number){
+		this.router.navigateByUrl('/dashboard/user-action/user-invest/detail/'+investId)
+	}
+
+	detailGiveInvest(investId:number,borrowerId:number){
+		this.router.navigateByUrl('/dashboard/user-action/user-invest/detail/'+investId+'/loan-approved/'+borrowerId)
+	}
+
 }
