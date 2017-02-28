@@ -146,7 +146,7 @@
           </button>
         </td>
         <td *ngIf="dataInvestor.status == 'Setuju' || dataInvestor.status == 'Tolak'">
-          <button class="pull-right" (click)="showDetailInvestorApproved(dataInvestor.id, data.id)">
+          <button class="pull-right" (click)="showDetailInvestorApproved(data.id,dataInvestor.id)">
             <i aria-hidden="true" class="fa fa-search"></i>
           </button>
         </td>
