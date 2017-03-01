@@ -27,12 +27,8 @@
                      </select>
                    </div>
                </div>
-              <div class="form-group">
-                 <div class="col-md-12">
-                    <span class="required">*</span>
-                    <input type="text" id="other_category" name="other_category" [(ngModel)]="loan.other_category" placeholder="Nama Category" class="form-control input-md">
-                 </div>
-              </div>
+                <!-- if user choose other category -->
+                <name-other-category *ngIf="loanCategory == -1"></name-other-category>
                 <div class="form-group">
                    <div class="col-md-12">
                      <span class="required">*</span>
