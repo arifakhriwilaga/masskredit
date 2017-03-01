@@ -73,7 +73,6 @@ export class DashboardComponent implements OnInit{
     this.http.post(this.profileUrl,this.token,this.options)
       .map(response => response.json())
       .subscribe((response : any) => {
-         // console.log(response)
         this.profile         = response.data.profile.name;
         this.account_summary = response.data.account_summary;
 

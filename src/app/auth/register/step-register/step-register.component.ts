@@ -78,7 +78,18 @@ export class StepRegisterComponent  {
 		      required: true
 		    }
 		  },
-		  // message : jQuery("#registerForm"){
+		  messages : {
+		  	nama_lengkap: "Data dibutuhkan",
+		    alamat_email: "Data dibutuhkan",
+		    password: "Data dibutuhkan",
+		    confirm_password: "Data dibutuhkan",
+		    jenis_kelamin: "Data dibutuhkan",
+		    kode_pos: "Data dibutuhkan",
+		    tempat_lahir: "Data dibutuhkan",
+		    tanggal_lahir: "Data dibutuhkan",
+		    alamat: "Data dibutuhkan",
+		    status_rumah: "Data dibutuhkan"
+		  }
 		});
 	}
 

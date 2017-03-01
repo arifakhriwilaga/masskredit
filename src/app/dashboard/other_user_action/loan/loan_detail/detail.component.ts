@@ -71,8 +71,10 @@ export class DetailComponent {
   this.http.post('https://masscredit-api.stagingapps.net/user/investment/detail',this.data_detail_loan,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			// console.log(response)
-			// alert("dari detail")
+			let imageDefault = 'assets/img/default_image.jpg';
+			if(response.data.images == '') {
+				response.data.images = imageDefault;
+			}
 			this.data = response.data;
 			this.dataAmount = response.data.amount;
 			this.dataRestAmount = response.data.sisa;

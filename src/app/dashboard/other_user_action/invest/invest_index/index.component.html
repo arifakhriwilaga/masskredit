@@ -18,7 +18,8 @@
           <tr>
             <th>No.</th>
             <th>Investor</th>
-            <th>Investasi</th>
+            <th>Nama Investor</th>
+            <th>Nilai</th>
             <th>Tipe</th>
             <th>Nominal Investasi</th>
             <th></th>
@@ -30,9 +31,14 @@
           </tr>
           <tr *ngFor="let data of invest; let i = 'index'">
             <td>{{ i + 1 }}</td>
-            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Investor" style="border-radius: 80px;width:55px;height:55px">{{ data.nama_investor }}</td>
-            <td><img src="{{ data.image_invest }}" alt="Investasi" style="border-radius: 5px;width:70px;height:70px"></td>
-            <td><span  class="warranty">{{ data.type_invest }}</span></td>
+            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Investor" style="border-radius: 80px;width:55px;height:55px"></td>
+            <td>{{ data.nama_investor }}</td>
+            <td>
+              Borrower: {{ data.user_score_borrower }} <br>
+              Salary: {{ data.user_class }} <br>
+              Credit: {{ data.user_score_credit }}
+            </td>
+            <td>{{ data.type_invest }}</td>
             <td>{{ data.amount }}</td>
             <td>
               <button class="pull-right" [routerLink]="['/dashboard/other-user-action/invest/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></button>

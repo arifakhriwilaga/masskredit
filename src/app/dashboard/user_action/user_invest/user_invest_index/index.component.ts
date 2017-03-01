@@ -37,7 +37,6 @@ export class IndexComponent {
 		this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			// console.log(response);
 			if(response.data.investments == '') {
 				this.dataArrayNull = 1;
 			}
@@ -56,7 +55,10 @@ export class IndexComponent {
 			}if(loan_category == "") {
 				data['loan_category'] = "-";
 			}
-
+			let imageDefault = 'assets/img/default_image.jpg';
+			if(data['image_invest'] == '') {
+				data['image_invest'] = imageDefault;
+			}
 			let amount = data['amount'];
 			// condition make delimiter
 			var _minus = false;

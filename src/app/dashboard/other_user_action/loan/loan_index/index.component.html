@@ -20,8 +20,8 @@
         <thead>
           <tr>
             <th>No.</th>
-            <th>Gambar</th>
-            <th>Pinjaman</th>
+            <th>Borrower</th>
+            <th>Nama Borrower</th>
             <th>Nilai</th>
             <th>Kategori</th>
             <th>Nominal (Rp)</th>
@@ -34,14 +34,14 @@
           </tr>
           <tr *ngFor="let data of invest; let i = 'index'">
             <td>{{ i + 1 }}</td>
-            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Borrower" style="border-radius: 80px;width:55px;height:55px">{{ data.nama_borrower }}</td>
-            <td><img src="{{ data.image_invest }}" alt="Profile Borrower" style="border-radius: 5px;width:70px;height:70px"></td>
+            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Borrower" style="border-radius: 80px;width:55px;height:55px"></td>
+            <td>{{ data.nama_borrower }}</td>
             <td>
               Borrower: {{ data.user_score_borrower }} <br>
               Salary: {{ data.user_class }} <br>
-              Class: {{ data.user_score_credit }} 
+              Credit: {{ data.user_score_credit }} 
             </td>
-            <td><span  class="warranty">{{ data.loan_category }}</span></td>
+            <td>{{ data.loan_category }}</td>
             <td>{{ data.amount }}</td>
             <td>
               <button class="pull-right" [routerLink]="['/dashboard/other-user-action/loan/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></button>

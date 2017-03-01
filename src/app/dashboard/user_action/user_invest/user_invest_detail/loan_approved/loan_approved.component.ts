@@ -71,11 +71,16 @@ export class LoanApprovedComponent {
     this.http.post(this.getDetailBorrowerUrl,this.dataBorrower,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
+			console.log(response)
 			let code = response.meta.code
-				this.dataDetailBorrower = response.data;
-				this.dataSalary = response.data.amount
-				this.dataBorrowerAmount = response.data.borrower_amount
-				this.delimiterSalary(this.dataSalary);
+			let imageDefault = 'assets/img/default_profile.png';
+			if(response.data.borrower_image == '' ) {
+				response.data.borrower_image = imageDefault;
+			}
+			this.dataDetailBorrower = response.data;
+			this.dataSalary = response.data.amount
+			this.dataBorrowerAmount = response.data.borrower_amount
+			this.delimiterSalary(this.dataSalary);
 		},(err:any) => {
 			var error   = JSON.parse(err._body)
 			var message = error.meta.message

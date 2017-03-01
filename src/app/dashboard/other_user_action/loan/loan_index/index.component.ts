@@ -43,16 +43,14 @@ export class IndexComponent implements OnInit {
 			this.http.post(this.listLoanUrl,this.access_token,this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
-				// console.log(response);
-				// let code 		= response.meta.code;
-				// let message 	= response.meta.message;
-				// if(response.data.loans == '') {
-				// 	this.dataArrayNull = 1;
-				// }		
 				this.invest = response.data.investments;
 				for(let i = 0; i < this.invest.length; i++){
 					let dataAmount = this.invest[i]
 					let amount = dataAmount['amount'];
+					let imageDefaultProfile = 'assets/img/default_profile.png';
+					if(dataAmount['image_profile'] == '') {
+						dataAmount['image_profile'] = imageDefaultProfile;
+					}
 					// condition make delimiter
 					var _minus = false;
 					var b:any = amount.toString();

@@ -14,7 +14,7 @@ import { Global } from './../../../global.service';
 	providers: [LoginService, Global]
 })
 
-export class HeaderComponent{
+export class HeaderComponent implements OnInit{
 	// recieve data from dashboard 
 	@Input('dataName') incomingDataName: string	
 	@Input('dataLastLogin') incomingDataLastLogin: string	
@@ -23,6 +23,13 @@ export class HeaderComponent{
 	@Input('dataAccountSummary') incomingDataAccountSummary: string
 	@Input('dataFundHistory') incomingDataFundHistory: string
 	@Input('dataProfileImage') incomingDataProfileImage
+
+	private imageDefaultProfile = 'assets/img/default_profile.png';
+	ngOnInit(){
+		if(this.incomingDataProfileImage == '') {
+			this.incomingDataProfileImage = this.imageDefaultProfile;
+		}
+	}
 	// @Input() incomingDataUser:User;
 	
 	// @Input('dashboardData') incomingDataName: string	

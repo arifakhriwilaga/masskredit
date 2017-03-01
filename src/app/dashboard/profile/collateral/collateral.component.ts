@@ -24,15 +24,6 @@ export class CollateralComponent{
 		this.getDataCollateral();
 		this.getDataCollateralType();
 		jQuery('#collateral_estimate_price').mask('000000000000');
-
-		// jQuery( "#collateralForm" ).validate({
-		//   rules: {
-		//     collateral_type: {
-		//       required: true
-		//     }
-		//   }
-		// });
-
 	}
 
 	public token =  JSON.parse(localStorage.getItem("access_token"))
@@ -324,10 +315,21 @@ export class CollateralComponent{
 						var code = response.meta.code;
 						if(code == 200) {
 							this.collateral = response.data.collateral;
-							// console.log(response)
 							for(let i = 0; i < this.collateral.length; i++){
 								let dataEstimate = this.collateral[i]
 								let estimate = dataEstimate['collateral_estimate_price'];
+
+								var url_default = "assets/img/default_image.jpg";
+								if(dataEstimate['collateral_file_one'] == '') {
+									dataEstimate['collateral_file_one'] = url_default;
+								
+								}if(dataEstimate['collateral_file_two'] == '') {
+									dataEstimate['collateral_file_two'] = url_default;
+								}
+								if(dataEstimate['collateral_file_three'] == '') {
+									dataEstimate['collateral_file_three'] = url_default;
+								}		
+
 								// condition make delimiter
 								var _minus = false;
 								var b:any = estimate.toString();

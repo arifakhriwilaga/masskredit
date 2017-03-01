@@ -153,33 +153,35 @@ export class DetailComponent {
     this.http.post(this.detailLoanUrl,this.data_detail_invest,this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
+				let imageDefault = 'assets/img/default_image.jpg';
+				if(response.data.images == '') {
+					response.data.images = imageDefault;
+				}
 				this.data = response.data;
 				let code = response.meta.code;
-				if(code == 200) {
-					let amount = response.data.amount;
-					// condition make delimiter
-					var _minus = false;
-					var b:any = amount.toString();
-					if (b<0) _minus = true;
-						b=b.replace(".","");
-						b=b.replace("-","");
-						let c = "";
-						let panjang = b.length;
-						let j = 0;
-					for (let i = panjang; i > 0; i--){
-						j = j + 1;
-						if (((j % 3) == 1) && (j != 1)){
-							c = b.substr(i-1,1) + "." + c;
-							// console.log(c)
-						} else {
-							c = b.substr(i-1,1) + c;
-						}
+				let amount = response.data.amount;
+				// condition make delimiter
+				var _minus = false;
+				var b:any = amount.toString();
+				if (b<0) _minus = true;
+					b=b.replace(".","");
+					b=b.replace("-","");
+					let c = "";
+					let panjang = b.length;
+					let j = 0;
+				for (let i = panjang; i > 0; i--){
+					j = j + 1;
+					if (((j % 3) == 1) && (j != 1)){
+						c = b.substr(i-1,1) + "." + c;
+						// console.log(c)
+					} else {
+						c = b.substr(i-1,1) + c;
 					}
-					if (_minus) c = "-" + c ;
-					let idr = "Rp.";
-					this.dataAmount =  idr.concat(c);
-					this.dataDetailListMyInvest = 1;
 				}
+				if (_minus) c = "-" + c ;
+				let idr = "Rp.";
+				this.dataAmount =  idr.concat(c);
+				this.dataDetailListMyInvest = 1;
 			},(err:any) => {
 				var error   = JSON.parse(err._body)
 				var message = error.meta.message

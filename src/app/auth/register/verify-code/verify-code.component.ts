@@ -33,6 +33,9 @@ export class VerifyCodeComponent {
 		    verification_code: {
 		      required: true
 		    }
+		  },
+		  messages: {
+		  	verification_code: "Data dibutuhkan"
 		  }
 		});
   }

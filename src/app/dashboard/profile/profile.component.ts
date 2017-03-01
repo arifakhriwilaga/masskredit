@@ -18,8 +18,14 @@ export class ProfileComponent {
 	public acces_token = JSON.parse(localStorage.getItem("access_token"));
   public token = {access_token : JSON.parse(localStorage.getItem("access_token"))} ;
   public sumber_pendapatan = { }
-	public complement_data = { };
-	public profile = { };
+	public complement_data = { 
+		foto_identitas:null,
+		foto_tabungan:null,
+		foto_npwp:null
+	};
+	public profile = { 
+		profile_image:null
+	};
 	public is_complete = { };
 	public editDataProfile = 0;
 	public banks = []
@@ -35,6 +41,7 @@ export class ProfileComponent {
 	 	'API_KEY' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
 	});    
   private options = new RequestOptions({ headers: this.headers });
+
 
 	// object update profile
 	public data = {
@@ -135,7 +142,6 @@ export class ProfileComponent {
 		this.http.post(this.profileUrl,this.token,this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
-				console.log(response);
 				let pendapatan_lain_1 = response.data.profile.complement_user.pendapatan_lain_1;
 			  let pendapatan_lain_2 = response.data.profile.complement_user.pendapatan_lain_2; 
 		  	if(pendapatan_lain_1 == null) {
@@ -209,6 +215,21 @@ export class ProfileComponent {
 				// object data bank
 				this.data.bank = response.data.profile.complement_user.bank;
 				this.data.no_rekening = response.data.profile.complement_user.no_rekening;
+				let imageDefault = "assets/img/default_image.jpg";
+				if(response.data.profile.complement_user.foto_tabungan == '') {
+					this.complement_data.foto_tabungan = imageDefault 
+				}
+				if(response.data.profile.complement_user.foto_identitas == '') {
+					this.complement_data.foto_identitas = imageDefault;
+				}
+				if(response.data.profile.complement_user.foto_npwp == '') {
+					this.complement_data.foto_npwp = imageDefault;
+				}
+
+				let imageDefaultProfile = 'assets/img/default_profile.png';
+				if(response.data.profile.profile_image == '') {
+					this.profile.profile_image = imageDefaultProfile;
+				}
 				this.dataProfile = 1;
 				this.buttonProfile = 0;
 				jQuery("#profile").prop("disabled", true);

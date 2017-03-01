@@ -32,6 +32,9 @@ export class PhoneNumberComponent {
 		    phone: {
 		      required: true
 		    }
+		  },
+		  messages: {
+		  	phone: "Data dibutuhkan"
 		  }
 		});
   }

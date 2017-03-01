@@ -82,6 +82,10 @@ export class LoanApprovedComponent implements OnInit{
 		 	this.http.post(this.detailInvestorUrl,this.data_investor,this.options)
 				.map(response => response.json())
 				.subscribe((response : any) => {
+					let imageDefault = 'assets/img/default_profile.png';
+					if(response.data.investor_image == '') {
+						response.data.investor_image = imageDefault;
+					}
 					this.dataDetailInvestor = response.data;
 					this.loaderDetailInvestor = 1;
 					// this.dataApprove.invest_id = response.data.invest_id;

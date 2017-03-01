@@ -25,7 +25,7 @@ export class DetailComponent {
 		public access_token = JSON.parse(localStorage.getItem("access_token"));
 		public  invest_id = ''; 
 
-		public data = { };
+		public data = { }
 		public dataSalary = { };
 		public dataBorrowerAmount = { };
 
@@ -114,8 +114,11 @@ export class DetailComponent {
     this.http.post(this.detailInvestUrl,this.data_detail_invest,this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
-				// console.log(response)
 				// this.dataApprove.invest_id = response.data.id;
+				let imageDefault = 'assets/img/default_image.jpg';
+				if(response.data.images[0] == null) {
+					response.data.images[0] = imageDefault;
+				}
 				this.data = response.data;
 				let code = response.meta.code;
 				let amount = response.data.amount;
