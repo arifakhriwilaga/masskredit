@@ -68,6 +68,17 @@ export class LoanApprovedComponent implements OnInit{
 		});
 	}
 
+	statusChanges:number;
+	ngDoCheck(){
+		if(this.statusChanges == 1) {
+			this.getListInstallment();
+		}
+	}
+
+	statusInvestor1(status:number){
+		this.statusChanges = status;
+	}
+
 	detailInvestorUrl = 'https://masscredit-api.stagingapps.net/user/investor/detail';
 	// getDetailInvestor(): void{
 	// 	this.loanApprovedService.getDetailInvestor(this.data_investor)
@@ -140,31 +151,62 @@ export class LoanApprovedComponent implements OnInit{
 			.map(response => response.json())
 			.subscribe((response : any) => {
 				this.dataPayment = response.data.history_payment;
-				for(let i = 0; i < this.dataPayment.length; i++){
-					let dataPokok = this.dataPayment[i]
-					let pokok = dataPokok['pokok'];
-					// condition make delimiter
-					var _minus = false;
-					var b:any = pokok.toString();
-					if (b<0) _minus = true;
-						b=b.replace(".","");
-						b=b.replace("-","");
-						let c = "";
-						let panjang = b.length;
-						let j = 0;
-					for (let i = panjang; i > 0; i--){
-						j = j + 1;
-						if (((j % 3) == 1) && (j != 1)){
-							c = b.substr(i-1,1) + "." + c;
-							// console.log(c)
-						} else {
-							c = b.substr(i-1,1) + c;
+				if(this.statusChanges == 1) {
+					this.statusChanges = null;
+				}
+				try{
+					for(let i = 0; i < this.dataPayment.length; i++){
+						let dataPokok = this.dataPayment[i]
+						let pokok = dataPokok['pokok'];
+						// condition make delimiter
+						var _minus = false;
+						var b:any = pokok.toString();
+						if (b<0) _minus = true;
+							b=b.replace(".","");
+							b=b.replace("-","");
+							let c = "";
+							let panjang = b.length;
+							let j = 0;
+						for (let i = panjang; i > 0; i--){
+							j = j + 1;
+							if (((j % 3) == 1) && (j != 1)){
+								c = b.substr(i-1,1) + "." + c;
+								// console.log(c)
+							} else {
+								c = b.substr(i-1,1) + c;
+							}
 						}
-					}
-					if (_minus) c = "-" + c ;
-					let idr = "Rp.";
-					dataPokok['pokok'] = idr.concat(c);
-					this.loaderDetailInvestor = 1;
+						if (_minus) c = "-" + c ;
+						let idr = "Rp.";
+						dataPokok['pokok'] = idr.concat(c)
+					};
+					} finally {
+						for(let i = 0; i < this.dataPayment.length; i++){
+							let dataPokok = this.dataPayment[i] 
+							let pokok = dataPokok['total_payment'];
+							// condition make delimiter
+							var _minus = false;
+							var b:any = pokok.toString();
+							if (b<0) _minus = true;
+								b=b.replace(".","");
+								b=b.replace("-","");
+								let c = "";
+								let panjang = b.length;
+								let j = 0;
+							for (let i = panjang; i > 0; i--){
+								j = j + 1;
+								if (((j % 3) == 1) && (j != 1)){
+									c = b.substr(i-1,1) + "." + c;
+									// console.log(c)
+								} else {
+									c = b.substr(i-1,1) + c;
+								}
+							}
+							if (_minus) c = "-" + c ;
+							let idr = "Rp.";
+							dataPokok['total_payment'] = idr.concat(c)
+							this.loaderDetailInvestor = 1;
+						}
 					}
 			},(err : any) => {
 				var error   = JSON.parse(err._body)

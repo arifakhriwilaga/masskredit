@@ -77,6 +77,7 @@ export class VerifyComponent{
 		}
 	}
 
+	@Output() statusInvestor1 = new EventEmitter<any>();
 	paidInstallmentUrl = 'https://masscredit-api.stagingapps.net/user/loan/payment';
 	postPaidInstallment(){
 	  this.http.post(this.paidInstallmentUrl,this.dataVerify,this.options)
@@ -84,6 +85,7 @@ export class VerifyComponent{
 		.subscribe((response : any) => {
 			let message = response.meta.message // object get meta
 			alert(message);
+			this.statusInvestor1.emit(1);
 			this.hideInstallmentNotPaid(0);
 		},(err:any) => {
 			var error   = JSON.parse(err._body)
@@ -95,8 +97,12 @@ export class VerifyComponent{
 			
 			}if(message == "Password salah!") {
 				alert("Password salah!")
-				this.loaderVerify = 1;				
+				this.loaderVerify = 1;
+			} if(message == "Saldo Anda tidak mencukupi.") {
+				alert(message);
+				this.hideInstallmentNotPaid(0);
 			}
+
 		});	
 	}
 

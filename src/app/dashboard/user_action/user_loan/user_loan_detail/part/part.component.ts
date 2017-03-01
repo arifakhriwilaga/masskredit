@@ -9,12 +9,12 @@ export class PartComponent{
 	@Input() statusPart:string;
 	@Input() loanId:string;
 	@Input() investId:string;
-	@Output() statusInvestor = new EventEmitter<string>();
 	@Output() onHide2 = new EventEmitter<string>();
 	onHide(status: string) {
     this.onHide2.emit(status);
   }
 
+	@Output() statusInvestor = new EventEmitter<string>();
   statusInvestor1(status:any){
     this.statusInvestor.emit(status);
   }

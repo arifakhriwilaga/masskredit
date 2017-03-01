@@ -110,7 +110,7 @@
     <div  *ngIf="loaderInstallmentNotPaid == 2">
       <div class="row">
       <div class="col-xs-12">
-        <verify [dataDetailInstallment]="dataDetailInstallment" (onHide)="hideInstallmentNotPaid($event)"></verify>
+        <verify [dataDetailInstallment]="dataDetailInstallment" (onHide)="hideInstallmentNotPaid($event)" (statusInvestor1)="statusInvestor1($event)"></verify>
       </div>
       </div>
     </div>

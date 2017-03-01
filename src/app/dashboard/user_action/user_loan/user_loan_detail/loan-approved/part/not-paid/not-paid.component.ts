@@ -55,6 +55,11 @@ export class NotPaidComponent{
 		this.loaderInstallmentNotPaid = 2;
 	}
 
+	@Output() statusInvestor = new EventEmitter<number>();
+	statusInvestor1(status:number){
+		this.statusInvestor.emit(status);
+	}
+
 	@Output() onHide = new EventEmitter<number>();
 	hideInstallmentNotPaid(status:any){
 		jQuery('#NotPaidForm').modal("toggle");
