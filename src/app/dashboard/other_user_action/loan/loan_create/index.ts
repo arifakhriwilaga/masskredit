@@ -8,7 +8,9 @@ import { CommonModule } from '@angular/common';
 // component
 import { CreateComponent } from './create.component';
 import { DueDateComponent } from './datepicker_component';
-import { VerifyComponent }        from './verify_component';
+import { VerifyComponent } from './verify_component';
+import { NameOtherCategoryComponent } from './name-other-category';
+
 
 export const routes = [
   { path:'', component: CreateComponent},
@@ -18,7 +20,8 @@ export const routes = [
   declarations: [
     CreateComponent,
     DueDateComponent,
-    VerifyComponent
+    VerifyComponent,
+    NameOtherCategoryComponent
   ],
   imports: [ 
     HttpModule,
