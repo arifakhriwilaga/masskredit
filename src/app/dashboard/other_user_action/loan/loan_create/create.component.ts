@@ -40,6 +40,9 @@ export class CreateComponent {
 		    },
 		    interest: {
 		      required: true
+		    },
+		    other_category: {
+		      required: true
 		    }
 		  },
 		  // messages:{
@@ -100,9 +103,10 @@ export class CreateComponent {
 			});
   }
 
+  loanCategory:number;
   getLoanCategoryId(id){
   	this.categoryLoan = id;
-  	// console.log(id)
+  	this.loanCategory = id;
   }
 
 	cancelLoan(){
