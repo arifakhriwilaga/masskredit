@@ -23,7 +23,6 @@ export class PartComponent{
 
 	@Output() statusInvestor = new EventEmitter<number>();
   statusInvestor1(status:any){
-  	console.log(status);
     this.statusInvestor.emit(status);
   }
 }
