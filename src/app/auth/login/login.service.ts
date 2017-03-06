@@ -24,7 +24,6 @@ export class LoginService {
 
   private message = {};
   
-	// function login
 	postLogin(user:any){
 		return this.http.post(this.loggedinUrl, user, this.options)
 			.map(response => response.json())
