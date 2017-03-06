@@ -12,8 +12,10 @@ import { DataResolver } from './app.resolver';
 
 // Component
 import { DashboardComponent } from './dashboard.component';
-import { SidebarComponent } from './shared/sidebar';
 import { HeaderComponent } from './shared/header';
+import { FirstComponent } from './shared/header/first';
+import { SecondComponent } from './shared/header/second';
+import { ThirdComponent } from './shared/header/third';
 import { LoaderComponent } from './loader';
 import { SignOutComponent } from './sign-out';
 
@@ -24,7 +26,6 @@ export const routes = [
       { path: '', component: LoaderComponent },
       { path: 'profile',         loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
       { path: 'fund',            loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
-      { path: 'complement-user', loadChildren: () => System.import('./complement_user').then((comp: any) => comp.default) },
       { path: 'user-action', loadChildren: () => System.import('./user_action').then((comp: any) => comp.default) },
       { path: 'other-user-action', loadChildren: () => System.import('./other_user_action').then((comp: any) => comp.default) },  
       { path: 'sign-out',       component: SignOutComponent},       
@@ -36,7 +37,9 @@ export const routes = [
   declarations: [
     DashboardComponent,
     HeaderComponent,
-    SidebarComponent,
+    FirstComponent,
+    SecondComponent,
+    ThirdComponent,
     LoaderComponent,
     SignOutComponent, 
   ],
