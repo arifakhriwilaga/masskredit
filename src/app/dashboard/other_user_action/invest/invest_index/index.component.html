@@ -1,75 +1,74 @@
-<!-- Main content -->
-<br>
-<div  *ngIf="dataListInvest == 1">
-<div class="col-xs-12" align="right">
-  <button class="add-advance-search" (click)="linkCreateInvest()">
-    Tambah
-  </button>
+<div class="box-header" align="center">
+  <h2 class="box-title">List Pinjaman</h2>
 </div>
-<br>
-<div class="col-xs-12">
-<!-- Tab panes -->
-<div class="tab-content ">
-    <div role="tabpanel" class="tab-pane active" id="investasi">
-    <br>
-    <div class="box-body data-tables table-responsive">
-      <table class="table table-hover" id="example2">
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>Investor</th>
-            <th>Nama Investor</th>
-            <th>Nilai</th>
-            <th>Tipe</th>
-            <th>Nominal Investasi</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngIf="dataArrayNull == 1">
-            <td colspan="5" align="center">Data belum tersedia</td>
-          </tr>
-          <tr *ngFor="let data of invest; let i = 'index'">
-            <td>{{ i + 1 }}</td>
-            <td align="left"><img src="{{ data.image_profile }}" alt="Profile Investor" style="border-radius: 80px;width:55px;height:55px"></td>
-            <td>{{ data.nama_investor }}</td>
-            <td>
-              Investor: {{ data.user_score_investor }} <br>
-              Salary: {{ data.user_class }} <br>
-              Credit: {{ data.user_score_credit }}
-            </td>
-            <td>{{ data.type_invest }}</td>
-            <td>{{ data.amount }}</td>
-            <td>
-              <button class="pull-right" [routerLink]="['/dashboard/other-user-action/invest/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </div>  
-    <nav aria-label="Page navigation" *ngIf="total_pagination > 1">
-      <ul class="pagination">
-       <!--  <li>
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li> -->
-        <!-- <li *ngFor="let a of array_total"><a href="#/dashboard/fund" id="a" (click)="linkTo(a)">{{ a }}</a></li> -->
-        <!-- <li>
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li> -->
-      </ul>
-    </nav>      
+<div class="box-body">
+  <div  *ngIf="dataListInvest == 1">
+    <div class="col-xs-12" align="right">
+      <button class="add-advance-search" (click)="linkCreateInvest()">
+        Tambah
+      </button>
     </div>
-    <br>
+    <div class="col-xs-12">
+    <div class="tab-content ">
+      <br>
+      <div role="tabpanel" class="tab-pane active" id="investasi">
+      <div class="box-body data-tables table-responsive">
+        <table class="table table-hover" id="example2">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Investor</th>
+              <th>Nama Investor</th>
+              <th>Nilai</th>
+              <th>Tipe</th>
+              <th>Nominal Investasi</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="dataArrayNull == 1">
+              <td colspan="5" align="center">Data belum tersedia</td>
+            </tr>
+            <tr *ngFor="let data of invest; let i = 'index'">
+              <td>{{ i + 1 }}</td>
+              <td align="left"><img src="{{ data.image_profile }}" alt="Profile Investor" style="border-radius: 80px;width:55px;height:55px"></td>
+              <td>{{ data.nama_investor }}</td>
+              <td>
+                Investor: {{ data.user_score_investor }} <br>
+                Salary: {{ data.user_class }} <br>
+                Credit: {{ data.user_score_credit }}
+              </td>
+              <td>{{ data.type_invest }}</td>
+              <td>{{ data.amount }}</td>
+              <td>
+                <button class="pull-right" [routerLink]="['/dashboard/other-user-action/invest/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>  
+      <nav aria-label="Page navigation" *ngIf="total_pagination > 1">
+        <ul class="pagination">
+         <!--  <li>
+            <a href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li> -->
+          <!-- <li *ngFor="let a of array_total"><a href="#/dashboard/fund" id="a" (click)="linkTo(a)">{{ a }}</a></li> -->
+          <!-- <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li> -->
+        </ul>
+      </nav>      
+      </div>
+    </div>
+    </div>
+  </div>
+  <br>
+  <div align="center" *ngIf="dataListInvest == 0"> 
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
   </div>
 </div>
-</div>
-<div align="center" *ngIf="dataListInvest == 0"> 
-  <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-  <span class="sr-only">Loading...</span>
-</div>
-<br>
-<!-- /.content -->
