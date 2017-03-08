@@ -26,7 +26,6 @@ export class LoanApprovedService {
 
 	mapData(response){
 		var data = response.json()
-		console.log(response);
 	}
 
 	handleError(err){
