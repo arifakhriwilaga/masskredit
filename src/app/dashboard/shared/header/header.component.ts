@@ -9,20 +9,24 @@ import { Global } from './../../../global.service';
 	template: `		
 		<header-first></header-first>
 		<header-second></header-second>
-		<header-third [incomingDataName]="incomingDataName" [incomingDataLastLogin]="incomingDataLastLogin" [incomingDataUserClass]="incomingDataUserClass" [incomingDataUserStatus]="incomingDataUserStatus" [incomingDataAccountSummary]="incomingDataAccountSummary" [incomingDataFundHistory]="incomingDataFundHistory" [incomingDataProfileImage]="incomingDataProfileImage"></header-third>
+		<header-third [incomingDataName]="incomingDataName" [incomingDataLastLogin]="incomingDataLastLogin" [incomingDataUserClass]="incomingDataUserClass" [incomingDataUserStatus]="incomingDataUserStatus" [incomingDataUserInvestor]="incomingDataUserInvestor" [incomingDataUserBorrower]="incomingDataUserBorrower" [incomingDataAccountSummary]="incomingDataAccountSummary" [incomingDataFundHistory]="incomingDataFundHistory" [incomingDataProfileImage]="incomingDataProfileImage"></header-third>
+		
 	`,
 	providers: [LoginService, Global]
 })
 
 export class HeaderComponent implements OnInit{
 	// recieve data from dashboard 
-	@Input('dataName') incomingDataName: string	
+	@Input('dataName') incomingDataName: any	
 	@Input('dataLastLogin') incomingDataLastLogin: string	
+	@Input('dataProfileImage') incomingDataProfileImage
+	
+	@Input('dataAccountSummary') incomingDataAccountSummary: string
 	@Input('dataUserClass') incomingDataUserClass: string	
 	@Input('dataUserStatus') incomingDataUserStatus: string	
-	@Input('dataAccountSummary') incomingDataAccountSummary: string
+	@Input('dataUserInvestor') incomingDataUserInvestor: string
+	@Input('dataUserBorrower') incomingDataUserBorrower: string
 	@Input('dataFundHistory') incomingDataFundHistory: string
-	@Input('dataProfileImage') incomingDataProfileImage
 
 	private imageDefaultProfile = 'assets/img/default_profile.png';
 	ngOnInit(){
@@ -30,13 +34,9 @@ export class HeaderComponent implements OnInit{
 			this.incomingDataProfileImage = this.imageDefaultProfile;
 		}
 	}
-	// @Input() incomingDataUser:User;
-	
-	// @Input('dashboardData') incomingDataName: string	
 	constructor (
 		private http : Http,
 		private router : Router,
-		// private userService:UserService,
 	){ }
 
 	public userShare = null;
