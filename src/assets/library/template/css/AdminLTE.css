@@ -6188,3 +6188,90 @@ text-align: center; margin: 1em 0;
     background-color:rgb(255,255,255);
   }
 }
+
+h6 {
+  color: #14427a;
+}
+
+h6:hover {
+  color: #ffc300;
+}
+
+.body-500 {
+   background: #092d59;
+   color: #fff;
+}
+
+.error-wrapper {
+   text-align: center;
+   margin-top: 25%;
+}
+
+.error-wrapper .icon-500 {
+   background: url(assets/img/logo.png) no-repeat;
+   width: 289px;
+   height: 60px;
+   display: inline-block;
+   margin-left: 120px;
+}
+
+.overlay-logo {
+  position: absolute;
+  top: 30px;
+  display: block;
+  width: 2000px;
+  height: 80px;
+  padding-top: 50px;
+  margin-left: 59%;
+  z-index: 9;
+  background: transparent;
+}
+.overlay-form {
+  position: absolute;
+  top: 150px;
+  right: 100px;
+  display: block;
+  width: 600px;
+  height: 280px;
+  padding-top: 50px;
+  z-index: 9;
+  background:rgba(255,255,255,0.83);
+}
+
+ul.form {
+   width: 500px;
+   margin :0 50px;
+}
+
+.form-color {
+   border: 0.5px solid #636262;
+   background-color: transparent ;
+   border-radius: 5px;
+   font-color :#636262;
+}
+
+.btn-block {
+  background-color: #103e77;
+   text-decoration: none;
+   margin-top: 15px;
+   color: #ffc300;
+
+}
+
+label.new-account {
+   padding:10px;
+   color: #636262;
+}
+
+.verifikasi {
+       margin-top: 5px;
+}
+.overlay-form input::-webkit-input-placeholder {
+   color:#636262;
+}
+
+.btn:hover, .btn:focus, .btn.focus {
+   color: #ffc300;
+   text-decoration: none;
+}
+
