@@ -1,92 +1,75 @@
 import { Component, OnInit } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
-import { Router } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+
+import { Loan } from './loan';
+
+import { IndexService } from './index.service'
 
 @Component({
 	selector: 'index',
-	templateUrl: 'index.component.html'
+	templateUrl: 'index.component.html',
+	providers: [IndexService]
 })
 
 export class IndexComponent implements OnInit { 
-	constructor(private router:Router, private http:Http) { }
+	constructor(private indexService:IndexService) { }
 	
-	private headers = new Headers({ 
-			'Content-Type': 'application/json',
-			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
-	});
-
-	private options = new RequestOptions({ headers: this.headers });
-	
-	private access_token = {
-		access_token : JSON.parse(localStorage.getItem("access_token"))
+	private data = {
+		access_token : JSON.parse(localStorage.getItem("access_token")),
+		page:1,
+    limit:10
 	}
 
-	private invest = [];
-	private amount = {};
+	loans : Loan[];
 	private dataListLoan = 0;
 	private dataArrayNull = 0;
-	private listLoanUrl = 'https://masscredit-api.stagingapps.net/user/investment/getlist';
-
-	private data: Observable<Array<any>>
+	
 	ngOnInit(){
-		setTimeout(() => {this.getListLoan()},1000);
+		setTimeout(() => {this.getListInvests()},0.500);
 	}
 
-	listInvestasi() {
-		// return this.investasiservice.Index();
-	}
+	getListInvests(){
+		this.indexService.getListLoans(this.data)
+    .then(dataLoans => {
+    	this.loans = dataLoans;
 
-	getListLoan(){
-		setTimeout( () => {
-		// alert("Hello"); 
-			this.http.post(this.listLoanUrl,this.access_token,this.options)
-			.map(response => response.json())
-			.subscribe((response : any) => {
-				this.invest = response.data.investments;
-				for(let i = 0; i < this.invest.length; i++){
-					let dataAmount = this.invest[i]
-					let amount = dataAmount['amount'];
-					let imageDefaultProfile = 'assets/img/default_profile.png';
-					if(dataAmount['image_profile'] == '') {
-						dataAmount['image_profile'] = imageDefaultProfile;
-					}
-					// condition make delimiter
-					var _minus = false;
-					var b:any = amount.toString();
-					if (b<0) _minus = true;
-						b=b.replace(".","");
-						b=b.replace("-","");
-						let c = "";
-						let panjang = b.length;
-						let j = 0;
-					for (let i = panjang; i > 0; i--){
-						j = j + 1;
-						if (((j % 3) == 1) && (j != 1)){
-							c = b.substr(i-1,1) + "." + c;
-							// console.log(c)
-						} else {
-							c = b.substr(i-1,1) + c;
-						}
-					}
-					if (_minus) c = "-" + c ;
-					let idr = "Rp.";
-					dataAmount['amount'] = idr.concat(c);
+			if(dataLoans == null) {
+				this.dataArrayNull = 1;
+			}		
+			for(let i = 0; i < this.loans.length; i++){
+				let dataAmount = this.loans[i]
+				let amount = dataAmount['amount'];
+				let imageDefaultProfile = 'assets/img/default_profile.png';
+				if(dataAmount['image_profile'] == '') {
+					dataAmount['image_profile'] = imageDefaultProfile;
 				}
-					this.dataListLoan = 1;
-			},(err:any) => {
-				var error   = JSON.parse(err._body)
-				var message = error.meta.message
-					if(message == "unauthorized") {
-						alert("Maaf session anda telah habis silahkan login kembali")
-						return this.router.navigateByUrl('/dashboard/sign-out')					
+				// condition make delimiter
+				var _minus = false;
+				var b:any = amount.toString();
+				if (b<0) _minus = true;
+					b=b.replace(".","");
+					b=b.replace("-","");
+					let c = "";
+					let panjang = b.length;
+					let j = 0;
+				for (let i = panjang; i > 0; i--){
+					j = j + 1;
+					if (((j % 3) == 1) && (j != 1)){
+						c = b.substr(i-1,1) + "." + c;
+
+					} else {
+						c = b.substr(i-1,1) + c;
 					}
+				}
+				if (_minus) c = "-" + c ;
+				let idr = "Rp.";
+				dataAmount['amount'] = idr.concat(c);
 			}
-		) 
-	},1);
+				this.dataListLoan = 1;
+    });
 	}
 
 	linkCreateLoan(){
-		this.router.navigateByUrl("/dashboard/other-user-action/loan/create");
+		this.indexService.toCreateLoan();
 	}
 }
