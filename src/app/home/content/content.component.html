@@ -6,439 +6,55 @@
           <li data-target="#carousel-example-generic" data-slide-to="2"></li>
           <li data-target="#carousel-example-generic" data-slide-to="3"></li>
         </ol>
+          
+        <div class="overlay-logo"><img src="../assets/img/logo.png"/></div>
+        <div class="overlay-form">
+           <ul class="form">
+                <div class="row">
+                  <div class="col-md-6">
+                  <input id="username" name="username" type="text" placeholder="No Handphone" class="form-control input-md form-color" required="" [(ngModel)]="user.username">
+                </div>
+                <div class="col-md-6">
+                  <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md form-color" required="" [(ngModel)]="user.password">
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="submit" (click)="login(user)" name="singlebutton" class="btn btn-red btn-block" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Log in</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="new-account ">BUAT AKUN BARU</label>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                      <input id="phone_number" name="phone_number" type="text" placeholder="No Handphone" class="form-control input-md form-color Verifikasi" required="">
+                    </div>
+                    <div class="col-md-3">
+                       <button id="singlebutton" name="singlebutton" class="btn btn-red btn-block btn-verifikasi">Daftar</button>
+                    </div>
+                </div>
+            </ul>
+        </div>
         <div class="carousel-inner slider-peminjam" role="listbox">
           <div class="item active">
             <img src="../assets/img/banner-05.jpg" alt="banner-slider">
-            <div class="carousel-caption">
-              <h2>Peminjaman Mudah <br/>Melalui teknologi terkini</h2>
-              <p>Inovasi teknologi membuat proses peminjaman menjadi lebih cepat, mudah dan aman</p>
-            </div>
           </div>
-          <div class="item">
-            <img src="../assets/img/banner-05.png" alt="banner-slider">
-            <div class="carousel-caption">
-              <h2>Peminjaman Mudah <br/>Melalui teknologi terkini</h2>
-              <p>Inovasi teknologi membuat proses peminjaman menjadi lebih cepat, mudah dan aman</p>
-            </div>
-          </div>
+          <!-- <div class="item">
+            <img src="../assets/img/banner-05.jpg" alt="banner-slider">
+          </div> -->
         </div>
         <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+       <!--  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
         <span class="fa fa-angle-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
         </a>
         <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
         <span class="fa fa-angle-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
-        </a>
+        </a> -->
       </div>
     </div>
-    <div class="statistic-box bg-fafafa">
-      <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
-          <div class="col-md-4">
-            <img src="../assets/img/why-01.png">
-            <h2>158 Juta
-              <span>Total Pembiayaan Tersalurkan</span>
-            </h2>
-          </div>
-          <div class="col-md-4">
-            <img src="../assets/img/why-02.png">
-            <h2>23456
-              <span>Pengusaha Mikro Diberdayakan</span>
-            </h2>
-          </div>
-          <div class="col-md-4">
-            <img src="../assets/img/why-03.png">
-            <h2>100%
-              <span>Presentasi Pembayaran Cicilan</span>
-            </h2>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="why-danamas easy-process">
-      <div class="container">
-        <div class="row clearfix">
-          <div class="col-md-12 text-center title-head">
-            <h2>Mengapa Mass Credit</h2>
-          </div>
-          <div class="col-md-12 clearfix why-box row">
-            <div class="col-md-4">
-              <div class="info-marketplace">
-                <div class="icon margin-bottom-20"><img src="../assets/img/icon-mp-01.png" /></div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.</p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="info-marketplace">
-                <div class="icon margin-bottom-20"><img src="../assets/img/icon-mp-02.png" /></div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.</p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="info-marketplace">
-                <div class="icon margin-bottom-20"><img src="../assets/img/icon-mp-03.png" /></div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="marketplace bg-fafafa">
-      <div class="container">
-        <div class="row clearfix">
-          <div class="col-md-12 text-center title-head">
-            <h3>Tentang</h3>
-            <h2 class="margin-20-auto">Peer to Peer Lending (P2P)</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.</p>
-
-            <a href="" class="learn-more">Pelajari lebih lanjut <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="why-danamas peluang-investasi bg-f7f7f7">
-      <div class="container">
-        <div class="row clearfix">
-          <div class="col-md-12 text-center title-head">
-            <h2>Peluang Investasi</h2>
-          </div>
-          <div class="col-md-12 clearfix why-box row">
-
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#menu1">2367<span>Mitra Usaha Tersedia</span></a></li>
-              <li><a data-toggle="tab" href="#menu2">2489<span>Mitra Usaha Terdanai</span></a></li>
-            </ul>
-
-            <div class="tab-content">
-              <div id="menu1" class="tab-pane fade in active">
-                <div class="col-md-4">
-                  <div class="info-marketplace">
-                    <h3>Pembiayaan untuk<br>Modal Bengkel</h3>
-                    <div class="text-center">
-                      <span>Pinjaman</span>
-                      <p>Rp. 20.000.000</p>
-                      <span>Jatuh Tempo</span>
-                      <p>10 March 2016</p>
-                      <span>Risiko</span>
-                      <p><span>Rata-rata pengembalian tahunan bersih untuk investor</span></p>
-                      <span>Jumlah Pinjaman</span>
-                      <div class="progressbox">
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                            80%
-                          </div>
-                        </div>
-                      </div>
-                        
-
-                      <a href="" class="btn btn-blue btn-small white-text">Saya ingin jadi pemodal</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="info-marketplace">
-                    <h3>Pembiayaan untuk<br>Modal Bengkel</h3>
-                    <div class="text-center">
-                      <span>Pinjaman</span>
-                      <p>Rp. 20.000.000</p>
-                      <span>Jatuh Tempo</span>
-                      <p>10 March 2016</p>
-                      <span>Risiko</span>
-                      <p><span>Rata-rata pengembalian tahunan bersih untuk investor</span></p>
-                      <span>Jumlah Pinjaman</span>
-                      <div class="progressbox">
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
-                            50%
-                          </div>
-                        </div>
-                      </div>
-                        
-
-                      <a href="" class="btn btn-blue btn-small white-text">Saya ingin jadi pemodal</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="info-marketplace">
-                    <h3>Pembiayaan untuk<br>Modal Bengkel</h3>
-                    <div class="text-center">
-                      <span>Pinjaman</span>
-                      <p>Rp. 20.000.000</p>
-                      <span>Jatuh Tempo</span>
-                      <p>10 March 2016</p>
-                      <span>Risiko</span>
-                      <p><span>Rata-rata pengembalian tahunan bersih untuk investor</span></p>
-                      <span>Jumlah Pinjaman</span>
-                      <div class="progressbox">
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
-                            40%
-                          </div>
-                        </div>
-                      </div>
-                        
-
-                      <a href="" class="btn btn-blue btn-small white-text">Saya ingin jadi pemodal</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="menu2" class="tab-pane fade">
-                 <div class="col-md-4">
-                  <div class="info-marketplace">
-                    <h3>Pembiayaan untuk<br>Modal Bengkel</h3>
-                    <div class="text-center">
-                      <span>Pinjaman</span>
-                      <p>Rp. 20.000.000</p>
-                      <span>Jatuh Tempo</span>
-                      <p>10 March 2016</p>
-                      <span>Risiko</span>
-                      <p><span>Rata-rata pengembalian tahunan bersih untuk investor</span></p>
-                      <span>Jumlah Pinjaman</span>
-                      <div class="progressbox">
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                            80%
-                          </div>
-                        </div>
-                      </div>
-                        
-
-                      <a href="" class="btn btn-blue btn-small white-text">Saya ingin jadi pemodal</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="info-marketplace">
-                    <h3>Pembiayaan untuk<br>Modal Bengkel</h3>
-                    <div class="text-center">
-                      <span>Pinjaman</span>
-                      <p>Rp. 20.000.000</p>
-                      <span>Jatuh Tempo</span>
-                      <p>10 March 2016</p>
-                      <span>Risiko</span>
-                      <p><span>Rata-rata pengembalian tahunan bersih untuk investor</span></p>
-                      <span>Jumlah Pinjaman</span>
-                      <div class="progressbox">
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
-                            50%
-                          </div>
-                        </div>
-                      </div>
-                        
-
-                      <a href="" class="btn btn-blue btn-small white-text">Saya ingin jadi pemodal</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="info-marketplace">
-                    <h3>Pembiayaan untuk<br>Modal Bengkel</h3>
-                    <div class="text-center">
-                      <span>Pinjaman</span>
-                      <p>Rp. 20.000.000</p>
-                      <span>Jatuh Tempo</span>
-                      <p>10 March 2016</p>
-                      <span>Risiko</span>
-                      <p><span>Rata-rata pengembalian tahunan bersih untuk investor</span></p>
-                      <span>Jumlah Pinjaman</span>
-                      <div class="progressbox">
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
-                            40%
-                          </div>
-                        </div>
-                      </div>
-                        
-
-                      <a href="" class="btn btn-blue btn-small white-text">Saya ingin jadi pemodal</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="marketplace two-boxes">
-      <div class="container ">
-        <div class="row clearfix">
-          <div class="col-md-12 text-center title-head"></div>
-          <div class="col-md-6">
-            <div class="info-marketplace">
-              <div class="icon"><img src="../assets/img/icon-mp-05.png" /></div>
-              <h3>Ingin jadi Pemodal?</h3>
-              <ul>
-                <li>
-                  <p>Lorem ipsum dolor sit amet. Sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                </li>
-                <li>
-                  <p>Consectetuer adipiscing elit</p>
-                </li>
-                <li>
-                  <p>Sed diam nonummy nibh euismod tincidunt ut laoreet</p>
-                </li>
-                <li>
-                  <p>Dolore magna aliquam erat volutpat</p>
-                </li>
-                <li>
-                  <p>Ut wisi enim ad minim veniam, quis nostrud</p>
-                </li>
-              </ul>
-              <a href="" class="btn btn-blue btn-small white-text">Saya ingin jadi pemodal</a>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="info-marketplace">
-              <div class="icon"><img src="../assets/img/icon-mp-04.png" /></div>
-              <h3>Ingin jadi Peminjam</h3>
-              <ul>
-                <li>
-                  <p>Lorem ipsum dolor sit amet. Sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                </li>
-                <li>
-                  <p>Consectetuer adipiscing elit</p>
-                </li>
-                <li>
-                  <p>Sed diam nonummy nibh euismod tincidunt ut laoreet</p>
-                </li>
-                <li>
-                  <p>Dolore magna aliquam erat volutpat</p>
-                </li>
-              </ul>
-              <a href="" class="btn btn-blue btn-small white-text">Saya ingin jadi peminjam</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="call-action download-app">
-      <div class="container">
-        <div class="clearfix">
-          <div class="">
-            <h2>
-              Download Aplikasi Mobile Kami
-            </h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.
-            </p>
-          </div>
-          <div class="">
-            <a href="" class=""><img src="../assets/img/google-play.png"></a>
-            <a href="" class=""><img src="../assets/img/app-store.png"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="faq-pemodal bg-f4f4f4">
-      <div class="container">
-        <div class="row clearfix">
-          <div class="col-md-12 text-center title-head">
-            <h2>Tanya Jawab</h2>
-          </div>
-
-          <div class="col-md-6">
-            <ul class="clearfix">
-              <li>
-                <a href="#faq-01" data-toggle="collapse" class="clearfix">
-                  <span class="text">Ut wisi enim ad minim veniam, quis nostrud?</span>
-                  <span class="icon"></span>
-                </a>
-                <div id="faq-01" class="collapse">
-                  <p class="answer-faq">
-                    Dokumen utama yang dibutuhkan adalah: Catatan rekening bank 6 bulan terakhir, Laporan keuangan - Laporan keuangan 2 tahun terahir yang telah diaudit (jika memungkinkan) dan 1 tahun terakhir yang dibuat oleh manajemen (dapat dibuktikan keabsahannya), Identitas dan dokumen pribadi penjamin, dan Kartu nama penjamin.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <a href="#faq-02" data-toggle="collapse" class="clearfix">
-                  <span class="text">Used diam nonummy nibh euismod tincidunt ut laoreet dolore?</span>
-                  <span class="icon"></span>
-                </a>
-                <div id="faq-02" class="collapse">
-                  <p class="answer-faq">
-                    Dokumen utama yang dibutuhkan adalah: Catatan rekening bank 6 bulan terakhir, Laporan keuangan - Laporan keuangan 2 tahun terahir yang telah diaudit (jika memungkinkan) dan 1 tahun terakhir yang dibuat oleh manajemen (dapat dibuktikan keabsahannya), Identitas dan dokumen pribadi penjamin, dan Kartu nama penjamin.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <a href="#faq-03" data-toggle="collapse" class="clearfix">
-                  <span class="text">Utaoreet dolore magna aliquam erat volutpat?</span>
-                  <span class="icon"></span>
-                </a>
-                <div id="faq-03" class="collapse">
-                  <p class="answer-faq">
-                    Dokumen utama yang dibutuhkan adalah: Catatan rekening bank 6 bulan terakhir, Laporan keuangan - Laporan keuangan 2 tahun terahir yang telah diaudit (jika memungkinkan) dan 1 tahun terakhir yang dibuat oleh manajemen (dapat dibuktikan keabsahannya), Identitas dan dokumen pribadi penjamin, dan Kartu nama penjamin.
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-md-6">
-            <ul class="clearfix">
-              <li>
-                <a href="#faq-04" data-toggle="collapse" class="clearfix">
-                  <span class="text">Consectetuer adipiscing elit?</span>
-                  <span class="icon"></span>
-                </a>
-                <div id="faq-04" class="collapse">
-                  <p class="answer-faq">
-                    Pembayaran dilakukan peminjam di tanggal 1 & 15 setiap bulan, tergantung tanggal pencairan. Namun, demi kenyamanan bersama, semua status cicilan akan di mutakhirkan pada tanggal 8 dan 23 setiap bulan, atau pada hari kerja berikutnya apabila tanggal-tanggal tersebut merupakan hari libur. Anda dapat melihat saldo Anda yang ter-update dalam akun Anda.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <a href="#faq-05" data-toggle="collapse" class="clearfix">
-                  <span class="text">Sed diam nonummy nibh euismod tincidunt ut laoreet?</span>
-                  <span class="icon"></span>
-                </a>
-                <div id="faq-05" class="collapse">
-                  <p class="answer-faq">
-                    Pembayaran dilakukan peminjam di tanggal 1 & 15 setiap bulan, tergantung tanggal pencairan. Namun, demi kenyamanan bersama, semua status cicilan akan di mutakhirkan pada tanggal 8 dan 23 setiap bulan, atau pada hari kerja berikutnya apabila tanggal-tanggal tersebut merupakan hari libur. Anda dapat melihat saldo Anda yang ter-update dalam akun Anda.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <a href="#faq-06" data-toggle="collapse" class="clearfix">
-                  <span class="text">Quis nostrud nibh euismod tincidunt ut laoreet dolore magna?</span>
-                  <span class="icon"></span>
-                </a>
-                <div id="faq-06" class="collapse">
-                  <p class="answer-faq">
-                    Pembayaran dilakukan peminjam di tanggal 1 & 15 setiap bulan, tergantung tanggal pencairan. Namun, demi kenyamanan bersama, semua status cicilan akan di mutakhirkan pada tanggal 8 dan 23 setiap bulan, atau pada hari kerja berikutnya apabila tanggal-tanggal tersebut merupakan hari libur. Anda dapat melihat saldo Anda yang ter-update dalam akun Anda.
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="call-action">
-      <div class="container">
-        <div class="row clearfix">
-          <div class="col-md-12">
-            <h2>
-              Mari Berdayakan<br>Penggerak Ekonomi Indonesia
-            </h2>
-            <p>
-              Investasi pada Usaha Mikro &amp; UKM dengan Risiko Terukur dan Imbal Hasil Menarik
-            </p>
-          </div>
-          <div class="col-md-12">
-            <a href="" class="btn btn-blue">Mulai Berinvestasi</a>
-            <a href="" class="btn btn-blue">Ajukan Pembiayaan</a>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--  -->
