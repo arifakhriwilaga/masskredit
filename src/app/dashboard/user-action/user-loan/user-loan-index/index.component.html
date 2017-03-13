@@ -1,14 +1,18 @@
-  <div class="row">
-  <div align="center" *ngIf="dataListMyLoan == 0"> 
-    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-    <span class="sr-only">Loading...</span>
-  </div>
-  <br>
+<div class="box-header" align="center">
+  <h2 class="box-title">List Pinjaman Saya</h2>
 </div>
-<!-- Main content -->
-<div class="row">
-  <div class="col-xs-12" *ngIf="dataListMyLoan == 1">
-  <div class="tab-content ">
+<div class="box-body">
+  <div class="row">
+    <div align="center" *ngIf="statusInvests == 0"> 
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      <span class="sr-only">Loading...</span>
+    </div>
+    <br>
+  </div>
+  <!-- Main content -->
+  <div class="row">
+    <div class="col-xs-12" *ngIf="statusInvests == 1">
+    <div class="tab-content ">
       <div role="tabpanel" class="tab-pane active" id="investasi">
       <div class="box-body data-tables table-responsive">
         <table class="table table-hover" id="example2">
@@ -24,7 +28,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngIf="dataArrayNull == 1">
+            <tr *ngIf="dataInvestNull == 1">
               <td colspan="7" align="center">Data belum tersedia</td>
             </tr>
             <tr *ngFor="let data of loans, let i = 'index';">
@@ -41,7 +45,7 @@
             </tr>
           </tbody>
         </table>
-        </div>  
+      </div>  
       <nav aria-label="Page navigation" *ngIf="total_pagination > 1">
         <ul class="pagination">
          <!--  <li>
@@ -58,7 +62,7 @@
         </ul>
       </nav>      
       </div>
-      <br><br>
     </div>
-  </div>
+    </div>
+  </div> 
 </div>
