@@ -9,34 +9,39 @@
           
         <div class="overlay-logo"><img src="../assets/img/logo.png"/></div>
         <div class="overlay-form">
-           <ul class="form">
-                <div class="row">
-                  <div class="col-md-6">
-                  <input id="username" name="username" type="text" placeholder="No Handphone" class="form-control input-md form-color" required="" [(ngModel)]="user.username">
+          <ul class="form">
+          <form (ngSubmit)="login(user)">
+            <div class="row">
+              <div class="col-md-6">
+              <input id="username" name="username" type="text" placeholder="No Handphone" class="form-control input-md form-color" [(ngModel)]="user.username">
+            </div>
+            <div class="col-md-6">
+              <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md form-color" [(ngModel)]="user.password">
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="submit" name="singlebutton" class="btn btn-red btn-block" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Log in</button>
+                <!-- <a type="cancel" name="singlebutton" class="btn btn-red btn-block" id="load" [href]="linkDaftarUrl">Daftar</a> -->
+              </div>
+            </div>
+          </form>
+          <form (ngSubmit)="login()">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="new-account ">BUAT AKUN BARU</label>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                  <input id="phone_number" name="phone_number" type="text" placeholder="No Handphone" class="form-control input-md form-color Verifikasi" required="">
                 </div>
-                <div class="col-md-6">
-                  <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md form-color" required="" [(ngModel)]="user.password">
+                <div class="col-md-3">
+                   <button id="singlebutton" name="singlebutton" class="btn btn-red btn-block btn-verifikasi">Daftar</button>
                 </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <button type="submit" (click)="login(user)" name="singlebutton" class="btn btn-red btn-block" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Log in</button>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label class="new-account ">BUAT AKUN BARU</label>
-                  </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-9">
-                      <input id="phone_number" name="phone_number" type="text" placeholder="No Handphone" class="form-control input-md form-color Verifikasi" required="">
-                    </div>
-                    <div class="col-md-3">
-                       <button id="singlebutton" name="singlebutton" class="btn btn-red btn-block btn-verifikasi">Daftar</button>
-                    </div>
-                </div>
-            </ul>
+            </div>
+          </form>
+          </ul>
         </div>
         <div class="carousel-inner slider-peminjam" role="listbox">
           <div class="item active">
