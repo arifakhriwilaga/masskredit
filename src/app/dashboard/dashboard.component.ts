@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit{
   getProfile(): void{
     this.dashboardService.getProfile(this.token)
     .then(dataProfile => {
-       console.log(dataProfile)
+       // console.log(dataProfile)
       this.name = dataProfile.profile.name;
       this.last_login = dataProfile.profile.last_login;
       this.profile_image = dataProfile.profile.profile_image;
