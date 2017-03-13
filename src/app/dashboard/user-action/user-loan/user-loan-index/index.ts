@@ -1,13 +1,14 @@
 // module
-import { NgModule }      from '@angular/core';
-import { RouterModule }  from '@angular/router';
-import { HttpModule }    from '@angular/http';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { CommonModule }  from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 // component
 import { IndexComponent } from './index.component';
 
+import { IndexService } from './index.service';
 export const routes = [
   { path:'', component: IndexComponent }
 ] 
@@ -18,11 +19,9 @@ export const routes = [
     HttpModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule,
     RouterModule.forChild(routes)
-    // PaginationModule.forRoot(),
   ],
-  providers: [ ]
+  providers: [ IndexService ]
 })
 
 export default class IndexModule { 
