@@ -1,4 +1,6 @@
 import { Component } 	from '@angular/core';
+import { Router } 	from '@angular/router';
+
 
 // inject service login
 import { LoginService }	from './../../global-service/login.service';
@@ -16,7 +18,7 @@ declare var jQuery:any
 })
 
 export class ContentComponent { 
-	constructor(private loginService : LoginService){ }
+	constructor(private loginService : LoginService, private router:Router){ }
 // declare object request
 	private user = { User };
 
@@ -29,4 +31,7 @@ export class ContentComponent {
     $this.button('loading');
 		this.loginService.postLogin(user);
 	}
+
+	linkDaftarUrl = '#/auth/login';
+
 }
