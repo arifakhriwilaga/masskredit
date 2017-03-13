@@ -1,16 +1,12 @@
-<section class="content">
-<div class="row">
-  <div class="col-md-12">
-    <div class="row">
-      <div align="center" *ngIf="dataFundAdd == 0"> 
-        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-        <span class="sr-only">Loading...</span>
-      </div>
-      <br>
-    </div>
-    <div class="row" *ngIf="dataFundAdd == 1">
-      <form-add-fund [dataBank]="banks" [dataLastBank]="lastBank" [dataBankMasscredit]="bank_masscredit"></form-add-fund>
-    </div>
+<div class="box-header" align="center">
+  <h2 class="box-title">Form Tambah Dana</h2>
+</div>
+<div class="box-body">
+  <div align="center" *ngIf="statusDataAddFund == 0"> 
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div *ngIf="statusDataAddFund == 1">
+    <form-add-fund [dataBanks]="banks" [dataBankMasscredits]="bankMassCredits"></form-add-fund>
   </div>
 </div>
-</section>
