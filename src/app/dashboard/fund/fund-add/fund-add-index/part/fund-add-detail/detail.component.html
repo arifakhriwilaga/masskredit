@@ -1,0 +1,90 @@
+<!-- Modal -->
+<div class="modal fade" id="FormDetail" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" align="center">
+        <button type="button" class="close" (click)="hideDetailFund()">&times;</button>
+        <h3 class="modal-title">Detail Penambahan</h3>
+      </div>
+      <div class="modal-body">
+      <div *ngIf="statusDataFund == 0">
+        <div class="row">
+          <div align="center"> 
+          <br>
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <div  *ngIf="statusDataFund == 1">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-xs-6">
+              <div class="form-group">
+                <div class="col-xs-5">
+                  <label class="unit">No Referensi</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="No Referensi" class="form-control input-md" name="no_reference" id="no_reference" value="{{ fund.no_reference }}" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-5">
+                  <label class="unit">Nama Lengkap</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="Nama Lengkap" class="form-control input-md" name="nama_lengkap" id="nama_lengkap" value="{{ fund.nama_lengkap }}" disabled>
+                </div>
+             </div>
+             <div class="form-group">
+                <div class="col-xs-5">
+                  <label class="unit">Nama Bank</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="Nama Bank" class="form-control input-md"  name="bank_name" id="bank_name" value="{{ bank }}" disabled>
+                </div>
+             </div>
+             <div class="form-group">
+                <div class="col-xs-5">
+                  <label class="unit">Tanggal</label>
+                </div>
+                <div class="col-xs-7">
+                    <input  type="text" placeholder="Tanggal" name="date" class="form-control input-md datepicker" id="date" value="{{ fund.date }}" disabled>
+                </div>
+             </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="form-group">
+                <div class="col-xs-5">
+                  <label class="unit">Nominal</label>
+                </div>
+                <div class="col-xs-7">
+                   <input type="text" placeholder="Nominal" class="form-control input-md" name="amount" id="amount" value="{{ dataAmount }}" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-5">
+                  <label class="unit">Tanggal Transfer</label>
+                </div>
+                <div class="col-xs-7">
+                  <input type="text" placeholder="Tanggal Transfer" class="form-control input-md" name="tanggal_transfer" id="tanggal_transfer" value="{{ fund.date }}" disabled>
+                </div>
+              </div> 
+              <div class="form-group" align="center">
+                <div class="col-xs-9">
+                  <label class="unit">Bukti Transfer</label><br>
+                  <img src="{{ fund.images }}" alt="Bukti Transfer" disabled>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="hideDetailFund()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
