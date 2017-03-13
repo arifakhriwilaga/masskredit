@@ -7,11 +7,11 @@
       <div class="col-md-12">
         <div class="form-group" align="center">
           <label><h1>Verifikasi Penarikan</h1></label>
-          <div align="center" *ngIf="dataConfirm == 0"> 
+          <div align="center" *ngIf="statusDataConfirm == 0"> 
             <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
             <span class="sr-only">Loading...</span>
           </div>
-          <div *ngIf="dataConfirm == 1">
+          <div *ngIf="statusDataConfirm == 1">
           <form  name="confirmForm" id="confirmForm">
             <div class="form-group" align="center">
             <div class="input-group">
