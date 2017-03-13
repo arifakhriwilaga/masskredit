@@ -1,1 +1,0 @@
-export * from './be-paid.component';
