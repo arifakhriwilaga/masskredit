@@ -1,17 +1,17 @@
 // module
-import { NgModule }      from '@angular/core';
-import { RouterModule }  from '@angular/router';
-import { HttpModule }    from '@angular/http';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { CommonModule }  from '@angular/common';
-// import { PaginationModule } from 'ng2-bootstrap';
-// import { LocalStorageService }   from 'angular-2-local-storage';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 // component
 import { IndexComponent } from './index.component';
-import { FormConfirmComponent } from './form-confirm';
+import { DetailComponent } from './part/fund-add-detail';
+import { FormConfirmComponent } from './part/form-confirm';
+import { StructComponent } from './part/form-confirm/part/struct';
 
-
+import { IndexService } from './index.service';
 export const routes = [
   { path:'', component: IndexComponent }
 ] 
@@ -19,7 +19,9 @@ export const routes = [
 @NgModule({
   declarations: [
     IndexComponent,
-    FormConfirmComponent
+    DetailComponent,
+    FormConfirmComponent,
+    StructComponent
   ],
   imports: [
     HttpModule,
@@ -27,7 +29,7 @@ export const routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [ ]
+  providers: [IndexService]
 })
 
 export default class IndexModule { 
