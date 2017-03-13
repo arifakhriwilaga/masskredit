@@ -1,16 +1,17 @@
-// Module
-import { NgModule }              from '@angular/core';
-import { RouterModule }          from '@angular/router';
-import { HttpModule }            from '@angular/http';
-import { FormsModule }           from '@angular/forms';
-import { CommonModule }          from '@angular/common';
+// module
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 // component create
 import { CreateComponent } from './create.component';
-import { FormComponent } from './form';
-import { MessageComponent } from './message';
-import { FormConfirmComponent } from './form-confirm';
-import { DataConfirm } from './form-confirm/form-confirm';
+import { FormComponent } from './part/form';
+import { MessageComponent } from './part/message';
+import { FormConfirmComponent } from './part/form-confirm';
+
+import { CreateService } from './create.service';
 
 
 export const routes = [{ path:'', component: CreateComponent}] 
@@ -28,7 +29,7 @@ export const routes = [{ path:'', component: CreateComponent}]
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [ DataConfirm ]
+  providers: [ CreateService ]
 })
 
 export default class CreateModule { 
