@@ -51,7 +51,7 @@ export class IndexComponent {
  		limit : this.limit
  	}
 
- 	private dataArrayNull = 0;
+ 	private dataFundsNull = 0;
 
 
 	ngOnInit(){
@@ -137,6 +137,9 @@ export class IndexComponent {
 		this.indexService.getFunds(this.dataListFund)
 			.then(dataFunds => {
 				try { 
+					if(dataFunds.length == 0) {
+						this.dataFundsNull = 1;
+					}	
 					this.funds = dataFunds;
 					// this.dataListFundWithdrawal = 1;
 					// this.current_page	= current_page;
@@ -193,7 +196,7 @@ export class IndexComponent {
 						(response : any) => {
 
 							if(response.data.withdrawal == '') {
-								this.dataArrayNull = 1;
+								this.dataFundsNull = 1;
 							}	
 							var kosong:null;
 							var code 		= response.meta.code;
