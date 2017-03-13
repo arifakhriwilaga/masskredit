@@ -1,33 +1,29 @@
 // module
-import { NgModule }      from '@angular/core';
-import { RouterModule }  from '@angular/router';
-import { HttpModule }    from '@angular/http';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { CommonModule }  from '@angular/common';
+import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 // component
 import { IndexComponent } from './index.component';
+import { DetailComponent } from './part/fund-withdrawal-detail';
+import { IndexService } from './index.service';
 
-export const routes = [
-  { path:'', component: IndexComponent }
-] 
+export const routes = [ { path:'', component: IndexComponent } ] 
 
 @NgModule({
-  declarations: [
-    IndexComponent, // declarations LoginComponent
+  declarations: [ 
+    IndexComponent,
+    DetailComponent
   ],
-  imports: [ // import Angular's modules
+  imports: [
     HttpModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule,
-    // PaginationModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  // exports: [LoginComponent],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-    // 
-  ]
+  providers: [IndexService]
 })
 
 export default class IndexModule { 
