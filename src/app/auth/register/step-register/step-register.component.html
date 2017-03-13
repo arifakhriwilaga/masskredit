@@ -1,132 +1,119 @@
-<div class="form-account form-login-register" id="step-1">
-<br><br>
-<h2>Registrasi</h2>
-<p>Silakan isi data berikut untuk mendaftarkan diri anda</p>
-<form class="form-horizontal clearfix row" name="registerForm" id="registerForm">
-   <div class="col-xs-6">
-      <div class="form-group">
-         <div class="col-xs-12">
-         <span class="required">*</span>
-            <input  type="text" placeholder="Nama Lengkap" class="form-control input-md" [(ngModel)]="register.nama_lengkap" id="nama_lengkap" name="nama_lengkap" required>
-         </div>
-      </div>
-      <div class="form-group">
-        <div class="col-xs-12">
-         <span class="required">*</span>
-            <input  type="email" placeholder="Email" class="form-control input-md" [(ngModel)]="register.alamat_email" name="alamat_email" required>
-        </div>
-      </div>
-      <!-- Password -->
-      <div class="form-group">
-         <div class="col-md-12">
-         <span class="required">*</span>
-            <input  type="password" placeholder="Password" class="form-control input-md" [(ngModel)]="register.password" name="password" required>
-         </div>
-      </div>
-      <div class="form-group">
-         <div class="col-md-12">
-         <span class="required">*</span>
-            <input  type="password" placeholder="Confirm Password" class="form-control input-md" [(ngModel)]="register.confirm_password" name="confirm_password" required>
-         </div>
-      </div>
-   <!--  <div class="form-group">
-         <div class="col-md-12">
-         <span class="required">*</span>
-              <input  type="text" placeholder="{{ nomor }}" class="form-control input-md" name="phone_number" id="phone_number" value="{{ nomor }}" disabled>
-         </div>
-      </div> -->
-    <div class="form-group">
-        <div class="col-md-12">
-        <span class="required">*</span>
-            <select class="form-control input-md" name="jenis_kelamin" [(ngModel)]="register.jenis_kelamin" name="jenis_kelamin"  required>
-              <option value="0" disabled>Jenis Kelamin</option>
-              <option value="1">Laki-laki</option>
-              <option value="2">Perempuan</option>                  
-            </select>
-        </div>
-    </div>
-    </div>
-
-    <div class="col-xs-6">
-
-      <div class="form-group">
-        <div class="col-xs-4">
-         <span class="required">*</span>
-            <input  type="text" placeholder="Tempat Lahir" class="form-control input-md" [(ngModel)]="register.tempat_lahir" name="tempat_lahir" required>
-        </div>
-        <div class="col-xs-8">
-         <span class="required">*</span>
-            <input  type="text" placeholder="Tanggal Lahir " name="tanggal_lahir" class="form-control input-md datepicker" id="tanggal_lahir" [(ngModel)]="register.tanggal_lahir" required>
-         </div>
-      </div>
-
-      <div class="form-group">
-         <div class="col-xs-12">
-         <span class="required">*</span>
-            <textarea  type="text" placeholder="Alamat" class="form-control input-md" [(ngModel)]="register.alamat" name="alamat" required>
-            </textarea>
-         </div>
-      </div>
-      <div class="form-group">
-        <div class="col-xs-12">
-         <span class="required">*</span>
-            <input  type="text" placeholder="Kode Pos" class="form-control input-md" [(ngModel)]="register.kode_pos" name="kode_pos" id="kode_pos" required>
-        </div>
-      </div>
-       <div class="form-group">
-         <div class="col-md-12">
-         <span class="required">*</span>
-            <select class="form-control input-md" name="status_rumah" [(ngModel)]="register.status_rumah" name="status_rumah" required>
-              <option value="0" disabled>Status Rumah</option>
-              <option value="1">Pribadi</option>
-              <option value="2">Kontrak</option>                  
-            </select>
-         </div>
-      </div>            
-    </div>
-</form>
+<div class="row">
+<div class="container">
+  <div class="form-account form-login-register" id="step-1">
+  <h2>Registrasi</h2>
+  <p>Silakan isi data berikut untuk mendaftarkan diri anda</p>
+    <div class="row">
     <div class="col-xs-12">
-      <!-- Button -->
-      <div class="form-group">
-         <div class="col-md-6 col-center">
-            <button type="cancel" (click)="cancelRegister()" name="singlebutton" class="btn btn-default" id="load-reject" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Batal</button>
-            <button type="submit" (click)="sendRegister(register)" name="singlebutton" class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Daftar</button>
-            <!-- <button type="submit" (click)="toast()" name="singlebutton" class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Daftar</button> -->
-         </div>
-      </div>
-    </div>
-    <div class="col-xs-12" align="col-center">
-      <div id="snackbar">
-      </div>
-    </div>
-<div class="modal fade" id="myModal" style="z-index:9000;">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content bg-navy">
-      <div class="modal-body">
-      <button type="button" class="close" (click)="hideNotif()" style="color: #ffffff">&times;</button>
-      <!-- <div  *ngIf="loaderDana == 0"> -->
-        <!-- <div class="row">
-          <div align="center"> 
-            <br><br><br><br><br>
-            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-            <span class="sr-only">Loading...</span>
+    <form class="form-horizontal clearfix row" name="registerForm" id="registerForm">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <div class="col-xs-12">
+            <span class="required">*</span>
+              <input  type="text" placeholder="Nama Lengkap" class="form-control input-md" [(ngModel)]="register.nama_lengkap" id="nama_lengkap" name="nama_lengkap" required>
+            </div>
           </div>
-        </div> -->
-      <!-- </div> -->
-      <!-- <div  *ngIf="loaderDana == 1"> -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-            <h1 style="color:#ffc300;">Hai, {{ register.nama_lengkap }}</h1>
-            <h2 style="color:#ffffff;">Proses registrasi berhasil, langkah selanjutnya silahkan ada melakukan Login.</h2>
+          <div class="form-group">
+            <div class="col-xs-12">
+            <span class="required">*</span>
+              <input  type="email" placeholder="Email" class="form-control input-md" [(ngModel)]="register.alamat_email" name="alamat_email" required>
+            </div>
+          </div>
+          <!-- Password -->
+          <div class="form-group">
+            <div class="col-md-12">
+            <span class="required">*</span>
+              <input  type="password" placeholder="Password" class="form-control input-md" [(ngModel)]="register.password" name="password" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+            <span class="required">*</span>
+                <input  type="password" placeholder="Confirm Password" class="form-control input-md" [(ngModel)]="register.confirm_password" name="confirm_password" required>
+             </div>
+          </div>
+          <!-- <div class="form-group">
+            <div class="col-md-12">
+            <span class="required">*</span>
+                <input  type="text" placeholder="{{ nomor }}" class="form-control input-md" name="phone_number" id="phone_number" value="{{ nomor }}" disabled>
+             </div>
+          </div> -->
+          <div class="form-group">
+            <div class="col-md-12">
+            <span class="required">*</span>
+              <select class="form-control input-md" name="jenis_kelamin" [(ngModel)]="register.jenis_kelamin" name="jenis_kelamin"  required>
+                <option value="0" disabled>Jenis Kelamin</option>
+                <option value="1">Laki-laki</option>
+                <option value="2">Perempuan</option>                  
+              </select>
             </div>
           </div>
         </div>
-      <!-- </div> -->
+
+        <div class="col-xs-6">
+          <div class="form-group">
+            <div class="col-xs-4">
+             <span class="required">*</span>
+                <input  type="text" placeholder="Tempat Lahir" class="form-control input-md" [(ngModel)]="register.tempat_lahir" name="tempat_lahir" required>
+            </div>
+            <div class="col-xs-8">
+            <span class="required">*</span>
+              <input  type="text" placeholder="Tanggal Lahir " name="tanggal_lahir" class="form-control input-md datepicker" id="tanggal_lahir" [(ngModel)]="register.tanggal_lahir" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+            <span class="required">*</span>
+              <textarea  type="text" placeholder="Alamat" class="form-control input-md" [(ngModel)]="register.alamat" name="alamat" required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+             <span class="required">*</span>
+                <input  type="text" placeholder="Kode Pos" class="form-control input-md" [(ngModel)]="register.kode_pos" name="kode_pos" id="kode_pos" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+            <span class="required">*</span>
+              <select class="form-control input-md" name="status_rumah" [(ngModel)]="register.status_rumah" name="status_rumah" required>
+                <option value="0" disabled>Status Rumah</option>
+                <option value="1">Pribadi</option>
+                <option value="2">Kontrak</option>                  
+              </select>
+            </div>
+          </div>            
+        </div>
+    </form>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <div class="col-md-6 col-center">
+          <button type="cancel" (click)="cancelRegister()" name="singlebutton" class="btn btn-default" id="load-reject" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Batal</button>
+          <button type="submit" (click)="sendRegister(register)" name="singlebutton" class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading..">Daftar</button>
+        </div>
       </div>
     </div>
+    </div>
+  <div class="modal fade" id="myModal" style="z-index:9000;">
+    <div class="modal-dialog">
+    <div class="modal-content bg-navy">
+      <div class="modal-body">
+      <button type="button" class="close" (click)="hideNotif()" style="color: #ffffff">&times;</button>
+      <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+        <h1 style="color:#ffc300;">Hai, {{ register.nama_lengkap }}</h1>
+        <h2 style="color:#ffffff;">Proses registrasi berhasil, langkah selanjutnya silahkan ada melakukan Login.</h2>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
   </div>
 </div>
 </div>
-
