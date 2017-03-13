@@ -8,26 +8,22 @@ import { CommonModule }  from '@angular/common';
 // component
 import { IndexComponent } from './index.component';
 
+// service
+import { IndexService} from './index.service';
+
 export const routes = [
   { path:'', component: IndexComponent }
 ] 
 
 @NgModule({
-  declarations: [
-    IndexComponent, // declarations LoginComponent
-  ],
-  imports: [ // import Angular's modules
+  declarations: [ IndexComponent ],
+  imports: [
     HttpModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule,
-    // PaginationModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  // exports: [LoginComponent],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-    // 
-  ]
+  providers: [ IndexService ]
 })
 
 export default class IndexModule { 
