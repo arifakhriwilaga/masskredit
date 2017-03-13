@@ -1,0 +1,126 @@
+<section class="content">
+<div  *ngIf="loaderDetailInvestor == 0">
+<div class="row">
+  <div align="center"> 
+    <br><br><br><br><br>
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+</div>
+<div  *ngIf="loaderDetailInvestor == 1">
+<div class="row">
+  <div class="col-md-4">
+    <img src="{{ dataDetailInvestor.investor_image }}" alt="Foto Peminjam">
+  </div>
+  <div class="col-md-8">
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label class="unit">Nama Lengkap</label>
+      </div>
+      <div class="col-xs-7">
+        <input type="text" placeholder="Nama Lengkap" class="form-control input-md" name="full_name" id="full_name" value="{{ dataDetailInvestor.investor_name }}" disabled>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label class="unit">investor</label>
+      </div>
+      <div class="col-xs-7">
+        <input type="text" placeholder="investor" class="form-control input-md" name="investor" id="investor" value="{{ dataDetailInvestor.investor }}" disabled>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-xs-4">
+        <label class="unit">Credit</label>
+      </div>
+      <div class="col-xs-7">
+        <input type="text" placeholder="Credit" class="form-control input-md" name="credit" id="credit" value="{{ dataDetailInvestor.fund_history }}" disabled>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-xs-4">
+        <label class="unit">Salary</label>
+      </div>
+      <div class="col-xs-7">
+        <input type="text" placeholder="Salary" class="form-control input-md" name="salary" id="salary" value="{{ dataDetailInvestor.user_class }}" disabled>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-xs-4">
+        <label class="unit">Review</label>
+      </div>
+      <div class="col-xs-7">
+        <div class="unit">
+            <!-- <i class="fa fa-star-half-full full" area-hidden="true"></i> -->
+            <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+            <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+            <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+            <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px; color: orange"></i>
+            <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+            <!-- <span class="bs-glyphicons-list">
+            <span class="glyphicon glyphicon-star star-color star-full"></span>
+            <span class="glyphicon glyphicon-star star-color font half"></span>
+            </span> -->
+            <!-- <span>({{ avg_reviews }} %)</span> -->
+            <span>({{ dataDetailInvestor.avg_reviews }} %)</span>
+        </div>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-xs-4">
+        <label class="unit">Jumlah Investasi</label>
+      </div>
+      <div class="col-xs-7">
+        <input type="text" placeholder="Nilai Pinjaman" class="form-control input-md" name="nilai_pinjaman" id="nilai_pinjaman" value="{{ dataInvestAmount }}" disabled>
+      </div>
+   </div> 
+  </div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+ <label><h2 style="font-size: 30px;color: orange;">Detail Angsuran</h2></label>
+  <div class="box-body data-tables table-responsive">
+  <table class="table table-hover" id="example2">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Angsuran Ke</th>
+        <th>Pokok(Rp)</th>
+        <th>Bunga</th>
+        <th>Denda(Rp)</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dataPayment of dataPayment, let i ='index'">
+      <td>{{ i + 1 }}</td>
+      <td>
+        {{ dataPayment.installment_order }}
+      </td>
+      <td>{{ dataPayment.pokok }}</td>
+      <td>{{ dataPayment.bunga }}</td>
+      <td>{{ dataPayment.denda }}</td>
+      <td>{{ dataPayment.status }}</td>
+      <td *ngIf="dataPayment.status == 'Belum Bayar'">
+        <button class="pull-right" (click)="showNotPaidForm(dataPayment.history_payment_id)"><i aria-hidden="true" class="fa fa-search"></i></button>
+      </td>
+      <td *ngIf="dataPayment.status == 'Lunas'">
+        <button class="pull-right" (click)="showPaidForm(dataPayment.history_payment_id)">
+          <i aria-hidden="true" class="fa fa-search"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>  
+</div>
+<div class="row">
+<div class="col-xs-12">
+<part *ngIf="showDetailInstallment == 1" [dataStatusShowForm]="statusShowForm" [dataDetailInstallment]="detailInstallment" (onHide2)="onHide($event)" (statusInvestor)="statusInvestor1($event)"></part>
+</div>
+</div>
+</div>
+</section>

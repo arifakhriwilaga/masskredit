@@ -1,0 +1,25 @@
+<div class="row">
+<div class="col-md-12">
+  <div class="box bg-transparent">
+    <ul class="nav nav-tabs" role="tablist">
+     <li role="presentation">
+        <a href="#/dashboard/other-user-action/invest" aria-controls="home" role="tab" aria-expanded="true" style="color:#34495e" (click)="invest()">
+          Pinjaman
+        </a>
+      </li>
+      <li role="presentation">
+        <a href="#/dashboard/other-user-action/loan" aria-controls="profile" role="tab" aria-expanded="false" style="color:#34495e" (click)="loan()" >Investasi</a>
+      </li>
+    </ul>
+    <br>
+    <form class="form-horizontal clearfix row white-bg detail-page form-space">
+    <div class="tab-content ">
+      <div class="col-md-12">
+        <!-- content route -->
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+</div>

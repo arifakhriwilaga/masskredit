@@ -1,0 +1,82 @@
+<div class="box-header" align="center">
+  <h2 class="box-title">Tambah Pinjaman</h2>
+</div>
+<div class="box-body">
+  <div class="form-login-register">
+    <form class="form-horizontal clearfix row" name="loanForm" id="loanForm">
+      <div *ngIf="dataInvest == 0">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="col-md-12">
+            <span class="required">*</span>
+            <input type="text" name="loan_name" placeholder="Nama pinjaman" class="form-control input-md" id="loan_name" [(ngModel)]="loan.loan_name">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
+            <span class="required">*</span>
+            <select class="form-control input-md" name="loan_category" id="loan_category" (change)="getLoanCategoryId($event.target.value)" [(ngModel)]="loan.loan_category">
+              <option value="0" disabled>Kategori Pinjaman</option>
+              <option *ngFor="let data of loan_categories" [value]="data.id">{{ data.description }}</option>
+            </select>
+          </div>
+        </div>
+        <!-- if user choose other category -->
+        <name-other-category *ngIf="loanCategory == -1"></name-other-category>
+        <div class="form-group">
+          <div class="col-md-12">
+            <span class="required">*</span>
+            <textarea placeholder="Deskripsi" class="form-control input-md" name="description" id="description" [(ngModel)]="loan.description"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+           <div class="col-md-12">
+            <label>Foto Pinjaman</label>
+            <input type="file" id="images">
+           </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-10">
+            <span class="required">*</span>
+            <input type="text" placeholder="Nominal Investasi" class="form-control input-md" name="amount" id="amount" [(ngModel)]="loan.amount">
+          </div>
+          <label class="unit">Rupiah</label>
+        </div>
+        <!-- component due-date -->
+        <due-date></due-date> 
+        <div class="form-group">
+          <div class="col-md-10 clearfix">
+            <span class="required">*</span>
+            <input type="text" placeholder="Bunga" class="form-control input-md"  name="interest" id="interest" [(ngModel)]="loan.interest">
+          </div>
+          <label class="unit">%/bulan</label>
+        </div>
+        <div class="form-group">
+          <div class="col-md-10 clearfix">
+            <span class="required">*</span>
+            <input type="text" placeholder="Tenor" class="form-control input-md" maxlength="2" minlength="1"  name="tenor" id="tenor" [(ngModel)]="loan.tenor">
+          </div>
+          <label class="unit">Bulan</label>
+        </div>
+      </div>
+      </div>
+    </form>
+      <div *ngIf="dataInvest == 0">
+        <div class="col-md-12">
+        <div class="form-group">
+          <div class="col-md-6 col-center">
+            <button class="btn btn-default" (click)="cancelLoan()">Batal</button>
+            <button class="btn btn-red" (click)="createLoan(loan)">Simpan</button>
+          </div>
+        </div>
+        </div>
+      </div>
+      <verify *ngIf="dataInvest == 3"></verify>
+   </div>
+ </div>
+<div align="center" *ngIf="dataInvest == 1"> 
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+</div>
