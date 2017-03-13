@@ -116,7 +116,7 @@ export class StepRegisterComponent  {
 	cancelRegister() {
 		localStorage.removeItem("access-code");
 		localStorage.removeItem("verify-handphone");
-		let out = this.router.navigateByUrl('/auth/login');
+		let out = this.router.navigateByUrl('/');
 	}
 	// toast(){
 	// 	jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
