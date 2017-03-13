@@ -4,11 +4,17 @@ import { Observable }	from 'rxjs/Observable';
 import { FormGroup}	from '@angular/forms';
 import { Router } from '@angular/router';
 // import { FormComponent } from './form';
-import { DataConfirm } from './form-confirm/form-confirm';
+
+import { DataConfirm } from './part/form-confirm/form-confirm';
+
+import { Data } from './data';
 
 @Injectable ()
 export class CreateService {
-	constructor (private http:Http, private router:Router, private dataConfirm:DataConfirm) { }
+	constructor (
+		private http:Http, 
+		private router:Router,
+	) { }
 
 	// set headers
   private headers = new Headers({ 
@@ -18,28 +24,39 @@ export class CreateService {
 	private options = new RequestOptions({ headers: this.headers })
 	
 	// declare object url bank
-	private postFundUrl = 'https://masscredit-api.stagingapps.net/user/withdrawal/add';
+	private withdrawalUrl = 'https://masscredit-api.stagingapps.net/user/withdrawal/add';
 	
 	// request post fund
-  postFundWithdrawal(data:any){
-		this.http.post(this.postFundUrl,data,this.options)
-		.map(response => response.json())
-		.subscribe((response : any) => {
-			var code = response.meta.code;
-			var message = response.meta.message;
-			this.dataConfirm.id = response.data.id;
-			this.dataConfirm.verification_code = response.data.verification_code;
-			// this.formcomponent.formConfirm = 1;
-			// console.log(response);
-			// alert("Pnarikan dana berhasil, menunggu konfirmasi dana");
-			// this.router.navigateByUrl('/dashboard/fund');
-		},(err:any) => {
-			var error   = JSON.parse(err._body);
-			var message = error.meta.message;
-			if(message == "unauthorized") {
-				alert("Maaf session anda telah habis silahkan login kembali");
-				this.router.navigateByUrl('/dashboard/sign-out');
-			}	
-		});	
+  postFundWithdrawal(data:any): Promise<any>{
+		return this.http.post(this.withdrawalUrl,data,this.options)
+			.toPromise()
+			.then(response => response.json().data)
+			.catch(this.handleError)	
   }
+
+  private noreferenceUrl = 'https://masscredit-api.stagingapps.net/user/fund/no-reference';
+  getNoReference(data:any): Promise<Data>{
+		return this.http.post(this.noreferenceUrl,data,this.options)
+		.toPromise()
+		.then(response => response.json().data.no_reference as Data)
+		.catch(this.handleError)
+  }
+
+	private profileUrl = 'https://masscredit-api.stagingapps.net/user/credential/profile';
+  getProfile(data:any): Promise<Data>{ 
+	return this.http.post(this.profileUrl,data,this.options)
+		.toPromise()
+		.then(response => response.json().data as Data)
+		.catch(this.handleError)	
+  }
+
+	handleError(err){
+		var error   = JSON.parse(err._body)
+    var code = error.meta.code
+    var message = error.meta.message
+  	if(message == "unauthorized") {
+			alert("Maaf session anda telah habis silahkan login kembali")
+			return this.router.navigateByUrl('/dashboard/sign-out')					
+		}
+	}
 }
