@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DataResolver } from './app.resolver';
 
-
-
 import { DashboardService } from './dashboard.service';
 // Auth Guard Dashboard
 // import { AuthGuard } from './../authguard/auth-guard.service';
@@ -27,8 +25,8 @@ export const routes = [
       { path: '', component: LoaderComponent },
       { path: 'profile',         loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
       { path: 'fund',            loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
-      { path: 'user-action', loadChildren: () => System.import('./user_action').then((comp: any) => comp.default) },
-      { path: 'other-user-action', loadChildren: () => System.import('./other_user_action').then((comp: any) => comp.default) },  
+      { path: 'user-action', loadChildren: () => System.import('./user-action').then((comp: any) => comp.default) },
+      { path: 'other-user-action', loadChildren: () => System.import('./other-user-action').then((comp: any) => comp.default) },  
       { path: 'sign-out',       component: SignOutComponent},       
     ]
   },
