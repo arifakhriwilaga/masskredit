@@ -70,6 +70,10 @@ export class LoginService {
 				}
 			});
 	}
+
+	linkLogin(){
+		return this.router.navigate(['/auth/login'])
+	}
 }
 
 
