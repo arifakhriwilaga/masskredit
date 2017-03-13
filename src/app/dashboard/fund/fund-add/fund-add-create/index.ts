@@ -7,7 +7,10 @@ import { CommonModule } from '@angular/common';
 
 // component create fund
 import { CreateComponent } from './create.component';
-import { FormComponent } from './form';
+import { FormComponent } from './part/form';
+
+// service
+import { CreateService } from './create.service';
 
 export const routes = [
   { path:'', component: CreateComponent},
@@ -24,7 +27,7 @@ export const routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [ ]
+  providers: [CreateService]
 })
 
 export default class CreateModule { 
