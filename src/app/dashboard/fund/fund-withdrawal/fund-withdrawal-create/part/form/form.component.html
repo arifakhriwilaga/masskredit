@@ -38,10 +38,10 @@
   </form>
   <div class="col-md-12 col-center">
     <button class="btn btn-default" (click)="cancelWithdrawal()">Batal</button>
-    <button class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading.." name="singlebutton" type="submit" (click)="confirmWithdrawal(data)">Simpan</button>
+    <button class="btn btn-red" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>  Loading.." name="singlebutton" type="submit" (click)="createWithdrawal(data)">Simpan</button>
   </div>
   <!-- component confirm after user success withdrawal fund -->
-  <form-confirm *ngIf="formConfirm == 1" [dataVerificationCode]="verification_code" [dataId]="id" ></form-confirm>
+  <form-confirm *ngIf="statusFormConfirm == 1" [dataVerificationCode]="verificationCode" [dataId]="idWithdrawal" ></form-confirm>
   <!-- component for notif if data bank user blank -->
   <message *ngIf="data.bank == 'Belum diisi' || data.no_rekening == 'Belum diisi'"></message>
 </div>
