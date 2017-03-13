@@ -23,11 +23,12 @@ export const routes = [
     // canActivate : [ AuthGuard ],
     children: [
       { path: '', component: LoaderComponent },
-      { path: 'profile',         loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
-      { path: 'fund',            loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
+      { path: 'market', loadChildren: () => System.import('./market').then((comp: any) => comp.default) },
+      { path: 'profile', loadChildren: () => System.import('./profile').then((comp: any) => comp.default) },
+      { path: 'fund', loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
       { path: 'user-action', loadChildren: () => System.import('./user-action').then((comp: any) => comp.default) },
       { path: 'other-user-action', loadChildren: () => System.import('./other-user-action').then((comp: any) => comp.default) },  
-      { path: 'sign-out',       component: SignOutComponent},       
+      { path: 'sign-out', component: SignOutComponent},       
     ]
   },
 ];
