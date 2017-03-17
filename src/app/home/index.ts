@@ -13,23 +13,40 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ContentComponent } from './content';
 
-// routes home base
+// forgot password component
+import { ForgotPasswordComponent } from './content/part/forgot-password';
+import { FormSatuComponent } from './content/part/forgot-password/form';
+import { OtpComponent } from './content/part/forgot-password/otp';
+
+// login component
+import { LoginComponent } from './content/login';
+
+// register component
+import { PhoneNumberComponent } from './content/register/phone-number';
+import { VerifyCodeComponent } from './content/register/verify-code';
+
 export const routes = [
 	{ path: '', component: HomeComponent,
-    canActivate : [ AuthGuardDashboard ],
-	    children: [
-	      { path: '', redirectTo: 'content' },
-	      { path: 'content', component: ContentComponent },
-	    ]
+    // canActivate : [ AuthGuardDashboard ],
+    children: [
+      { path: '', redirectTo: 'content' },
+      { path: 'content', component: ContentComponent },
+    ]
   }
 ];
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    HomeComponent, //home component
     FooterComponent,
     HeaderComponent,
     ContentComponent,
+    ForgotPasswordComponent, //forgot password component
+    FormSatuComponent,
+    OtpComponent,
+    LoginComponent, //login component
+    PhoneNumberComponent, // regiter component
+    VerifyCodeComponent
   ],
   imports: [
     CommonModule,
