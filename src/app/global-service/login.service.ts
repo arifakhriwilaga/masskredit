@@ -32,13 +32,12 @@ export class LoginService {
 
 	// function login
 	postLogin(user:any){
-		return this.http.post(this.loggedinUrl, user, this.options)
+		this.http.post(this.loggedinUrl, user, this.options)
 			.map(response => response.json())
 			.subscribe((response:any) => { 
 				let access_token 		= JSON.stringify(response.data.access_token);
 				let code 		= response.meta.code;
 				let getToken = localStorage.getItem("access_token");
-				if(code == "200") {
 					let token = {value: access_token, timestamp: new Date().getTime()}
 					// localStorage.setItem("access_token",JSON.stringify(token));
 					localStorage.setItem("access_token",access_token);
@@ -51,9 +50,6 @@ export class LoginService {
 					// }
 					// localStorage.setItem("access_token",access_token);
 					return this.router.navigateByUrl('/dashboard');
-				}else{
-					alert("Register gagal");
-				}
 			},(err:any) => {
 				let error   = JSON.parse(err._body);
 				let code = error.meta.code;
@@ -61,12 +57,10 @@ export class LoginService {
 				let $this = jQuery("#load"); // not available $this on 'let' so create $this on var
 				if(message == "Account not found") {
 					alert("Akun tidak ditemukan.")
-
-		      $this.button('reset');
+		      // $this.button('reset');
 				}
-				if(message == null) {
-					alert("Akun tidak ditemukan.")
-		      $this.button('reset');
+				if(message = 'Nomor HP atau password Anda salah, silahkan cek kembali.') {
+					alert("Nomor HP atau password Anda salah, silahkan cek kembali.")
 				}
 			});
 	}
