@@ -1,0 +1,10 @@
+<div class="row">
+<form id="verifyForm">
+  <div class="col-md-8">
+   <input  type="text" placeholder="087-872-98XX" class="form-control input-md form-color" maxlength="15" minlength="9" id="phone" name="phone" [(ngModel)]="nomor.phone_number">
+  </div>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-red btn-block btn-verifikasi" (click)="sendHandphone()">Kirim</button>
+  </div>                
+</form>
+</div>
