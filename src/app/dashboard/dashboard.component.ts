@@ -13,9 +13,11 @@ declare var jQuery: any;
 
 @Component({
   selector: 'dashboard',
+  encapsulation: ViewEncapsulation.None,
+  // styleUrls: ['./dashboard.component.css'],
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit{  
+export class DashboardComponent {  
   constructor(
     private http : Http,
     private router:Router,

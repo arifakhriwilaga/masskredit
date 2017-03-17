@@ -39,7 +39,8 @@ export const routes = [
     HttpModule,
     FormsModule,
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
   providers: [ ]
 })

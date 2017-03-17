@@ -136,7 +136,7 @@ export class IndexComponent {
 	getListFund(){ 
 		this.indexService.getFunds(this.dataListFund)
 			.then(dataFunds => {
-				try { 
+				try {
 					if(dataFunds.length == 0) {
 						this.dataFundsNull = 1;
 					}	

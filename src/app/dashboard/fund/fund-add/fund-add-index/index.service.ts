@@ -18,10 +18,10 @@ export class IndexService {
 
 	private listFundUrl = "https://masscredit-api.stagingapps.net/user/fund/get-list";
 	
-	getFunds(data:any): Promise<Fund[]>{
+	getFunds(data:any): Promise<Fund>{
 	 	return this.http.post(this.listFundUrl,data,this.options)
 		.toPromise()
-		.then(response => response.json().data.fund as Fund[])
+		.then(response => response.json().data as Fund)
 		.catch(this.handleError)	
 	}
 

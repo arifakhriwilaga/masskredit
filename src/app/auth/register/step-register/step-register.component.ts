@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup }  	from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { StepRegisterService } from './step-register.service';
 declare var jQuery:any;
@@ -13,7 +13,12 @@ declare var jQuery:any;
 
 
 export class StepRegisterComponent  { 
-	constructor(private stepregisterService : StepRegisterService, private router : Router, private http : Http) { }
+	constructor(
+		private stepregisterService : StepRegisterService, 
+		private router : Router, 
+		private http : Http,
+		private activatedRoute : ActivatedRoute
+	) { }
 	
 	private register = { 
 		nama_lengkap : null,
@@ -34,13 +39,28 @@ export class StepRegisterComponent  {
 
 	private nomor = "";
 	ngOnInit(){
+		let param = this.activatedRoute.params.subscribe( params => {
+			let access_code = params['access_code'];
+		});
 
 		jQuery('#messagelogin').hide();
 
 	
 		this.nomor = JSON.parse(localStorage.getItem("verify_handphone"));
+		jQuery.datepicker.setDefaults({
+      dateFormat: 'yy-mm-dd',
+      minDate: '2013-09-10',
+      maxDate: '2013-10-10'
+		});
+
 		jQuery('.datepicker').datepicker({
-	    format	: 'yyyy-mm-dd',
+	    format : 'dd-mm-yyyy',
+	    showOn: "focus",
+	    autoclose: true,
+	    // startDate: "01-01-1945",
+	    // endDate: "01-01-1998"
+	    startDate: "-100y",
+	    endDate: "-21y"
 	  });
 
 		jQuery('#kode_pos').mask('00000');

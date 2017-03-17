@@ -35,9 +35,13 @@ export const routes = [
         loadChildren: () => System.import('./verify-code').then((comp: any) => comp.default) 
       },       
       {    
-        path: 'step-register', 
+        path: 'step-register/:access_code', 
         // canActivate : [ AuthGuardVerify ],
         loadChildren: () => System.import('./step-register').then((comp: any) => comp.default) 
+      },
+      {    
+        path: 'new-password/:token',
+        loadChildren: () => System.import('./new-password').then((comp: any) => comp.default) 
       },
       {    
         path: 'finish', 

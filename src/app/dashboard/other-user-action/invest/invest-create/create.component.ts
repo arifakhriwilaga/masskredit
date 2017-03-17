@@ -13,9 +13,20 @@ declare var jQuery:any;
 })
 
 export class CreateComponent {
-	constructor(private http: Http, private router:Router) { }
+	constructor(
+		private http: Http, 
+		private router:Router,
+		private fb:FormBuilder
+	) { }
+
+	status:FormGroup;
 
 	ngOnInit() {
+		this.status = this.fb.group({
+      agreement: ['', Validators.required],
+    });
+
+		// console.log(this.status.agreement)
 		// validation
     jQuery( "#investForm" ).validate({
 		  rules: {
@@ -69,6 +80,15 @@ export class CreateComponent {
   	password: null		
 	}
 	
+	simulation = {
+		nominal : null,
+    pokok: null,
+    bunga: null,
+    cicilan_perbulan: null,
+    denda: null,
+    sucess_fee: null
+	}
+
 	private token = JSON.parse(localStorage.getItem("access_token"));
 	public dataInvest = 0;
   private tipeInvest:any;
