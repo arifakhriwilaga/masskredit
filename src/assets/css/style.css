@@ -1941,3 +1941,161 @@ footer {
     width: 100%;
     height: 100%;
 }
+
+/* update css form login */
+.overlay-form {
+    position: absolute;
+    top: 50px;
+    right: 100px; 
+    display: block;
+    height: 280px;
+    padding-top: 50px;
+    z-index: 9;
+    
+
+}
+
+.panel {
+    position: absolute;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0 !important;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    opacity: 0.9;
+    width: 350px;
+}
+
+.input-style {
+    padding: 10px;
+}
+
+label.name-form {
+    color: #000;
+}
+
+.forgot {
+    float: right;
+    padding: 10px;
+}
+
+.nav-tabs2 {
+    
+    background-color: #fff;
+    width: 350px;
+}
+
+.nav-tabs2 > li > a {
+    margin-right: 0px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+
+
+.nav-tabs2 > li > a {
+    border-radius: 0px !important;
+    color: #aaa;
+    text-align: center;
+}
+
+.nav-tabs2 > li > a:hover {
+    color: #fff;
+    
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: transparent; 
+    border-bottom-color: transparent;
+}
+
+
+.btn-login {
+    background-color: #123F77;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    height: auto;
+    padding: 10px 0;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.btn-login:hover {
+    color:  #ffc300;
+}
+
+.nav-tabs:focus {
+    color: #fff;
+}
+
+.btn-verifikasi {
+    background-color: #123F77;
+    color: #ffc300;
+}
+
+.btn-verifikasi > a:hover {
+    color: #fff;
+}
+
+
+.modal-backdrop {
+    z-index: 0 !important;
+    opacity: 0.7 !important;
+
+}
+
+.modal-style {
+        margin-top: 100px;
+}
+
+.btn.focus, .btn:focus, .btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-tabs2>li>a:hover {
+    
+    border: none;
+    border-color: #eee #eee #ddd;
+}
+
+.nav-tabs2>li {
+    width: 50%;
+}
+
+.nav-tabs2>li.active>a, .nav-tabs2>li.active>a:focus, .nav-tabs2>li.active>a:hover {
+    background-color: #ffc300;
+    color: #fff;
+    border-bottom: 5px solid #114077;
+}
+
+.nav-tabs2 li a:hover {
+    background: none;
+    color: #275081 !important;
+}
+
+/* custom css */
+.btn-simulation {
+    background-color: #092D59;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 4%;
+}
+
+.btn-simulation:hover {
+    background-color: #1F4468;
+}
+
+.form-center {
+    margin-left: auto;
+}
