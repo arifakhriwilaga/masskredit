@@ -14,12 +14,12 @@ export class SignOutComponent {
 	constructor(private router : Router) { }
 
 	ngAfterViewInit() {
-		localStorage.removeItem("access_token");
-		localStorage.removeItem("verify_handphone");
-		localStorage.removeItem("access_code");
-		localStorage.removeItem("access");
+		this.router.navigateByUrl('/home/content');
+		// localStorage.removeItem("access_token");
+		// localStorage.removeItem("verify_handphone");
+		// localStorage.removeItem("access_code");
+		// localStorage.removeItem("access");
 
-		this.router.navigateByUrl('');
 	}
 
 }
