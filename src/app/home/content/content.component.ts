@@ -1,37 +1,30 @@
-import { Component } 	from '@angular/core';
-import { Router } 	from '@angular/router';
-
-
-// inject service login
-import { LoginService }	from './../../global-service/login.service';
-
-// inject object login
-import { User } from './login';
-
-// declare object jQuery for usage function jQuery
-declare var jQuery:any
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'content',
-	templateUrl: 'content.component.html',
-
+	templateUrl: 'content.component.html'
 })
 
 export class ContentComponent { 
-	constructor(private loginService : LoginService, private router:Router){ }
-// declare object request
-	private user = { User };
 
-	ngOnInit(){
-		// call function jquery mask
-		jQuery('#username').mask('000-000-000000');
-	}
-	login(user){
-		let $this = jQuery("#load");
-    $this.button('loading');
-		this.loginService.postLogin(user);
+	statusFormForgot:number;
+	showForgot(status:number){
+		this.statusFormForgot = status;
 	}
 
-	linkDaftarUrl = '#/auth/login';
+	hideModal(status:number){
+		this.statusFormForgot = status;
+	}
 
+	statusFormVerify:number
+	phoneNumber = { };
+	showVerify(data:any){
+		this.phoneNumber = data.phone_number;
+		this.statusFormVerify = data.status;
+	}
+
+	hideModalVerify(status:number){
+		this.statusFormVerify = status;
+	}
 }
