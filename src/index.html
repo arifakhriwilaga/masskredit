@@ -21,6 +21,8 @@
   <link rel="stylesheet" type="text/css" href="assets/library/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- toast -->
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" /> -->
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> 
   <!-- style CSS -->         
@@ -28,12 +30,10 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <!-- responsive CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/mobile.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="assets/library/template/css/_all-skins.css">
-  <link rel="stylesheet" href="assets/library/template/css/datepicker.css">  
-  <link rel="stylesheet" href="assets/library/template/css/AdminLTE.css"> 
-  <!-- toast -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" />
+  <!-- dashboard CSS -->
+  <link rel="stylesheet" href="assets/library/template/css/AdminLTE.component.css">
+  <link rel="stylesheet" href="assets/library/template/css/_all-skins.component.css">
+  <link rel="stylesheet" href="assets/library/template/css/datepicker.css">
 </head>
 <body>
   <app>
@@ -68,12 +68,18 @@
   <!-- Webpack Dev Server reload -->
   <script src="/webpack-dev-server.js"></script>
   <% } %>
+  <!-- Base Home -->
   <!-- jquery js -->
   <script src="assets/library/jquery/jquery-1.11.3.min.js"></script>
+  <!-- bootstrap js -->
+  <!-- <script src="assets/library/bootstrap/js/bootstrap.min.js"></script>   -->
+  <script src="assets/library/bootstrap/js/bootstrap.min.js"></script>  
+  <!-- main js -->
+  <script src="assets/js/main_js.js"></script>
+
+  <!-- Base Dashboard -->
   <!-- jQuery UI 1.11.4 -->
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-  <!-- bootstrap js -->
-  <script src="assets/library/bootstrap/js/bootstrap.min.js"></script>  
   <!-- Morris.js charts -->
   <script src="assets/js/highcharts.js"></script>
   <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -83,8 +89,6 @@
   <script src="assets/js/app.min.js"></script>
   <!-- datepicker js -->
   <script src="assets/js/datepicker.js"></script>
-  <!-- main js -->
-  <script src="assets/js/main_js.js"></script>
   <!-- mask js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.3/jquery.mask.js"></script>
   <!-- validation js -->
