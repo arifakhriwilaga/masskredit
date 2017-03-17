@@ -1,11 +1,15 @@
-<div class="box-header" align="center">
-  <h2 class="box-title">Tambah Investasi</h2>
-</div>
-<div class="box-body">
-  <div class="form-login-register">
-    <form class="form-horizontal clearfix row" name="investForm" id="investForm">
+<div class="row">
+  <div class="col-xs-8">
+  <div class="box-header">
+    <h2 class="box-title">Tambah Investasi</h2>
+  </div>
+  <div class="box-body">
+  <div class="row">
+    <div class="col-xs-12">
+    <form class="form-center" name="investForm" id="investForm">
       <div *ngIf="dataInvest == 0">
-      <div class="col-md-6">
+      <div class="row" align="center">
+      <div class="col-md-4">
         <div class="form-group">
           <div class="col-md-12">
             <span class="required">*</span>
@@ -40,7 +44,7 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <div class="col-md-10">
+          <div class="col-md-8">
             <span class="required">*</span>
             <input type="text" placeholder="Nominal Investasi" class="form-control input-md" name="amount" id="amount" [(ngModel)]="invest.amount">
           </div>
@@ -50,36 +54,122 @@
           <due-date></due-date>
 
         <div class="form-group">
-          <div class="col-md-10 clearfix">
+          <div class="col-md-8">
             <input type="text" placeholder="Bunga" class="form-control input-md"  name="interest" id="interest" [(ngModel)]="invest.interest">
             </div>
             <label class="unit">%/bulan</label>
         </div>
         <div class="form-group">
-          <div class="col-md-10 clearfix">
+          <div class="col-md-8">
             <span class="required">*</span>
             <input type="text" placeholder="Tenor" class="form-control input-md" maxlength="2" minlength="1"  name="tenor" id="tenor" [(ngModel)]="invest.tenor">
           </div>
-          <label class="unit">Bulan</label>
+            <label class="unit">Bulan</label>
         </div>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col-xs-12">
+        <button class="btn-simulation">KALKULASI</button>
+      </div>
       </div>
       </div>
     </form>
-      <div *ngIf="dataInvest == 0">
-         <div class="col-md-12">
-           <div class="form-group">
-              <div class="col-md-6 col-center">
-                <button class="btn btn-default" (click)="cancelInvest()">Batal</button>
-                <button class="btn btn-red" (click)="createInvest(invest)">Simpan</button>
-              </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="box-header">
+      <h2 class="box-title">Kalkulasi Investasi</h2>
+    </div>
+    <div class="box-body">
+      <div class="row">
+      <div class="col-xs-12">     
+      <form name="investForm" id="investForm">
+        <div *ngIf="dataInvest == 0">
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Nominal</label>
+            </div>
+            <div class="col-xs-7">
+              <input type="text" name="nominal" placeholder="Nominal" class="form-control input-md" id="nominal" [(ngModel)]="simulation.nominal">
+            </div>
            </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Pokok</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" name="pokok" placeholder="Pokok" class="form-control input-md" id="pokok" [(ngModel)]="simulation.pokok"> 
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Bunga</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="Bunga" class="form-control input-md" name="bunga" id="bunga" [(ngModel)]="simulation.bunga">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Cicilan per bulan</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="Cicilan per bulan" class="form-control" name="cicilan_per_bulan" id="cicilan_per_bulan" [(ngModel)]="simulation.cicilan_per_bulan">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Denda</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="Denda" class="form-control input-md" name="denda" id="denda" [(ngModel)]="simulation.denda">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Success Fee</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="Success Fee" class="form-control input-md" name="success_fee" id="success_fee" [(ngModel)]="simulation.success_fee">
+            </div>
+          </div>
         </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <!-- <div class="col-md-6 col-center">
+              <button class="btn-simulation">KALKULASI</button>
+            </div> -->
+          </div>
+        </div>
+      </form>
+        <div *ngIf="dataInvest == 0">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="col-md-6">
+              <!-- <button class="btn btn-red">Kalkulasi</button> -->
+              <form novalidate [formGroup]="status">
+              <span class="input-group-addon">
+                <input type="checkbox" formControlName="agreement">
+                <label>Saya setuju dengan syarat dan ketentuan</label>
+              </span>
+              <!-- <button class="btn btn-default" (click)="cancelInvest()">Batal</button> -->
+              <button class="btn" (click)="createInvest(invest)" [disabled]="!status.valid">Simpan</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- component password -->
+        <verify *ngIf="dataInvest == 1"></verify>
       </div>
-      <!-- component password -->
-      <verify *ngIf="dataInvest == 1"></verify>
-   </div>
-</div>
-<div align="center" *ngIf="dataDetailInvest == 1"> 
+      </div>
+    </div>
+  </div>
+<!-- <div align="center" *ngIf="dataDetailInvest == 1"> 
   <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
   <span class="sr-only">Loading...</span>
+</div> -->
 </div>

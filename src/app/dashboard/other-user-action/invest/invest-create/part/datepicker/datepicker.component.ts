@@ -7,7 +7,7 @@ declare var jQuery:any;
 	selector: 'due-date',
 	template: ` 
 	<div class="form-group">
-    <div class="col-md-12">
+    <div class="col-md-8">
     <span class="required">*</span>
     <input  type="text" placeholder="Batas Akhir Penawaran " name="masa_berlaku" class="form-control input-md datepicker" id="masa_berlaku" [(ngModel)]="invest.masa_berlaku">
     </div>
