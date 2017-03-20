@@ -1,0 +1,9 @@
+<form id="FormSimulation" name="FormSimulation">
+<div class="form-group">
+  <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="jumlah" id="jumlah" value="" [(ngModel)]="dataCalculation.jumlah">
+</div>
+</form>
+<div class="form-group">
+  <a class="btn btn-default" [href]='listInvestUrl'>Kembali</a>
+  <button type="submit" class="btn-simulation" (click)="calculationInvest()">KALKULASI</button>
+</div>
