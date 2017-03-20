@@ -1,0 +1,87 @@
+<div class="form-group" align="center"><br>
+  <img src="{{ dataDetailInvest.images }}" alt="Foto Pinjaman" class="thumbnail" width="500px" height="250px">
+</div>
+<div class="form-group">
+  <div class="col-md-4 clearfix">
+    <label class="unit">Nama Investasi</label>
+  </div>
+  <div class="col-md-7 clearfix">
+    <input type="text" placeholder="Nama Investasi" class="form-control input-md" name="invest_name" id="invest_name" value="{{ dataDetailInvest.loan_name }}" disabled>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-md-4 clearfix">
+    <label class="unit">Jumlah Investasi</label>
+  </div>
+  <div class="col-md-7 clearfix">
+    <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="amount" id="amount" value="{{ dataAmount }}" disabled>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-md-4 clearfix">
+    <label class="unit">Sisa Investasi</label>
+  </div>
+  <div class="col-md-7 clearfix">
+    <input type="text" placeholder="Sisa Investasi" class="form-control input-md" name="sisa" id="sisa" value="{{ dataRestAmount }}" disabled>
+  </div>
+</div>
+<div class="form-group">
+  <!-- null -->
+</div>
+<div class="form-group">
+  <div class="col-md-4 clearfix">
+    <label class="unit">Tipe Investasi</label>
+  </div>
+  <div class="col-md-7 clearfix">
+    <input type="text" placeholder="Tipe Invest" class="form-control input-md" name="invest_name" id="invest_name" value="{{ dataDetailInvest.tipe }}" disabled>
+   </div>
+</div>
+<div class="form-group">
+  <!-- null -->
+</div>
+<div class="form-group">
+  <div class="col-md-4 clearfix">
+    <label class="unit">Deskipsi</label>
+  </div>
+  <div class="col-md-7 clearfix">
+    <textarea type="text" placeholder="Description" class="form-control input-md" name="description" id="description" value="{{ dataDetailInvest.collateral_value }}" disabled></textarea>
+  </div>
+</div>
+<div class="form-group">
+  <!-- null -->
+</div>
+<div class="form-group">
+  <div class="col-md-4 clearfix">
+    <label class="unit">Batas Penawaran</label>
+  </div>
+  <div class="col-md-7 clearfix">
+    <input  type="text" placeholder="Batas Akhir Penawaran" name="due_date" class="form-control input-md" id="due_date" value="" value="{{ dataDetailInvest.due_date }}" disabled>
+  </div>
+</div>
+<div class="form-group">
+  <!-- null -->
+</div>
+<div class="form-group">
+  <div class="col-md-4 clearfix">
+    <label class="unit">Bunga</label>
+  </div>
+  <div class="col-md-5 clearfix">
+    <input type="text" placeholder="Bunga" class="form-control input-md" name="interest" id="interest" value="{{ dataDetailInvest.interest }}" disabled>
+  </div>
+    <label class="unit">%/Bulan</label>
+</div>
+<div class="form-group">
+  <!-- null -->
+</div>
+<div class="form-group">
+  <div class="col-md-4 clearfix">
+    <label class="unit">Tenor</label>
+  </div>
+  <div class="col-md-5">
+    <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" value="{{ dataDetailInvest.tenor }}" disabled>
+  </div>
+  <label class="unit">Bulan</label>
+</div>
+<div class="form-group">
+  <!-- null -->
+</div>
