@@ -27,7 +27,7 @@ import { VerifyCodeComponent } from './content/register/verify-code';
 
 export const routes = [
 	{ path: '', component: HomeComponent,
-    // canActivate : [ AuthGuardDashboard ],
+    canActivate : [ AuthGuardDashboard ],
     children: [
       { path: '', redirectTo: 'content' },
       { path: 'content', component: ContentComponent },
