@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { CreateComponent } from './create.component';
 import { DueDateComponent } from './part/datepicker';
 import { VerifyComponent } from './part/verify';
+import { FormVerifyComponent } from './part/verify/form';
 
 
 export const routes = [
@@ -19,7 +20,8 @@ export const routes = [
   declarations: [
     CreateComponent,
     DueDateComponent,
-    VerifyComponent
+    VerifyComponent,
+    FormVerifyComponent
   ],
   imports: [
     HttpModule,
@@ -28,7 +30,6 @@ export const routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule
   ],
-  providers: [ ]
 })
 
 export default class CreateModule { 
