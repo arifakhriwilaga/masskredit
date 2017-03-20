@@ -5,21 +5,26 @@ import { Router } from '@angular/router';
 import { ValidationServiceInvestasi } from './validationservice.component';
 import { VerifyComponent } from './verify_component';
 
+import { CreateService } from './create.service';
+
 declare var jQuery:any;
 
 @Component({
 	selector: 'create',
 	templateUrl: 'create.component.html',
+	providers: [CreateService]
 })
 
 export class CreateComponent {
 	constructor(
 		private http: Http, 
 		private router:Router,
-		private fb:FormBuilder
+		private fb:FormBuilder,
+		private createService:CreateService
 	) { }
 
 	status:FormGroup;
+	dataInvest:number;
 
 	ngOnInit() {
 		this.status = this.fb.group({
@@ -36,7 +41,7 @@ export class CreateComponent {
 		    invest_type: {
 		      required: true,
 		    },
-		    masa_berlaku: {
+		    due_date: {
 		      required: true
 		    },
 		    amount: {
@@ -53,18 +58,12 @@ export class CreateComponent {
 		  // 	invest_name : "Invest nama dibutuhkan"
 		  // }
 		});
+		jQuery('#due_date').mask("99-99-9999");
 		jQuery('#interest').mask('00000');
 		jQuery('#tenor').mask('00');
 		jQuery('#amount').mask('0000000000');
 
 	}
-
-	// set header
-  private headers = new Headers({ 
-			'Content-Type': 'application/json',
-			'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243'
-	});
-	private options = new RequestOptions({ headers: this.headers });
 	
 	// object invest
 	public invest = {
@@ -77,9 +76,33 @@ export class CreateComponent {
   	amount: null,
   	interest: null,
   	tenor: null,
-  	password: null		
+  	password: null	
 	}
 	
+  private tipeInvest:any;
+  getTipeInvestasi(id){
+  	this.tipeInvest = id;
+  }
+
+	createInvest(){
+		if(jQuery('#investForm').valid()) {
+			try { 
+			  let due_date = jQuery('#due_date').val();
+			  this.invest.due_date = due_date;
+			
+			} finally {
+				this.dataInvest = 2;
+			}
+
+		} else {
+			alert("Data tidak valid");
+		}
+  }
+  
+  hideVerify(status:number){
+  	console.log(status);
+  }
+
 	simulation = {
 		nominal : null,
     pokok: null,
@@ -89,115 +112,61 @@ export class CreateComponent {
     sucess_fee: null
 	}
 
-	private token = JSON.parse(localStorage.getItem("access_token"));
-	public dataInvest = 0;
-  private tipeInvest:any;
-  public dataDetailInvest = 0;
-
-  getTipeInvestasi(id){
-  	this.tipeInvest = id;
-  	// console.log(id)
+  dataCalculation = {
+  	jumlah: null,
+    bunga: null,
+    tenor: null
   }
 
-	cancelInvest(){
+  calculationInvest(){
+		if(jQuery('#investForm').valid()) {
+			this.dataCalculation.bunga = this.invest.interest;
+			this.dataCalculation.jumlah = this.invest.amount;
+			this.dataCalculation.tenor = this.invest.tenor;
 
-		this.router.navigateByUrl("/dashboard/other-user-action/invest");
-	}
-
-	// function for encode image
-	createInvest(invest){
-		if(jQuery("#investForm").valid()) {
-	  	this.invest.due_date = jQuery("#masa_berlaku").datepicker("getDate");
-
-			let readerFileA = new FileReader();
-			readerFileA.onload = function(event, varty) {
-				try{
-					let image = event.target.result.split(',')[1];
-					if(image == "AQID") {
-						this.invest.images = null;
-					}
-
-					if(image != "AQID") {
-					 this.invest.images = image;
-					}
-				}finally{
-					// console.log(this.invest)
-					this.dataInvest = 1;
-					
-				}
-			}.bind(this)
-
-			let x : any = document.getElementById("images");
-			var file_x =	x.files[0];
-
+		  let due_date = jQuery('#due_date').val();
+		  let image : any = document.getElementById('images');
+			var fileImage =	image.files[0];
+			
+			// object image null
 			var objectBlob	= new Uint8Array([1,2,3]);
 			var arrayBlob	= objectBlob.buffer;
 			var image_default = new Blob([arrayBlob]);
 
-
-			if(file_x == undefined) {
-				file_x = image_default;
+			if(fileImage == undefined) {
+				fileImage = image_default;
 			}
-			var encode_x  = readerFileA.readAsDataURL(file_x);
-		}
-		else{
-			alert("Data tidak valid")
+
+			this.encodeImage(fileImage).onload = function(event, varty){
+				try {
+					let image = event.target.result.split(',')[1];
+					
+					if(image != "AQID") {
+					 this.invest.images = image;
+
+					} else {
+						this.invest.images = null
+					}
+
+				} finally {
+					this.createService.calculationInvest(this.dataCalculation).then(dataResponse => {
+						try {
+							this.simulation = dataResponse.data.simulation_result;
+						} finally {
+							this.dataInvest = 1;
+						}
+					})
+				}
+			}.bind(this);
+
+		} else {
+			alert("Data tidak valid");
 		}
   }
 
-	sendVerifyInvest(password : any){
-		if(jQuery("#confirmInvestForm").valid()) {
-			this.sendDataInvest();
-		}
-		else{
-			alert("Harap masukan password");
-		}
+	encodeImage(image:any){
+		let readerFile = new FileReader();
+		readerFile.readAsDataURL(image);
+		return readerFile;
 	}
-
-	cancelVerifyInvest(){
-
-		this.dataInvest = 0;
-	}
-  
-  // api send data
-  sendDataInvest(){
-  	this.http.post('https://masscredit-api.stagingapps.net/user/investment/new',
-		this.invest,
-		this.options)
-		.map(response => response.json())
-		.subscribe(
-			(response : any) => {
-				var code 		= response.meta.code;
-				var message 	= response.meta.message;					
-				// console.log(code,message);
-				this.dataDetailInvest = 0;
-				alert("Investasi berhasil dibuat");
-				this.router.navigateByUrl('/dashboard/other-user-action/invest');
-			},
-			(err:any) => {
-				var error   = JSON.parse(err._body)
-				var message = error.meta.message
-				var code = error.meta.code
-				if(message == "unauthorized") {
-					alert("Maaf session anda telah habis silahkan login kembali")
-					return this.router.navigateByUrl('/dashboard/sign-out')					
-				}
-				if(message == "Password salah!") {
-					// this.verify.dataConfirmInvest = 0;
-					this.dataInvest = 1;
-					this.dataDetailInvest = 0;
-					alert("Password anda salah")
-					// return this.router.navigateByUrl('/dashboard/sign-out')					
-				}
-				if(message == "Saldo Anda tidak mencukupi.") {
-					// this.verify.dataConfirmInvest = 0;
-					this.dataInvest = 1;
-					this.dataDetailInvest = 0;
-					alert("Saldo anda tidak mencukupi")
-					// return this.router.navigateByUrl('/dashboard/sign-out')					
-				}
-
-			}
-		);
-  }
 }
