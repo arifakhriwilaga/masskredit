@@ -40,8 +40,8 @@ export class VerifyComponent implements OnInit{
 		this.router.navigateByUrl('dashboard/other-user-action/invest');
 	}
 
-	hideConfirmInvest(){
-		this.statusForm.emit(1);		
+	hideModal(){
+		this.statusForm.emit(1);	
 	}
 
 	confirmInvest(){
