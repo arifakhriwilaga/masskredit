@@ -7,7 +7,12 @@ import { CommonModule } from '@angular/common';
 
 // component
 import { DetailComponent } from './detail.component';
+import { FormDetailComponent } from './form-detail';
 import { VerifyComponent } from './part/verify';
+import { FormVerifyComponent } from './part/verify/form';
+
+// import { FormLoanComponent } from './part/form-loan';
+// import { CalculationComponent } from './part/calculation';
 
 export const routes = [
   { path:'', component: DetailComponent},
@@ -16,7 +21,11 @@ export const routes = [
 @NgModule({
   declarations: [
     DetailComponent,
-    VerifyComponent
+    FormDetailComponent,
+    VerifyComponent,
+    FormVerifyComponent
+    // FormLoanComponent,
+    // CalculationComponent
   ],
   imports: [
     HttpModule,
