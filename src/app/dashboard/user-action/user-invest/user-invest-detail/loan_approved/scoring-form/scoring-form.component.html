@@ -1,0 +1,52 @@
+<!-- Modal -->
+<div class="modal fade" id="ScoringForm" style="z-index:9000;">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" (click)="hideForm(0)">&times;</button>
+    </div>
+    <div class="modal-body">
+    <!-- <div  *ngIf="loaderDetailBorrower == 0">
+    <div class="row">
+      <div align="center"> 
+        <br><br><br><br><br>
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    </div> -->
+    <!-- <div *ngIf="loaderDetailBorrower == 0"> -->
+      <div class="row">
+      <div class="col-md-12 col-center">
+       	<div class="form-group">
+	        <h2 style="font-size: 24px;color:black">Form Penilaian</h2>
+       	</div>
+       	<div class="form-group">  
+          <!-- <div class="unit">
+          <i class="fa fa-star-half-full full" area-hidden="true"></i>
+          <i class="fa fa-star null" aria-hidden="true" style="font-size: 50px;color: orange"></i>
+          <i class="fa fa-star null" aria-hidden="true" style="font-size: 50px;color: orange"></i>
+          <i class="fa fa-star null" aria-hidden="true" style="font-size: 50px;color: orange"></i>
+          <i class="fa fa-star null" aria-hidden="true" style="font-size: 50px; color: orange"></i>
+          <i class="fa fa-star null" aria-hidden="true" style="font-size: 50px;color: orange"></i>
+      		</div> -->
+      		<rating [(ngModel)]="rate"></rating>
+
+					<pre style="margin:15px 0;">Rate: <b>{{rate}}</b></pre>
+
+					<rating [ngModel]="rate2" (updateRate)="onRate($event)"></rating>
+
+					<pre style="margin:15px 0;">Custom rate: <b>{{customRate}}</b></pre>
+
+					<rating [ngModel]="2" (updateRate)="onRate2($event)"></rating>
+
+					<pre style="margin:15px 0;">Custom rate: <b>{{customRate2}}</b></pre>
+       </div>
+      </div>
+    </div> 
+    <!-- </div> -->
+  </div>
+  </div>
+</div>
+</div>

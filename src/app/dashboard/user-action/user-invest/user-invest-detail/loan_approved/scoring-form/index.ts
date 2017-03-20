@@ -1,0 +1,1 @@
+export * from './scoring-form.component';
