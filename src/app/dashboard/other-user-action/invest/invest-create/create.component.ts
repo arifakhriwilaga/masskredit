@@ -25,6 +25,7 @@ export class CreateComponent {
 
 	status:FormGroup;
 	dataInvest:number;
+	formVerify:number
 
 	ngOnInit() {
 		this.status = this.fb.group({
@@ -91,7 +92,7 @@ export class CreateComponent {
 			  this.invest.due_date = due_date;
 			
 			} finally {
-				this.dataInvest = 2;
+				this.formVerify = 1;
 			}
 
 		} else {
@@ -100,7 +101,7 @@ export class CreateComponent {
   }
   
   hideVerify(status:number){
-  	console.log(status);
+  	this.formVerify = status;
   }
 
 	simulation = {
