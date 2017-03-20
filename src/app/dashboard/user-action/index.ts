@@ -16,7 +16,7 @@ import { UserActionService } from './user-action.service';
 export const routes = [
   { path: '',    component: UserActionComponent ,
       children: [
-        { path: '', redirectTo: 'user-invest' },
+        { path: '', redirectTo: 'user-loan' },
         {    
           path: 'user-invest', 
           loadChildren: () => System.import('./user-invest').then((comp: any) => comp.default) 
