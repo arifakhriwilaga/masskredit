@@ -1,130 +1,124 @@
+<!-- <div class="col-xs-12">
 <div class="box-header" align="center">
-  <h2 class="box-title">Detail Investasi</h2>
+  <h2 class="box-title">Detail Pinjaman</h2>
+</div>
+</div> -->
+<div class="col-md-4">
+  <div class="row">
+    <div class="box-header" align="center">
+      <label><h2 style="font-size: 24px;color: orange;">Form Pinjaman</h2></label>
+    </div><br><br>
+    <div class="box-body">
+    <div class="col-xs-12">
+      <!-- component calculation -->
+      <form id="FormSimulation" name="FormSimulation">
+      <div class="form-group">
+        <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="jumlah" id="jumlah" value="" [(ngModel)]="dataCalculation.jumlah">
+      </div>
+      </form>
+      <div class="form-group">
+        <a class="btn btn-default" [href]='listInvestUrl'>Kembali</a>
+        <button type="submit" class="btn-simulation" (click)="calculationInvest()">KALKULASI</button>
+      </div>
+      <hr>
+      <!-- <div align="center" *ngIf="dataDetailInvest == 3"> 
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+      </div> -->
+    </div>
+    </div>
+  </div>
+  <div class="row">
+    <br>
+    <div class="box-header" align="center">
+      <h2 class="box-title">Kalkulasi Pinjaman</h2>
+    </div>
+    <div class="box-body">
+      <div class="row">
+      <div class="col-xs-12">     
+        <!-- component form loan -->
+        <form name="FormLoan" id="FormLoan">
+          <fieldset disabled>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Nominal</label>
+              </div>
+              <div class="col-xs-7">
+                <input type="text" name="-" placeholder="-" class="form-control input-md" id="nominal" [(ngModel)]="simulation.nominal">
+              </div>
+           </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Pokok</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" name="-" placeholder="-" class="form-control input-md" id="pokok" [(ngModel)]="simulation.pokok"> 
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Bunga</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" placeholder="-" class="form-control input-md" name="bunga" id="bunga" [(ngModel)]="simulation.bunga">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Cicilan/bulan</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" placeholder="-" class="form-control" name="cicilan_per_bulan" id="cicilan_per_bulan" [(ngModel)]="simulation.cicilan_perbulan">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Denda</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" placeholder="-" class="form-control input-md" name="denda" id="denda" [(ngModel)]="simulation.denda">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Biaya admin</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" placeholder="-" class="form-control input-md" name="charge_fee" id="charge_fee" [(ngModel)]="simulation.charge_fee">
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <div class="col-md-12">
+          <div class="form-group col-center">
+          <div align="center">
+            <span class="input-group-addon">
+              <input type="checkbox" [checked]="isOn === dataIsOn[0].value" (change)="$event.target.checked? (isOn = dataIsOn[0].value) : (isOn = dataIsOn[1].value)">
+              <label>Saya setuju dengan syarat dan ketentuan</label>
+            </span>
+            <button class="btn btn-red" style="background-color: #e74c3c;" (click)="createLoan()" [ngClass]="{disabled:isOn === 0}" id="createLoan"><font style="color:white">Pinjam Sekarang!</font></button>
+          </div>
+          </div>
+          <!-- component password -->
+          <verify *ngIf="formVerify == 1" [dataLoan]="loan"></verify>
+        </div> <!-- end component form-loan -->
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-8">
+<div class="box-header" align="center">
+  <h2 class="box-title">Detail Pinjaman</h2>
 </div>
 <div class="box-body">
-  <div *ngIf="dataDetailListInvest == 1">
-    <div class="col-md-4">
-      <div class="box box-solid radius-10" style="border: 2px">
-        <div class="form-group"><br>
-        <img src="{{ data.images }}" alt="Foto Investasi" class="thumbnail" width="250px" height="250px">
-        </div>
-      </div>
-      <div class="box box-solid radius-10">
-        <div align="center">
-          <label><h2 style="font-size: 24px;color: orange;">Form Pinjaman</h2></label>
-        </div>
-        <div *ngIf="dataDetailInvest == 0">
-          <div class="form-group">
-            <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="loan_amount" id="loan_amount" value="" [(ngModel)]="loan.loan_amount">
-          </div>
-          <div class="form-group">
-            <button class="btn btn-default" (click)="cancelDetailInvest()">Kembali</button>
-            <button class="btn btn-red" (click)="makeLoan(loan)" style="background-color: #e74c3c;"><font style="color:white">Pinjam Sekarang!</font></button>
-          </div>
-        </div>
-        <!-- component password -->
-        <verify *ngIf="dataDetailInvest == 1"></verify>
-        <div align="center" *ngIf="dataDetailInvest == 3"> 
-          <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-7">
-      <div class="box box-solid radius-10">
-      <br>
-        <div class="col-md-12 clearfix"> 
-          <div class="form-group">
-            <div class="col-md-4 clearfix">
-              <label class="unit">Nama Investasi</label>
-            </div>
-            <div class="col-md-7 clearfix">
-              <input type="text" placeholder="Nama Investasi" class="form-control input-md" name="invest_name" id="invest_name" value="{{ data.loan_name }}" disabled>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-4 clearfix">
-              <label class="unit">Jumlah Investasi</label>
-            </div>
-            <div class="col-md-7 clearfix">
-              <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="amount" id="amount" value="{{ dataAmount }}" disabled>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-4 clearfix">
-              <label class="unit">Sisa Investasi</label>
-            </div>
-            <div class="col-md-7 clearfix">
-              <input type="text" placeholder="Sisa Investasi" class="form-control input-md" name="sisa" id="sisa" value="{{ dataRestAmount }}" disabled>
-            </div>
-          </div>
-          <div class="form-group">
-            <!-- null -->
-          </div>
-          <div class="form-group">
-            <div class="col-md-4 clearfix">
-              <label class="unit">Tipe Investasi</label>
-            </div>
-            <div class="col-md-7 clearfix">
-              <input type="text" placeholder="Tipe Invest" class="form-control input-md" name="invest_name" id="invest_name" value="{{ data.tipe }}" disabled>
-             </div>
-          </div>
-          <div class="form-group">
-            <!-- null -->
-          </div>
-          <div class="form-group">
-            <div class="col-md-4 clearfix">
-              <label class="unit">Deskipsi</label>
-            </div>
-            <div class="col-md-7 clearfix">
-              <textarea type="text" placeholder="Description" class="form-control input-md" name="description" id="description" value="{{ data.collateral_value }}" disabled></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <!-- null -->
-          </div>
-          <div class="form-group">
-            <div class="col-md-4 clearfix">
-              <label class="unit">Batas Penawaran</label>
-            </div>
-            <div class="col-md-7 clearfix">
-              <input  type="text" placeholder="Batas Akhir Penawaran" name="due_date" class="form-control input-md" id="due_date" value="" value="{{ data.due_date }}" disabled>
-            </div>
-          </div>
-          <div class="form-group">
-            <!-- null -->
-          </div>
-          <div class="form-group">
-            <div class="col-md-4 clearfix">
-              <label class="unit">Bunga</label>
-            </div>
-            <div class="col-md-5 clearfix">
-              <input type="text" placeholder="Bunga" class="form-control input-md" name="interest" id="interest" value="{{ data.interest }}" disabled>
-            </div>
-              <label class="unit">%/Bulan</label>
-          </div>
-          <div class="form-group">
-            <!-- null -->
-          </div>
-          <div class="form-group">
-            <div class="col-md-4 clearfix">
-              <label class="unit">Tenor</label>
-            </div>
-            <div class="col-md-5">
-              <input type="text" placeholder="Tenor" class="form-control input-md" name="tenor" id="tenor" value="{{ data.tenor }}" disabled>
-            </div>
-            <label class="unit">Bulan</label>
-          </div>
-          <div class="form-group">
-            <!-- null -->
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="col-md-12">
+    <form-detail *ngIf="statusDataDetail == 1" [dataDetailInvest]="detailInvest" [dataAmount]="amount" [dataRestAmount]="restAmount"></form-detail>
   </div>
-  <div align="center" *ngIf="dataDetailListInvest == 0"> 
-    <br>
-    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-    <span class="sr-only">Loading...</span>
-  </div>
+</div>
+</div>
+<div align="center" *ngIf="statusDataDetail == 0"> 
+  <br>
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
 </div>
