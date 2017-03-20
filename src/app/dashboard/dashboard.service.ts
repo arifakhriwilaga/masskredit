@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { User } from './user';
 
 @Injectable ()
 export class DashboardService {
 	
-	constructor (private http:Http) { }
+	constructor (
+		private http:Http,
+		private router:Router
+	) { }
 	// set header
 	headers = new Headers({ 
 	 	'Content-Type': 'application/json',
@@ -20,27 +23,16 @@ export class DashboardService {
 
 	private token = JSON.parse(localStorage.getItem("access_token"))
 
-	getProfile(token:any): Promise<User>{
+	getProfile(token:any): Promise<any>{
 	 	return this.http.post(this.profileUrl,token,this.options)
 		.toPromise()
-		.then(response => response.json().data as User)
+		.then(response => response.json())
 		.catch(this.handleError)	
 	}
 
-	mapData(response){
-		var data = response.json()
-	}
-
 	handleError(err){
-		var error   = JSON.parse(err._body)
-    var code = error.meta.code
-    var message = error.meta.message
-    console.log(error);
-      // if(message == "Password salah!") {
-      //   alert("Password salah!")              
-      // }if(message == "Verifikasi salah.") {
-      //   alert("Verifikasi salah.")              
-      // } 
+		var error = JSON.parse(err._body);
+    return error;
 	}
 
 
