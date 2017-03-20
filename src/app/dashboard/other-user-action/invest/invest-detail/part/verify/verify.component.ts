@@ -1,51 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { DetailComponent } from './../../detail.component';
+import { VerifyService } from './verify.service';
 
 declare var jQuery:any;
-
 @Component({
 	selector: 'verify',
-	template: ` 
-		<form name="confirmInvestForm" id="confirmInvestForm">
-	    <div class="form-group">
-        <input type="password" name="password" placeholder="Password" class="form-control input-md" id="password" [(ngModel)]="invest.password">
-	    </div>
-  	</form>
-	    <div class="form-group">
-          <button class="btn btn-default" (click)="cancelConfirmInvest()">Batal</button>
-          <button class="btn btn-red" (click)="confirmInvest(invest)"style="background-color: #e74c3c;">
-          	<font style="color:white">Verifikasi</font>
-          </button> 
-	    </div>
-  `
+	templateUrl: 'verify.component.html',
+	providers:[VerifyService]
 })
 
 export class VerifyComponent implements OnInit{ 
-	constructor(private detail:DetailComponent, private router:Router) { }
-	private invest = this.detail.loan;
+	constructor(
+		private verifyService:VerifyService, 
+		private router:Router
+	) { }
+	
+	public statusConfirm = 1;
 
 	ngOnInit(){
-		jQuery( "#confirmInvestForm" ).validate({
-		  rules: {
-		    password: {
-		      required: true
-		    },
-		  }
-		});
+		jQuery('#ModalForm').modal({backdrop: 'static', keyboard: false});
 	}
 
-	cancelConfirmInvest(){
-		this.router.navigateByUrl("/dashboard/other-user-action/invest");
+	@Input() dataLoan:any = { 
+		access_token: null,
+		invest_id: null,
+		loan_amount : null,
+		password: null
+	};
+
+  cancelConfirmLoan(){
+		jQuery('#ModalForm').modal("toggle");
+		this.router.navigateByUrl('dashboard/other-user-action/invest');
 	}
 
-	confirmInvest(){
+	confirmLoan(){
 		if(jQuery("#confirmInvestForm").valid()) {
-			this.detail.dataDetailInvest = 3;
-			this.detail.postLoan();
+			this.statusConfirm = 0;
+			this.verifyService.createLoan(this.dataLoan).then(dataResponse => {
+				let message = dataResponse.meta.message;
+				let code = JSON.stringify(dataResponse.meta.code);
+				// console.log(dataResponse)
+				if(code.charAt(0) == '4') {
+					this.handleError(message);
+				} if(code.charAt(0) == '2') {
+					this.handleSuccess();
+				};
+			})
 		}
 		else{
 			alert("Harap masukan password");
 		}
 	}
+
+	handleError(message:any){
+		try {
+			if(message == 'Jumlah yang anda masukan melebihi jumlah invest.') {
+	      alert("Jumlah yang anda masukan melebihi jumlah invest.");
+	   	} else {
+				alert("Password anda salah")
+			}
+		} finally {
+			this.statusConfirm = 1;
+		}
+  }
+  
+  handleSuccess(){
+  	alert("Pinjaman berhasil dibuat, harap menunggu konfirmasi investor");
+		jQuery('#ModalForm').modal("toggle");
+		this.router.navigateByUrl('/dashboard/other-user-action/invest');
+  }
+
+
 }
