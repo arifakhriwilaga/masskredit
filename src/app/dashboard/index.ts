@@ -7,7 +7,7 @@ import { DataResolver } from './app.resolver';
 
 import { DashboardService } from './dashboard.service';
 // Auth Guard Dashboard
-// import { AuthGuard } from './../authguard/auth-guard.service';
+import { AuthGuard } from './../auth-guard/auth-guard.service';
 
 // Component
 import { DashboardComponent } from './dashboard.component';
@@ -20,7 +20,7 @@ import { SignOutComponent } from './sign-out';
 
 export const routes = [
   { path: '', component: DashboardComponent,
-    // canActivate : [ AuthGuard ],
+    canActivate : [ AuthGuard ],
     children: [
       { path: '', component: LoaderComponent },
       { path: 'market', loadChildren: () => System.import('./market').then((comp: any) => comp.default) },
