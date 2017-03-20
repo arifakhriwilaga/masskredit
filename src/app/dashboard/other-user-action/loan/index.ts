@@ -18,15 +18,15 @@ export const routes = [
       { path: '', redirectTo: 'index' },
       {    
         path: 'index', 
-        loadChildren: () => System.import('./invest-index').then((comp: any) => comp.default) 
+        loadChildren: () => System.import('./loan-index').then((comp: any) => comp.default) 
       },
       {    
         path: 'create',
-        loadChildren: () => System.import('./invest-create').then((comp: any) => comp.default) 
+        loadChildren: () => System.import('./loan-create').then((comp: any) => comp.default) 
       },
       {    
         path: 'detail/:id',
-        loadChildren: () => System.import('./invest-detail').then((comp: any) => comp.default) 
+        loadChildren: () => System.import('./loan-detail').then((comp: any) => comp.default) 
       },
     ]      
   }     
