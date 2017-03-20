@@ -1,0 +1,11 @@
+ <form name="ConfirmForm" id="ConfirmForm">
+  <div class="form-group">
+    <input type="password" name="password" placeholder="Password" class="form-control input-md" id="password" [(ngModel)]="dataLoan.password">
+  </div>
+</form>
+<div class="form-group">
+  <a class="btn btn-default" [href]="cancelConfirmUrl">Batal</a>
+  <button class="btn btn-red" (click)="confirmInvest()"style="background-color: #e74c3c;">
+  	<font style="color:white">Verifikasi</font>
+  </button> 
+</div>

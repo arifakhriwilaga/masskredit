@@ -1,0 +1,66 @@
+<form name="investForm" id="investForm">
+  <fieldset disabled>
+    <div class="form-group">
+      <div class="col-xs-5">
+        <label class="unit">Nominal</label>
+      </div>
+      <div class="col-xs-7">
+        <input type="text" name="-" placeholder="-" class="form-control input-md" id="nominal" [(ngModel)]="simulation.nominal">
+      </div>
+   </div>
+    <div class="form-group">
+      <div class="col-xs-5">
+        <label class="unit">Pokok</label>
+      </div>
+      <div class="col-md-7">
+        <input type="text" name="-" placeholder="-" class="form-control input-md" id="pokok" [(ngModel)]="simulation.pokok"> 
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-5">
+        <label class="unit">Bunga</label>
+      </div>
+      <div class="col-md-7">
+        <input type="text" placeholder="-" class="form-control input-md" name="bunga" id="bunga" [(ngModel)]="simulation.bunga">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-5">
+        <label class="unit">Cicilan/bulan</label>
+      </div>
+      <div class="col-md-7">
+        <input type="text" placeholder="-" class="form-control" name="cicilan_per_bulan" id="cicilan_per_bulan" [(ngModel)]="simulation.cicilan_perbulan">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-5">
+        <label class="unit">Denda</label>
+      </div>
+      <div class="col-md-7">
+        <input type="text" placeholder="-" class="form-control input-md" name="denda" id="denda" [(ngModel)]="simulation.denda">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-5">
+        <label class="unit">Biaya admin</label>
+      </div>
+      <div class="col-md-7">
+        <input type="text" placeholder="-" class="form-control input-md" name="charge_fee" id="charge_fee" [(ngModel)]="simulation.charge_fee">
+      </div>
+    </div>
+  </fieldset>
+</form>
+<div >
+<div class="col-md-12">
+  <div class="form-group col-center">
+  <div align="center">
+    <span class="input-group-addon">
+      <input type="checkbox" [checked]="isOn === dataIsOn[0].value" (change)="$event.target.checked? (isOn = dataIsOn[0].value) : (isOn = dataIsOn[1].value)">
+      <label>Saya setuju dengan syarat dan ketentuan</label>
+    </span>
+    <button class="btn btn-red" style="background-color: #e74c3c;" (click)="createLoan()" [ngClass]="{disabled:isOn === 0}" id="createLoan"><font style="color:white">Pinjam Sekarang!</font></button>
+  </div>
+  </div>
+  <!-- component password -->
+  <!-- <verify *ngIf="dataDetailInvest == 1"></verify> -->
+</div>
