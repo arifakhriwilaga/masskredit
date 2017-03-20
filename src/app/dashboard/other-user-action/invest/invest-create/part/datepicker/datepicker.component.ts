@@ -7,9 +7,11 @@ declare var jQuery:any;
 	selector: 'due-date',
 	template: ` 
 	<div class="form-group">
-    <div class="col-md-8">
-    <span class="required">*</span>
-    <input  type="text" placeholder="Batas Akhir Penawaran " name="masa_berlaku" class="form-control input-md datepicker" id="masa_berlaku" [(ngModel)]="invest.masa_berlaku">
+    <div class="row">
+      <div class="col-md-10">
+      <span class="required">*</span>
+      <input type="text" placeholder="Batas Penawaran" class="form-control input-md datepicker" name="due_date" id="due_date" [(ngModel)]="invest.due_date">
+    </div>
     </div>
   </div>
 	`
@@ -20,8 +22,11 @@ export class DueDateComponent implements OnInit{
 	private invest = this.create.invest;
 
 	ngOnInit(){
-		jQuery("#masa_berlaku").datepicker({
+		jQuery("#due_date").datepicker({
 	      format	: 'yyyy-mm-dd',
+	      startDate: "today",
+		    autoclose: true,
+		    todayHighlight: true
 	  });
 	}
 }
