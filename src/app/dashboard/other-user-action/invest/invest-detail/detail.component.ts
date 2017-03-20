@@ -183,6 +183,7 @@ export class DetailComponent {
     bunga: null,
     tenor: null
   }
+  statusCalculation:number;
 
 	listInvestUrl = '#/dashboard/other-user-action/invest';
 
@@ -191,6 +192,7 @@ export class DetailComponent {
 			this.loan.loan_amount = this.dataCalculation.jumlah;
 			this.detailService.calculationLoan(this.dataCalculation).then(dataResponse => {
 				this.simulation = dataResponse.data.simulation_result;
+				this.statusCalculation = 1;
 			})
 			// this.amount.emit(this.dataCalculation.jumlah);
 		} else {
@@ -237,5 +239,9 @@ export class DetailComponent {
 	isOn = 0;
 	agreement(){
 
+	}
+
+	hideVerify(status:any){
+		this.formVerify = status;
 	}
 }
