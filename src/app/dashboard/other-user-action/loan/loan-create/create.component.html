@@ -1,0 +1,169 @@
+<div class="row">
+  <div class="col-xs-12">
+  <div class="box-body">
+  <div class="row">
+    <div class="col-xs-12">
+    <form class="form-center" (ngSubmit)="calculationLoan()" name="FormLoan" id="FormLoan">
+      <div class="row">
+      <div class="col-xs-6">
+      <div class="box-header">
+        <h2 class="box-title">Tambah Pinjaman</h2>
+      </div>
+      </div>
+        <div class="col-xs-5">
+        <button class="btn-simulation pull-right col-center" type="submit">KALKULASI</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="col-md-12">
+              <span class="required">*</span>
+              <input type="text" name="loan_name" placeholder="Nama pinjaman" class="form-control input-md" id="loan_name" [(ngModel)]="loan.loan_name">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <span class="required">*</span>
+              <select class="form-control input-md" name="loan_category" id="loan_category" (change)="getLoanCategoryId($event.target.value)" [(ngModel)]="loan.loan_category">
+                <option value="0" disabled>Kategori Pinjaman</option>
+                <option *ngFor="let data of loan_categories" [value]="data.id">{{ data.description }}</option>
+              </select>
+            </div>
+          </div>
+          <!-- if user choose other category -->
+          <name-other-category *ngIf="loanCategory == -1"></name-other-category>
+          <div class="form-group">
+            <div class="col-md-12">
+              <span class="required">*</span>
+              <textarea placeholder="Deskripsi" class="form-control input-md" name="description" id="description" [(ngModel)]="loan.description"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+             <div class="col-md-12">
+              <label>Foto Pinjaman</label>
+              <input type="file" id="images">
+             </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-10">
+              <span class="required">*</span>
+              <input type="text" placeholder="Nominal Investasi" class="form-control input-md" name="amount" id="amount" [(ngModel)]="loan.amount">
+            </div>
+            <label class="unit">Rupiah</label>
+          </div>
+          <!-- component due-date -->
+          <due-date></due-date>
+          <div class="form-group">
+            <div class="col-md-10 clearfix">
+              <span class="required">*</span>
+              <input type="text" placeholder="Bunga" class="form-control input-md"  name="interest" id="interest" [(ngModel)]="loan.interest">
+            </div>
+            <label class="unit">%/bulan</label>
+          </div>
+          <div class="form-group">
+            <div class="col-md-10 clearfix">
+              <span class="required">*</span>
+              <input type="text" placeholder="Tenor" class="form-control input-md" maxlength="2" minlength="1"  name="tenor" id="tenor" [(ngModel)]="loan.tenor">
+            </div>
+            <label class="unit">Bulan</label>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+
+<div class="row">
+  <hr>
+  <div class="col-xs-12">
+    <br>
+    <div class="box-header" align="center">
+      <h2 class="box-title">Kalkulasi Pinjaman</h2>
+    </div>
+    <div class="box-body">
+      <div class="row">
+      <div class="col-xs-12">
+      <form name="FormLoan" id="FormLoan">
+        <fieldset disabled>
+          <div class="col-md-6">
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Nominal</label>
+            </div>
+            <div class="col-xs-7">
+              <input type="text" name="-" placeholder="-" class="form-control input-md" id="nominal" [(ngModel)]="simulation.nominal">
+            </div>
+         </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Pokok</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" name="-" placeholder="-" class="form-control input-md" id="pokok" [(ngModel)]="simulation.pokok"> 
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Bunga</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="-" class="form-control input-md" name="bunga" id="bunga" [(ngModel)]="simulation.bunga">
+            </div>
+          </div>
+          </div>
+          <div class="col-md-6">
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Cicilan/bulan</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="-" class="form-control" name="cicilan_per_bulan" id="cicilan_per_bulan" [(ngModel)]="simulation.cicilan_perbulan">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Denda</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="-" class="form-control input-md" name="denda" id="denda" [(ngModel)]="simulation.denda">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Biaya admin</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="-" class="form-control input-md" name="charge_fee" id="charge_fee" [(ngModel)]="simulation.charge_fee">
+            </div>
+          </div>
+        </div>
+        </fieldset>
+      </form>
+        <div *ngIf="dataLoan == 1">
+        <div class="col-md-12">
+          <div class="form-group">
+          <div class="col-md-6 col-center">
+            <div align="center">
+            <span class="input-group-addon">
+              <input type="checkbox">
+              <label>Saya setuju dengan syarat dan ketentuan</label>
+            </span>
+            <button class="btn" (click)="createLoan()">SIMPAN</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+        <!-- component password -->
+        <verify *ngIf="formVerify == 1" (statusForm)="hideVerify($event)" [dataLoan]="loan"></verify>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
