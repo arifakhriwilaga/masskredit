@@ -36,7 +36,7 @@ export class FormComponent {
 			let message = dataResponse.meta.message;
 			let code = JSON.stringify(dataResponse.meta.code);
 			let data = dataResponse.meta.message;
-			console.log(dataResponse)
+			// console.log(dataResponse)
 			if(code.charAt(0) == '4') {
 				this.handleError(message);
 			} if(code.charAt(0) == '2') {
