@@ -64,7 +64,7 @@
               <span class="glyphicon glyphicon-star star-color font half"></span>
               </span> -->
               <!-- <span>({{ avg_reviews }} %)</span> -->
-              <span>({{ dataDetailBorrower.avg_reviews }} %)</span>
+              <span>({{ dataDetailBorrower.avg_reviews }} %)</span><button color="red" (click)="showScoringForm()">Rate User</button>
           </div>
         </div>
      </div>
@@ -115,5 +115,6 @@
     </div>
   </div>
   <detail-payment *ngIf="showDetailPayment == 1" [dataDetailPayment]="detailPayment" (onHide)="onHide($event)"></detail-payment>
+  <scoring-form *ngIf="scoringForm === 1" (statusForm)="hideForm($event)"></scoring-form>
 </div>
 <br>
