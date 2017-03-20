@@ -28,6 +28,10 @@ export class VerifyComponent implements OnInit{
 		password: null
 	};
 
+  @Output() statusForm = new EventEmitter<any>()
+	hideModal(){
+		this.statusForm.emit(0);
+	}
   cancelConfirmLoan(){
 		jQuery('#ModalForm').modal("toggle");
 		this.router.navigateByUrl('dashboard/other-user-action/invest');
