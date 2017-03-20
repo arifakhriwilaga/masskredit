@@ -176,4 +176,12 @@ export class LoanApprovedComponent {
 		this.showDetailPayment = status
   }
 
+  scoringForm:number;
+  hideForm(status:number) {
+  	this.scoringForm = status;
+  }
+
+  showScoringForm(){
+  	this.scoringForm = 1;
+  }
 }
