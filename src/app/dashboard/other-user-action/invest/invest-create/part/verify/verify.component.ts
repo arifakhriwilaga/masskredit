@@ -1,59 +1,85 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { CreateComponent } from './../../create.component';
+import { VerifyService } from './verify.service';
 
 declare var jQuery:any;
 @Component({
 	selector: 'verify',
-	template: `
-	<form class="form-horizontal clearfix row" name="confirmInvestForm" id="confirmInvestForm">
-	  <div class="col-md-12">
-	    <div class="form-group">
-	          <span class="required">*</span>
-	          <input type="password" name="password" placeholder="Password" class="form-control input-md" id="password" [(ngModel)]="invest.password">
-	    </div>
-	  </div>
-	</form>
-	  <div class="col-md-12">
-	    <div class="form-group">
-	        <div class="col-md-6 col-center">
-	          <button class="btn btn-default" (click)="cancelConfirmInvest()">Batal</button>
-	          <button class="btn btn-red" (click)="confirmInvest(invest)">Verifikasi</button>
-	        </div>
-	    </div>
-	  </div>
-	`
+	templateUrl: 'verify.component.html',
+	providers:[VerifyService]
 })
 
 export class VerifyComponent implements OnInit{ 
-	constructor(private create:CreateComponent, private router:Router) { }
-	private invest = this.create.invest;
-	public dataConfirmInvest = 0;
+	constructor(
+		private verifyService:VerifyService, 
+		private router:Router
+	) { }
+	
+	public statusConfirm = 1;
 
 	ngOnInit(){
-		jQuery( "#confirmInvestForm" ).validate({
-		  rules: {
-		    password: {
-		      required: true
-		    },
-		  }
-		});
+		jQuery('#ModalForm').modal({backdrop: 'static', keyboard: false});
 	}
 
+	@Input() dataInvest:any = { 
+		access_token: null,
+	  invest_name: null,
+	  invest_type: 0,
+	  description: null,
+		images: null,
+  	due_date: '',
+  	amount: null,
+  	interest: null,
+  	tenor: null,
+  	password: null
+	};
+
+  @Output() statusForm = new EventEmitter<any>()
 	cancelConfirmInvest(){
-		
-		this.router.navigateByUrl("/dashboard/other-user-action/invest");
+		jQuery('#ModalForm').modal("toggle");
+		this.router.navigateByUrl('dashboard/other-user-action/invest');
+	}
+
+	hideConfirmInvest(){
+		this.statusForm.emit(1);		
 	}
 
 	confirmInvest(){
 		if(jQuery("#confirmInvestForm").valid()) {
-			this.create.dataDetailInvest = 1;
-			// this.dataConfirmInvest = 1;
-			this.create.dataInvest = 3;
-			this.create.sendDataInvest();
+			this.statusConfirm = 0;
+			this.verifyService.createInvest(this.dataInvest).then(dataResponse => {
+				let message = dataResponse.meta.message;
+				let code = JSON.stringify(dataResponse.meta.code);
+				// console.log(dataResponse)
+				if(code.charAt(0) == '4') {
+					this.handleError(message);
+				} if(code.charAt(0) == '2') {
+					this.handleSuccess();
+				};
+			})
 		}
 		else{
 			alert("Harap masukan password");
 		}
 	}
+
+	handleError(message:any){
+		try {
+			if(message == 'Saldo Anda tidak mencukupi.') {
+	      alert("Saldo Anda tidak mencukupi.");
+	   	} else {
+				alert("Password anda salah")
+			}
+		} finally {
+			this.statusConfirm = 1;
+		}
+  }
+  
+  handleSuccess(){
+  	alert("Investasi berhasil dibuat");
+		jQuery('#ModalForm').modal("toggle");
+		this.router.navigateByUrl('/dashboard/other-user-action/invest');
+  }
+
+
 }
