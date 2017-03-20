@@ -71,31 +71,41 @@ export class DashboardComponent {
   };
   
   private profileUrl = "https://masscredit-api.stagingapps.net/user/credential/profile";
-  
-  // set header
-  private headers = new Headers({ 
-     'Content-Type': 'application/json',
-     'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-   });
-  private options = new RequestOptions({ headers: this.headers });
-
    
   getProfile(): void{
-    this.dashboardService.getProfile(this.token)
-    .then(dataProfile => {
-       // console.log(dataProfile)
-      this.name = dataProfile.profile.name;
-      this.last_login = dataProfile.profile.last_login;
-      this.profile_image = dataProfile.profile.profile_image;
+    this.dashboardService.getProfile(this.token).then(dataProfile => {
 
-      this.delimiter(dataProfile.account_summary.balance)
-      
-      this.user_class = dataProfile.profile.user_score.user_class;
-      this.user_status = dataProfile.profile.user_score.user_status;
-      this.investor = dataProfile.profile.user_score.investor;
-      this.borrower = dataProfile.profile.user_score.borrower;
-      this.fund_history = dataProfile.profile.user_score.fund_history;
+      let message = dataProfile.meta.message;
+      let code = JSON.stringify(dataProfile.meta.code);
+      let data = dataProfile.data;
+
+      if(code.charAt(0) === '4') {
+        this.handleError(message);
+      } if(code.charAt(0) === '2') {
+        this.handleSuccess(data);
+      };
     });
+  }
+
+  handleError(message:any){
+  if(message === 'unauthorized') {
+      alert("Maaf akses token tidak terdaftar")            
+      this.router.navigate(['/dashboard/sign-out']);
+     }          
+  }
+  
+  handleSuccess(data:any){
+    this.name = data.profile.name;
+    this.last_login = data.profile.last_login;
+    this.profile_image = data.profile.profile_image;
+
+    this.delimiter(data.account_summary.balance)
+    
+    this.user_class = data.profile.user_score.user_class;
+    this.user_status = data.profile.user_score.user_status;
+    this.investor = data.profile.user_score.investor;
+    this.borrower = data.profile.user_score.borrower;
+    this.fund_history = data.profile.user_score.fund_history;
   }
 
   // getProfile(){
