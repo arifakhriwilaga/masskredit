@@ -8,6 +8,9 @@ import { CommonModule } from '@angular/common';
 // component
 import { LoanApprovedComponent } from './loan_approved.component';
 import { DetailPaymentComponent } from './detail-payment';
+import { ScoringFormComponent } from './scoring-form';
+import { RatingComponent } from './scoring-form/rating';
+
 export const routes = [
   { path:'', component: LoanApprovedComponent},
 ] 
@@ -15,7 +18,9 @@ export const routes = [
 @NgModule({
   declarations: [ 
     LoanApprovedComponent,
-    DetailPaymentComponent
+    DetailPaymentComponent,
+    ScoringFormComponent,
+    RatingComponent
   ],
   imports: [ 
     HttpModule,
