@@ -31,17 +31,9 @@
           <i class="fa fa-star null" aria-hidden="true" style="font-size: 50px; color: orange"></i>
           <i class="fa fa-star null" aria-hidden="true" style="font-size: 50px;color: orange"></i>
       		</div> -->
-      		<rating [(ngModel)]="rate"></rating>
-
-					<pre style="margin:15px 0;">Rate: <b>{{rate}}</b></pre>
-
-					<rating [ngModel]="rate2" (updateRate)="onRate($event)"></rating>
-
-					<pre style="margin:15px 0;">Custom rate: <b>{{customRate}}</b></pre>
-
-					<rating [ngModel]="2" (updateRate)="onRate2($event)"></rating>
-
-					<pre style="margin:15px 0;">Custom rate: <b>{{customRate2}}</b></pre>
+          <div id="jRate" style="height:100px;width: 100%;"></div>
+          <br>
+          <button (click)="rateUser()">Rate</button>
        </div>
       </div>
     </div> 
