@@ -22,13 +22,6 @@ export class DetailComponent {
 		private detailService:DetailService
 	) { }
 
-	// set header
-	public headers = new Headers({ 
-		 	'Content-Type': 'application/json',
-		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-	});
-	public options = new RequestOptions({ headers: this.headers });
-
 	// param url
 	public access_token = JSON.parse(localStorage.getItem("access_token"));
 	
@@ -87,47 +80,6 @@ export class DetailComponent {
 	getAmount(amount:number){
 		this.amountLoan = amount;
 	}
-
-	postLoan(){
-		// console.log(this.loan);
-		// this.http.post('https://masscredit-api.stagingapps.net/other-user/loan/new',this.loan,this.options)
-		// 	.map(response => response.json())
-		// 	.subscribe(
-		// 		(response : any) => {
-		// 		// this.data = response.data;
-		// 		this.dataDetailInvest = 0;
-		// 			alert("Peminjaman berhasil, harap menunggu konfirmasi investor");
-		// 			this.router.navigateByUrl('/dashboard/other-user-action/invest');
-		// 		},
-		// 		(err:any) => {
-		// 			var error   = JSON.parse(err._body)
-		// 			var message = error.meta.message
-		// 			var code = error.meta.code
-		// 				// if(code == "400") {
-		// 				// 	alert("Maaf saldo anda tidak mencukupi");				
-		// 				// }
-		// 				if(message == "unauthorized") {
-		// 					alert("Maaf session anda telah habis silahkan login kembali")
-		// 					return this.router.navigateByUrl('/dashboard/sign-out')					
-		// 				}
-		// 				if(message == "Anda harus mempunyai jaminan untuk melakukan pinjaman.") {
-		// 					alert("Anda harus mempunyai jaminan untuk melakukan pinjaman")				
-		// 					this.dataDetailInvest = 1;
-		// 				}
-		// 				if(message == "Jumlah yang anda masukan melebihi jumlah invest.") {
-		// 					alert("Jumlah pinjaman melebihi jumlah investasi")				
-		// 					this.dataDetailInvest = 1;
-		// 				}
-		// 				if(message == "Password salah!") {
-		// 					this.dataDetailInvest = 1;
-		// 					alert("Password salah!")				
-		// 				}
-
-		// 		}
-		// 	);	
-	}
-
-	
 
 	delimiterAmount(dataAmount:any){
 		var _minus = false;
