@@ -252,4 +252,14 @@ export class LoanApprovedComponent implements OnInit{
 	onHide(status: number) {
 		this.showDetailInstallment = status
   }
+
+
+  scoringForm:number;
+  hideForm(status:number) {
+  	this.scoringForm = status;
+  }
+
+  showScoringForm(){
+  	this.scoringForm = 1;
+  }
 }
