@@ -5,12 +5,7 @@ import {Component, EventEmitter} from '@angular/core';
   inputs: ['rate'],
   outputs: ['updateRate: rateChange'],
   template: `
-    <span tabindex="0">
-      <template ng-for [ng-for-of]="range" #index="index">
-        <span class="sr-only">({{ index < rate ? '*' : ' ' }})</span>
-        <i class="glyphicon" (click)="update(index + 1)" [ng-class]="index < rate ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
-      </template>
-    </span>
+    
   `,
 })
 
