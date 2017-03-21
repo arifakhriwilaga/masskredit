@@ -71,7 +71,6 @@ export class LoanApprovedComponent {
     this.http.post(this.getDetailBorrowerUrl,this.dataBorrower,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-			console.log(response)
 			let code = response.meta.code
 			let imageDefault = 'assets/img/default_profile.png';
 			if(response.data.borrower_image == '' ) {
