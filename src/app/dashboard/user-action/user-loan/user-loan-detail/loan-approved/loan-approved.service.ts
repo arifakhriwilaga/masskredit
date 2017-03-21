@@ -16,28 +16,24 @@ export class LoanApprovedService {
 	options = new RequestOptions({ headers: this.headers });
 
 	detailInvestorUrl = 'https://masscredit-api.stagingapps.net/user/investor/detail';
-	getDetailInvestor(data_investor:any): Promise<dataDetailInvestor>{
-	 	return this.http.post(this.detailInvestorUrl,data_investor,this.options)
-		.toPromise()
-		.then(response => response.json().data as dataDetailInvestor)
-		// .then(response => response.json().data as dataDetailInvestor)
-		.catch(this.handleError)	
+	getDetailInvestor(data:any): Promise<any>{
+	 	return this.http.post(this.detailInvestorUrl,data,this.options)
+			.toPromise()
+			.then(response => response.json())
+			.catch(this.handleError)
 	}
 
-	mapData(response){
-		var data = response.json()
+	listInstallmentUrl = 'https://masscredit-api.stagingapps.net/user/loan/payment-history/get-list';
+	getListInstallment(data:any){
+		return this.http.post(this.listInstallmentUrl,data,this.options)
+			.toPromise()
+			.then(response => response.json())
+			.catch(this.handleError)
 	}
 
 	handleError(err){
-		var error   = JSON.parse(err._body)
-    var code = error.meta.code
-    var message = error.meta.message
-    console.log(error);
-      // if(message == "Password salah!") {
-      //   alert("Password salah!")              
-      // }if(message == "Verifikasi salah.") {
-      //   alert("Verifikasi salah.")              
-      // } 
+		let error = JSON.parse(err._body)
+    return error
 	}
 
 
