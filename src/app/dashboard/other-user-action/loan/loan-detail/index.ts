@@ -4,12 +4,11 @@ import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-// import { LocalStorageService }   from 'angular-2-local-storage';
 
-// debugger;
-// Component
 import { DetailComponent } from './detail.component';
-import { VerifyComponent } from './verify_component';
+import { VerifyComponent } from './part/verify';
+import { FormVerifyComponent } from './part/verify/form';
+import { FormDetailLoanComponent } from './form-detail';
 
 export const routes = [
   { path:'', component: DetailComponent},
@@ -17,20 +16,18 @@ export const routes = [
 
 @NgModule({
   declarations: [
-    DetailComponent, // declarations LoginComponent
-    VerifyComponent
+    DetailComponent,
+    VerifyComponent,
+    FormVerifyComponent,
+    FormDetailLoanComponent
   ],
-  imports: [ // import Angular's modules
+  imports: [
     HttpModule,
     FormsModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  // exports: [LoginComponent],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-    // LocalStorageService,
-    // LoginComponent,
-  ]
+  providers: [ ]
 })
 
 export default class DetailModule { 
