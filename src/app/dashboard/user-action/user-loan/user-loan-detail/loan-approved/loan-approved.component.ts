@@ -21,23 +21,16 @@ export class LoanApprovedComponent implements OnInit{
 		private loanApprovedService:LoanApprovedService
 	) { }
 
-	// set header
-	headers = new Headers({ 
-	 	'Content-Type': 'application/json',
-	 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
-	});
-
-	options = new RequestOptions({ headers: this.headers });
-
 	// param url
 	access_token = JSON.parse(localStorage.getItem("access_token"));
 
-	data_investor = {
+	dataInvestor = {
 		access_token : this.access_token,
 		investor_id : null,
 		loan_id: null
 	}
-	data_list_installment = {
+
+	dataListInstallment = {
 		access_token : this.access_token,
 		investor_id : null,
 		loan_id: null
@@ -50,18 +43,27 @@ export class LoanApprovedComponent implements OnInit{
 
 	dataPayment = [];
 
+	dataScoring ={
+		access_token: this.access_token,
+		id_investor : null
+	};
+
+	imageRateHalf:number;
+	imageRateFulls = [];
+	imageRateNulls = [];
+
 	ngOnInit(){
 		let param = this.activatedRoute.params.subscribe( params => {
 			let loanId = params['id'];
 			let investorId = params['investorId'];
 			if(loanId != null && investorId != null) {
-				this.data_list_installment.loan_id = loanId;
-				this.data_list_installment.investor_id = investorId;
-				this.data_investor.investor_id = investorId;
-				this.data_investor.loan_id = loanId;
+				this.dataListInstallment.loan_id = loanId;
+				this.dataListInstallment.investor_id = investorId;
+				this.dataInvestor.investor_id = investorId;
+				this.dataInvestor.loan_id = loanId;
 				this.detailInstallment.dataLoan = loanId; // for payment
 				this.detailInstallment.dataInvestor = investorId; // for payment
-				if(this.data_investor.investor_id != null && this.data_investor.loan_id != null) {
+				if(this.dataInvestor.investor_id != null && this.dataInvestor.loan_id != null) {
 					this.getDetailInvestor();
 				}
 			}
@@ -79,45 +81,86 @@ export class LoanApprovedComponent implements OnInit{
 		this.statusChanges = status;
 	}
 
-	detailInvestorUrl = 'https://masscredit-api.stagingapps.net/user/investor/detail';
-	// getDetailInvestor(): void{
-	// 	this.loanApprovedService.getDetailInvestor(this.data_investor)
-	// 	.then(dataDetailInvestor => {
-	// 		this.dataDetailInvestor = dataDetailInvestor
-	// 		this.delimiterSalary(dataDetailInvestor.amount)
-	// 	});
-	// }
-	// back up ori
 	getDetailInvestor(){
 		try{
-		 	this.http.post(this.detailInvestorUrl,this.data_investor,this.options)
-				.map(response => response.json())
-				.subscribe((response : any) => {
-					let imageDefault = 'assets/img/default_profile.png';
-					if(response.data.investor_image == '') {
-						response.data.investor_image = imageDefault;
-					}
-					this.dataDetailInvestor = response.data;
-					this.loaderDetailInvestor = 1;
-					// this.dataApprove.invest_id = response.data.invest_id;
-					let amount = response.data.amount;
-					this.delimiterSalary(amount)
-				
-				},(err : any) => {
-					var error   = JSON.parse(err._body)
-	        var code = error.meta.code
-	        var message = error.meta.message
-	        console.log(error);
-	          // if(message == "Password salah!") {
-	          //   alert("Password salah!")              
-	          // }if(message == "Verifikasi salah.") {
-	          //   alert("Verifikasi salah.")              
-	          // }  
-	      });	
+			this.loanApprovedService.getDetailInvestor(this.dataInvestor).then(dataResponse => {
+				let message = dataResponse.meta.message;
+	      let code = JSON.stringify(dataResponse.meta.code);
+	      let data = dataResponse.data;
+	      // console.log(data)
+	      this.dataScoring.id_investor = data.investor_id;
+	      if(code.charAt(0) === '4') {
+	        this.handleError(message);
+	      } if(code.charAt(0) === '2') {
+	        this.handleSuccess(data);
+	      };
+			})
 		}finally{
 			this.getListInstallment();
 		}
 	}
+
+	handleError(message:any){
+  	if(message === 'unauthorized') {
+      alert("Maaf akses token tidak terdaftar")            
+      this.router.navigate(['/dashboard/sign-out']);
+    }          
+  }
+  
+  handleSuccess(data:any){
+		let imageDefault = 'assets/img/default_profile.png';
+		if(data.investor_image == '') {
+			data.investor_image = imageDefault;
+		}
+
+		let rate = [1,1.5,2,2.5,3,3.5,4,4.5,5];
+		let avarage = Number(data.avg_reviews);
+		// let avarage = 0;
+		if(avarage === 0) {
+			for (var arithmetic = 5; arithmetic >= 1; arithmetic--) {
+				this.imageRateNulls.push(arithmetic);
+			}
+		} else {
+			for(let i of rate) {
+				if(i === avarage) {
+
+					let data = i.toString();
+					let number = Number(i); // object if data rate number not decimal
+					let maxRate = 5;
+					
+					if(data.match(/^[\d]\.5/)) { // condition if decimal
+						let number = Number(data.split('.')[0]);
+						this.imageRateHalf = 1;
+						for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
+							this.imageRateFulls.push(arithmetic)
+						}
+
+						if(this.imageRateHalf === 1) {
+							maxRate = 4;
+						}
+						let numberNull = maxRate - number;
+						for (var arithmetic = 1; arithmetic <= numberNull; arithmetic++) {
+							this.imageRateNulls.push(arithmetic);
+						}
+
+					} else {
+						let numberNull = maxRate - number;
+						for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
+							this.imageRateFulls.push(arithmetic)
+						}
+
+						for (var arithmetic = 1; arithmetic <= numberNull; arithmetic++) {
+							this.imageRateNulls.push(arithmetic);
+						}
+					}
+				}
+			}
+		}
+
+		this.dataDetailInvestor = data;
+		let amount = data.amount;
+		this.delimiterSalary(amount)
+  }
 
 	delimiterSalary(amount:any){
 		try{
@@ -145,19 +188,47 @@ export class LoanApprovedComponent implements OnInit{
 		}
 	}
 
-	listInstallmentUrl = 'https://masscredit-api.stagingapps.net/user/loan/payment-history/get-list';
 	getListInstallment(){
-	 	this.http.post(this.listInstallmentUrl,this.data_list_installment,this.options)
-			.map(response => response.json())
-			.subscribe((response : any) => {
-				this.dataPayment = response.data.history_payment;
-				if(this.statusChanges == 1) {
-					this.statusChanges = null;
-				}
-				try{
-					for(let i = 0; i < this.dataPayment.length; i++){
-						let dataPokok = this.dataPayment[i]
-						let pokok = dataPokok['pokok'];
+		this.loanApprovedService.getListInstallment(this.dataListInstallment).then(dataResponse => {
+			let message = dataResponse.meta.message;
+      let code = JSON.stringify(dataResponse.meta.code);
+      let data = dataResponse.data.history_payment;
+
+			if(this.statusChanges == 1) {
+				this.statusChanges = null;
+			}
+
+			try{
+				for(let i = 0; i < data.length; i++){
+					let dataPokok = data[i]
+					let pokok = dataPokok['pokok'];
+					// condition make delimiter
+					var _minus = false;
+					var b:any = pokok.toString();
+					if (b<0) _minus = true;
+						b=b.replace(".","");
+						b=b.replace("-","");
+						let c = "";
+						let panjang = b.length;
+						let j = 0;
+					for (let i = panjang; i > 0; i--){
+						j = j + 1;
+						if (((j % 3) == 1) && (j != 1)){
+							c = b.substr(i-1,1) + "." + c;
+							// console.log(c)
+						} else {
+							c = b.substr(i-1,1) + c;
+						}
+					}
+					if (_minus) c = "-" + c ;
+					let idr = "Rp.";
+					dataPokok['pokok'] = idr.concat(c)
+				};
+			} finally {
+				try {
+					for(let i = 0; i < data.length; i++){
+						let dataPokok = data[i] 
+						let pokok = dataPokok['total_payment'];
 						// condition make delimiter
 						var _minus = false;
 						var b:any = pokok.toString();
@@ -178,47 +249,17 @@ export class LoanApprovedComponent implements OnInit{
 						}
 						if (_minus) c = "-" + c ;
 						let idr = "Rp.";
-						dataPokok['pokok'] = idr.concat(c)
-					};
+						dataPokok['total_payment'] = idr.concat(c);
+					} 
+				} finally {
+					try {
+						this.dataPayment = data;
 					} finally {
-						for(let i = 0; i < this.dataPayment.length; i++){
-							let dataPokok = this.dataPayment[i] 
-							let pokok = dataPokok['total_payment'];
-							// condition make delimiter
-							var _minus = false;
-							var b:any = pokok.toString();
-							if (b<0) _minus = true;
-								b=b.replace(".","");
-								b=b.replace("-","");
-								let c = "";
-								let panjang = b.length;
-								let j = 0;
-							for (let i = panjang; i > 0; i--){
-								j = j + 1;
-								if (((j % 3) == 1) && (j != 1)){
-									c = b.substr(i-1,1) + "." + c;
-									// console.log(c)
-								} else {
-									c = b.substr(i-1,1) + c;
-								}
-							}
-							if (_minus) c = "-" + c ;
-							let idr = "Rp.";
-							dataPokok['total_payment'] = idr.concat(c)
-							this.loaderDetailInvestor = 1;
-						}
+						this.loaderDetailInvestor = 1;	
 					}
-			},(err : any) => {
-				var error   = JSON.parse(err._body)
-        var code = error.meta.code
-        var message = error.meta.message
-        console.log(error);
-          // if(message == "Password salah!") {
-          //   alert("Password salah!")              
-          // }if(message == "Verifikasi salah.") {
-          //   alert("Verifikasi salah.")              
-          // }  
-      });	
+				}
+			}
+		})
 	}
 
 	statusShowForm:number;
