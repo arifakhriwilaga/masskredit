@@ -29,7 +29,31 @@ export class ScoringFormComponent implements OnInit{
     // this.customRate2 = value / 5;
   }
 	ngOnInit(){
+    var dataRate = this.dataRate;
 		jQuery('#ScoringForm').modal({backdrop: 'static', keyboard: false});
+    jQuery(function () {
+      var that = this;
+      var toolitup = jQuery("#jRate").jRate({
+        startColor: '#FFC300',
+        endColor: '#FFC300',
+        rating: 1,
+        strokeColor: 'black',
+        precision: 1,
+        minSelected: 1,
+        onChange: function(rating) {
+          //console.log("OnChange: Rating: "+rating);
+        },
+        onSet: function(rating) {
+          dataRate.rate_value = rating;
+          // console.log("OnSet: Rating: "+rating);
+        }
+      });
+      
+      jQuery('#btn-click').on('click', function() {
+        toolitup.setRating(0);        
+      });
+      
+    });
 	}
 
 	@Output() statusForm = new EventEmitter();
@@ -38,5 +62,13 @@ export class ScoringFormComponent implements OnInit{
 		this.statusForm.emit(0);
 	}
 
-	
+  dataRate = {
+    access_token: null,
+    target_user_id: null,
+    rate_value: null
+  }
+
+  rateUser(){
+    console.log(this.dataRate);
+  }	
 }
