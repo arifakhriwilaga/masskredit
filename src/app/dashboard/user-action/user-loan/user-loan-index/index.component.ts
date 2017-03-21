@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import {Observable} from 'rxjs/Observable';
 
 import { Loans } from './invest';
@@ -12,7 +14,10 @@ import { IndexService } from './index.service'
 
 
 export class IndexComponent { 
-	constructor(private indexService:IndexService) { }
+	constructor(
+		private indexService:IndexService,
+		private router:Router
+	) { }
 	
 	private data = {
 		access_token : JSON.parse(localStorage.getItem("access_token")),
@@ -29,55 +34,72 @@ export class IndexComponent {
 	}
 
 	getListInvest(){
-		this.indexService.getListInvests(this.data).then(dataLoans => {
-			try {
-				if(dataLoans.length == 0) {
+		this.indexService.getListInvests(this.data).then(dataResponse => {
+				if(dataResponse.data.length == 0) {
 					this.dataInvestsNull = 1;
 				}
-									
-				console.log(dataLoans);
-				// for(let i = 0; i < dataLoans.length; i++){
-				// 	let data = dataLoans[i]
-				// 	let type_invest = data['type_invest'];
-				// 	let loan_category = data['loan_category'];
-				// 	if(type_invest == "") {
-				// 		data['type_invest'] = "-";
-				// 	}if(loan_category == "") {
-				// 		data['loan_category'] = "-";
-				// 	}
-				// 	let imageDefault = 'assets/img/default_image.jpg';
-				// 	if(data['image_invest'] == '') {
-				// 		data['image_invest'] = imageDefault;
-				// 	}
-				// 	let amount = data['amount'];
-				// 	// condition make delimiter
-				// 	var _minus = false;
-				// 	var b:any = amount.toString();
-				// 	if (b<0) _minus = true;
-				// 		b=b.replace(".","");
-				// 		b=b.replace("-","");
-				// 		let c = "";
-				// 		let panjang = b.length;
-				// 		let j = 0;
-				// 	for (let i = panjang; i > 0; i--){
-				// 		j = j + 1;
-				// 		if (((j % 3) == 1) && (j != 1)){
-				// 			c = b.substr(i-1,1) + "." + c;
-				// 			// console.log(c)
-				// 		} else {
-				// 			c = b.substr(i-1,1) + c;
-				// 		}
-				// 	}
-				// 	if (_minus) c = "-" + c ;
-				// 	let idr = "Rp.";
-				// 	data['amount'] = idr.concat(c);
-				// }
-			} finally {
-				this.loans = dataLoans;
-				this.statusInvests = 1;
-			}
+				let message = dataResponse.meta.message;
+	      let code = JSON.stringify(dataResponse.meta.code);
+	      let data = dataResponse.data.loans;
+
+				if(code.charAt(0) === '4') {
+	        this.handleError(message);
+	      } if(code.charAt(0) === '2') {
+	        this.handleSuccess(data);
+	      };
 		});
 	}
+
+	handleError(message:any){
+  if(message === 'unauthorized') {
+      alert("Maaf akses token tidak terdaftar")            
+      this.router.navigate(['/dashboard/sign-out']);
+     }          
+  }
+  
+  handleSuccess(data:any){
+		try {
+			for(let i = 0; i < data.length; i++){
+				let dataLoans = data[i]
+				let type_invest = dataLoans['type_invest'];
+				let loan_category = dataLoans['loan_category'];
+				if(type_invest == "") {
+					dataLoans['type_invest'] = "-";
+				}if(loan_category == "") {
+					dataLoans['loan_category'] = "-";
+				}
+				let imageDefault = 'assets/img/default_image.jpg';
+				if(dataLoans['image_loan'] == '') {
+					dataLoans['image_loan'] = imageDefault;
+				}
+				let amount = dataLoans['amount'];
+				// condition make delimiter
+				var _minus = false;
+				var b:any = amount.toString();
+				if (b<0) _minus = true;
+					b=b.replace(".","");
+					b=b.replace("-","");
+					let c = "";
+					let panjang = b.length;
+					let j = 0;
+				for (let i = panjang; i > 0; i--){
+					j = j + 1;
+					if (((j % 3) == 1) && (j != 1)){
+						c = b.substr(i-1,1) + "." + c;
+						// console.log(c)
+					} else {
+						c = b.substr(i-1,1) + c;
+					}
+				}
+				if (_minus) c = "-" + c ;
+				let idr = "Rp.";
+				dataLoans['amount'] = idr.concat(c);
+			}
+	    this.loans = data;
+		} finally {
+			this.statusInvests = 1;
+		}
+  }
 
 	detailAddLoan(loanId:number){		
 		this.indexService.detailAddLoan(loanId);
