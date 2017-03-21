@@ -1,34 +1,25 @@
 import { Component,EventEmitter,Input,Output, OnInit, OnDestroy } from '@angular/core';
-// import { Rating } from './rating';
 import { FormGroup } from '@angular/forms';
+import { ScoringFormService } from './scoring-form.service';
 
 declare var jQuery:any;
 
 @Component({
 	selector: 'scoring-form',
   templateUrl: 'scoring-form.component.html',
+  providers: [ ScoringFormService]
 })
 
 export class ScoringFormComponent implements OnInit{
 	private rate: number;
   private rate2: number;
   private customRate: number;
+
+  statusRate:number;
   
-  constructor() {
-    this.rate = 2;
-    this.rate2 = 3;
-    this.customRate = this.rate2 * 20;
-    // this.customRate2 = 0.2;
-  }
-  
-  onRate(value) {
-    this.customRate = value * 20;
-  }
-  
-  onRate2(value) {
-    // this.customRate2 = value / 5;
-  }
-	ngOnInit(){
+  constructor(private scoringService:ScoringFormService) { }
+ 
+ 	ngOnInit(){
     var dataRate = this.dataRate;
 		jQuery('#ScoringForm').modal({backdrop: 'static', keyboard: false});
     jQuery(function () {
@@ -69,6 +60,27 @@ export class ScoringFormComponent implements OnInit{
   }
 
   rateUser(){
-    console.log(this.dataRate);
+    this.scoringService.rateUser(this.dataRate).then( dataResponse => {
+      let message = dataResponse.meta.message;
+      let code = JSON.stringify(dataResponse.meta.code);
+      let data = dataResponse.data;
+
+      if(code.charAt(0) === '4') {
+        this.handleError(message);
+      } if(code.charAt(0) === '2') {
+        this.handleSuccess(data);
+      };
+    })
   }	
+
+  handleError(message:any){
+    console.log(message);
+    // if(message === 'unauthorized') {
+    //   alert("Maaf akses token tidak terdaftar")            
+    // }          
+  }
+  
+  handleSuccess(data:any){
+    console.log(data)
+  }
 }
