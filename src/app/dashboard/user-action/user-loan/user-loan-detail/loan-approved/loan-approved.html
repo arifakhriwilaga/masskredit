@@ -52,11 +52,15 @@
       </div>
       <div class="col-xs-7">
         <div class="unit">
-            <label *ngFor="let data of imageRateFulls"><i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i></label>
-            <i *ngIf="imageRateHalf === 1" class="fa fa-star-half-full null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
+            <label *ngFor="let data of imageRate100"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/100.png" style="width:30px ;height: 30px;"></label>
+            <label *ngIf="imageRate25 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/25.png" style="width:30px ;height: 30px;"></label>
+            <label *ngIf="imageRate50 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/50.png" style="width:30px ;height: 30px;"></label>
+            <label *ngIf="imageRate75 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/75.png" style="width:30px ;height: 30px;"></label>
+            <label *ngFor="let data of imageRate0"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/0.png" style="width:30px ;height: 30px;"></label>
+            <!-- <i *ngIf="imageRateHalf === 1" class="fa fa-star-half-full null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
             <label *ngFor="let data of imageRateNulls">
             <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;"></i>
-            </label>
+            </label> -->
             <span>({{ dataDetailInvestor.total_reviews }} user)</span><br><button color="red" (click)="showScoringForm()">Rate User</button>
         </div>
       </div>
