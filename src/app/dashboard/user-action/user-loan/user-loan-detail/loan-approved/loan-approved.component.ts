@@ -48,9 +48,11 @@ export class LoanApprovedComponent implements OnInit{
 		id_investor : null
 	};
 
-	imageRateHalf:number;
-	imageRateFulls = [];
-	imageRateNulls = [];
+	imageRate25:number;
+	imageRate50:number;
+	imageRate75:number;
+	imageRate100 = [];
+	imageRate0 = [];
 
 	ngOnInit(){
 		let param = this.activatedRoute.params.subscribe( params => {
@@ -118,39 +120,55 @@ export class LoanApprovedComponent implements OnInit{
 		// let avarage = 0;
 		if(avarage === 0) {
 			for (var arithmetic = 5; arithmetic >= 1; arithmetic--) {
-				this.imageRateNulls.push(arithmetic);
+				this.imageRate0.push(arithmetic);
 			}
 		} else {
 			for(let i of rate) {
 				if(i === avarage) {
 
+					// let data = '3.25'; // for dummy
 					let data = i.toString();
-					let number = Number(i); // object if data rate number not decimal
+					let number = Number(data); // object if data rate number not decimal
 					let maxRate = 5;
 					
-					if(data.match(/^[\d]\.5/)) { // condition if decimal
+					// if(data.match(/^[\d]\.[\d+\d]{2}$/)) {
+					if(data.match(/^[\d]\.\d$/)) {
 						let number = Number(data.split('.')[0]);
-						this.imageRateHalf = 1;
-						for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
-							this.imageRateFulls.push(arithmetic)
-						}
-
-						if(this.imageRateHalf === 1) {
-							maxRate = 4;
-						}
-						let numberNull = maxRate - number;
+						let numberNull = 4 - number;
+						
 						for (var arithmetic = 1; arithmetic <= numberNull; arithmetic++) {
-							this.imageRateNulls.push(arithmetic);
+							this.imageRate0.push(arithmetic);
 						}
+						for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
+							this.imageRate100.push(arithmetic)
+						}
+						
+						if(data.match(/^[\d]\.5/)) { // condition if decimal
+							this.imageRate50 = 1;
+						} 
 
+						// condition if rate change to 25
+
+
+						// if(data.match(/^[\d]\.25/)) { // condition if decimal
+						// 	this.imageRate25 = 1;
+						
+						// } else if(data.match(/^[\d]\.50/)) { // condition if decimal
+						// 	this.imageRate50 = 1;
+
+						// } else { // condition if decimal
+						// 	this.imageRate75 = 1;
+						// }
+					
 					} else {
+						
 						let numberNull = maxRate - number;
 						for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
-							this.imageRateFulls.push(arithmetic)
+							this.imageRate100.push(arithmetic)
 						}
 
 						for (var arithmetic = 1; arithmetic <= numberNull; arithmetic++) {
-							this.imageRateNulls.push(arithmetic);
+							this.imageRate0.push(arithmetic);
 						}
 					}
 				}
