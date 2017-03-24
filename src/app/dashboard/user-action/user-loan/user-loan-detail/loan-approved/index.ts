@@ -15,7 +15,6 @@ import { FormVerifyComponent } from './part/not-paid/verify_component/form-verif
 
 // component scoring
 import { ScoringFormComponent } from './scoring-form';
-import { RatingComponent } from './scoring-form/rating';
 
 
 // service
@@ -34,7 +33,6 @@ export const routes = [
     VerifyComponent,
     FormVerifyComponent,
     ScoringFormComponent, // component scoring
-    RatingComponent
   ],
   imports: [
     HttpModule,
