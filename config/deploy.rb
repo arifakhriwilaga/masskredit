@@ -33,4 +33,4 @@ set :repo_url, 'git@git.wgs.co.id:kredit-plus/mass-credit-frontend.git'
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-set :keep_releases, 3
+# set :keep_releases, 3
