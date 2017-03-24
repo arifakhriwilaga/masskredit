@@ -1,8 +1,6 @@
 import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Router }	from '@angular/router';
-import { LoginService } from './../../../auth/login/login.service';
-import { Global } from './../../../global.service';
 
 @Component({
 	selector: 'header-dashboard',
@@ -12,7 +10,7 @@ import { Global } from './../../../global.service';
 		<header-third [incomingDataName]="incomingDataName" [incomingDataLastLogin]="incomingDataLastLogin" [incomingDataUserClass]="incomingDataUserClass" [incomingDataUserStatus]="incomingDataUserStatus" [incomingDataUserInvestor]="incomingDataUserInvestor" [incomingDataUserBorrower]="incomingDataUserBorrower" [incomingDataAccountSummary]="incomingDataAccountSummary" [incomingDataFundHistory]="incomingDataFundHistory" [incomingDataProfileImage]="incomingDataProfileImage"></header-third>
 		
 	`,
-	providers: [LoginService, Global]
+	providers: []
 })
 
 export class HeaderComponent implements OnInit{
