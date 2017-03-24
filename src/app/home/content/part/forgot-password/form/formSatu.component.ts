@@ -58,6 +58,6 @@ export class FormSatuComponent {
 
   handleSuccess(data:any){
   	let resetToken = data.data.reset_token;
-		this.router.navigateByUrl('/auth/register/new-password/' + resetToken)
+		this.router.navigateByUrl('/auth/register/new-password/' + resetToken);
   }
 }
