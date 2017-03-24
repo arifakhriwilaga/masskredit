@@ -146,7 +146,6 @@ export class DetailComponent {
 				this.simulation = dataResponse.data.simulation_result;
 				this.statusCalculation = 1;
 			})
-			// this.amount.emit(this.dataCalculation.jumlah);
 		} else {
 			alert("Data tidak valid");
 		}
@@ -176,7 +175,11 @@ export class DetailComponent {
 
 	createLoan(){
 		if(jQuery("#FormSimulation").valid()) {
-			this.formVerify = 1;
+			if(this.isOn === 0) {
+				return;
+			} else {
+				this.formVerify = 1;
+			}
 		}
 		else{
 			alert("Data tidak valid!");
