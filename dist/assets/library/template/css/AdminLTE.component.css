@@ -1,4 +1,4 @@
-/*!
+!
  *   AdminLTE v2.3.7
  *   Author: Almsaeed Studio
  *   Website: Almsaeed Studio <http://almsaeedstudio.com>
@@ -1513,7 +1513,7 @@ a:focus {
 .box-input {
   max-width: 200px;
 }
-.modal .panel-body {
+.modal .panel-body-dashboard {
   color: #444;
 }
 /*
@@ -5373,7 +5373,7 @@ img.badges {
     margin-left: 250px;
 }
 
-.panel-body {
+.panel-body-dashboard {
    padding: 15px;
 }
 
@@ -5666,6 +5666,19 @@ h6:hover {
    margin-left: 120px;
 }
 
+/* custom css */
+.panel-body-dashboard {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+  color: rgba(0,0,0, 0.87);
+  background: #fff;
+  margin-top: 50px;
+  height: 350px;
+  box-shadow:  0.5px 0.3px 0.3px #ddd;
+}
+
 /*.overlay-logo {
   position: absolute;
   top: 30px;
@@ -5724,4 +5737,4 @@ label.new-account {
 .btn:hover, .btn:focus, .btn.focus {
    color: #ffc300;
    text-decoration: none;
-}*/
+}

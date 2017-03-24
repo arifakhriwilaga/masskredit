@@ -65,6 +65,12 @@
 }
 
 @media only screen and (max-width: 800px) {
+  .nav-tabs2 > li > a {
+    color: #aaa;
+  } 
+  .overlay-form {
+    top: 100px;
+  }   
   .statistic-box img,
   .statistic-box h2 {
     float: none;
@@ -209,6 +215,9 @@
 }
 
 @media (max-width: 600px) {
+  .overlay-form {
+    top: 50px;
+   }
   .statistic-box .col-md-4 {
     margin-bottom: 20px;
     margin-left: 15px;

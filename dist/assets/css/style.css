@@ -716,7 +716,7 @@ footer p {
 }
 
 .call-action.callaction-pemodal {
-    background: url(../img/callaction-pemodal.png) no-repeat #000;
+    /*background: url(../img/callaction-pemodal.png) no-repeat #000;*/
     background-size: cover
 }
 
@@ -750,7 +750,7 @@ footer p {
 
 .main-termsbox:before {
     content: "";
-    background: url(../img/bg-persyaratanutama.png) no-repeat;
+    /*background: url(../img/bg-persyaratanutama.png) no-repeat;*/
     background-position: left bottom;
     position: absolute;
     left: 0;
@@ -854,7 +854,7 @@ footer p {
 
 .loan-profile:before {
     content: "";
-    background: url(../img/iconinfo-01.png) no-repeat;
+    /*background: url(../img/iconinfo-01.png) no-repeat;*/
     position: absolute;
     left: 0;
     top: 0;
@@ -949,7 +949,7 @@ h1.info-title:after {
 }
 
 .give-loan {
-    background: url(../img/bg-giveloan.png) no-repeat;
+    /*background: url(../img/bg-giveloan.png) no-repeat;*/
     height: 390px;
     background-size: cover;
 }
@@ -991,7 +991,7 @@ h1.info-title:after {
 }
 
 .call-action {
-    background: url(../img/bg-loanfaciliatas.png) no-repeat #000;
+    /*background: url(../img/bg-loanfaciliatas.png) no-repeat #000;*/
     padding: 10px 0;
     background-size: cover;
 }
@@ -1184,7 +1184,7 @@ h1.info-title:after {
 
 .two-boxes ul li:before {
     content: "";
-    background: url(../img/list-type.png) no-repeat;
+    /*background: url(../img/list-type.png) no-repeat;*/
     width: 28px;
     height: 29px;
     position: absolute;
