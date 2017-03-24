@@ -6,8 +6,6 @@ declare var jQuery : any;
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  // styleUrls: ['./home.component.css'],
-  encapsulation: ViewEncapsulation.None,
 })
 
 
