@@ -43,21 +43,15 @@
           </tbody>
         </table>
       </div>  
-        <nav aria-label="Page navigation" *ngIf="total_pagination > 1">
+        <nav aria-label="Page navigation" *ngIf="statusPaging === true">
           <ul class="pagination">
-           <!--  <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li> -->
-            <li *ngFor="let a of array_total"><a href="#/dashboard/fund" id="a" (click)="linkTo(a)">{{ a }}</a></li>
-            <!-- <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li> -->
+            <li [ngClass]="{disabled:currentPage === 1}"><a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(1,-1)">First</a></li>
+            <li [ngClass]="{disabled:currentPage === 1}"><a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(currentPage-1,0)">Previous</a></li>
+            <li *ngFor="let data of pages"><a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(data)">{{ data }}</a></li>
+            <li [ngClass]="{disabled:currentPage === totalPages}"><a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(currentPage+1,-2)">Next</a></li>
+            <li id="" [ngClass]="{disabled:currentPage === totalPages}"> <a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(totalPages,-3)">Last</a></li>
           </ul>
-        </nav>      
+        </nav>
       </div>
       </div>
     </div>
