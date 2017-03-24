@@ -13,10 +13,9 @@ declare var jQuery: any;
 
 @Component({
   selector: 'dashboard',
-  encapsulation: ViewEncapsulation.None,
-  // styleUrls: ['./dashboard.component.css'],
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
 })
+
 export class DashboardComponent {  
   constructor(
     private http : Http,
@@ -45,22 +44,6 @@ export class DashboardComponent {
 
   ngOnInit(){
     this.getProfile();
-    jQuery('li > a').click(function() {
-      jQuery('li').removeClass();
-      jQuery(this).parent().addClass('active');
-   
-    });
-    // set datepicker
-    jQuery('#datepicker').datepicker({
-      format: 'mm/dd/yyyy'
-    });
-
-    var perShapeGradient = {
-        x1: 0,
-        y1: 0,
-        x2: 1,
-        y2: 0
-    };
   }
 
   public profile:User;
@@ -107,59 +90,6 @@ export class DashboardComponent {
     this.borrower = data.profile.user_score.borrower;
     this.fund_history = data.profile.user_score.fund_history;
   }
-
-  // getProfile(){
-  //   this.http.post(this.profileUrl,this.token,this.options)
-  //     .map(response => response.json())
-  //     .subscribe((response : any) => {
-  //       console.log(response)
-  //       this.profile         = response.data.profile.name;
-  //       this.account_summary = response.data.account_summary;
-
-  //       this.name = response.data.profile.name;  
-  //       // this.name           = this.globalService.data;
-  //       this.last_login     = response.data.profile.last_login;
-  //       this.profile_image  = response.data.profile.profile_image;
-  //       this.account_summary= response.data.account_summary.balance;
-  //       var _minus = false;
-  //       var b:any = this.account_summary.toString();
-  //       if (b<0) _minus = true;
-  //         b=b.replace(".","");
-  //         b=b.replace("-","");
-  //         let c = "";
-  //         let panjang = b.length;
-  //         let j = 0;
-  //       for (let i = panjang; i > 0; i--){
-  //         j = j + 1;
-  //         if (((j % 3) == 1) && (j != 1)){
-  //           c = b.substr(i-1,1) + "." + c;
-  //           // console.log(c)
-  //         } else {
-  //           c = b.substr(i-1,1) + c;
-  //         }
-  //       }
-  //       if (_minus) c = "-" + c ;
-  //       let idr = "Rp.";
-  //       this.account_summary = idr.concat(c);
-  //       this.user_class     = response.data.profile.user_score.user_class;
-  //       this.user_status    = response.data.profile.user_score.user_status;
-  //       this.investor     = response.data.profile.user_score.investor;
-  //       this.borrower     = response.data.profile.user_score.borrower;
-  //       this.avg_reviews  = response.data.profile.user_score.avg_reviews;
-  //       this.fund_history = response.data.profile.user_score.fund_history;
-  //       this.is_complete  = response.data.profile.is_complete;
-        
-  //       },(err:any) => {
-  //         var error   = JSON.parse(err._body)
-  //         var message = error.meta.message
-  //           if(message == "unauthorized") {
-  //             alert("Maaf session anda telah habis silahkan login kembali")
-  //             return this.router.navigateByUrl('/dashboard/sign-out')
-              
-  //           }  
-  //         }
-  //     );
-  // }
 
   delimiter(nominal:any){
     var _minus = false;
