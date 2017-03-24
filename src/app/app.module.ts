@@ -4,32 +4,29 @@ import { RouterModule, ActivatedRoute, PreloadAllModules } from '@angular/router
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { LocalStorageService, LOCAL_STORAGE_SERVICE_CONFIG } from 'angular-2-local-storage';
-// import { CustomFormsModule } from 'ng2-validation'
 
 // Authentication
 import { LoginService} from './global-service/login.service';
 
-import { AuthGuard  }                  from './auth-guard/auth-guard.service';
-import { AuthGuardDashboard }          from './auth-guard/auth-guard-dashboard.service';
+import { AuthGuard  } from './auth-guard/auth-guard.service';
+import { AuthGuardDashboard } from './auth-guard/auth-guard-dashboard.service';
 
 // Guard Dashboard
-import { AuthGuardEntryDashboard }   from './auth-guard/auth-guard-entry-dashboard.service';
+import { AuthGuardEntryDashboard } from './auth-guard/auth-guard-entry-dashboard.service';
 
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { ENV_PROVIDERS }               from './environment';
-import { ROUTES }                      from './app.routes';
+import { ENV_PROVIDERS } from './environment';
+import { ROUTES } from './app.routes';
 
 // App is our top level component
-import { AppComponent }                from './app.component';
-import { APP_RESOLVER_PROVIDERS }      from './app.resolver';
+import { AppComponent } from './app.component';
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
 // Verify Email
-import { VerifyEmailComponent }          from './verify_email';
-// import { GlobalService }                 from './global.service';
+import { VerifyEmailComponent } from './verify_email';
 
 
 // Config LocalStorage
