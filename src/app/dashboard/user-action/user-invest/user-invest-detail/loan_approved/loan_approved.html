@@ -1,7 +1,11 @@
-<div  *ngIf="loaderDetailBorrower == 0">
+<div class="box-header" align="center">
+  <h2 class="box-title">Detail Borrower</h2>
+</div>
+<div class="box-body">
+  <div  *ngIf="loaderDetailBorrower == 0">
   <div class="row">
     <div align="center"> 
-      <br><br><br><br><br>
+      <br>
       <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
       <span class="sr-only">Loading...</span>
     </div>
@@ -9,10 +13,8 @@
 </div>
 <div  *ngIf="loaderDetailBorrower == 1">
   <div class="row">
-    <h2 align="center">Detail Borrower</h2>
-    <br>
     <div class="col-md-4">
-     <img src="{{ dataDetailBorrower.borrower_image }}" alt="Foto Peminjam">
+     <img src="{{ dataDetailBorrower.borrower_image }}" alt="Foto Peminjam" style="padding-left: 25%;">
     </div>
     <div class="col-md-8">
       <div class="form-group">
@@ -53,18 +55,12 @@
         </div>
         <div class="col-xs-7">
           <div class="unit">
-              <!-- <i class="fa fa-star-half-full full" area-hidden="true"></i> -->
-              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
-              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
-              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
-              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px; color: orange"></i>
-              <i class="fa fa-star null" aria-hidden="true" style="font-size: 24px;color: orange"></i>
-              <!-- <span class="bs-glyphicons-list">
-              <span class="glyphicon glyphicon-star star-color star-full"></span>
-              <span class="glyphicon glyphicon-star star-color font half"></span>
-              </span> -->
-              <!-- <span>({{ avg_reviews }} %)</span> -->
-              <span>({{ dataDetailBorrower.avg_reviews }} %)</span><button color="red" (click)="showScoringForm()">Rate User</button>
+            <label *ngFor="let data of imageRate100"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/100.png" style="width:30px ;height: 30px;"></label>
+            <label *ngIf="imageRate25 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/25.png" style="width:30px ;height: 30px;"></label>
+            <label *ngIf="imageRate50 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/50.png" style="width:30px ;height: 30px;"></label>
+            <label *ngIf="imageRate75 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/75.png" style="width:30px ;height: 30px;"></label>
+            <label *ngFor="let data of imageRate0"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/0.png" style="width:30px ;height: 30px;"></label>
+            <span  class="unit">({{ dataDetailBorrower.avg_reviews }}) reviews {{ dataDetailBorrower.total_reviews }} user </span><br><button color="red" (click)="showScoringForm()">Rate User</button>
           </div>
         </div>
      </div>
@@ -94,6 +90,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="dataArrayNull === 1">
+          <td colspan="5" align="center">Data belum tersedia</td>
+        </tr>
         <tr *ngFor="let dataPayment of dataPayment, let i ='index'">
           <td>{{ i + 1 }}</td>
           <td>{{ dataPayment.installment_order }}</td>
@@ -115,6 +114,6 @@
     </div>
   </div>
   <detail-payment *ngIf="showDetailPayment == 1" [dataDetailPayment]="detailPayment" (onHide)="onHide($event)"></detail-payment>
-  <scoring-form *ngIf="scoringForm === 1" (statusForm)="hideForm($event)"></scoring-form>
+  <scoring-form *ngIf="scoringForm === 1" (statusForm)="hideForm($event)" [dataScoring]="dataScoring"></scoring-form>
 </div>
-<br>
+</div>
