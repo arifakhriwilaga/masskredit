@@ -22,6 +22,7 @@ export class OtpComponent {
 
 	phone_number = {
 		phone_number : null,
+		email : null
 	}
 	
 	ngOnInit(){
@@ -41,7 +42,8 @@ export class OtpComponent {
 
 	submitPhoneNumber(){
 		if(jQuery("#FormForgot").valid()) {
-			this.phone_number.phone_number = this.user.phone_number
+			this.phone_number.phone_number = this.user.phone_number;
+			this.phone_number.email = this.user.email;
 			this.otpService.getOtp(this.phone_number).then(dataResponse => {
 				let message = dataResponse.meta.message;
 	  		let code = JSON.stringify(dataResponse.meta.code);
@@ -59,10 +61,12 @@ export class OtpComponent {
 	}
 
   handleError(message:any){
-	if(message == 'No Handphone tidak terdaftar') {
+		if(message == 'No Handphone tidak terdaftar') {
       alert("No Handphone tidak terdaftar");
 			// this.statusLoader.emit(1);
-   	}					
+   	} else { 
+   		alert("Nomor HP atau email Anda salah, silahkan cek kembali.");
+  	}
   }
   @Output() statusLoader = new EventEmitter<any>()
   @Output() dataOtp = new EventEmitter<any>();
