@@ -18,21 +18,16 @@ export class IndexService {
 
 	private listFundUrl = "https://masscredit-api.stagingapps.net/user/withdrawal/get-list";
 	
-	getFunds(data:any): Promise<Fund[]>{
+	getFunds(data:any): Promise<any>{
 	 	return this.http.post(this.listFundUrl,data,this.options)
 		.toPromise()
-		.then(response => response.json().data.withdrawal as Fund[])
+		.then(response => response.json())
 		.catch(this.handleError)	
 	}
 
 	handleError(err){
-		var error   = JSON.parse(err._body)
-    var code = error.meta.code
-    var message = error.meta.message
-  	if(message == "unauthorized") {
-			alert("Maaf session anda telah habis silahkan login kembali")
-			return this.router.navigateByUrl('/dashboard/sign-out')					
-		}
+		let error = JSON.parse(err._body);
+    return error;
 	}
 
 	toCreateWithdrawal(){
