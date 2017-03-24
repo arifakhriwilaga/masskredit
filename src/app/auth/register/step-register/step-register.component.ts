@@ -54,7 +54,7 @@ export class StepRegisterComponent  {
 		});
 
 		jQuery('.datepicker').datepicker({
-	    format : 'dd-mm-yyyy',
+	    format : 'yyyy-mm-dd',
 	    showOn: "focus",
 	    autoclose: true,
 	    // startDate: "01-01-1945",
@@ -115,16 +115,13 @@ export class StepRegisterComponent  {
 
 
 	sendRegister(register) {
-		let $this = jQuery("#load");
 		if(jQuery("#registerForm").valid()) {	
-			$this.button('loading');
 			this.register.phone_number = JSON.parse(localStorage.getItem("phone-number"));
 			this.register.tanggal_lahir = jQuery("#tanggal_lahir").val();
 			this.stepregisterService.postStepRegister(register);
 		}
 		else{
 			alert("Data tidak valid");
-			jQuery("#load").button('reset');
 		}
 	}
 
@@ -138,7 +135,4 @@ export class StepRegisterComponent  {
 		localStorage.removeItem("verify-handphone");
 		let out = this.router.navigateByUrl('/');
 	}
-	// toast(){
-	// 	jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
-	// }
 }
