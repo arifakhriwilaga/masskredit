@@ -77,7 +77,7 @@ export class NewPasswordComponent implements OnInit {
   }
 
   handleSuccess(data:any){
-  	alert(data);
+  	alert("Password berhasil diubah.");
   	this.router.navigateByUrl('/home');
   }
 }
