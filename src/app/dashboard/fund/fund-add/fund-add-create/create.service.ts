@@ -26,19 +26,15 @@ export class CreateService {
 	
 	// request post fund
   postFundAdd(data:any){
-		let $this = jQuery("#load");
-		// console.log(data)
 		this.http.post(this.postFundUrl,data,this.options)
 		.map(response => response.json())
 		.subscribe((response : any) => {
-  		$this.button('reset');
 			alert("Penambahan dana berhasil, harap konfirmasi dana");
 			this.router.navigateByUrl('/dashboard/fund');
 		},(err:any) => {
 			var error   = JSON.parse(err._body);
 			var message = error.meta.message;
 			if(message == "unauthorized") {
-    		$this.button('reset');
 				alert("Maaf session anda telah habis silahkan login kembali");
 				this.router.navigateByUrl('/dashboard/sign-out');
 			}	
