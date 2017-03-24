@@ -1,11 +1,23 @@
 <form id="FormForgot">
-  <div class="col-md-8">
-    <input id="email" name="email" id="email" type="text" placeholder="Email" class="form-control input-md form-color Verifikasi" required="" [(ngModel)]="user.email">
+  <div class="row">
+  <div class="col-md-2">
   </div>
   <div class="col-md-8">
-    <input id="phoneNumber" name="phoneNumber" id="phoneNumber" type="text" placeholder="No Telephone" class="form-control input-md form-color Verifikasi" required="" [(ngModel)]="user.phone_number">
+    <div class="form-group">
+	    <input id="email" name="email" id="email" type="text" placeholder="Email" class="form-control input-md form-color Verifikasi" required="" [(ngModel)]="user.email">
+    </div>
+    <div class="form-group">
+	    <input id="phoneNumber" name="phoneNumber" id="phoneNumber" type="text" placeholder="No Telephone" class="form-control input-md form-color Verifikasi" required="" [(ngModel)]="user.phone_number">
+  	</div>
   </div>
-  <div class="col-md-4">
-    <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-red btn-block btn-verifikasi" (click)="submitPhoneNumber()">Kirim</button>
+  <div class="col-md-2">
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-md-12" align="center">
+  	<div class="form-group" style="width:200px;align-content: center">
+	    <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-red btn-block btn-verifikasi" (click)="submitPhoneNumber()">Kirim</button>
+  	</div>
+  </div>
   </div>
 </form>
