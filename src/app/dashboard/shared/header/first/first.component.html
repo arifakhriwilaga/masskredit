@@ -10,7 +10,7 @@
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         <!-- Messages: style can be found in dropdown.less-->
-        <!-- <li class="dropdown messages-menu">
+        <li class="dropdown messages-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           <i class="fa fa-envelope-o"></i>
           <span class="label label-danger">4</span>
@@ -86,17 +86,85 @@
             </li>
             <li class="footer"><a href="#">See All Messages</a></li>
           </ul>
-        </li> -->
-        <!-- Control Sidebar Toggle Button -->
-        <!-- <li>
-          <a href="#" data-toggle="control-sidebar"><i class="fa fa-cog"></i></a>
-        </li> -->
-        <li>
-          <a href="#/dashboard/profile" data-toggle="control-sidebar"><i class="fa fa-user"></i></a>
         </li>
-        <li>
-          <a href="#/dashboard/sign-out" data-toggle="control-sidebar"><i class="fa fa-sign-out"></i></a>
+        <li class="dropdown notifications-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-bell-o"></i>
+          <span class="label label-danger">3</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">You have 10 notifications</li>
+            <li>
+              <!-- inner menu: contains the actual data -->
+              <ul class="menu">
+                <li>
+                  <a href="#">
+                  <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                  <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                  page and may cause design problems
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                  <i class="fa fa-users text-red"></i> 5 new members joined
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                  <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                  <i class="fa fa-user text-red"></i> You changed your username
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="footer"><a href="#">View all</a></li>
+          </ul>
         </li>
+        <li class="dropdown notifications-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-th"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <div class="row">
+                <br>
+                <div class="col-xs-4">
+                <div class="form-group" align="center">
+                  <img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/dropdown/faq.png" style="width: 40px;height: 40px"><br>FAQ
+                </div>
+                </div>
+                <div class="col-xs-4">
+                <div class="form-group" align="center">
+                  <img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/dropdown/help-center.png" style="width: 30px;height: 40px"><br>Help Center
+                  </div>
+                </div>
+                <div class="col-xs-4">
+                <div class="form-group" align="center">
+                <img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/dropdown/report.png" style="width: 30px;height: 40px"><br>Report Problem
+                  </div>
+                </div>
+              </div>
+              <hr>
+            </li>
+            <li>
+              <ul class="menu">
+                <li><a href="#">Open Source Libraries</a></li>
+                <li><a href="#">Version</a></li>
+                <li><a href="#">Term & Condition</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Aggrement</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#"><i class="fa fa-user"></i></a></li>
+        <li><a href="#/dashboard/sign-out"><i class="fa fa-sign-out"></i></a></li>
       </ul>
     </div>
     <hr class="hr-nav">
