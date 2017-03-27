@@ -4,25 +4,45 @@
 MassCredit is built with angular2 and webpack.
 url web here ..
 
-### Installation
+### Configuration
+Configuration here ..
 
-MassCredit requires.....
+### Requirment
 - Node Version : 5.0
 - NPM Version : 3
 
-Install the dependencies and devDependencies and start the server.
+### Installation
+Clone Project:
 
 ```sh
-$ command example
-$ command example
-$ command example
+$ git clone git@git.wgs.co.id:kredit-plus/mass-credit-frontend.git
+$ cd mass-credit-frontend
+$ npm install
 ```
 
-For production environments...
+Running Project:
+
+```sh
+$ npm start
+```
+
+Built production:
 
 ```sh
 $ npm run build:prod
-$ npm run server:prod
+```
+
+### Deployment
+Staging:
+
+```sh
+$ command example
+```
+
+Production:
+
+```sh
+$ command example
 ```
 
 ### Plugins
