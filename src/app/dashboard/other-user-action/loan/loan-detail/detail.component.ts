@@ -64,14 +64,15 @@ export class DetailComponent {
     sucess_fee: null
 	}
 
-	dataCalculation = {
-		access_token:this.access_token,
-  	jumlah: null,
-    bunga: null,
-    tenor: null
-  }
+	listLoanUrl = '#/dashboard/other-user-action/loan';
 
 	ngOnInit(){
+
+		jQuery('#FormSimulation').validate({
+		  rules: {
+		    jumlah: { required:true }
+		  }
+		});
 
 		// Objek for get id on route
 		let param = this.activatedRoute.params.subscribe( params => {
@@ -84,6 +85,37 @@ export class DetailComponent {
 		// jQuery('#loan_amount').mask('000000000000');
 
 	}
+
+	dataIsOn = [
+    { value: 1 },
+    { value: 0 },
+  ];
+
+	isOn = 0;
+
+	// controller calculation
+	dataCalculation = {
+		access_token:this.access_token,
+  	jumlah: null,
+    bunga: null,
+    tenor: null
+  }
+  statusCalculation:number;
+
+	listInvestUrl = '#/dashboard/other-user-action/invest';
+
+  calculationInvest(){
+		if(jQuery('#FormSimulation').valid()) {
+			this.invest.invest_amount = this.dataCalculation.jumlah;
+			this.detailService.calculationLoan(this.dataCalculation).then(dataResponse => {
+				this.simulation = dataResponse.data.simulation_result;
+
+				this.statusCalculation = 1;
+			})
+		} else {
+			alert("Data tidak valid");
+		}
+  }
 
 	cancelDetailInvest(){
 		this.router.navigateByUrl("/dashboard/other-user-action/loan");
@@ -102,6 +134,8 @@ export class DetailComponent {
 		if(data.images == '') {
 			data.images = imageDefault;
 		}
+		this.dataCalculation.bunga = data.interest;
+		this.dataCalculation.tenor = data.tenor;
 		this.detailInvest = data;
 		let amount  = data.amount;
 		let restAmount = data.sisa
@@ -114,6 +148,7 @@ export class DetailComponent {
 			let message = dataResponse.meta.message;
 	    let code = JSON.stringify(dataResponse.meta.code);
 	    let data = dataResponse.data;
+	    // console.log(data);
 
 	    if(code.charAt(0) === '4') {
 	      this.handleError(message);
@@ -123,8 +158,17 @@ export class DetailComponent {
 		})
 	}
 
-	makeInvest(invest){
-		this.dataDetailInvest = 1;
+	formVerify:number;
+	createInvest(){
+		if(jQuery("#FormSimulation").valid()) {
+			if(this.isOn === 0) {
+				return;
+			} else {
+				this.formVerify = 1;
+			}
+		} else {
+			alert("Data tidak valid");
+		}
 	}
 
 	postInvestUrl = 'https://masscredit-api.stagingapps.net/other-user/investment/new';
@@ -219,5 +263,8 @@ export class DetailComponent {
 			this.statusDataDetail = 1;
 	}
 
+	hideVerify(status:number) {
+		this.formVerify = status;
+	}
 
 }
