@@ -165,13 +165,13 @@
         <div class="col-md-12">
           <div class="form-group">
           <div class="col-md-6 col-center">
-            <div align="center">
+             <div align="center">
             <span class="input-group-addon">
-              <input type="checkbox">
+              <input type="checkbox" [checked]="isOn === dataIsOn[0].value" (change)="$event.target.checked? (isOn = dataIsOn[0].value) : (isOn = dataIsOn[1].value)">
               <label>Saya setuju dengan syarat dan ketentuan</label>
             </span>
-            <button class="btn" (click)="createInvest()">SIMPAN</button>
-            </div>
+            <button class="btn btn-red" style="background-color: #e74c3c;" (click)="createInvest()" [ngClass]="{disabled:isOn === 0}" id="createLoan"><font style="color:white">Simpan</font></button>
+          </div>
           </div>
           </div>
         </div>
