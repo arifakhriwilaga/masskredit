@@ -57,7 +57,7 @@
             <label *ngIf="imageRate50 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/50.png" style="width:30px ;height: 30px;"></label>
             <label *ngIf="imageRate75 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/75.png" style="width:30px ;height: 30px;"></label>
             <label *ngFor="let data of imageRate0"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/0.png" style="width:30px ;height: 30px;"></label>
-            <span>({{ dataDetailInvestor.total_reviews }} user)</span><br><button color="red" (click)="showScoringForm()">Rate User</button>
+            <span  class="unit">({{ dataDetailInvestor.avg_reviews }}) reviews {{ dataDetailInvestor.total_reviews }} user </span><br><button color="red" (click)="showScoringForm()">Rate User</button>
         </div>
       </div>
    </div>
