@@ -41,7 +41,7 @@ export class VerifyComponent implements OnInit{
 	}
 
 	hideModal(){
-		this.statusForm.emit(1);	
+		this.statusForm.emit(0);	
 	}
 
 	confirmInvest(){
