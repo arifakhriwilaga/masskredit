@@ -36,9 +36,11 @@ export class LoginComponent {
 	}
 
   handleError(message:any){
-	if(message == 'No Handphone tidak terdaftar') {
-      alert("No Handphone tidak terdaftar");
-   	}					
+    alert(message);
+		// if(message == 'No Handphone tidak terdaftar') {
+  //  	}	else {
+  //  		alert("Nomor HP atau password Anda salah, silahkan cek kembali.");
+  //  	}
   }
   
   handleSuccess(data:any){
