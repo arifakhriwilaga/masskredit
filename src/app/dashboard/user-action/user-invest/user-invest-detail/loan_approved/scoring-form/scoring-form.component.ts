@@ -21,7 +21,8 @@ export class ScoringFormComponent implements OnInit{
   ngOnInit(){
     var dataRate = this.dataRate;
     if(this.dataScoring !== null) {
-      this.dataRate.target_user_id = this.dataScoring.id_investor;
+      // console.log(this.dataScoring)
+      this.dataRate.target_user_id = this.dataScoring.borrower_id;
       this.dataRate.access_token = this.dataScoring.access_token;
     }
     jQuery('#ScoringForm').modal({backdrop: 'static', keyboard: false});
@@ -60,9 +61,17 @@ export class ScoringFormComponent implements OnInit{
   }
 
   rateUser(){
-    if(this.dataRate.rate_value === 0) {
+    if(this.dataRate.rate_value !== null) {
       this.scoringFormService.rateUser(this.dataRate).then(dataResponse => {
-        console.log(dataResponse);
+        let code = JSON.stringify(dataResponse.meta.code);
+        
+        if(code.charAt(0) === '2') {
+          alert("Berhasil melakukan rating")
+          this.hideForm();
+        } else {
+          alert("Gagal melakukan rating")
+          this.hideForm();
+        }
       })
     } else {
       alert("Masukan jumlah bintang");
