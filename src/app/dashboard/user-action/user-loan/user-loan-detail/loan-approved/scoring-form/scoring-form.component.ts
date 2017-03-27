@@ -60,9 +60,17 @@ export class ScoringFormComponent implements OnInit{
   }
 
   rateUser(){
-    if(this.dataRate.rate_value === 0) {
+    if(this.dataRate.rate_value !== null) {
       this.scoringFormService.rateUser(this.dataRate).then(dataResponse => {
-        console.log(dataResponse);
+        let code = JSON.stringify(dataResponse.meta.code);
+        
+        if(code.charAt(0) === '2') {
+          alert("Berhasil melakukan rating")
+          this.hideForm();
+        } else {
+          alert("Gagal melakukan rating")
+          this.hideForm();
+        }
       })
     } else {
       alert("Masukan jumlah bintang");
