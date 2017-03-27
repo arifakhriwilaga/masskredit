@@ -85,16 +85,25 @@ export class CreateComponent {
   	this.tipeInvest = id;
   }
 
+  dataIsOn = [
+    { value: 1 },
+    { value: 0 },
+  ];
+
+	isOn = 0;
 	createInvest(){
 		if(jQuery('#investForm').valid()) {
-			try { 
-			  let due_date = jQuery('#due_date').val();
-			  this.invest.due_date = due_date;
-			
-			} finally {
-				this.formVerify = 1;
+			if(this.isOn === 0) {
+				return;
+			} else {
+				try { 
+				  let due_date = jQuery('#due_date').val();
+				  this.invest.due_date = due_date;
+				
+				} finally {
+					this.formVerify = 1;
+				}
 			}
-
 		} else {
 			alert("Data tidak valid");
 		}
