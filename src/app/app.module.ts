@@ -4,6 +4,7 @@ import { RouterModule, ActivatedRoute, PreloadAllModules } from '@angular/router
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {APP_BASE_HREF} from '@angular/common';
 
 // Authentication
 import { LoginService} from './global-service/login.service';
@@ -64,6 +65,7 @@ type StoreType = {
   ],
   exports: [RouterModule],
   providers: [ // expose our Services and Providers into Angular's dependency injection
+    // {provide: APP_BASE_HREF, useValue: '/'},
     ENV_PROVIDERS,
     APP_PROVIDERS,
     AuthGuard,
