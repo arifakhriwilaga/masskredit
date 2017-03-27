@@ -46,19 +46,12 @@ export class StepRegisterComponent  {
 		jQuery('#messagelogin').hide();
 
 	
-		this.nomor = JSON.parse(localStorage.getItem("verify_handphone"));
-		jQuery.datepicker.setDefaults({
-      dateFormat: 'yy-mm-dd',
-      minDate: '2013-09-10',
-      maxDate: '2013-10-10'
-		});
+		this.register.phone_number = JSON.parse(localStorage.getItem("phone-number"));
 
 		jQuery('.datepicker').datepicker({
 	    format : 'yyyy-mm-dd',
 	    showOn: "focus",
 	    autoclose: true,
-	    // startDate: "01-01-1945",
-	    // endDate: "01-01-1998"
 	    startDate: "-100y",
 	    endDate: "-21y"
 	  });
@@ -115,19 +108,48 @@ export class StepRegisterComponent  {
 
 
 	sendRegister(register) {
-		if(jQuery("#registerForm").valid()) {	
+		if(jQuery("#registerForm").valid()) {
 			this.register.phone_number = JSON.parse(localStorage.getItem("phone-number"));
 			this.register.tanggal_lahir = jQuery("#tanggal_lahir").val();
-			this.stepregisterService.postStepRegister(register);
+			this.stepregisterService.postStepRegister(register).then(dataResponse => {
+				let message = dataResponse.meta.message;
+	  		let code = JSON.stringify(dataResponse.meta.code);
+				let data = dataResponse.data;
+
+	  		if(code.charAt(0) === '5') {
+	  			this.handleError(message);
+	  		} if(code.charAt(0) === '2') {
+	  			this.handleSuccess(data);
+	  		};
+			})
 		}
 		else{
 			alert("Data tidak valid");
 		}
 	}
 
+	handleError(message:any){
+		if(message == 'No Handphone tidak terdaftar') {
+      alert("No Handphone tidak terdaftar");
+   	
+   	} else if(message == "Email sudah terdaftar") {
+			alert("Maaf Email sudah terdaftar")
+				
+		} else if(message == "Password dan Confirm Password tidak sama") {
+			alert("Password dan Confirm Password tidak sama")
+	
+		} else {
+			alert("No Handphone sudah terdaftar")		
+		}					
+  }
+  
+  handleSuccess(data:any){
+  	this.stepregisterService.showNotif();
+  }
+
 	hideNotif() {
 		jQuery('#myModal').modal('toggle');
-		this.router.navigateByUrl('/auth/login');
+		this.router.navigateByUrl('/home');
 	}
 
 	cancelRegister() {
