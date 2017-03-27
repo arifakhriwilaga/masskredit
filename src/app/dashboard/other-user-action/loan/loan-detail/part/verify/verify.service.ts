@@ -14,9 +14,9 @@ export class VerifyService {
 	});    
   private options = new RequestOptions({ headers: this.headers });
 
-	loanUrl = 'https://masscredit-api.stagingapps.net/other-user/loan/new';
+	investUrl = 'https://masscredit-api.stagingapps.net/other-user/investment/new';
 	createLoan(data:any): Promise<any>{
-	 	return this.http.post(this.loanUrl,data,this.options)
+	 	return this.http.post(this.investUrl,data,this.options)
 		.toPromise()
 		.then(response => response.json())
 		.catch(this.handleError);	
