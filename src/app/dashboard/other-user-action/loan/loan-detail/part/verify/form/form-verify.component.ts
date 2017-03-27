@@ -11,7 +11,7 @@ declare var jQuery:any;
 		  <div class="col-md-6">
 		    <div class="form-group">
           <span class="required">*</span>
-          <input type="password" name="password" placeholder="Password" class="form-control input-md" id="password" [(ngModel)]="dataLoan.password">
+          <input type="password" name="password" placeholder="Password" class="form-control input-md" id="password" [(ngModel)]="dataInvest.password">
 		    </div>
 		  </div>
 		</form>
