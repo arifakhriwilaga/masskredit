@@ -66,7 +66,7 @@ export class LoanApprovedComponent {
 
   dataScoring ={
 		access_token: this.access_token,
-		id_investor : null
+		borrower_id : null
 	};
 
 	getDetailBorrower(){
@@ -75,7 +75,7 @@ export class LoanApprovedComponent {
       let code = JSON.stringify(dataResponse.meta.code);
       let data = dataResponse.data;
       // console.log(data)
-      this.dataScoring.id_investor = data.investor_id;
+      this.dataScoring.borrower_id = data.borrower_id;
       if(code.charAt(0) === '4') {
         this.handleError(message);
       } if(code.charAt(0) === '2') {
