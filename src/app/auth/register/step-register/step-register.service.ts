@@ -21,42 +21,17 @@ export class StepRegisterService {
 
   private message = {};
 
-	postStepRegister(register:any) {
-		// console.log(register)
-		this.http.post(this.stepregisterUrl, register, this.options)
-			.map(response => response.json())
-			.subscribe((response:any) => { 
-				let code = response.meta.code;								
-				if(code == "200") {
-					localStorage.removeItem("access-code");
-					localStorage.removeItem("verify-handphone");
-					this.showNotif();
-					// return this.router.navigateByUrl('/auth/register/finish');
-				}else{
-					alert("Register gagal")
-					return this.router.navigateByUrl('/auth/register/step-1')
-				}
-			},(err:any) => {
-				let error   = JSON.parse(err._body);
-				let message = error.meta.message;
-				let $this = jQuery("#load");
-				if(message == "Email sudah terdaftar") {
-					alert("Maaf Email sudah terdaftar")
-					$this.button('reset');
-				
-				}if(message == "Password dan Confirm Password tidak sama") {
-					alert("Password dan Confirm Password tidak sama")
-					$this.button('reset');
-
-				}if(message == "No Handphone sudah terdaftar") {
-					alert("No Handphone sudah terdaftar")
-					$this.button('reset');
-				
-				}else{
-					console.log(message)
-				}
-			});   
+	postStepRegister(register:any) : Promise<any>{
+	 	return this.http.post(this.stepregisterUrl,register,this.options)
+		.toPromise()
+		.then(response => response.json())
+		.catch(this.handleError)	
 	}
+
+	handleError(err){
+		var error = JSON.parse(err._body)
+    return error
+ 	}
 
 	showNotif() {
 		jQuery('#myModal').modal({backdrop: 'static', keyboard: false});
