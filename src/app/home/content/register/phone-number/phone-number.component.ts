@@ -71,6 +71,9 @@ export class PhoneNumberComponent {
 
   @Output() statusVerify = new EventEmitter<any>();
   handleSuccess(data:any){
+  	let number = JSON.stringify(this.nomor.phone_number);
+  	// console.log(number);
+  	localStorage.setItem("phone-number",number);
   	alert(data.verification_code);
   	this.data.phone_number = this.nomor.phone_number
   	this.data.status = 1;
