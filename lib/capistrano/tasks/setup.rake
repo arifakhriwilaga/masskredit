@@ -4,5 +4,5 @@ task :deploy do
 	system "git commit -m 'Build prod'"
 	system "git push origin master"
 	system "ari.Fakhri"
-	
+	 
 end
