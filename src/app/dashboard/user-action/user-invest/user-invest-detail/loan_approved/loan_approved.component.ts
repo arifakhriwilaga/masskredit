@@ -207,6 +207,7 @@ export class LoanApprovedComponent {
 			let message = dataResponse.meta.message;
       let code = JSON.stringify(dataResponse.meta.code);
       let data = dataResponse.data.history_payment;
+      console.log(dataResponse);
       
       if(data.length === 0) {
       	this.dataArrayNull = 1;
@@ -266,7 +267,7 @@ export class LoanApprovedComponent {
 							dataPokok['total_payment'] = idr.concat(c);
 						} 
 					} finally {
-						console.log(this.dataPayment)
+						// console.log(this.dataPayment)
 						try {
 							this.dataPayment = data;
 						} finally {

@@ -43,6 +43,7 @@ export class DetailPaymentComponent{
 	ngOnInit(){
 		jQuery('#FormDetailPayment').modal({backdrop: 'static', keyboard: false});
 		if(this.dataDetailPayment != null) {
+			console.log(this.dataDetailPayment)
 			try {
 				if(this.dataDetailPayment.payment_date == null) {
 					this.dataDetailPayment.payment_date = '-';
