@@ -3,6 +3,6 @@ task :deploy do
 	system "git add ."
 	system "git commit -m 'Build prod'"
 	system "git push origin master"
-	system "ari.Fakhri="
+	system "ari.Fakhri"
 
 end
