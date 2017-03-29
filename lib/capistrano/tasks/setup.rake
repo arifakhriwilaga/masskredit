@@ -3,6 +3,6 @@ task :deploy do
 	system "git add ."
 	system "git commit -m 'Build prod'"
 	system "git push origin master"
-	system "Username for 'https://git.wgs.co.id:'=ari.Fakhri"
+	system "https://git.wgs.co.id -uari.Fakhri"
 	 
 end
