@@ -1,55 +1,56 @@
-<div class="profil">
+<div class="profil" *ngIf="dataComplete == 1">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
         <div class="profile">
           <div class="pull-left profile-left">
-            <img src="{{ incomingDataProfileImage }}" style="width:100px;height:100px">
+            <img src="{{ incomingDataUser.profile_image }}" style="width:100px;height:100px">
           </div>
         <label class="name"><font size="3">
-        {{ incomingDataName }}<br>
-        {{ incomingDataUserStatus }}<br>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star full" aria-hidden="true"></i>
-          <i class="fa fa-star null" aria-hidden="true"></i>            
-        </font></label> <br>
-        <img *ngIf="incomingDataUserStatus == 'Verified'" class="verifikasi-check" src="../../assets/img/green-checklist.png"><br>
+        {{ incomingDataUser.name }}<br>
+        {{ incomingDataUser.user_status }}<br>
+          <label *ngFor="let data of imageRate100"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/100.png" style="width:15px ;height: 15px;"></label>
+          <label *ngIf="imageRate25 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/25.png" style="width:15px ;height: 15px;"></label>
+          <label *ngIf="imageRate50 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/50.png" style="width:15px ;height: 15px;"></label>
+          <label *ngIf="imageRate75 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/75.png" style="width:15px ;height: 15px;"></label>
+          <label *ngFor="let data of imageRate0"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/0.png" style="width:15px ;height: 15px;"></label>           
+        </font></label><br>
+        <!-- </font></label><label>({{ incomingDataUser.avg_review }})</label><br> -->
+        <img *ngIf="incomingDataUser.user_status == 'Verified'" class="verifikasi-check" src="../../assets/img/green-checklist.png"><br>
         </div>
       </div>
       <div class="col-md-1" style="width: 10%">
         <div class="profile">
           <img class="icon" src="../../assets/img/icon/investment.png"> <br>
           <label class="profile-2">Investor</label> <br>
-          <label class="profile-1">{{ incomingDataUserBorrower }}</label>
+          <label class="profile-1">{{ incomingDataUser.investor }}</label>
         </div>
       </div>
       <div class="col-md-1" style="width: 10%">
         <div class="profile">
           <img class="icon" src="../../assets/img/icon/loan.png" style="margin-left: solid 2px #fff;"> <br>
           <label class="profile-2">Borrower</label> <br>
-          <label class="profile-1">{{ incomingDataUserBorrower }}</label>
+          <label class="profile-1">{{ incomingDataUser.borrower }}</label>
         </div>
       </div>
       <div class="col-md-1" style="width: 10%">
         <div class="profile">
           <img class="icon" src="../../assets/img/icon/credit-card.png" style="margin-left: solid 2px #fff;"> <br>
           <label class="profile-2">Credit</label> <br>
-          <label class="profile-1">{{ incomingDataFundHistory }}</label>
+          <label class="profile-1">{{ incomingDataUser.fund_history }}</label>
         </div>
       </div>
       <div class="col-md-1" style="width: 10%">
         <div class="profile">
           <img class="icon" src="../../assets/img/icon/business.png" style="margin-left: solid 2px #fff;"> <br>
           <label class="profile-2">Salary</label> <br>
-          <label class="profile-1">{{ incomingDataUserClass }}</label>
+          <label class="profile-1">{{ incomingDataUser.user_class }}</label>
         </div>
       </div>
       <div class="col-md-1" align="center">
         <div class="profile" style="width: 200px">
             <img src="../../assets/img/dollar-bag.png" style="margin-left: solid 2px;width: 50px; height: 50px;"><br>
-            <label class="profile-1"><h4>{{ incomingDataAccountSummary }}</h4></label>
+            <label class="profile-1"><h4>{{ incomingDataUser.account_summary }}</h4></label>
         </div>
       </div>
     </div>
