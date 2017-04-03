@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Subject }    from 'rxjs/Subject';
 
 @Injectable ()
 export class DashboardService {
@@ -35,5 +36,11 @@ export class DashboardService {
     return error;
 	}
 
+	private data = new Subject<any>();
+	data$ = this.data.asObservable();
+
+	sendData(data:string){
+		this.data.next(data);
+	}
 
 }

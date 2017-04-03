@@ -46,6 +46,8 @@ export class DashboardComponent {
   dataComplete:number;
   ngOnInit(){
     this.getProfile();
+    this.dashboardService.sendData("Ari fakhri");
+
   }
 
   public profile:User;

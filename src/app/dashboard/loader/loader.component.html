@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div class="content-wrapper" *ngIf="statusData == 1">
   <!-- Main content -->
   <section class="content">
     <div class="row">
@@ -9,7 +9,7 @@
               <a href="#" class="panel-content"><img class="box-icon" src="../../assets/img/icon/income.png"></a>
             </div>
             <div class="total">
-              <label>Rp. 34.000.000</label> <br>
+              <label>{{ data.income }}</label> <br>
             <label>Total Income</label>
             </div>
             <div class="box-image">
@@ -25,7 +25,7 @@
               <a href="#" class="panel-content"><img class="box-icon" src="../../assets/img/icon/2.png"></a>
             </div>
             <div class="total">
-              <label>Rp. 34.000.000</label> <br>
+              <label>{{ data.total_investment }}</label> <br>
             <label>Total Investment</label>
             </div>
             <div class="box-image">
@@ -41,7 +41,7 @@
               <a href="#" class="panel-content"><img class="box-icon" src="../../assets/img/icon/loan2.png"></a>
             </div>
             <div class="total">
-              <label>Rp. 34.000.000</label> <br>
+              <label>{{ data.total_loan }}</label> <br>
             <label>Total Loan</label>
             </div>
             <div class="box-image">
@@ -57,7 +57,7 @@
               <a href="#" class="panel-content"><img class="box-icon" src="../../assets/img/icon/with.png"></a>
             </div>
             <div class="total">
-              <label>Rp. 34.000.000</label> <br>
+              <label>{{ data.total_withdrawal }}</label> <br>
             <label>Withdraw</label>
             </div>
             <div class="box-image">
