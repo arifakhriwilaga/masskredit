@@ -41,6 +41,7 @@ export class PhoneNumberComponent {
 
 	sendHandphone(){
 		if(jQuery("#verifyForm").valid()) {
+    	jQuery('#phone-number').prop('disabled', true);
 	    this.phonenumberService.postPhoneNumber(this.nomor).then(dataResponse => {
 	    	let message = dataResponse.meta.message;
 	  		let code = JSON.stringify(dataResponse.meta.code);
@@ -59,9 +60,11 @@ export class PhoneNumberComponent {
 	}
 
 	handleError(message:any){
-		if(message == "No Handphone sudah terdaftar") {
-	    alert("Maaf no handphone telah terdaftar")
-	  }
+		try {
+			alert (message);
+		} finally {
+    	jQuery('#phone-number').prop('disabled', false);
+		}
   }
   
   data = { 
@@ -72,7 +75,8 @@ export class PhoneNumberComponent {
   @Output() statusVerify = new EventEmitter<any>();
   handleSuccess(data:any){
   	let number = JSON.stringify(this.nomor.phone_number);
-  	// console.log(number);
+    jQuery('#phone-number').prop('disabled', false);
+  	
   	localStorage.setItem("phone-number",number);
   	alert(data.verification_code);
   	this.data.phone_number = this.nomor.phone_number
