@@ -23,8 +23,8 @@ export class VerifyComponent implements OnInit{
 
 	@Input() dataInvest:any = { 
 		access_token: null,
-		invest_id: null,
-		loan_amount : null,
+		loan_id: null,
+		invest_amount : null,
 		password: null
 	};
 
@@ -58,8 +58,10 @@ export class VerifyComponent implements OnInit{
 
 	handleError(message:any){
 		try {
-			if(message == 'Jumlah yang anda masukan melebihi jumlah invest.') {
-	      alert("Jumlah yang anda masukan melebihi jumlah invest.");
+			if(message == 'Saldo Anda tidak mencukupi.') {
+	      alert("Saldo Anda tidak mencukupi.");
+	    } else if (message == 'Jumlah yang anda masukan melebihi jumlah pinjaman.') {
+	    	alert("Jumlah yang anda masukan melebihi jumlah pinjaman.");
 	   	} else {
 				alert("Password anda salah")
 			}
@@ -71,7 +73,7 @@ export class VerifyComponent implements OnInit{
   handleSuccess(){
   	alert("Pinjaman berhasil dibuat, harap menunggu konfirmasi investor");
 		jQuery('#ModalForm').modal("toggle");
-		this.router.navigateByUrl('/dashboard/other-user-action/invest');
+		this.router.navigateByUrl('/dashboard/other-user-action/loan');
   }
 
 

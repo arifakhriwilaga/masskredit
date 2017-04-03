@@ -29,7 +29,7 @@ export class DetailService {
  	}
 
  	calculationUrl = 'https://masscredit-api.stagingapps.net/user/investment/simulate'
- 	calculationLoan(data:any): Promise<any>{
+ 	calculationInvest(data:any): Promise<any>{
 		return this.http.post(this.calculationUrl,data,this.options)
 		.toPromise()
 		.then(response => response.json())

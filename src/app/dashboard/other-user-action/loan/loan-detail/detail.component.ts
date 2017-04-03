@@ -71,18 +71,21 @@ export class DetailComponent {
     tenor: null
   }
 
-	ngOnInit(){
+  listLoanUrl = "#/dashboard/other-user-action/loan";
 
+	ngOnInit(){
+		jQuery('#FormSimulation').validate({
+		  rules: {
+		    jumlah: { required:true }
+		  }
+		});
 		// Objek for get id on route
 		let param = this.activatedRoute.params.subscribe( params => {
 			let id = params['id'];
-			// console.log(id);
 			this.invest.loan_id = id;
 			this.dataReqLoan.invest_id = id;
 		});
 		this.getDetailInvest();
-		// jQuery('#loan_amount').mask('000000000000');
-
 	}
 
 	cancelDetailInvest(){
@@ -115,6 +118,10 @@ export class DetailComponent {
 	    let code = JSON.stringify(dataResponse.meta.code);
 	    let data = dataResponse.data;
 
+	    // set to object dataCalculation
+			this.dataCalculation.bunga = dataResponse.data.interest;
+			this.dataCalculation.tenor = dataResponse.data.tenor;
+
 	    if(code.charAt(0) === '4') {
 	      this.handleError(message);
 	    } if(code.charAt(0) === '2') {
@@ -123,53 +130,18 @@ export class DetailComponent {
 		})
 	}
 
-	makeInvest(invest){
-		this.dataDetailInvest = 1;
+	formVerify:number;
+	createInvest(){
+		if(jQuery('#FormSimulation').valid()) {
+			if(this.isOn === 0) {
+				return;
+			} else {
+				this.formVerify = 1;
+			};
+		} else {
+			alert("Data tidak valid");
+		}
 	}
-
-	postInvestUrl = 'https://masscredit-api.stagingapps.net/other-user/investment/new';
-	// postInvest(){
-	// 	// console.log(this.loan);
-	// 	this.http.post(this.postInvestUrl,this.invest,this.options)
-	// 		.map(response => response.json())
-	// 		.subscribe(
-	// 			(response : any) => {
-	// 			this.data = response.data;
-	// 			this.dataDetailInvest = 0;
-	// 				alert("Investasi berhasil, harap menunggu konfirmasi borrower");
-	// 				this.router.navigateByUrl('/dashboard/other-user-action/loan');
-	// 			},
-	// 			(err:any) => {
-	// 				var error   = JSON.parse(err._body)
-	// 				var message = error.meta.message
-	// 				var code = error.meta.code
-	// 					// if(code == "400") {
-	// 					// 	alert("Maaf saldo anda tidak mencukupi");				
-	// 					// }
-	// 					if(message == "unauthorized") {
-	// 						alert("Maaf session anda telah habis silahkan login kembali")
-	// 						return this.router.navigateByUrl('/dashboard/sign-out')					
-						
-	// 					}if(message == "Anda harus mempunyai jaminan untuk melakukan pinjaman.") {
-	// 						alert("Anda harus mempunyai jaminan untuk melakukan pinjaman")				
-	// 						this.dataDetailInvest = 1;
-						
-	// 					}if(message == "Jumlah yang anda masukan melebihi jumlah pinjaman.") {
-	// 						alert("Jumlah investasi melebihi jumlah pinjaman")				
-	// 						this.dataDetailInvest = 1;
-						
-	// 					}if(message == "Password salah!") {
-	// 						this.dataDetailInvest = 1;
-	// 						alert("Password salah!")
-
-	// 					}if(message == "Saldo Anda tidak mencukupi.") {
-	// 						this.dataDetailInvest = 1;
-	// 						alert("Saldo Anda tidak mencukupi.")				
-	// 					}
-
-	// 			}
-	// 		);	
-	// }
 
 	delimiterAmount(dataAmount:any){
 		var _minus = false;
@@ -195,29 +167,53 @@ export class DetailComponent {
 	}
 
 	delimiterRestAmount(dataRestAmount:any){
-			// condition make delimiter
-			var _minus = false;
-			var b:any = dataRestAmount.toString();
-			if (b<0) _minus = true;
-				b=b.replace(".","");
-				b=b.replace("-","");
-				let c = "";
-				let panjang = b.length;
-				let j = 0;
-			for (let i = panjang; i > 0; i--){
-				j = j + 1;
-				if (((j % 3) == 1) && (j != 1)){
-					c = b.substr(i-1,1) + "." + c;
-					// console.log(c)
-				} else {
-					c = b.substr(i-1,1) + c;
-				}
+		// condition make delimiter
+		var _minus = false;
+		var b:any = dataRestAmount.toString();
+		if (b<0) _minus = true;
+			b=b.replace(".","");
+			b=b.replace("-","");
+			let c = "";
+			let panjang = b.length;
+			let j = 0;
+		for (let i = panjang; i > 0; i--){
+			j = j + 1;
+			if (((j % 3) == 1) && (j != 1)){
+				c = b.substr(i-1,1) + "." + c;
+				// console.log(c)
+			} else {
+				c = b.substr(i-1,1) + c;
 			}
-			if (_minus) c = "-" + c ;
-			let idr = "Rp.";
-			this.restAmount = idr.concat(c);
-			this.statusDataDetail = 1;
+		}
+		if (_minus) c = "-" + c ;
+		let idr = "Rp.";
+		this.restAmount = idr.concat(c);
+		this.statusDataDetail = 1;
 	}
 
+	dataIsOn = [
+    { value: 1 },
+    { value: 0 },
+  ];
 
+	isOn = 0;
+
+	statusCalculation:number;
+	calculationInvest(){
+		if(jQuery('#FormSimulation').valid()) {
+			// console.log(this.dataCalculation)
+			this.invest.invest_amount = this.dataCalculation.jumlah;
+			this.detailService.calculationInvest(this.dataCalculation).then(dataResponse => {
+				// console.log(dataResponse)
+				this.simulation = dataResponse.data.simulation_result;
+				this.statusCalculation = 1;
+			})
+		} else {
+			alert("Data tidak valid");
+		}
+  }
+
+  hideVerify(status:any){
+		this.formVerify = status;
+	}
 }
