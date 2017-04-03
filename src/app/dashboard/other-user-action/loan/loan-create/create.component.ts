@@ -110,6 +110,13 @@ export class CreateComponent {
   	})
   }
 
+  dataIsOn = [
+    { value: 1 },
+    { value: 0 },
+  ];
+
+	isOn = 0;
+
   handleError(message:any){
   if(message === 'unauthorized') {
       alert("Maaf akses token tidak terdaftar")            
@@ -134,13 +141,16 @@ export class CreateComponent {
 	// function for encode image
 	createLoan(){
 		if(jQuery('#FormLoan').valid()) {
-			try {
-			  this.loan.due_date = jQuery('#due_date').val();
-			
-			} finally {
-				this.formVerify = 1;
+			if(this.isOn === 0) {
+				return;
+			} else {
+				try {
+				  this.loan.due_date = jQuery('#due_date').val();
+				
+				} finally {
+					this.formVerify = 1;
+				}
 			}
-			
 		} else {
 			alert("Data tidak valid");
 		} 

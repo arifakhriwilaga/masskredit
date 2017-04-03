@@ -1,10 +1,10 @@
 <form id="FormForgot" (ngSubmit)="forgotPassword()">
   <div class="row">
   <div class="col-md-8">
-    <input id="otp" name="otp" id="otp" type="text" placeholder="Verify Code" class="form-control input-md form-color Verifikasi" required="" [(ngModel)]="user.otp" disabled>
+    <input id="otp" name="otp" id="otp" type="text" placeholder="Verify Code" class="form-control input-md form-color Verifikasi" [(ngModel)]="user.otp">
   </div>
   <div class="col-md-4">
-    <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-red btn-block btn-verifikasi">Kirim</button>
+    <button type="submit" id="send" name="send" class="btn btn-red btn-block btn-verifikasi">Kirim</button>
   </div>
   </div>
 </form>

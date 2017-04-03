@@ -39,6 +39,8 @@ export class StepRegisterComponent  {
 
 	private nomor = "";
 	ngOnInit(){
+		this.regex();
+
 		let param = this.activatedRoute.params.subscribe( params => {
 			let access_code = params['access_code'];
 		});
@@ -64,7 +66,7 @@ export class StepRegisterComponent  {
 		    },
 		    alamat_email: {
 		      required: true,
-		      email	  : true
+		    	regx: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z]+\.)+[a-zA-Z]{2,}))$/
 		    },
 		    password: {
 		      required: true
@@ -92,23 +94,34 @@ export class StepRegisterComponent  {
 		    }
 		  },
 		  messages : {
-		  	nama_lengkap: "Data dibutuhkan",
-		    alamat_email: "Data dibutuhkan",
-		    password: "Data dibutuhkan",
-		    confirm_password: "Data dibutuhkan",
-		    jenis_kelamin: "Data dibutuhkan",
-		    kode_pos: "Data dibutuhkan",
-		    tempat_lahir: "Data dibutuhkan",
-		    tanggal_lahir: "Data dibutuhkan",
-		    alamat: "Data dibutuhkan",
-		    status_rumah: "Data dibutuhkan"
+		  	// nama_lengkap: "Data dibutuhkan",
+		   //  alamat_email: "Data dibutuhkan",
+		   //  password: "Data dibutuhkan",
+		   //  confirm_password: "Data dibutuhkan",
+		   //  jenis_kelamin: "Data dibutuhkan",
+		   //  kode_pos: "Data dibutuhkan",
+		   //  tempat_lahir: "Data dibutuhkan",
+		   //  tanggal_lahir: "Data dibutuhkan",
+		   //  alamat: "Data dibutuhkan",
+		   //  status_rumah: "Data dibutuhkan"
 		  }
 		});
 	}
 
+	regex() {
+		jQuery.validator.addMethod("regx", function(value, element, regexpr) {          
+	    return regexpr.test(value);
+		}, "Email invalid");
+	}
 
 	sendRegister(register) {
+		console.log(this.register.phone_number)
 		if(jQuery("#registerForm").valid()) {
+			// if(this.register.phone_number === null) {
+				
+			// }
+	    jQuery('#signup').prop('disabled', true);
+
 			this.register.phone_number = JSON.parse(localStorage.getItem("phone-number"));
 			this.register.tanggal_lahir = jQuery("#tanggal_lahir").val();
 			this.stepregisterService.postStepRegister(register).then(dataResponse => {
@@ -129,18 +142,22 @@ export class StepRegisterComponent  {
 	}
 
 	handleError(message:any){
-		if(message == 'No Handphone tidak terdaftar') {
-      alert("No Handphone tidak terdaftar");
-   	
-   	} else if(message == "Email sudah terdaftar") {
-			alert("Maaf Email sudah terdaftar")
-				
-		} else if(message == "Password dan Confirm Password tidak sama") {
-			alert("Password dan Confirm Password tidak sama")
-	
-		} else {
-			alert("No Handphone sudah terdaftar")		
-		}					
+		try {
+			if(message == 'No Handphone tidak terdaftar') {
+	      alert("No Handphone tidak terdaftar");
+	   	
+	   	} else if(message == "Email sudah terdaftar") {
+				alert("Maaf Email sudah terdaftar")
+					
+			} else if(message == "Password dan Confirm Password tidak sama") {
+				alert("Password dan Confirm Password tidak sama")
+		
+			} else {
+				alert("No Handphone sudah terdaftar")		
+			}					
+		} finally {
+	    jQuery('#signup').prop('disabled', false);
+		}
   }
   
   handleSuccess(data:any){

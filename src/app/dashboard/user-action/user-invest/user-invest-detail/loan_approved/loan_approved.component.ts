@@ -66,7 +66,8 @@ export class LoanApprovedComponent {
 
   dataScoring ={
 		access_token: this.access_token,
-		borrower_id : null
+		investment_id : null,
+		history_payment_id : null
 	};
 
 	getDetailBorrower(){
@@ -75,7 +76,7 @@ export class LoanApprovedComponent {
       let code = JSON.stringify(dataResponse.meta.code);
       let data = dataResponse.data;
       // console.log(data)
-      this.dataScoring.borrower_id = data.borrower_id;
+      this.dataScoring.investment_id = data.invest_id;
       if(code.charAt(0) === '4') {
         this.handleError(message);
       } if(code.charAt(0) === '2') {
@@ -201,12 +202,22 @@ export class LoanApprovedComponent {
     limit:10
 	}
 
+	imagePaymentRate25:number;
+	imagePaymentRate50:number;
+	imagePaymentRate75:number;
+	imagePaymentRate100 = [];
+	imagePaymentRate0 = [];
+
 	dataPayment = []
+	
+	avgReview = []
+
 	getListPayment(){
     this.loanApprovedService.getListPayment(this.dataListPayment).then(dataResponse => {
 			let message = dataResponse.meta.message;
       let code = JSON.stringify(dataResponse.meta.code);
       let data = dataResponse.data.history_payment;
+      // console.log(dataResponse);
       
       if(data.length === 0) {
       	this.dataArrayNull = 1;
@@ -216,6 +227,82 @@ export class LoanApprovedComponent {
 					for(let i = 0; i < data.length; i++){
 						let dataPokok = data[i]
 						let pokok = dataPokok['pokok'];
+						let avg = dataPokok['avg_review_payment'];
+						if(avg == 0 ) {
+					    this.avgReview.push(data[i])
+							for (var arithmetic = 5; arithmetic >= 1; arithmetic--) {
+								this.imagePaymentRate0.push(arithmetic);
+								
+							}
+							if(avg != null) {
+	              break;
+	            } 
+						}
+						
+							// for(let x = 0; x < this.avgReview.length; x++){
+							// 	console.log(this.avgReview[x])
+							// }
+							
+						// } else if (avg > 0 ){
+						// 	let rate = [1,1.5,2,2.5,3,3.5,4,4.5,5];
+						// 	let avarage = Number(avg);
+							
+						// 	if(avarage === 0) {
+						// 	} else {
+						// 		// for(let i of rate) {
+						// 		// 	if(i === avarage) {
+
+						// 		// 		// let data = '3.25'; // for dummy
+						// 		// 		let data = i.toString();
+						// 		// 		let number = Number(data); // object if data rate number not decimal
+						// 		// 		let maxRate = 5;
+										
+						// 		// 		// if(data.match(/^[\d]\.[\d+\d]{2}$/)) {
+						// 		// 		if(data.match(/^[\d]\.\d$/)) {
+						// 		// 			let number = Number(data.split('.')[0]);
+						// 		// 			let numberNull = 4 - number;
+											
+						// 		// 			for (var arithmetic = 1; arithmetic <= numberNull; arithmetic++) {
+						// 		// 				this.imagePaymentRate0.push(arithmetic);
+						// 		// 			}
+						// 		// 			for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
+						// 		// 				this.imagePaymentRate100.push(arithmetic)
+						// 		// 			}
+											
+						// 		// 			if(data.match(/^[\d]\.5/)) { // condition if decimal
+						// 		// 				this.imagePaymentRate50 = 1;
+						// 		// 			} 
+
+						// 		// 			// condition if rate change to 25
+
+
+						// 		// 			// if(data.match(/^[\d]\.25/)) { // condition if decimal
+						// 		// 			// 	this.imageRate25 = 1;
+											
+						// 		// 			// } else if(data.match(/^[\d]\.50/)) { // condition if decimal
+						// 		// 			// 	this.imageRate50 = 1;
+
+						// 		// 			// } else { // condition if decimal
+						// 		// 			// 	this.imageRate75 = 1;
+						// 		// 			// }
+										
+						// 		// 		} else {
+											
+						// 		// 			let numberNull = maxRate - number;
+						// 		// 			for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
+						// 		// 				this.imagePaymentRate100.push(arithmetic)
+						// 		// 			}
+
+						// 		// 			for (var arithmetic = 1; arithmetic <= numberNull; arithmetic++) {
+						// 		// 				this.imagePaymentRate0.push(arithmetic);
+						// 		// 			}
+						// 		// 		}
+						// 		// 	}
+						// 		// }
+						// 	}
+					 //    jQuery('#detailLunas').prop('disabled', false);
+					 //    jQuery('#rate').prop('disabled', true);
+						// }
 						// condition make delimiter
 						var _minus = false;
 						var b:any = pokok.toString();
@@ -238,6 +325,7 @@ export class LoanApprovedComponent {
 						let idr = "Rp.";
 						dataPokok['pokok'] = idr.concat(c)
 					};
+					
 				} finally {
 					try {
 						for(let i = 0; i < data.length; i++){
@@ -266,7 +354,7 @@ export class LoanApprovedComponent {
 							dataPokok['total_payment'] = idr.concat(c);
 						} 
 					} finally {
-						console.log(this.dataPayment)
+						// console.log(this.dataPayment)
 						try {
 							this.dataPayment = data;
 						} finally {
@@ -308,7 +396,12 @@ export class LoanApprovedComponent {
   	this.scoringForm = status;
   }
 
-  showScoringForm(){
-  	this.scoringForm = 1;
+  showScoringForm(id:number){
+  	try {
+  		this.dataScoring.history_payment_id = id;
+  		console.log(this.dataScoring)
+  	} finally {
+	  	this.scoringForm = 1;
+  	}
   }
 }

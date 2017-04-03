@@ -8,7 +8,7 @@
       <!-- component calculation -->
       <form id="FormSimulation" name="FormSimulation">
       <div class="form-group">
-        <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="jumlah" id="jumlah" value="" [(ngModel)]="dataCalculation.jumlah">
+        <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="jumlah" id="jumlah" value="{{dataCalculation.jumlah}}" (keyup)="numbersonly(this,$event)" [(ngModel)]="dataCalculation.jumlah">
       </div>
       </form>
       <div class="form-group">

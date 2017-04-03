@@ -64,14 +64,7 @@ export class DetailComponent {
     sucess_fee: null
 	}
 
-	dataCalculation = {
-		access_token:this.access_token,
-  	jumlah: null,
-    bunga: null,
-    tenor: null
-  }
-
-  listLoanUrl = "#/dashboard/other-user-action/loan";
+	listLoanUrl = '#/dashboard/other-user-action/loan';
 
 	ngOnInit(){
 		jQuery('#FormSimulation').validate({
@@ -79,6 +72,7 @@ export class DetailComponent {
 		    jumlah: { required:true }
 		  }
 		});
+
 		// Objek for get id on route
 		let param = this.activatedRoute.params.subscribe( params => {
 			let id = params['id'];
@@ -87,6 +81,16 @@ export class DetailComponent {
 		});
 		this.getDetailInvest();
 	}
+
+	// controller calculation
+	dataCalculation = {
+		access_token:this.access_token,
+  	jumlah: null,
+    bunga: null,
+    tenor: null
+  }
+
+	listInvestUrl = '#/dashboard/other-user-action/invest';
 
 	cancelDetailInvest(){
 		this.router.navigateByUrl("/dashboard/other-user-action/loan");
@@ -105,6 +109,8 @@ export class DetailComponent {
 		if(data.images == '') {
 			data.images = imageDefault;
 		}
+		this.dataCalculation.bunga = data.interest;
+		this.dataCalculation.tenor = data.tenor;
 		this.detailInvest = data;
 		let amount  = data.amount;
 		let restAmount = data.sisa
@@ -117,6 +123,7 @@ export class DetailComponent {
 			let message = dataResponse.meta.message;
 	    let code = JSON.stringify(dataResponse.meta.code);
 	    let data = dataResponse.data;
+	    // console.log(data);
 
 	    // set to object dataCalculation
 			this.dataCalculation.bunga = dataResponse.data.interest;
@@ -132,12 +139,12 @@ export class DetailComponent {
 
 	formVerify:number;
 	createInvest(){
-		if(jQuery('#FormSimulation').valid()) {
+		if(jQuery("#FormSimulation").valid()) {
 			if(this.isOn === 0) {
 				return;
 			} else {
 				this.formVerify = 1;
-			};
+			}
 		} else {
 			alert("Data tidak valid");
 		}
@@ -213,7 +220,7 @@ export class DetailComponent {
 		}
   }
 
-  hideVerify(status:any){
+	hideVerify(status:number) {
 		this.formVerify = status;
 	}
 }

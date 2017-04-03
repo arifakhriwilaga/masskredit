@@ -27,7 +27,7 @@ export class VerifyCodeComponent implements OnInit{
 
 	ngOnInit() {
 		jQuery('#ModalForm').modal({backdrop: 'static', keyboard: false});
-		jQuery('#verification_code').mask('000000');
+		jQuery('#verify').mask('000000');
 		jQuery("#FormVerify").validate({
 		  rules: {
 		    verification_code: {
@@ -46,7 +46,8 @@ export class VerifyCodeComponent implements OnInit{
 
 	// send code verify
 	sendVerify() {
-		if(jQuery("#verification_code").valid()) {
+		if(jQuery("#FormVerify").valid()) {
+	    jQuery("#verifikasi").prop('disabled', true);
 			this.verifycodeService.postVerifyCode(this.code).then(dataResponse => {
 	    	let message = dataResponse.meta.message;
 	  		let code = JSON.stringify(dataResponse.meta.code);
@@ -66,15 +67,20 @@ export class VerifyCodeComponent implements OnInit{
 	}
 
 	resendHandphone() {
+    jQuery('#resend').prop('disabled', true);
 		this.verifycodeService.postResendCode(this.nomor).then(dataResponse => {
     	let data = dataResponse.data.verification_code;
+	    jQuery('#resend').prop('disabled', false);
+
 			alert(data)
 		});
 	}
 
 	handleError(message:any){
-		if(message == "Verifikasi salah.") {
+		try {
 			alert("Maaf nomor verifikasi salah.")
+		} finally {
+	    jQuery('#verifikasi').prop('disabled', false);
 		}
   }
   

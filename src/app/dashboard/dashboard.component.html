@@ -1,6 +1,6 @@
 <div class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-		<header-dashboard [dataName]="name" [dataLastLogin]="last_login" [dataProfileImage]="profile_image" [dataAccountSummary]="account_summary" [dataUserClass]="user_class" [dataUserStatus]="user_status" [dataUserBorrower]="borrower" [dataUserInvestor]="investor" [dataFundHistory]="fund_history" ></header-dashboard>
+		<header-dashboard *ngIf="dataComplete == 1" [dataUser]="dataUser"></header-dashboard>
 
 		<div class="content-wrapper">
 		<section class="content list-user">

@@ -15,7 +15,7 @@ export class ScoringFormService {
 
 	options = new RequestOptions({ headers: this.headers });
 
-	scoringUrl = 'https://masscredit-api.stagingapps.net/user/rate/rate-other-user';
+	scoringUrl = 'https://masscredit-api.stagingapps.net/user/rate/rate-as-investor';
 	rateUser(data:any): Promise<any>{
 	 	return this.http.post(this.scoringUrl,data,this.options)
 			.toPromise()

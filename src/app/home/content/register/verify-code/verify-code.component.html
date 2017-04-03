@@ -9,12 +9,12 @@
     <div class="row">
     <form id="FormVerify">
       <div class="col-md-6">
-        <input id="verification_code" name="verification_code" type="text" placeholder="Kode Verifikasi" class="form-control input-md form-color Verifikasi" required="" [(ngModel)]="code.verification_code">
+        <input id="verify" name="verify" type="text" placeholder="Kode Verifikasi" class="form-control input-md form-color Verifikasi" required="" [(ngModel)]="code.verification_code" maxlength="6">
       </div>
     </form>
       <div class="col-md-6">
-        <button type="submit" id="verify" name="verify" class="btn btn-red btn-verifikasi" (click)="sendVerify()">Verifikasi</button>
-        <button (click)="resendHandphone()" name="singlebutton" class="btn btn-batal" id="load-resend">Resend</button>
+        <button type="submit" id="verifikasi" name="verifikasi" class="btn btn-red btn-verifikasi" (click)="sendVerify()">Verifikasi</button>
+        <button (click)="resendHandphone()" name="singlebutton" class="btn btn-batal" id="resend">Resend</button>
       </div>
     </div>
     </div>
