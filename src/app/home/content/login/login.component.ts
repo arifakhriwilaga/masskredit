@@ -22,12 +22,14 @@ export class LoginComponent {
 	}
 
 	login(){
+    jQuery('#login').prop('disabled', true);
+
 		this.loginService.postLogin(this.user).then(dataResponse => {
 			let message = dataResponse.meta.message;
   		let code = JSON.stringify(dataResponse.meta.code);
 			let data = dataResponse.data;
 
-  		if(code.charAt(0) === '4') {
+  		if(code.charAt(0) === '4' ||code.charAt(0) === '5' ) {
   			this.handleError(message);
   		} if(code.charAt(0) === '2') {
   			this.handleSuccess(data);
@@ -36,11 +38,15 @@ export class LoginComponent {
 	}
 
   handleError(message:any){
-    alert(message);
-		// if(message == 'No Handphone tidak terdaftar') {
-  //  	}	else {
-  //  		alert("Nomor HP atau password Anda salah, silahkan cek kembali.");
-  //  	}
+    try {
+      if(message == null) {
+        alert("Akun tidak ditemukan")
+      } else {
+        alert(message);
+      }
+    } finally {
+      jQuery('#login').prop('disabled', false);
+    }
   }
   
   handleSuccess(data:any){
