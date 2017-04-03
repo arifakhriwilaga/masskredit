@@ -7,7 +7,7 @@ import { Router }	from '@angular/router';
 	template: `		
 		<header-first></header-first>
 		<header-second></header-second>
-		<header-third [incomingDataName]="incomingDataName" [incomingDataLastLogin]="incomingDataLastLogin" [incomingDataUserClass]="incomingDataUserClass" [incomingDataUserStatus]="incomingDataUserStatus" [incomingDataUserInvestor]="incomingDataUserInvestor" [incomingDataUserBorrower]="incomingDataUserBorrower" [incomingDataAccountSummary]="incomingDataAccountSummary" [incomingDataFundHistory]="incomingDataFundHistory" [incomingDataProfileImage]="incomingDataProfileImage"></header-third>
+		<header-third *ngIf="dataComplete == 1" [incomingDataUser]="incomingDataUser" ></header-third>
 		
 	`,
 	providers: []
@@ -15,23 +15,21 @@ import { Router }	from '@angular/router';
 
 export class HeaderComponent implements OnInit{
 	// recieve data from dashboard 
-	@Input('dataName') incomingDataName: any	
-	@Input('dataLastLogin') incomingDataLastLogin: string	
-	@Input('dataProfileImage') incomingDataProfileImage
-	
-	@Input('dataAccountSummary') incomingDataAccountSummary: string
-	@Input('dataUserClass') incomingDataUserClass: string	
-	@Input('dataUserStatus') incomingDataUserStatus: string	
-	@Input('dataUserInvestor') incomingDataUserInvestor: string
-	@Input('dataUserBorrower') incomingDataUserBorrower: string
-	@Input('dataFundHistory') incomingDataFundHistory: string
+	@Input('dataUser') incomingDataUser: any;
 
+	dataComplete:number;
 	private imageDefaultProfile = 'assets/img/default_profile.png';
 	ngOnInit(){
-		if(this.incomingDataProfileImage == '') {
-			this.incomingDataProfileImage = this.imageDefaultProfile;
+		try {
+			// console.log(this.incomingDataUser);         
+			if(this.incomingDataUser.profile_image == '') {
+			this.incomingDataUser.profile_image = this.imageDefaultProfile;
+			}
+		} finally {
+			this.dataComplete = 1;
 		}
 	}
+
 	constructor (
 		private http : Http,
 		private router : Router,
