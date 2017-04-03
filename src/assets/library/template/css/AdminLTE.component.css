@@ -5444,9 +5444,10 @@ span.style {
     margin-top: 15px;
 }
 
-.btn:hover, btn.hover{
+/*.btn:hover, btn.hover{
   opacity:0.9
-}
+}*/
+
 label.error {
   color: #a94442;
   border-color: #ebccd1;
