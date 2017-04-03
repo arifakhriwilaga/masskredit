@@ -36,6 +36,7 @@ export class ForgotPasswordComponent implements OnChanges{
 
 	@Output() statusModal = new EventEmitter<any>()
 	hideModal(data:any){
+		jQuery('#ModalForm').modal("toggle");
 		this.statusModal.emit(data)
 	}
 }
