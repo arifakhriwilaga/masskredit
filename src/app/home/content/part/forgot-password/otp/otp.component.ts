@@ -26,6 +26,7 @@ export class OtpComponent {
 	}
 	
 	ngOnInit(){
+		this.regex();
 		jQuery('#ModalForm').modal({backdrop: 'static', keyboard: false});
 		jQuery('#phoneNumber').mask('000-000-000000');
 		jQuery('#FormForgot').validate({
@@ -34,14 +35,22 @@ export class OtpComponent {
 		      required: true
 		    },
 		    email : { 
-		    	required : true
+		    	required : true,
+		    	regx: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z]+\.)+[a-zA-Z]{2,}))$/
 		    }
 		  }
 		});
 	}
 
+	regex() {
+		jQuery.validator.addMethod("regx", function(value, element, regexpr) {          
+	    return regexpr.test(value);
+		}, "Email tidak valid");
+	}
+
 	submitPhoneNumber(){
 		if(jQuery("#FormForgot").valid()) {
+			jQuery('#send').prop('disabled', true);
 			this.phone_number.phone_number = this.user.phone_number;
 			this.phone_number.email = this.user.email;
 			this.otpService.getOtp(this.phone_number).then(dataResponse => {
@@ -61,11 +70,15 @@ export class OtpComponent {
 	}
 
   handleError(message:any){
-		if(message == 'No Handphone tidak terdaftar') {
+		try { 
+			if(message == 'No Handphone tidak terdaftar') {
       alert("No Handphone tidak terdaftar");
 			// this.statusLoader.emit(1);
-   	} else { 
-   		alert("Nomor HP atau email Anda salah, silahkan cek kembali.");
+	   	} else { 
+	   		alert("Nomor HP atau email Anda salah, silahkan cek kembali.");
+	  	}
+  	} finally {
+	    jQuery('#send').prop('disabled', false);
   	}
   }
   @Output() statusLoader = new EventEmitter<any>()
