@@ -21,8 +21,8 @@ export class ScoringFormComponent implements OnInit{
   ngOnInit(){
     var dataRate = this.dataRate;
     if(this.dataScoring !== null) {
-      // console.log(this.dataScoring)
-      this.dataRate.target_user_id = this.dataScoring.borrower_id;
+      this.dataRate.investment_id = this.dataScoring.investment_id;
+      this.dataRate.history_investment_id = this.dataScoring.history_payment_id;
       this.dataRate.access_token = this.dataScoring.access_token;
     }
     jQuery('#ScoringForm').modal({backdrop: 'static', keyboard: false});
@@ -35,12 +35,9 @@ export class ScoringFormComponent implements OnInit{
         strokeColor: 'black',
         precision: 1,
         minSelected: 1,
-        onChange: function(rating) {
-          //console.log("OnChange: Rating: "+rating);
-        },
+        onChange: function(rating) { },
         onSet: function(rating) {
           dataRate.rate_value = rating;
-          // console.log("OnSet: Rating: "+rating);
         }
       });      
     });
@@ -56,7 +53,8 @@ export class ScoringFormComponent implements OnInit{
 
   dataRate = {
     access_token: null,
-    target_user_id: null,
+    investment_id: null,
+    history_investment_id:null,
     rate_value: null
   }
 
