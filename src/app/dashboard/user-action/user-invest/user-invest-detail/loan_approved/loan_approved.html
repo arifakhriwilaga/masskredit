@@ -60,7 +60,7 @@
             <label *ngIf="imageRate50 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/50.png" style="width:30px ;height: 30px;"></label>
             <label *ngIf="imageRate75 === 1"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/75.png" style="width:30px ;height: 30px;"></label>
             <label *ngFor="let data of imageRate0"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/0.png" style="width:30px ;height: 30px;"></label>
-            <span  class="unit">({{ dataDetailBorrower.avg_reviews }}) reviews {{ dataDetailBorrower.total_reviews }} user </span><br><button color="red" (click)="showScoringForm()">Rate User</button>
+            <span  class="unit">({{ dataDetailBorrower.avg_reviews }}) reviews {{ dataDetailBorrower.total_reviews }} tenor </span>
           </div>
         </div>
      </div>
@@ -86,6 +86,7 @@
           <th>Tanggal Jatuh Tempo</th>
           <th>Tanggal Pembayaran</th>
           <th>Status</th>
+          <th style="text-align: center">Rate</th>
           <th></th>
         </tr>
       </thead>
@@ -99,13 +100,34 @@
           <td>{{ dataPayment.due_date }}</td>
           <td>{{ dataPayment.payment_date }}</td>
           <td>{{ dataPayment.status }}</td>
+          <td style="text-align: center">
+            <div *ngIf="dataPayment.status == 'Lunas'">
+              <div *ngIf="imagePaymentRate100 == 1">
+                <label *ngFor="let data of imagePaymentRate100"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/100.png" style="width:30px ;height: 30px;"></label>
+              </div>
+              <div *ngIf="imagePaymentRate25 === 1">
+                <label><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/25.png" style="width:30px ;height: 30px;"></label>
+              </div>
+              <div *ngIf="imagePaymentRate50 === 1">
+                <label><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/50.png" style="width:30px ;height: 30px;"></label>
+              </div>
+              <div *ngIf="imagePaymentRate75 === 1">
+                <label><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/75.png" style="width:30px ;height: 30px;"></label>
+              </div>
+              <div *ngIf="imagePaymentRate0 === 1">
+                <label *ngFor="let data of imagePaymentRate0"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/0.png" style="width:30px ;height: 30px;"></label>
+              </div>
+            </div>
+            <div *ngIf="dataPayment.status == 'Belum Bayar'">-</div>
+          </td>
           <td *ngIf="dataPayment.status == 'Belum Bayar'">
-            <button class="pull-right" (click)="showNotPaidForm(dataPayment.history_payment_id)"><i aria-hidden="true" class="fa fa-search"></i></button>
+            <button class="pull-right" (click)="showNotPaidForm(dataPayment.history_payment_id)"><i aria-hidden="true" class="fa fa-search" id="detailBelumBayar"></i></button>
           </td>
           <td *ngIf="dataPayment.status == 'Lunas'">
             <button class="pull-right" (click)="showPaidForm(dataPayment.history_payment_id)">
-              <i aria-hidden="true" class="fa fa-search"></i>
+              <i aria-hidden="true" class="fa fa-search" id="detailLunas"></i>
             </button>
+            <button color="red" (click)="showScoringForm(dataPayment.history_payment_id)" id="rate">Rate</button>
           </td>
         </tr>
       </tbody>
