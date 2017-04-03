@@ -29,34 +29,52 @@ export class FormSatuComponent {
 			this.user.phone_number = this.dataOtp.phone_number;
 			this.user.otp = this.dataOtp.otp;
 		}
+		jQuery('#FormForgot').validate({
+		  rules: {
+		  	otp: {
+		      required: true
+		    }
+		  },
+		  messages: {
+		  	otp: "Data dibutuhkan"
+		  }
+		});
+		jQuery('#otp').mask('000000');
 	}
 
 	statusFormForgot = 0;
 	forgotPassword(){
-		this.formService.postCreate(this.user).then(dataResponse => {
-			let message = dataResponse.meta.message;
-			let code = JSON.stringify(dataResponse.meta.code);
-			let data = dataResponse;
+		if(jQuery("#FormForgot").valid()) {
+	    jQuery('#send').prop('disabled', true);
+			this.formService.postCreate(this.user).then(dataResponse => {
+				let message = dataResponse.meta.message;
+				let code = JSON.stringify(dataResponse.meta.code);
+				let data = dataResponse;
 
-			if(code.charAt(0) == '4') {
-				this.handleError(message);
-			} if(code.charAt(0) == '2') {
-				this.handleSuccess(data);
-			};
-			
-		});
+				if(code.charAt(0) == '4') {
+					this.handleError(message);
+				} if(code.charAt(0) == '2') {
+					this.handleSuccess(data);
+				};
+				
+			});
+		} else {
+			alert("Data tidak valid");
+		}
 	}
 
-  @Output() statusForm = new EventEmitter<any>()
+  @Output() statusModal = new EventEmitter<any>()
 
   handleError(message:any){
-	if(message == 'Nomor HP atau email Anda salah, silahkan cek kembali.') {
-      alert("Nomor HP atau email Anda salah, silahkan cek kembali.");	
-      this.statusForm.emit(0);
-   	}
+  	try {
+			alert(message)
+  	} finally {
+	    jQuery('#send').prop('disabled', false);
+  	}
   }
 
   handleSuccess(data:any){
+		this.statusModal.emit(0);
   	let resetToken = data.data.reset_token;
 		this.router.navigateByUrl('/auth/register/new-password/' + resetToken);
   }
