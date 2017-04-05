@@ -217,7 +217,7 @@ export class LoanApprovedComponent {
 			let message = dataResponse.meta.message;
       let code = JSON.stringify(dataResponse.meta.code);
       let data = dataResponse.data.history_payment;
-      // console.log(dataResponse);
+      console.log(dataResponse);
       
       if(data.length === 0) {
       	this.dataArrayNull = 1;
@@ -228,81 +228,11 @@ export class LoanApprovedComponent {
 						let dataPokok = data[i]
 						let pokok = dataPokok['pokok'];
 						let avg = dataPokok['avg_review_payment'];
-						if(avg == 0 ) {
-					    this.avgReview.push(data[i])
-							for (var arithmetic = 5; arithmetic >= 1; arithmetic--) {
-								this.imagePaymentRate0.push(arithmetic);
-								
-							}
-							if(avg != null) {
-	              break;
-	            } 
+						if(avg > 0) {
+					    jQuery('#rate').prop('disabled', false);		
 						}
 						
-							// for(let x = 0; x < this.avgReview.length; x++){
-							// 	console.log(this.avgReview[x])
-							// }
 							
-						// } else if (avg > 0 ){
-						// 	let rate = [1,1.5,2,2.5,3,3.5,4,4.5,5];
-						// 	let avarage = Number(avg);
-							
-						// 	if(avarage === 0) {
-						// 	} else {
-						// 		// for(let i of rate) {
-						// 		// 	if(i === avarage) {
-
-						// 		// 		// let data = '3.25'; // for dummy
-						// 		// 		let data = i.toString();
-						// 		// 		let number = Number(data); // object if data rate number not decimal
-						// 		// 		let maxRate = 5;
-										
-						// 		// 		// if(data.match(/^[\d]\.[\d+\d]{2}$/)) {
-						// 		// 		if(data.match(/^[\d]\.\d$/)) {
-						// 		// 			let number = Number(data.split('.')[0]);
-						// 		// 			let numberNull = 4 - number;
-											
-						// 		// 			for (var arithmetic = 1; arithmetic <= numberNull; arithmetic++) {
-						// 		// 				this.imagePaymentRate0.push(arithmetic);
-						// 		// 			}
-						// 		// 			for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
-						// 		// 				this.imagePaymentRate100.push(arithmetic)
-						// 		// 			}
-											
-						// 		// 			if(data.match(/^[\d]\.5/)) { // condition if decimal
-						// 		// 				this.imagePaymentRate50 = 1;
-						// 		// 			} 
-
-						// 		// 			// condition if rate change to 25
-
-
-						// 		// 			// if(data.match(/^[\d]\.25/)) { // condition if decimal
-						// 		// 			// 	this.imageRate25 = 1;
-											
-						// 		// 			// } else if(data.match(/^[\d]\.50/)) { // condition if decimal
-						// 		// 			// 	this.imageRate50 = 1;
-
-						// 		// 			// } else { // condition if decimal
-						// 		// 			// 	this.imageRate75 = 1;
-						// 		// 			// }
-										
-						// 		// 		} else {
-											
-						// 		// 			let numberNull = maxRate - number;
-						// 		// 			for (var arithmetic = 1; arithmetic <= number; arithmetic++) {
-						// 		// 				this.imagePaymentRate100.push(arithmetic)
-						// 		// 			}
-
-						// 		// 			for (var arithmetic = 1; arithmetic <= numberNull; arithmetic++) {
-						// 		// 				this.imagePaymentRate0.push(arithmetic);
-						// 		// 			}
-						// 		// 		}
-						// 		// 	}
-						// 		// }
-						// 	}
-					 //    jQuery('#detailLunas').prop('disabled', false);
-					 //    jQuery('#rate').prop('disabled', true);
-						// }
 						// condition make delimiter
 						var _minus = false;
 						var b:any = pokok.toString();
@@ -399,7 +329,6 @@ export class LoanApprovedComponent {
   showScoringForm(id:number){
   	try {
   		this.dataScoring.history_payment_id = id;
-  		console.log(this.dataScoring)
   	} finally {
 	  	this.scoringForm = 1;
   	}
