@@ -51,12 +51,16 @@ export class StepRegisterComponent  {
 		this.register.phone_number = JSON.parse(localStorage.getItem("phone-number"));
 
 		jQuery('.datepicker').datepicker({
-	    format : 'yyyy-mm-dd',
+	    format : 'dd-mm-yyyy',
 	    showOn: "focus",
 	    autoclose: true,
 	    startDate: "-100y",
 	    endDate: "-21y"
 	  });
+
+	  jQuery(function($){
+		  jQuery("#tanggal_lahir").mask("99-99-9999",{placeholder:"DD-MM-YYYY"});
+		});
 
 		jQuery('#kode_pos').mask('00000');
 		jQuery("#registerForm").validate({
@@ -66,13 +70,17 @@ export class StepRegisterComponent  {
 		    },
 		    alamat_email: {
 		      required: true,
-		    	regx: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z]+\.)+[a-zA-Z]{2,}))$/
+		    	regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z]+\.)+[a-zA-Z]{2,}))$/
 		    },
 		    password: {
-		      required: true
+		      required: true,
+		      minlength:8,
+		      matchConfirm:true
 		    },
 		    confirm_password: {
-		      required: true
+		      required: true,
+		      minlength:8,
+		      match : true
 		    },
 		    jenis_kelamin: {
 		      required: true
@@ -81,7 +89,8 @@ export class StepRegisterComponent  {
 		      required: true
 		    },
 		    tempat_lahir: {
-		      required: true
+		      required: true,
+		      maxlength: 30
 		    },
 		    tanggal_lahir: {
 		      required: true
@@ -94,36 +103,87 @@ export class StepRegisterComponent  {
 		    }
 		  },
 		  messages : {
-		  	// nama_lengkap: "Data dibutuhkan",
-		   //  alamat_email: "Data dibutuhkan",
-		   //  password: "Data dibutuhkan",
-		   //  confirm_password: "Data dibutuhkan",
-		   //  jenis_kelamin: "Data dibutuhkan",
-		   //  kode_pos: "Data dibutuhkan",
-		   //  tempat_lahir: "Data dibutuhkan",
-		   //  tanggal_lahir: "Data dibutuhkan",
-		   //  alamat: "Data dibutuhkan",
-		   //  status_rumah: "Data dibutuhkan"
+		  	nama_lengkap: "Data dibutuhkan",
+		    alamat_email: {
+		    	required : "Data dibutuhkan",
+		    	regex : "Email invalid"
+		    },
+		    password: {
+		    	required : "Data dibutuhkan",
+		    	minlength : "Password terlalu pendek"
+		    },
+		    confirm_password: {
+		    	required : "Data dibutuhkan",
+		    	match : "Password tidak sama"
+		    },
+		    jenis_kelamin: "Data dibutuhkan",
+		    kode_pos: "Data dibutuhkan",
+		    tempat_lahir: "Data dibutuhkan",
+		    tanggal_lahir: "Data dibutuhkan",
+		    alamat: "Data dibutuhkan",
+		    status_rumah: "Data dibutuhkan"
 		  }
 		});
 	}
 
 	regex() {
-		jQuery.validator.addMethod("regx", function(value, element, regexpr) {          
-	    return regexpr.test(value);
-		}, "Email invalid");
+		jQuery.validator.addMethod("regex",function(value, element, regexp) {
+        if (regexp.constructor != RegExp)
+            regexp = new RegExp(regexp);
+        else if (regexp.global)
+            regexp.lastIndex = 0;
+        return this.optional(element) || regexp.test(value);
+    }, "Data input salah.");
+
+    jQuery.validator.addMethod("match",function(value, element) {
+  	  let confirmPassword:string = value;
+			let password:string = jQuery("#password").val();
+      if (confirmPassword != password) 
+        return this.optional(element);
+      else
+      	return true;  	
+    }, "Data input salah.");
+
+    jQuery.validator.addMethod("matchConfirm",function(value) {
+  		let elementConfirmPassword = jQuery("#confirm_password").get();
+  		let password:string = value;
+			let confirmPassword:string = jQuery("#confirm_password").val();
+			
+      if (confirmPassword == password)
+      	return [jQuery("#confirm_password").valid(), true];
+      
+      else if (confirmPassword != '' && confirmPassword != password)
+      	return jQuery("#confirm_password").valid('false');
+
+      else
+        return true;
+    }, null);
+
+    jQuery("#tempat_lahir").bind("input", function(event) {
+	    var out = "";
+	    var str = this.value;
+	    for (var i = 0; i < str.length; i++) {
+	        if (/[A-Za-z]/.test(str.charAt(i))) {
+	            out = out.concat(str.charAt(i));    
+	        }
+	    }
+	    this.value = out;
+		});
 	}
 
 	sendRegister(register) {
-		console.log(this.register.phone_number)
 		if(jQuery("#registerForm").valid()) {
-			// if(this.register.phone_number === null) {
+			if(this.register.phone_number === null) {
 				
-			// }
+			}
 	    jQuery('#signup').prop('disabled', true);
+			let date = jQuery("#tanggal_lahir").val();
+			let changeDate = date.split('-');
+			let newDate:string = changeDate[2]+"-"+changeDate[1]+"-"+changeDate[0];
 
 			this.register.phone_number = JSON.parse(localStorage.getItem("phone-number"));
-			this.register.tanggal_lahir = jQuery("#tanggal_lahir").val();
+			this.register.tanggal_lahir = newDate;
+
 			this.stepregisterService.postStepRegister(register).then(dataResponse => {
 				let message = dataResponse.meta.message;
 	  		let code = JSON.stringify(dataResponse.meta.code);
@@ -159,7 +219,7 @@ export class StepRegisterComponent  {
 	    jQuery('#signup').prop('disabled', false);
 		}
   }
-  
+
   handleSuccess(data:any){
   	this.stepregisterService.showNotif();
   }
