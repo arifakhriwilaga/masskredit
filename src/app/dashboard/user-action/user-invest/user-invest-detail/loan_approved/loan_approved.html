@@ -102,21 +102,9 @@
           <td>{{ dataPayment.status }}</td>
           <td style="text-align: center">
             <div *ngIf="dataPayment.status == 'Lunas'">
-              <div *ngIf="imagePaymentRate100 == 1">
-                <label *ngFor="let data of imagePaymentRate100"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/100.png" style="width:30px ;height: 30px;"></label>
-              </div>
-              <div *ngIf="imagePaymentRate25 === 1">
-                <label><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/25.png" style="width:30px ;height: 30px;"></label>
-              </div>
-              <div *ngIf="imagePaymentRate50 === 1">
-                <label><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/50.png" style="width:30px ;height: 30px;"></label>
-              </div>
-              <div *ngIf="imagePaymentRate75 === 1">
-                <label><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/75.png" style="width:30px ;height: 30px;"></label>
-              </div>
-              <div *ngIf="imagePaymentRate0 === 1">
-                <label *ngFor="let data of imagePaymentRate0"><img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/0.png" style="width:30px ;height: 30px;"></label>
-              </div>
+              <label *ngFor="let starIndex of [0,1,2,3,4]">
+                <img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/{{ dataPayment.avg_review_payment > starIndex ? '100' : '0' }}.png" style="width:30px ;height: 30px;">
+              </label>
             </div>
             <div *ngIf="dataPayment.status == 'Belum Bayar'">-</div>
           </td>
@@ -127,7 +115,9 @@
             <button class="pull-right" (click)="showPaidForm(dataPayment.history_payment_id)">
               <i aria-hidden="true" class="fa fa-search" id="detailLunas"></i>
             </button>
-            <button color="red" (click)="showScoringForm(dataPayment.history_payment_id)" id="rate">Rate</button>
+            <fieldset id="rate">
+            <button color="red" (click)="showScoringForm(dataPayment.history_payment_id)" id="rateButton">Rate</button>
+            </fieldset>
           </td>
         </tr>
       </tbody>
