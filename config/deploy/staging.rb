@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server "202.138.229.148", user: "masscredit-dev", roles: [:app, :web, :db], primary => true
+server "202.138.229.148", user: "masscredit-dev", roles: [:app, :web, :db]
 set :deploy_to, "/home/masscredit-dev/frontend/#{fetch(:application)}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
