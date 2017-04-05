@@ -86,6 +86,7 @@
         <th>Bunga</th>
         <th>Denda(Rp)</th>
         <th>Status</th>
+        <th style="text-align: center">Rate</th>
         <th></th>
       </tr>
     </thead>
@@ -99,6 +100,14 @@
       <td>{{ dataPayment.bunga }}</td>
       <td>{{ dataPayment.denda }}</td>
       <td>{{ dataPayment.status }}</td>
+      <td style="text-align: center">
+        <div *ngIf="dataPayment.status == 'Lunas'">
+          <label *ngFor="let starIndex of [0,1,2,3,4]">
+            <img onmousedown="return false" oncontexmenu="return false" onselectstart="return false" src="../../assets/img/star/{{ dataPayment.avg_review_payment > starIndex ? '100' : '0' }}.png" style="width:30px ;height: 30px;">
+          </label>
+        </div>
+        <div *ngIf="dataPayment.status == 'Belum Bayar'">-</div>
+      </td>
       <td *ngIf="dataPayment.status == 'Belum Bayar'">
         <button class="pull-right" (click)="showNotPaidForm(dataPayment.history_payment_id)"><i aria-hidden="true" class="fa fa-search"></i></button>
       </td>
