@@ -17,5 +17,9 @@ export class StructComponent {
 		  	}
 		  }
 		});
-	}	
+	}
+
+	MyChange(data:any){
+		console.log(data.srcElement.value)
+	}
 }
