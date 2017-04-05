@@ -7,7 +7,7 @@ server "202.138.229.148", user: "masscredit-dev", roles: [:app, :web, :db], prim
 set :deploy_to, "/home/masscredit-dev/frontend/#{fetch(:application)}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
-set :develop, 'staging'
+set :branch, 'develop'
 
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
