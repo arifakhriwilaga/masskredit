@@ -3,7 +3,8 @@ lock '3.6.1'
 
 set :application, 'masscredit-frontend'
 set :repo_url, 'git@git.wgs.co.id:kredit-plus/mass-credit-frontend.git'
-
+set :git_https_username, 'ari.Fakhri'
+set :git_https_password, 'Handsome100'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
