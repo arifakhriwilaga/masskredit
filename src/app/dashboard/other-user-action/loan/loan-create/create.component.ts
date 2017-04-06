@@ -51,9 +51,16 @@ export class CreateComponent {
 		      required: true
 		    }
 		  },
-		  // messages:{
-		  // 	invest_name : "Invest nama dibutuhkan"
-		  // }
+		  messages:{
+		  	loan_name : "Field ini harus diisi.",
+		  	loan_category : "Field ini harus diisi.",
+		  	due_date : "Field ini harus diisi.",
+		  	amount : "Field ini harus diisi.",
+		  	tenor : "Field ini harus diisi.",
+		  	description : "Field ini harus diisi.",
+		  	interest : "Field ini harus diisi.",
+		  	other_category : "Field ini harus diisi."
+		  }
 		});
 		jQuery('#interest').mask('00000');
 		jQuery('#tenor').mask('00');
