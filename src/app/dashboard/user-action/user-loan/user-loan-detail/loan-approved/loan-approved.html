@@ -91,6 +91,9 @@
       </tr>
     </thead>
     <tbody>
+    <tr *ngIf="dataInstallmentNull == 1">
+      <td colspan="7" align="center">Data belum tersedia</td>
+    </tr>
     <tr *ngFor="let dataPayment of dataPayment, let i ='index'">
       <td>{{ i + 1 }}</td>
       <td>
