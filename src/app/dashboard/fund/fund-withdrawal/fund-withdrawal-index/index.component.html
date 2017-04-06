@@ -4,7 +4,7 @@
 <div class="box-body">
   <div *ngIf="statusFundsWithdrawal == 1">
     <div class="col-xs-12" align="right">
-      <button class="add-advance-search" (click)="linkFundWithdrawal()">
+      <button class="btn-add" (click)="linkFundWithdrawal()">
         Tarik
       </button>
     </div>
@@ -26,7 +26,7 @@
           </thead>
           <tbody>
             <tr *ngIf="dataFundsNull == 1">
-              <td colspan="5" align="center">Data belum tersedia</td>
+              <td colspan="6" align="center">Data belum tersedia</td>
             </tr>
             <tr *ngFor="let data of funds; let i ='index'">
               <td>{{ i + 1 }}</td>
@@ -36,14 +36,14 @@
               <td>{{ data.status }}</td>
               <td>
                 <button class="pull-right" (click)="showDetailFund(data.id)">
-                  <i aria-hidden="true" class="fa fa-search"></i>
+                  <i aria-hidden="true" class="fa fa-info-circle"></i>
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>  
-        <nav aria-label="Page navigation" *ngIf="statusPaging === true">
+        <!-- <nav aria-label="Page navigation" *ngIf="statusPaging === true">
           <ul class="pagination">
             <li [ngClass]="{disabled:currentPage === 1}"><a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(1,-1)">First</a></li>
             <li [ngClass]="{disabled:currentPage === 1}"><a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(currentPage-1,0)">Previous</a></li>
@@ -51,7 +51,7 @@
             <li [ngClass]="{disabled:currentPage === totalPages}"><a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(currentPage+1,-2)">Next</a></li>
             <li id="" [ngClass]="{disabled:currentPage === totalPages}"> <a href="#/dashboard/fund/fund-withdrawal/index" (click)="linkTo(totalPages,-3)">Last</a></li>
           </ul>
-        </nav>
+        </nav> -->
       </div>
       </div>
     </div>
