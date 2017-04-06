@@ -11,9 +11,9 @@
     <div class="row">
       <div class="col-xs-11">
       <div class="pull-right">
-        <button *ngIf="buttonProfile == 0" class="btn btn-default" (click)="enableEditProfile()">Edit Profile</button>
-        <button *ngIf="buttonProfile == 1" class="btn btn-default" (click)="cancelEditProfile()">Batal</button>
-        <button *ngIf="buttonProfile == 1" class="btn btn-default" (click)="submitEditProfile(data)">Simpan</button>
+        <button *ngIf="buttonProfile == 0" class="btn-edit-profile" (click)="enableEditProfile()">Edit Profile</button>
+        <button *ngIf="buttonProfile == 1" class="btn-back-profile" (click)="cancelEditProfile()">Batal</button>
+        <button *ngIf="buttonProfile == 1" class="btn-submit-profile" (click)="submitEditProfile(data)">Simpan</button>
       </div>
       </div>
     </div>
