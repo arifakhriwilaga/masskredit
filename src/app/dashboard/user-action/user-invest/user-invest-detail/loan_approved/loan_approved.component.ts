@@ -217,7 +217,6 @@ export class LoanApprovedComponent {
 			let message = dataResponse.meta.message;
       let code = JSON.stringify(dataResponse.meta.code);
       let data = dataResponse.data.history_payment;
-      console.log(dataResponse);
       
       if(data.length === 0) {
       	this.dataArrayNull = 1;
