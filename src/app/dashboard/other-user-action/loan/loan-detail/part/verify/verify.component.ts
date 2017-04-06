@@ -73,7 +73,7 @@ export class VerifyComponent implements OnInit{
   }
   
   handleSuccess(){
-  	alert("Pinjaman berhasil dibuat, harap menunggu konfirmasi investor");
+  	alert("Investasi berhasil dibuat, harap menunggu konfirmasi Borrower");
 		jQuery('#ModalForm').modal("toggle");
 		this.router.navigateByUrl('/dashboard/other-user-action/loan');
   }
