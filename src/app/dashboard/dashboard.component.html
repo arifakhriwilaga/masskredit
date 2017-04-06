@@ -1,7 +1,9 @@
 <div class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-		<header-dashboard *ngIf="dataComplete == 1" [dataUser]="dataUser"></header-dashboard>
-
+		<header-first></header-first>
+		<header-second></header-second>
+		<header-third *ngIf="dataComplete == 1" [incomingDataUser]="dataUser" ></header-third>
+		<!-- <header-dashboard *ngIf="dataComplete == 1" [dataUser]="dataUser"></header-dashboard> -->
 		<div class="content-wrapper">
 		<section class="content list-user">
 			<router-outlet></router-outlet>
