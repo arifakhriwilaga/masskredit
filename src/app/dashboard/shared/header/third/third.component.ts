@@ -14,7 +14,9 @@ export class ThirdComponent{
 	imageRate100 = [];
 	imageRate0 = [];
 	// recieve data from dashboard 
-	@Input('incomingDataUser') incomingDataUser:any;
+	@Input('incomingDataUser') incomingDataUser:any = {
+		profile_image:null
+	};
 	dataComplete:number;
 	// @Input('incomingDataLastLogin') incomingDataLastLogin: string	
 	// @Input('incomingDataAccountSummary') incomingDataAccountSummary: any
@@ -31,13 +33,14 @@ export class ThirdComponent{
 	}
 
 	rate = [1,1.5,2,2.5,3,3.5,4,4.5,5];
-	// avarage = 3.5;
-		// let avarage = 0;
+	private imageDefaultProfile = 'assets/img/default_profile.png';
+
 		ngOnInit(){
-			let avarage = Number(this.incomingDataUser.avg_review);
-			// console.log(this.incomingDataUser);
-				// console.log(this.avarage)
 			try{
+				let avarage = Number(this.incomingDataUser.avg_review);
+				if(this.incomingDataUser.profile_image == null) {
+					this.incomingDataUser.profile_image = this.imageDefaultProfile;
+				}
 				if(avarage === 0) {
 					for (var arithmetic = 5; arithmetic >= 1; arithmetic--) {
 						this.imageRate0.push(arithmetic);
@@ -98,5 +101,7 @@ export class ThirdComponent{
 			} finally {
 				this.dataComplete = 1;
 			}
+		
 		}
+		
 }
