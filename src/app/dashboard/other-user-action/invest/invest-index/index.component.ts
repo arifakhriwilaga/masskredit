@@ -5,6 +5,7 @@ import { Invest } from './invest';
 
 import { IndexService } from './index.service'
 
+declare var Offline:any;
 @Component({
 	selector: 'index',
 	templateUrl: 'index.component.html',
@@ -23,9 +24,29 @@ export class IndexComponent implements OnInit {
 	invest : Invest[];
 	private dataListInvest = 0;
 	private dataArrayNull = 0;
-
+	private timer;
 	ngOnInit(){
-		setTimeout(() => {this.getListInvests()},0.500);
+		// this.timedCount();
+		this.timer =	setTimeout(() => {this.getListInvests()},1500);
+	}
+
+	private number = 0;
+	timedCount(){
+		// var numberTwo = this.number + 1;
+		var numberTwo = this.number += 1;
+
+		if (numberTwo == 5) {
+        window.clearTimeout(this.timer);
+        this.dataListInvest = 1;
+        // con: false; 
+        return false;
+    }
+
+		this.timer = setTimeout(() => {
+		    this.timedCount();
+    }, 100);
+
+    
 	}
 
 	getListInvests(){
