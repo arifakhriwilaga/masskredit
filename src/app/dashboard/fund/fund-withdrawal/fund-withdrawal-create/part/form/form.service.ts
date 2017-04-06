@@ -23,24 +23,15 @@ export class FormService {
 	private createWithdrawalUrl = 'https://masscredit-api.stagingapps.net/user/withdrawal/add';
 	
 	// request post fund
-  postCreate(data:any): Promise<Data>{
+  postCreate(data:any): Promise<any>{
 		return this.http.post(this.createWithdrawalUrl,data,this.options)
 			.toPromise()
-			.then(response => response.json().data as Data)
+			.then(response => response.json())
 			.catch(this.handleError)	
   }
 
 	handleError(err){
 		var error   = JSON.parse(err._body)
-    var code = error.meta.code
-    var message = error.meta.message
-  	if(message == "unauthorized") {
-			alert("Maaf session anda telah habis silahkan login kembali")
-			return this.router.navigateByUrl('/dashboard/sign-out')					
-		
-		} if(message == "Password salah") {
-      alert("Password salah")
-   		// return 1;
-   	} 
+    return error
 	}
 }
