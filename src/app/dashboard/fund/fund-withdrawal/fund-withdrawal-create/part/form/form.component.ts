@@ -48,6 +48,9 @@ export class FormComponent {
 		  	amount: {
 		      required: true
 		    }
+		  },
+		  messages: {
+		  	amount: "Data dibutuhkan"
 		  }
 		});
 
@@ -61,19 +64,39 @@ export class FormComponent {
 
   createWithdrawal(data) {
 		if(jQuery("#createForm").valid()) {
-		  let $this = jQuery("#load");
-    	$this.button('loading');
     	this.formService.postCreate(this.data).then(dataResponse => {
-    		try {
-    			this.idWithdrawal = dataResponse.id;
-    			this.verificationCode = JSON.parse(dataResponse.verification_code);
-    		} finally {
-    			this.statusFormConfirm = 1;
-    		}
+  		let message = dataResponse.meta.message;
+	    let code = JSON.stringify(dataResponse.meta.code);
+      let data = dataResponse.data;
+    		if(code.charAt(0) === '4') {
+	        this.handleError(message);
+	      } if(code.charAt(0) === '2') {
+	        this.handleSuccess(data);
+	    		
+	      };
     	})
 		}
 		else{
 			alert("Data tidak valid");
+		}
+  }
+
+  handleError(message:any){
+  	// console.log(message);
+  	if(message == "unauthorized") {
+			alert("Maaf session anda telah habis silahkan login kembali")
+			this.router.navigateByUrl('/dashboard/sign-out')
+  	} else {
+  		alert(message)
+  	}
+  }
+  
+  handleSuccess(data:any){
+   	try {
+			this.idWithdrawal = data.id;
+			this.verificationCode = JSON.parse(data.verification_code);
+		} finally {
+			this.statusFormConfirm = 1;
 		}
   }
 }
