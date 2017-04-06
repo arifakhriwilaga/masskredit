@@ -62,6 +62,7 @@ export class CreateComponent {
 		  	other_category : "Field ini harus diisi."
 		  }
 		});
+		jQuery('#due_date').mask("99-99-9999");
 		jQuery('#interest').mask('00000');
 		jQuery('#tenor').mask('00');
 		jQuery('#amount').mask('0000000000');
@@ -152,7 +153,10 @@ export class CreateComponent {
 				return;
 			} else {
 				try {
-				  this.loan.due_date = jQuery('#due_date').val();
+					let due_date = jQuery('#due_date').val();
+					let changeDate = due_date.split('-');
+					let newDate:string = changeDate[2]+"-"+changeDate[1]+"-"+changeDate[0];
+				  this.loan.due_date = newDate;
 				
 				} finally {
 					this.formVerify = 1;
@@ -201,11 +205,14 @@ export class CreateComponent {
   // controller simulation
   simulation = {
 		nominal : null,
+    success_fee: null,
+    nominal_and_fee: null,
     pokok: null,
     bunga: null,
-    cicilan_perbulan: null,
+    tenor: null,
     denda: null,
-    sucess_fee: null
+    cicilan_perbulan: null,
+    transaction_fee: null,
 	}
 
   dataCalculation = {
@@ -248,7 +255,16 @@ export class CreateComponent {
 				} finally {
 					this.createService.calculationLoan(this.dataCalculation).then(dataResponse => {
 						try {
-							this.simulation = dataResponse.data.simulation_result;
+							this.simulation.bunga = this.delimiter(dataResponse.data.simulation_result.bunga);
+							// this.simulation.charge_fee = this.delimiter(dataResponse.data.simulation_result.charge_fee);
+							this.simulation.cicilan_perbulan = this.delimiter(dataResponse.data.simulation_result.cicilan_perbulan);
+							this.simulation.denda = this.delimiter(dataResponse.data.simulation_result.denda);
+							this.simulation.nominal = this.delimiter(dataResponse.data.simulation_result.nominal);
+							this.simulation.pokok = this.delimiter(dataResponse.data.simulation_result.pokok);
+							// this.simulation.pokok_plus_bunga = this.delimiter(dataResponse.data.simulation_result.pokok_plus_bunga);
+
+							this.simulation.success_fee = this.delimiter(dataResponse.data.simulation_result.sucess_fee);							
+						
 						} finally {
 							this.dataLoan = 1;
 						}
@@ -259,6 +275,28 @@ export class CreateComponent {
 		} else {
 			alert("Data tidak valid");
 		}
+  }
+
+  delimiter(nominal:any){
+    var _minus = false;
+    var b:any = nominal.toString();
+    if (b<0) _minus = true;
+      b=b.replace(".","");
+      b=b.replace("-","");
+      let c = "";
+      let panjang = b.length;
+      let j = 0;
+    for (let i = panjang; i > 0; i--){
+      j = j + 1;
+      if (((j % 3) == 1) && (j != 1)){
+        c = b.substr(i-1,1) + "." + c;
+      } else {
+        c = b.substr(i-1,1) + c;
+      }
+    }
+    if (_minus) c = "-" + c ;
+    let idr = "Rp.";
+    return idr.concat(c);
   }
 
   formVerify:number;
