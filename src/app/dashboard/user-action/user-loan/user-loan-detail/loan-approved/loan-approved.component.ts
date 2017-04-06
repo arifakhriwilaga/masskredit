@@ -206,14 +206,17 @@ export class LoanApprovedComponent implements OnInit{
 		}
 	}
 
+	dataInstallmentNull:number;
 	getListInstallment(){
 		this.loanApprovedService.getListInstallment(this.dataListInstallment).then(dataResponse => {
 			let message = dataResponse.meta.message;
       let code = JSON.stringify(dataResponse.meta.code);
       let data = dataResponse.data.history_payment;
-
 			if(this.statusChanges == 1) {
 				this.statusChanges = null;
+			}
+			if(dataResponse.data.history_payment.length == 0) {
+				this.dataInstallmentNull = 1;
 			}
 
 			try{
