@@ -60,7 +60,7 @@ export class IndexComponent {
 	      let code = JSON.stringify(dataResponse.meta.code);
 	      let data = dataResponse.data.withdrawal;
 	      let dataPages = dataResponse.data.paging;
-		  	console.log(dataResponse);
+		  	// console.log(dataResponse);
 	      try {
 					if(data.length == 0) {
 						this.dataFundsNull = 1;
@@ -91,30 +91,31 @@ export class IndexComponent {
   }
   
   handleSuccess(data:any,pages:any){
-  	// this.delimiter(data);
-    this.currentPage = pages.current_page;
-    // this.totalPages = pages.total/pages.per_page;
-    let pagess:number;
-    let totalPages = 1181/5;
-  	let stringPages = totalPages.toString()
-    console.log(totalPages)
-    try {
-	    if(totalPages) {
-	    	if(stringPages.match(/\.[1-5]/)) {
-			    pagess = Math.floor(totalPages);
+  	// console.log(data)
+  	this.delimiter(data);
+   //  this.currentPage = pages.current_page;
+   //  // this.totalPages = pages.total/pages.per_page;
+   //  let pagess:number;
+   //  let totalPages = 1181/5;
+  	// let stringPages = totalPages.toString()
+   //  // console.log(totalPages)
+   //  try {
+	  //   if(totalPages) {
+	  //   	if(stringPages.match(/\.[1-5]/)) {
+			//     pagess = Math.floor(totalPages);
 	    		
-	    	} else {
-					pagess = Math.ceil(totalPages);
-	    	}
+	  //   	} else {
+			// 		pagess = Math.ceil(totalPages);
+	  //   	}
 
-	    } else {
-	    }
-    } finally {
-	    // for (var i = 1; i <= this.totalPages; i++) {
-	    for (var i = 1; i <= pagess; i++) {
-	    	this.pages.push(i);
-	    }
-    }
+	  //   } else {
+	  //   }
+   //  } finally {
+	  //   // for (var i = 1; i <= this.totalPages; i++) {
+	  //   for (var i = 1; i <= pagess; i++) {
+	  //   	this.pages.push(i);
+	  //   }
+   //  }
   }
 
 	linkFundWithdrawal(){
@@ -122,7 +123,7 @@ export class IndexComponent {
 	}
 
 	linkTo(id : any,status:number){
-		console.log(id)
+		// console.log(id)
 		if(status === 0 && this.currentPage === 1) {
 			return;
 		
