@@ -1,9 +1,10 @@
 task :deploy do
-	system "npm run build:prod"
-	system "git status"
-	system "git add ."
-	system "git commit -m 'Build prod'"
-	system "git push origin develop"
+	puts "hello"
+	# system "npm run build:prod"
+	# system "git status"
+	# system "git add ."
+	# system "git commit -m 'Build prod'"
+	# system "git push origin develop"
 	# system "https://git.wgs.co.id -uari.Fakhri"
 # puts "#{count}"
 # message = `git log -1 --pretty="%s"`.chomp
