@@ -15,11 +15,25 @@ export class StructComponent {
 		  	struct_image: {
 		  		required: true
 		  	}
+		  },
+		  messages: {
+		  	struct_image : "File dibutuhkan."
 		  }
 		});
 	}
 
-	MyChange(data:any){
-		console.log(data.srcElement.value)
-	}
+	checkFile(data:any){
+    let image = data.srcElement.value.toString();
+    var x = "File tidak valid";
+    
+    if(image.match(/.jpg|png/)) {
+    	jQuery("#struct_image").valid();
+      document.getElementById("error").innerHTML = null;
+    } else {
+      data.srcElement.value = null
+      document.getElementById("error").innerHTML = x;
+      return data.srcElement.value;
+
+    }
+  }
 }
