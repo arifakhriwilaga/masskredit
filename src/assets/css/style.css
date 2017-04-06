@@ -2092,9 +2092,21 @@ label.name-form {
     border-radius: 4%;
 }
 
-.btn-simulation-loan:hover {
-    opacity: 0.9;
+.btn-simulation-invest {
+    background-color: #14427A;
+    color: #ecf0f1;
+    border: none;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 4%;
 }
+
+/*.btn-simulation-loan:hover {
+    opacity: 0.9;
+}*/
 
 .btn-back {
     background-color: #bdc3c7;
@@ -2230,8 +2242,8 @@ label.name-form {
 }
 
 .btn-calculation-invest {
-    background-color: #f1c40f;
-    color: #34495e;
+    background-color: #14427A;
+    color: #ecf0f1;
     border: none;
     width: 110px;
     height: 40px;
