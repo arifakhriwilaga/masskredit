@@ -84,8 +84,8 @@ export class IndexComponent {
 	}
 
 	handleError(message:any){
-  if(message === 'unauthorized') {
-      alert("Maaf akses token tidak terdaftar")            
+  	if(message === 'unauthorized') {
+      // alert("Maaf akses token tidak terdaftar")          
       this.router.navigate(['/dashboard/sign-out']);
      }          
   }
