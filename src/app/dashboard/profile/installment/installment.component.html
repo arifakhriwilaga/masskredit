@@ -13,7 +13,7 @@
 	<tr *ngFor="let data of dataListInstallment, let i = 'index'">
 	  <td>{{ i+1 }}</td>
 	  <td>{{ data.installment_amount }}</td>
-	  <td><span class="warranty">{{ data.installment_description }}</span></td>
+	  <td>{{ data.installment_description }}</td>
 	  <td>
 	    <button class="pull-right"><i aria-hidden="true" class="fa fa-trash-o" (click)="removeInstallment(data.installment_id)"></i></button>
 	  </td>

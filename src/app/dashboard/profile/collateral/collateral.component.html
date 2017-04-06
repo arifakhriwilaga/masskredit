@@ -25,9 +25,9 @@
 
     <img src="{{ data.collateral_file_three }}" alt="File" style="width:150px; height:150px;border-radius:0px">
   </td>
-  <td *ngIf="data.collateral_type == 1"><span class="warranty">Rumah</span></td>
-  <td *ngIf="data.collateral_type == 2"><span class="warranty">Motor</span></td>
-  <td *ngIf="data.collateral_type == 3"><span class="warranty">Mobil</span></td>
+  <td *ngIf="data.collateral_type == 1">Rumah</td>
+  <td *ngIf="data.collateral_type == 2">Motor</td>
+  <td *ngIf="data.collateral_type == 3">Mobil</td>
   <td>{{ data.collateral_estimate_price }}</td>
   <td>{{ data.collateral_description }}</td>
   <td>
