@@ -97,15 +97,31 @@
               <label class="unit">Nominal</label>
             </div>
             <div class="col-xs-7">
-              <input type="text" name="-" placeholder="-" class="form-control input-md" id="nominal" [(ngModel)]="simulation.nominal">
+              <input type="text" name="nominal" id="nominal" placeholder="-" class="form-control input-md" id="nominal" [(ngModel)]="simulation.nominal">
             </div>
-         </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Success Fee</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="-" class="form-control input-md" name="success_fee" id="success_fee" [(ngModel)]="simulation.success_fee">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Nominal dan Fee</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="-" class="form-control input-md" name="nominal_and_fee" id="nominal_and_fee" [(ngModel)]="simulation.nominal_and_fee">
+            </div>
+          </div>
           <div class="form-group">
             <div class="col-xs-5">
               <label class="unit">Pokok</label>
             </div>
             <div class="col-md-7">
-              <input type="text" name="-" placeholder="-" class="form-control input-md" id="pokok" [(ngModel)]="simulation.pokok"> 
+              <input type="text" name="pokok" id="pokok" placeholder="-" class="form-control input-md" id="pokok" [(ngModel)]="simulation.pokok"> 
             </div>
           </div>
           <div class="form-group">
@@ -120,10 +136,10 @@
           <div class="col-md-6">
           <div class="form-group">
             <div class="col-xs-5">
-              <label class="unit">Cicilan/bulan</label>
+              <label class="unit">Tenor</label>
             </div>
             <div class="col-md-7">
-              <input type="text" placeholder="-" class="form-control" name="cicilan_per_bulan" id="cicilan_per_bulan" [(ngModel)]="simulation.cicilan_perbulan">
+              <input type="text" placeholder="-" class="form-control" name="tenor" id="tenor" [(ngModel)]="simulation.tenor">
             </div>
           </div>
           <div class="form-group">
@@ -136,17 +152,24 @@
           </div>
           <div class="form-group">
             <div class="col-xs-5">
-              <label class="unit">Biaya admin</label>
+              <label class="unit">Cicilan/bulan</label>
             </div>
             <div class="col-md-7">
-              <input type="text" placeholder="-" class="form-control input-md" name="charge_fee" id="charge_fee" [(ngModel)]="simulation.charge_fee">
+              <input type="text" placeholder="-" class="form-control" name="cicilan_per_bulan" id="cicilan_per_bulan" [(ngModel)]="simulation.cicilan_perbulan">
             </div>
           </div>
-        </div>
+          <div class="form-group">
+            <div class="col-xs-5">
+              <label class="unit">Transaction Fee</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" placeholder="-" class="form-control input-md" name="transaction_fee" id="transaction_fee" [(ngModel)]="simulation.transaction_fee">
+            </div>
+          </div>
+          </div>
         </fieldset>
       </form>
-        <div *ngIf="dataLoan == 1">
-        <div class="col-md-12">
+        <div class="col-md-12" *ngIf="dataLoan == 1">
           <div class="form-group">
           <div class="col-md-6 col-center">
             <div align="center">
@@ -158,7 +181,6 @@
           </div>
           </div>
           </div>
-        </div>
         </div>
         <!-- component password -->
         <verify *ngIf="formVerify == 1" (statusForm)="hideVerify($event)" [dataLoan]="loan"></verify>
