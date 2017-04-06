@@ -117,6 +117,14 @@ export class ProfileComponent {
 		this.getBank()
 		// function get profile
 		this.getProfile();
+
+		jQuery('.datepicker').datepicker({
+	    format : 'dd-mm-yyyy',
+	    showOn: "focus",
+	    autoclose: true,
+	    startDate: "-100y",
+	    endDate: "-21y"
+	  });
 	}	
 
 		// get id bank name
@@ -142,6 +150,7 @@ export class ProfileComponent {
 		this.http.post(this.profileUrl,this.token,this.options)
 			.map(response => response.json())
 			.subscribe((response : any) => {
+
 				let pendapatan_lain_1 = response.data.profile.complement_user.pendapatan_lain_1;
 			  let pendapatan_lain_2 = response.data.profile.complement_user.pendapatan_lain_2; 
 		  	if(pendapatan_lain_1 == null) {
@@ -157,7 +166,10 @@ export class ProfileComponent {
 				this.data.nama_lengkap 	= response.data.profile.name;
 				this.data.jenis_kelamin = response.data.profile.jenis_kelamin;
 				this.data.tempat_lahir = response.data.profile.tempat_lahir;
-				this.data.tanggal_lahir = response.data.profile.tanggal_lahir;
+				let changeDate = response.data.profile.tanggal_lahir.split('-');
+				let newDate:string = changeDate[2]+"-"+changeDate[1]+"-"+changeDate[0];
+				this.data.tanggal_lahir = newDate;
+
 				this.data.alamat	= response.data.profile.alamat;
 				this.data.nama_gadis_ibu_kandung = response.data.profile.complement_user.nama_gadis_ibu_kandung,
 				this.data.alamat_email = response.data.profile.email;						
@@ -328,11 +340,12 @@ export class ProfileComponent {
         var code = error.meta.code;
         if(message == "unauthorized") {
           alert("Maaf session anda telah habis silahkan login kembali")
-          return this.router.navigateByUrl('/dashboard/sign-out')
+          this.router.navigateByUrl('/dashboard/sign-out')
         
         }if(code == "500") {
           alert("Update profile yang sebelumnya masih dalam proses persetujuan")
-          return this.dataProfile = 1;  
+          this.buttonProfile = 0;
+          this.dataProfile = 1;  
         } 
 	    });
 	}
@@ -413,9 +426,11 @@ export class ProfileComponent {
 
 		let dateWork = jQuery("#mulai_bekerja").val();
 		this.data.mulai_bekerja = dateWork;
-		let dateBorn = jQuery("#tanggal_lahir").val();
-		this.data.tanggal_lahir = dateBorn;
-
+		let date = jQuery("#tanggal_lahir").val();
+		let changeDate = date.split('-');
+		let newDate:string = changeDate[2]+"-"+changeDate[1]+"-"+changeDate[0];
+		this.data.tanggal_lahir = newDate;
+		
 		let x : any = document.getElementById("foto_identitas");
 		let y : any = document.getElementById("foto_npwp");
 		let z : any = document.getElementById("foto_diri");
@@ -441,7 +456,6 @@ export class ProfileComponent {
 			file_a = image_default;
 		}
 
-		// call function encodeImage for read file before encode
 		this.encodeImage(file_x).onload = function(event, varty){
 			try{
 				let image = event.target.result.split(',')[1];
@@ -478,7 +492,6 @@ export class ProfileComponent {
 								 this.data.foto_diri = image;
 								}
 							}finally{
-								// call function encodeImage for read file before encode
 								this.encodeImage(file_a).onload = function(event, varty){
 									try{
 										let image = event.target.result.split(',')[1];
@@ -492,7 +505,7 @@ export class ProfileComponent {
 										}
 									}finally{
 										// console.log(this.data)
-										this.updateProfile()	
+										this.updateProfile()
 									}
 								}.bind(this);
 							}
@@ -516,13 +529,11 @@ export class ProfileComponent {
 	getPendapatanLainFirst(id){
 		this.pendapatanLainFirst = id;
 		this.data.pendapatan_lain_1 = id;
-		// console.log(this.data.pendapatan_lain_1)
 	}
 
 	private pendapatanLainSecond:any;
 	getPendapatanLainSecond(id){
 		this.pendapatanLainSecond = id;
 		this.data.pendapatan_lain_2 = id;
-		// console.log(this.data.pendapatan_lain_2)
 	}
 }
