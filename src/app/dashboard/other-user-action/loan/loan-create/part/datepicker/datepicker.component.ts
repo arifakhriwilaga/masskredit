@@ -23,10 +23,10 @@ export class DueDateComponent implements OnInit{
 	ngOnInit(){
 		// validation
 		jQuery("#due_date").datepicker({
-	      format	: 'yyyy-mm-dd',
-	      startDate: "today",
-		    autoclose: true,
-		    todayHighlight: true
+      format	: 'dd-mm-yyyy',
+      startDate: "today",
+	    autoclose: true,
+	    todayHighlight: true
 	  });
 	}
 }
