@@ -130,6 +130,29 @@ export class DetailComponent {
 		this.statusDataDetail = 1;
 	}
 
+	delimiter(data:any){
+		var _minus = false;
+		var b:any = data.toString();
+		if (b<0) _minus = true;
+			b=b.replace(".","");
+			b=b.replace("-","");
+			let c = "";
+			let panjang = b.length;
+			let j = 0;
+		for (let i = panjang; i > 0; i--){
+			j = j + 1;
+			if (((j % 3) == 1) && (j != 1)){
+				c = b.substr(i-1,1) + "." + c;
+				// console.log(c)
+			} else {
+				c = b.substr(i-1,1) + c;
+			}
+		}
+		if (_minus) c = "-" + c ;
+		let idr = "Rp.";
+		return idr.concat(c);
+	}
+
 	// controller calculation
 	dataCalculation = {
 		access_token:this.access_token,
@@ -145,8 +168,17 @@ export class DetailComponent {
 		if(jQuery('#FormSimulation').valid()) {
 			this.loan.loan_amount = this.dataCalculation.jumlah;
 			this.detailService.calculationLoan(this.dataCalculation).then(dataResponse => {
-				this.simulation = dataResponse.data.simulation_result;
-				this.statusCalculation = 1;
+				try {
+					this.simulation.success_fee = this.delimiter(dataResponse.data.simulation_result.sucess_fee);
+					this.simulation.cicilan_perbulan = this.delimiter(dataResponse.data.simulation_result.cicilan_perbulan);
+					this.simulation.denda = this.delimiter(dataResponse.data.simulation_result.denda);
+					this.simulation.nominal = this.delimiter(dataResponse.data.simulation_result.nominal);
+					this.simulation.pokok = this.delimiter(dataResponse.data.simulation_result.pokok);
+					this.simulation.pokok_plus_bunga = this.delimiter(dataResponse.data.simulation_result.pokok_plus_bunga);
+					
+				} finally {
+					this.statusCalculation = 1;
+				}
 			})
 		} else {
 			alert("Data tidak valid");
@@ -163,17 +195,13 @@ export class DetailComponent {
 	simulation = {
 		nominal : null,
     pokok: null,
-    bunga: null,
+    success_fee:null,
     cicilan_perbulan: null,
     denda: null,
-    sucess_fee: null
+    pokok_plus_bunga:null
 	}
 
 	formVerify:number;
-
-	// cancelConfirmInvest(){
-	// 	this.router.navigateByUrl("/dashboard/other-user-action/invest");
-	// }
 
 	createLoan(){
 		if(jQuery("#FormSimulation").valid()) {
