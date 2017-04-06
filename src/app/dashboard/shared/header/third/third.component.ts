@@ -38,7 +38,7 @@ export class ThirdComponent{
 		ngOnInit(){
 			try{
 				let avarage = Number(this.incomingDataUser.avg_review);
-				if(this.incomingDataUser.profile_image == null) {
+				if(this.incomingDataUser.profile_image == '') {
 					this.incomingDataUser.profile_image = this.imageDefaultProfile;
 				}
 				if(avarage === 0) {
