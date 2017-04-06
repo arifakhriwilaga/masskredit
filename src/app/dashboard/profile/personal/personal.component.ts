@@ -19,9 +19,14 @@ export class PersonalComponent {
 		if(this.profileComponent.data.status_perkawinan <= 0) {
 				jQuery("#jumlahanak").prop("disabled", true);
 		}
+
 		jQuery('.datepicker').datepicker({
-      format	: 'yyyy-mm-dd',
-    });
+	    format : 'dd-mm-yyyy',
+	    showOn: "focus",
+	    autoclose: true,
+	    startDate: "-100y",
+	    endDate: "-21y"
+	  });
 	}
 
 	public complement_data = { };
@@ -53,15 +58,14 @@ export class PersonalComponent {
 	}
 
 	updateDataPribadi(data){
-		let value_date = jQuery("#tanggal_lahir").val();
-		this.profileComponent.data.tanggal_lahir = value_date;
+
+		// this.profileComponent.data.tanggal_lahir = newDate;
 
 		if(this.profileComponent.data.status_perkawinan == 0) {
-			this.profileComponent.data.jumlah_anak		= 0;
+			this.profileComponent.data.jumlah_anak = 0;
 		}
-		jQuery("#personal").prop("disabled", true);
 		this.profileComponent.dataProfile = 0;
-		this.profileComponent.updateProfile();
+		// this.profileComponent.updateProfile();
 	}
 
 }
