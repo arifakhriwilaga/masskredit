@@ -23,8 +23,8 @@ export class DetailComponent {
 
 	// set header
 	public headers = new Headers({ 
-		 	'Content-Type': 'application/json',
-		 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
+	 	'Content-Type': 'application/json',
+	 	'api_key' : '01b19716dfe44d0e9c656903429c3e9c65d0b243' 
 	});
 	public options = new RequestOptions({ headers: this.headers });
 
@@ -57,19 +57,27 @@ export class DetailComponent {
 
 	simulation = {
 		nominal : null,
+    success_fee: null,
+    nominal_and_fee: null,
     pokok: null,
     bunga: null,
-    cicilan_perbulan: null,
+    tenor: null,
     denda: null,
-    sucess_fee: null
+    cicilan_perbulan: null,
+    transaction_fee: null,
 	}
 
-	listLoanUrl = '#/dashboard/other-user-action/loan';
-
+	listLoan(){
+		this.router.navigateByUrl('/dashboard/other-user-action/loan');
+	}
+	
 	ngOnInit(){
 		jQuery('#FormSimulation').validate({
 		  rules: {
 		    jumlah: { required:true }
+		  },
+		  messages: {
+		  	jumlah: "Field harus diisi."
 		  }
 		});
 
@@ -98,24 +106,28 @@ export class DetailComponent {
 
 	handleError(message:any){
   	if(message === 'unauthorized') {
-      alert("Maaf akses token tidak terdaftar")            
+      // alert("Maaf akses token tidak terdaftar")            
       this.router.navigate(['/dashboard/sign-out']);
     }          
   }
 
   
   handleSuccess(data:any){
-  	let imageDefault = 'assets/img/default_image.jpg';
-		if(data.images == '') {
-			data.images = imageDefault;
-		}
-		this.dataCalculation.bunga = data.interest;
-		this.dataCalculation.tenor = data.tenor;
-		this.detailInvest = data;
-		let amount  = data.amount;
-		let restAmount = data.sisa
-		this.delimiterAmount(amount);
-  	this.delimiterRestAmount(restAmount);
+  	try {
+  		let imageDefault = 'assets/img/default_image.jpg';
+			if(data.images == '') {
+				data.images = imageDefault;
+			}
+			this.dataCalculation.bunga = data.interest;
+			this.dataCalculation.tenor = data.tenor;
+			this.detailInvest = data;
+			let amount  = data.amount;
+			let restAmount = data.sisa
+			this.restAmount = this.delimiter(restAmount);
+			this.amount = this.delimiter(amount);
+  	} finally {
+			this.statusDataDetail = 1;
+  	}
   }
 
 	getDetailInvest(){
@@ -150,9 +162,9 @@ export class DetailComponent {
 		}
 	}
 
-	delimiterAmount(dataAmount:any){
+	delimiter(data:any){
 		var _minus = false;
-		var b:any = dataAmount.toString();
+		var b:any = data.toString();
 		if (b<0) _minus = true;
 			b=b.replace(".","");
 			b=b.replace("-","");
@@ -170,32 +182,7 @@ export class DetailComponent {
 		}
 		if (_minus) c = "-" + c ;
 		let idr = "Rp.";
-		this.amount = idr.concat(c);
-	}
-
-	delimiterRestAmount(dataRestAmount:any){
-		// condition make delimiter
-		var _minus = false;
-		var b:any = dataRestAmount.toString();
-		if (b<0) _minus = true;
-			b=b.replace(".","");
-			b=b.replace("-","");
-			let c = "";
-			let panjang = b.length;
-			let j = 0;
-		for (let i = panjang; i > 0; i--){
-			j = j + 1;
-			if (((j % 3) == 1) && (j != 1)){
-				c = b.substr(i-1,1) + "." + c;
-				// console.log(c)
-			} else {
-				c = b.substr(i-1,1) + c;
-			}
-		}
-		if (_minus) c = "-" + c ;
-		let idr = "Rp.";
-		this.restAmount = idr.concat(c);
-		this.statusDataDetail = 1;
+		return idr.concat(c);
 	}
 
 	dataIsOn = [
@@ -208,12 +195,23 @@ export class DetailComponent {
 	statusCalculation:number;
 	calculationInvest(){
 		if(jQuery('#FormSimulation').valid()) {
-			// console.log(this.dataCalculation)
+				// console.log(this.dataCalculation)
 			this.invest.invest_amount = this.dataCalculation.jumlah;
 			this.detailService.calculationInvest(this.dataCalculation).then(dataResponse => {
-				// console.log(dataResponse)
-				this.simulation = dataResponse.data.simulation_result;
+			try {
+				// console.log(dataResponse.data.simulation_result)
+				this.simulation.bunga = this.delimiter(dataResponse.data.simulation_result.bunga);
+				// this.simulation.charge_fee = this.delimiter(dataResponse.data.simulation_result.charge_fee);
+				this.simulation.cicilan_perbulan = this.delimiter(dataResponse.data.simulation_result.cicilan_perbulan);
+				this.simulation.denda = this.delimiter(dataResponse.data.simulation_result.denda);
+				this.simulation.nominal = this.delimiter(dataResponse.data.simulation_result.nominal);
+				this.simulation.pokok = this.delimiter(dataResponse.data.simulation_result.pokok);
+				// this.simulation.pokok_plus_bunga = this.delimiter(dataResponse.data.simulation_result.pokok_plus_bunga);
+
+				this.simulation.success_fee = this.delimiter(dataResponse.data.simulation_result.sucess_fee);							
+			} finally {
 				this.statusCalculation = 1;
+			}
 			})
 		} else {
 			alert("Data tidak valid");
