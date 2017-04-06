@@ -55,9 +55,14 @@ export class CreateComponent {
 		      required: true
 		    },
 		  },
-		  // messages:{
-		  // 	invest_name : "Invest nama dibutuhkan"
-		  // }
+		   messages:{
+		  	invest_name : "Field ini harus diisi.",
+		  	invest_type : "Field ini harus diisi.",
+		  	due_date : "Field ini harus diisi.",
+		  	amount : "Field ini harus diisi.",
+		  	tenor : "Field ini harus diisi.",
+		  	description : "Field ini harus diisi.",
+		  }
 		});
 		jQuery('#due_date').mask("99-99-9999");
 		jQuery('#interest').mask('00000');
@@ -96,9 +101,11 @@ export class CreateComponent {
 			if(this.isOn === 0) {
 				return;
 			} else {
-				try { 
-				  let due_date = jQuery('#due_date').val();
-				  this.invest.due_date = due_date;
+				try {
+					let due_date = jQuery('#due_date').val();
+					let changeDate = due_date.split('-');
+					let newDate:string = changeDate[2]+"-"+changeDate[1]+"-"+changeDate[0];
+					this.invest.due_date = newDate;
 				
 				} finally {
 					this.formVerify = 1;
@@ -115,11 +122,14 @@ export class CreateComponent {
 
 	simulation = {
 		nominal : null,
+    success_fee: null,
+    nominal_and_fee: null,
     pokok: null,
     bunga: null,
-    cicilan_perbulan: null,
+    tenor: null,
     denda: null,
-    sucess_fee: null
+    cicilan_perbulan: null,
+    transaction_fee: null,
 	}
 
   dataCalculation = {
@@ -134,7 +144,6 @@ export class CreateComponent {
 			this.dataCalculation.jumlah = this.invest.amount;
 			this.dataCalculation.tenor = this.invest.tenor;
 
-		  let due_date = jQuery('#due_date').val();
 		  let image : any = document.getElementById('images');
 			var fileImage =	image.files[0];
 			
@@ -161,7 +170,16 @@ export class CreateComponent {
 				} finally {
 					this.createService.calculationInvest(this.dataCalculation).then(dataResponse => {
 						try {
-							this.simulation = dataResponse.data.simulation_result;
+							// console.log(dataResponse.data.simulation_result)
+							this.simulation.bunga = this.delimiter(dataResponse.data.simulation_result.bunga);
+							// this.simulation.charge_fee = this.delimiter(dataResponse.data.simulation_result.charge_fee);
+							this.simulation.cicilan_perbulan = this.delimiter(dataResponse.data.simulation_result.cicilan_perbulan);
+							this.simulation.denda = this.delimiter(dataResponse.data.simulation_result.denda);
+							this.simulation.nominal = this.delimiter(dataResponse.data.simulation_result.nominal);
+							this.simulation.pokok = this.delimiter(dataResponse.data.simulation_result.pokok);
+							// this.simulation.pokok_plus_bunga = this.delimiter(dataResponse.data.simulation_result.pokok_plus_bunga);
+
+							this.simulation.success_fee = this.delimiter(dataResponse.data.simulation_result.sucess_fee);							
 						} finally {
 							this.dataInvest = 1;
 						}
@@ -179,4 +197,26 @@ export class CreateComponent {
 		readerFile.readAsDataURL(image);
 		return readerFile;
 	}
+
+	delimiter(nominal:any){
+    var _minus = false;
+    var b:any = nominal.toString();
+    if (b<0) _minus = true;
+      b=b.replace(".","");
+      b=b.replace("-","");
+      let c = "";
+      let panjang = b.length;
+      let j = 0;
+    for (let i = panjang; i > 0; i--){
+      j = j + 1;
+      if (((j % 3) == 1) && (j != 1)){
+        c = b.substr(i-1,1) + "." + c;
+      } else {
+        c = b.substr(i-1,1) + c;
+      }
+    }
+    if (_minus) c = "-" + c ;
+    let idr = "Rp.";
+    return idr.concat(c);
+  }
 }
