@@ -92,7 +92,7 @@
       </thead>
       <tbody>
         <tr *ngIf="dataArrayNull === 1">
-          <td colspan="5" align="center">Data belum tersedia</td>
+          <td colspan="7" align="center">Data belum tersedia</td>
         </tr>
         <tr *ngFor="let dataPayment of dataPayment, let i ='index'">
           <td>{{ i + 1 }}</td>
@@ -116,7 +116,7 @@
               <i aria-hidden="true" class="fa fa-search" id="detailLunas"></i>
             </button>
             <fieldset id="rate">
-            <button color="red" (click)="showScoringForm(dataPayment.history_payment_id)" id="rateButton">Rate</button>
+            <button color="red" *ngIf="dataPayment.avg_review_payment == 0" (click)="showScoringForm(dataPayment.history_payment_id)" id="rateButton">Rate</button>
             </fieldset>
           </td>
         </tr>
