@@ -1,8 +1,8 @@
 <div class="col-md-4">
   <div class="row">
-    <div class="box-header" align="center">
+    <div class="box-header" align="center"><br>
       <label><h2 style="font-size: 24px;color: orange;">Form Pinjaman</h2></label>
-    </div><br><br>
+    </div>
     <div class="box-body">
     <div class="col-xs-12">
       <!-- component calculation -->
@@ -12,7 +12,7 @@
       </div>
       </form>
       <div class="form-group">
-        <button class="btn-back">KEMBALI</button>
+        <button class="btn-back" (click)="listInvest()">KEMBALI</button>
         <button type="submit" class="btn-simulation-loan" (click)="calculationInvest()">KALKULASI</button>
       </div>
       <hr>
@@ -41,7 +41,23 @@
               <div class="col-xs-7">
                 <input type="text" name="nominal" placeholder="-" class="form-control input-md" id="nominal" [(ngModel)]="simulation.nominal">
               </div>
-           </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Success Fee</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" placeholder="-" class="form-control input-md" name="success_fee" id="success_fee" [(ngModel)]="simulation.success_fee">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Nominal dan Fee</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" placeholder="-" class="form-control input-md" name="nominal_and_fee" id="nominal_and_fee" [(ngModel)]="simulation.nominal_and_fee">
+              </div>
+            </div>
             <div class="form-group">
               <div class="col-xs-5">
                 <label class="unit">Pokok</label>
@@ -55,7 +71,15 @@
                 <label class="unit">Bunga</label>
               </div>
               <div class="col-md-7">
-                <input type="text" placeholder="-" class="form-control input-md" name="bunga" id="bunga" [(ngModel)]="simulation.success_fee">
+                <input type="text" placeholder="-" class="form-control input-md" name="bunga" id="bunga" [(ngModel)]="simulation.bunga">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Tenor</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" placeholder="-" class="form-control input-md" name="tenor" id="tenor" [(ngModel)]="simulation.tenor">
               </div>
             </div>
             <div class="form-group">
@@ -68,10 +92,18 @@
             </div>
             <div class="form-group">
               <div class="col-xs-5">
-                <label class="unit">Pokok plus bunga</label>
+                <label class="unit">Cicilan/Bulan</label>
               </div>
               <div class="col-md-7">
-                <input type="text" placeholder="-" class="form-control input-md" name="pokok-plus-bunga" id="pokok-plus-bunga" [(ngModel)]="simulation.pokok_plus_bunga">
+                <input type="text" placeholder="-" class="form-control input-md" name="cicilan_perbulan" id="cicilan_perbulan" [(ngModel)]="simulation.cicilan_perbulan">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-5">
+                <label class="unit">Transaction Fee</label>
+              </div>
+              <div class="col-md-7">
+                <input type="text" placeholder="-" class="form-control input-md" name="transaction_fee" id="transaction_fee" [(ngModel)]="simulation.transaction_fee">
               </div>
             </div>
           </fieldset>
@@ -83,7 +115,7 @@
               <input type="checkbox" [checked]="isOn === dataIsOn[0].value" (change)="$event.target.checked? (isOn = dataIsOn[0].value) : (isOn = dataIsOn[1].value)">
               <label>Saya setuju dengan syarat dan ketentuan</label>
             </span>
-            <button class="btn-simulation-loan" (click)="createLoan()" [ngClass]="{disabled:isOn === 0}" id="createLoan">PINJAM SEKARANG!</button>
+            <button class="btn btn-simulation-loan" (click)="createLoan()" [ngClass]="{disabled:isOn === 0}" id="createLoan" style="color:#ecf0f1;">PINJAM SEKARANG!</button>
           </div>
           </div>
           <!-- component password -->
