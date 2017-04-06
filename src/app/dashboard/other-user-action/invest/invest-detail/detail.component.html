@@ -12,8 +12,8 @@
       </div>
       </form>
       <div class="form-group">
-        <a class="btn btn-default" [href]='listInvestUrl'>Kembali</a>
-        <button type="submit" class="btn-simulation" (click)="calculationInvest()">KALKULASI</button>
+        <button class="btn-back">KEMBALI</button>
+        <button type="submit" class="btn-simulation-loan" (click)="calculationInvest()">KALKULASI</button>
       </div>
       <hr>
       <!-- <div align="center" *ngIf="dataDetailInvest == 3"> 
@@ -55,15 +55,7 @@
                 <label class="unit">Bunga</label>
               </div>
               <div class="col-md-7">
-                <input type="text" placeholder="-" class="form-control input-md" name="bunga" id="bunga" [(ngModel)]="simulation.bunga">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-xs-5">
-                <label class="unit">Cicilan/bulan</label>
-              </div>
-              <div class="col-md-7">
-                <input type="text" placeholder="-" class="form-control" name="cicilan_per_bulan" id="cicilan_per_bulan" [(ngModel)]="simulation.cicilan_perbulan">
+                <input type="text" placeholder="-" class="form-control input-md" name="bunga" id="bunga" [(ngModel)]="simulation.success_fee">
               </div>
             </div>
             <div class="form-group">
@@ -76,10 +68,10 @@
             </div>
             <div class="form-group">
               <div class="col-xs-5">
-                <label class="unit">Biaya admin</label>
+                <label class="unit">Pokok plus bunga</label>
               </div>
               <div class="col-md-7">
-                <input type="text" placeholder="-" class="form-control input-md" name="charge_fee" id="charge_fee" [(ngModel)]="simulation.charge_fee">
+                <input type="text" placeholder="-" class="form-control input-md" name="pokok-plus-bunga" id="pokok-plus-bunga" [(ngModel)]="simulation.pokok_plus_bunga">
               </div>
             </div>
           </fieldset>
@@ -91,7 +83,7 @@
               <input type="checkbox" [checked]="isOn === dataIsOn[0].value" (change)="$event.target.checked? (isOn = dataIsOn[0].value) : (isOn = dataIsOn[1].value)">
               <label>Saya setuju dengan syarat dan ketentuan</label>
             </span>
-            <button class="btn btn-red" style="background-color: #e74c3c;" (click)="createLoan()" [ngClass]="{disabled:isOn === 0}" id="createLoan"><font style="color:white">Pinjam Sekarang!</font></button>
+            <button class="btn-simulation-loan" (click)="createLoan()" [ngClass]="{disabled:isOn === 0}" id="createLoan">PINJAM SEKARANG!</button>
           </div>
           </div>
           <!-- component password -->
