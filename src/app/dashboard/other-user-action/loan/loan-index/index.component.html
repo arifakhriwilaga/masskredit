@@ -4,7 +4,7 @@
 <div class="box-body">
   <div  *ngIf="dataListLoan == 1">
     <div class="col-xs-12" align="right">
-      <button class="add-advance-search" (click)="linkCreateLoan()">
+      <button class="btn-add" (click)="linkCreateLoan()">
         Tambah
       </button>
     </div>
@@ -14,7 +14,7 @@
       <div role="tabpanel" class="tab-pane active" id="investasi">
       <div class="box-body data-tables table-responsive">
         <table class="table table-hover" id="example2">
-          <thead>
+          <thead style="background-color:#001f3f">
             <tr>
               <th>No.</th>
               <th>Borrower</th>
@@ -41,7 +41,7 @@
               <td>{{ data.loan_category }}</td>
               <td>{{ data.amount }}</td>
               <td>
-                <button class="pull-right" [routerLink]="['/dashboard/other-user-action/loan/detail', data.id]"><i aria-hidden="true" class="fa fa-search"></i></button>
+                <button class="pull-right" [routerLink]="['/dashboard/other-user-action/loan/detail', data.id]"><i aria-hidden="true" class="fa fa-info-circle"></i></button>
               </td>
             </tr>
           </tbody>
