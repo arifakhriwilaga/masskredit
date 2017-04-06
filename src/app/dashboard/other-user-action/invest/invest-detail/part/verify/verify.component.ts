@@ -60,7 +60,9 @@ export class VerifyComponent implements OnInit{
 		try {
 			if(message == 'Jumlah yang anda masukan melebihi jumlah invest.') {
 	      alert("Jumlah yang anda masukan melebihi jumlah invest.");
-	   	} else {
+	   	} else if(message.match(/Jumlah jaminan anda tidak mencukupi./)){
+	   		alert("Jumlah jaminan anda tidak mencukupi.");
+	   	}else {
 				alert("Password anda salah")
 			}
 		} finally {
@@ -69,7 +71,7 @@ export class VerifyComponent implements OnInit{
   }
   
   handleSuccess(){
-  	alert("Investasi berhasil dibuat, harap menunggu konfirmasi borrower");
+  	alert("Pinjaman berhasil dibuat, harap menunggu konfirmasi Investor");
 		jQuery('#ModalForm').modal("toggle");
 		this.router.navigateByUrl('/dashboard/other-user-action/invest');
   }
