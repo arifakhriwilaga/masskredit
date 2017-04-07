@@ -199,16 +199,16 @@ export class DetailComponent {
 			this.invest.invest_amount = this.dataCalculation.jumlah;
 			this.detailService.calculationInvest(this.dataCalculation).then(dataResponse => {
 			try {
-				// console.log(dataResponse.data.simulation_result)
-				this.simulation.bunga = this.delimiter(dataResponse.data.simulation_result.bunga);
-				// this.simulation.charge_fee = this.delimiter(dataResponse.data.simulation_result.charge_fee);
-				this.simulation.cicilan_perbulan = this.delimiter(dataResponse.data.simulation_result.cicilan_perbulan);
-				this.simulation.denda = this.delimiter(dataResponse.data.simulation_result.denda);
 				this.simulation.nominal = this.delimiter(dataResponse.data.simulation_result.nominal);
-				this.simulation.pokok = this.delimiter(dataResponse.data.simulation_result.pokok);
-				// this.simulation.pokok_plus_bunga = this.delimiter(dataResponse.data.simulation_result.pokok_plus_bunga);
-
 				this.simulation.success_fee = this.delimiter(dataResponse.data.simulation_result.sucess_fee);							
+				this.simulation.nominal_and_fee = this.delimiter(dataResponse.data.simulation_result.nominal_and_fee);							
+				this.simulation.pokok = this.delimiter(dataResponse.data.simulation_result.pokok);
+				this.simulation.bunga = this.delimiter(dataResponse.data.simulation_result.bunga);
+				this.simulation.tenor = this.delimiter(dataResponse.data.simulation_result.tenor);
+				this.simulation.denda = this.delimiter(dataResponse.data.simulation_result.denda);
+				this.simulation.cicilan_perbulan = this.delimiter(dataResponse.data.simulation_result.cicilan_perbulan);
+				this.simulation.transaction_fee = this.delimiter(dataResponse.data.simulation_result.transaction_fee);
+					
 			} finally {
 				this.statusCalculation = 1;
 			}
