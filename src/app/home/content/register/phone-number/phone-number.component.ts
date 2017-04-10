@@ -30,13 +30,25 @@ export class PhoneNumberComponent {
 		jQuery( "#verifyForm" ).validate({
 		  rules: {
 		    phone: {
-		      required: true
+		      required: true,
+		      valid:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z]+\.)+[a-zA-Z]{2,}))$/
 		    }
 		  },
 		  messages: {
-		  	phone: "Data dibutuhkan"
+		  	phone: "Data dibutuhkan",
+		  	valid: "No Telepon tidak valid."
 		  }
 		});
+  }
+
+  regex(){
+  	jQuery.validator.addMethod("valid",function(value, element, regexp) {
+        if (regexp.constructor != RegExp)
+            regexp = new RegExp(regexp);
+        else if (regexp.global)
+            regexp.lastIndex = 0;
+        return this.optional(element) || regexp.test(value);
+    }, "Data input salah.");
   }
 
 	sendHandphone(){
