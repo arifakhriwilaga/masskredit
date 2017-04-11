@@ -36,8 +36,12 @@ export class IndexComponent {
 	public pages:any = []; 
  	public per_page = null;
  	public totalPages = null;
- 	public limit = 10;
+ 	public limit = 5;
  	public page  = 1;
+
+ 	public extraIndex = 0;
+ 	public index = 1
+
  	public currentPage:number;
  	public statusPaging:boolean;
 
@@ -101,7 +105,9 @@ export class IndexComponent {
   handleSuccess(data:any,pages:any){
   	this.delimiter(data);
     this.currentPage = pages.current_page;
-    this.totalPages = pages.total/pages.per_page;
+    this.totalPages = Math.ceil(pages.total/pages.per_page);
+    // let total = this.totalPages.ceil()
+  	console.log(this.totalPages)
     
     for (var i = 1; i <= this.totalPages; i++) {
     	this.pages.push(i);
@@ -143,8 +149,9 @@ export class IndexComponent {
 		}
 		
 	}
-		
+	idPage:number = 0;
 	linkTo(id : any,status:number){
+		// this.extraIndex = 0;
 		// console.log(id)
 		if(status === 0 && this.currentPage === 1) {
 			return;
@@ -162,6 +169,7 @@ export class IndexComponent {
 			return;
 
 		} else {
+			this.idPage = (id - 1) * this.limit;
 			this.dataListFund.page = id;
 			this.indexService.getFunds(this.dataListFund).then(dataResponse => {
 				try {
@@ -169,15 +177,16 @@ export class IndexComponent {
 		      let code = JSON.stringify(dataResponse.meta.code);
 		      let data = dataResponse.data.fund;
 		      let dataPages = dataResponse.data.paging;
+					// console.log(dataResponse)
 
 		      if(code.charAt(0) === '4') {
 		        this.handleError(message);
 		      } if(code.charAt(0) === '2') {
+		      	// console.log(this.extraIndex)
 		      	this.currentPage = dataPages.current_page;
 		        this.delimiter(data);
 		      };
 				} finally {
-					console.log(this.currentPage,id)
 					this.statusDataFunds = 1;
 				}
 					

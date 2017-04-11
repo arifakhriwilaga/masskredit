@@ -14,7 +14,7 @@
       <div role="tabpanel" class="tab-pane active" id="investasi">
       <div class="box-body data-tables table-responsive">
         <table class="table table-hover" id="example2">
-          <thead style="background-color:#001f3f">
+          <thead>
             <tr>
               <th>No.</th>
               <th>Borrower</th>
@@ -33,6 +33,7 @@
               <td>{{ i + 1 }}</td>
               <td align="left"><img src="{{ data.image_profile }}" alt="Profile Borrower" style="border-radius: 80px;width:55px;height:55px"></td>
               <td>{{ data.nama_borrower }}</td>
+              <!-- <td>{{ data.nama_borrower }}<label><img class="verifikasi-check" src="../../assets/img/green-checklist.png" style="width:15px;height: 15px;margin-left: 5px"></label></td> -->
               <td>
                 Borrower: {{ data.user_score_borrower }} <br>
                 Salary: {{ data.user_class }} <br>

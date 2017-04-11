@@ -10,7 +10,7 @@ export class VerifyCodeService {
 	constructor(private router : Router, private http: Http) { }
 	
 	private verifycodeUrl = 'https://masscredit-api.stagingapps.net/user/credential/verifycode';
-	private resendcodeUrl = 'http://masscredit-api.stagingapps.net/user/credential/getverificationcode';
+	private resendcodeUrl = 'https://masscredit-api.stagingapps.net/user/credential/getverificationcode';
 	
 	private headers = new Headers({ 
 	 	'Content-Type': 'application/json',

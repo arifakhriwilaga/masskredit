@@ -1,0 +1,33 @@
+<div class="form-login-register white-bg">
+<div class="box-header" align="center"><br><br>
+<h2 style="font-size: 24px;color: orange;">Form Help Center :</h2>
+</div>
+<div class="box-body">
+<div class="form-login-register">
+  <form class="form-horizontal clearfix row" style="margin: 50px" name="helpForm" id="helpForm">
+    <div class="col-md-12">
+      <div class="form-group">
+        <div class="col-md-3">
+          <label class="unit">Subjek :</label>
+        </div>
+        <div class="col-md-5 clearfix">
+          <input type="text" class="form-control input-md" name="subject" id="subject" [(ngModel)]="data.subject">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-3">
+          <label class="unit">Deskripsi :</label>
+        </div>
+        <div class="col-md-8 clearfix">
+          <textarea type="text" class="form-control input-md" name="description" id="description" [(ngModel)]="data.description"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="col-md-12 col-center">
+    <button class="btn-back-fund" (click)="cancelHelp()">Batal</button>
+    <button class="btn-submit-fund" id="createReport" type="submit" (click)="createHelp()">Kirim</button>
+  </div>
+ </div>
+</div>
+</div>

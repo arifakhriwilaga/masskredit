@@ -75,8 +75,7 @@ export class DashboardComponent {
   }
 
   handleError(message:any){
-  if(message === 'unauthorized') {
-      alert("Maaf akses token tidak terdaftar")            
+  if(message === 'unauthorized') {      
       this.router.navigate(['/dashboard/sign-out']);
      }          
   }

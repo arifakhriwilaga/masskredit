@@ -20,6 +20,9 @@ export class FirstComponent implements OnInit{
 	@Input('dataFundHistory') incomingDataFundHistory: string
 	@Input('dataProfileImage') incomingDataProfileImage
 
+	linkToReportProblem = "#/dashboard/report-problem";
+	linkToHelpCenter = "#/dashboard/help-center";
+
 	private imageDefaultProfile = 'assets/img/default_profile.png';
 	ngOnInit(){
 		if(this.incomingDataProfileImage == '') {

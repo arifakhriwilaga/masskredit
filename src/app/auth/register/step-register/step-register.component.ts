@@ -55,8 +55,28 @@ export class StepRegisterComponent  {
 	    showOn: "focus",
 	    autoclose: true,
 	    startDate: "-100y",
-	    endDate: "-21y"
-	  });
+	    endDate: "-21y",
+		  onSelect: function (){
+        // The "this" keyword refers to the input (in this case: #someinput)
+        this.focus();
+	    }
+	  }).on('hide', function () {
+		  if (!this.firstHide) {
+		    if (!jQuery(this).is(":focus")) {
+		      this.firstHide = true;
+		      // this will inadvertently call show (we're trying to hide!)
+		      this.focus(); 
+		    }
+		  } else {
+		    this.firstHide = false;
+		  }
+		})
+		.on('show', function () {
+		  if (this.firstHide) {
+		    // careful, we have an infinite loop!
+		    jQuery(this).datepicker('hide'); 
+		  }
+		});
 
 	  jQuery(function($){
 		  jQuery("#tanggal_lahir").mask("99-99-9999",{placeholder:"DD-MM-YYYY"});
@@ -114,7 +134,9 @@ export class StepRegisterComponent  {
 		    },
 		    confirm_password: {
 		    	required : "Data dibutuhkan",
-		    	match : "Password tidak sama"
+		    	match : "Password tidak sama",
+		    	minlength : "Password terlalu pendek"
+
 		    },
 		    jenis_kelamin: "Data dibutuhkan",
 		    kode_pos: "Data dibutuhkan",

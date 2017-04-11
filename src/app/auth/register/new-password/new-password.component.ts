@@ -30,18 +30,56 @@ export class NewPasswordComponent implements OnInit {
 		});
 		jQuery("#ResetForm").validate({
 		  rules: {
-		    new_password: {
-		      required: true
-		    },
-		    confirm_new_password: {
+			  new_password: {
 		      required: true,
+		      minlength:8,
+		      matchConfirm:true
+		    },
+			  confirm_new_password: {
+		      required: true,
+		      minlength:8,
+		      match : true
 		    },
 		  },
 		  messages : {
-		  	new_password: "Data dibutuhkan",
-		    confirm_new_password: "Data dibutuhkan",
+		  	new_password: {
+		    	required : "Data dibutuhkan",
+		    	minlength : "Password terlalu pendek"
+		    },
+		    confirm_new_password: {
+		    	required : "Data dibutuhkan",
+		    	match : "Password tidak sama",
+		    	minlength : "Password terlalu pendek"
+		    },
 		  }
 		});
+		this.regex();
+	}
+
+	regex() {
+    jQuery.validator.addMethod("match",function(value, element) {
+  	  let confirmPassword:string = value;
+			let password:string = jQuery("#new_password").val();
+      if (confirmPassword != password) 
+        return this.optional(element);
+      else
+      	return true;  	
+    }, "Data input salah.");
+
+    jQuery.validator.addMethod("matchConfirm",function(value) {
+  		let elementConfirmPassword = jQuery("#confirm_new_password").get();
+  		let password:string = value;
+			let confirmPassword:string = jQuery("#confirm_new_password").val();
+			
+      if (confirmPassword == password)
+      	return jQuery("#confirm_new_password").valid();
+      
+      else if (confirmPassword != '' && confirmPassword != password)
+      	return jQuery("#confirm_new_password").valid('false');
+
+      else
+        return true;
+    }, null);
 	}
 
 	private user:Data = { 

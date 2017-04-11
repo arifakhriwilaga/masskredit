@@ -8,7 +8,7 @@
       <!-- component calculation -->
       <form id="FormSimulation" name="FormSimulation">
       <div class="form-group">
-        <input type="text" placeholder="Jumlah Pinjaman" class="form-control input-md" name="jumlah" id="jumlah" value="" [(ngModel)]="dataCalculation.jumlah">
+        <input type="text" placeholder="Jumlah Investasi" class="form-control input-md" name="jumlah" id="jumlah" value="" [(ngModel)]="dataCalculation.jumlah">
       </div>
       </form>
       <div class="form-group">
@@ -115,7 +115,7 @@
               <input type="checkbox" [checked]="isOn === dataIsOn[0].value" (change)="$event.target.checked? (isOn = dataIsOn[0].value) : (isOn = dataIsOn[1].value)">
               <label>Saya setuju dengan syarat dan ketentuan</label>
             </span>
-            <button class="btn btn-simulation-invest" (click)="createInvest()" [ngClass]="{disabled:isOn === 0}" id="createInvest">Pinjam Sekarang!</button>
+            <button class="btn btn-simulation-invest" (click)="createInvest()" [ngClass]="{disabled:isOn === 0}" id="createInvest">Investasi Sekarang!</button>
           </div>
           </div>
           <!-- component password -->

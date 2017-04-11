@@ -20,21 +20,16 @@ export class IndexService {
 	
 	private token = JSON.parse(localStorage.getItem("access_token"))
 
-	getListLoans(data:any): Promise<Loan[]>{
+	getListLoans(data:any): Promise<any>{
 	 	return this.http.post(this.listInvestUrl,data,this.options)
 		.toPromise()
-		.then(response => response.json().data.investments as Loan[])
+		.then(response => response.json())
 		.catch(this.handleError)	
 	}
 
 	handleError(err){
-		var error   = JSON.parse(err._body)
-    var code = error.meta.code
-    var message = error.meta.message
-  	if(message == "unauthorized") {
-			alert("Maaf session anda telah habis silahkan login kembali")
-			return this.router.navigateByUrl('/dashboard/sign-out')					
-		}
+		var error = JSON.parse(err._body)
+    return error
 	}
 
 	toCreateLoan(){

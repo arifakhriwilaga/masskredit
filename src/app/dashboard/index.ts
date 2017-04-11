@@ -28,6 +28,8 @@ export const routes = [
       { path: 'fund', loadChildren: () => System.import('./fund').then((comp: any) => comp.default) },
       { path: 'user-action', loadChildren: () => System.import('./user-action').then((comp: any) => comp.default) },
       { path: 'other-user-action', loadChildren: () => System.import('./other-user-action').then((comp: any) => comp.default) },  
+      { path: 'help-center', loadChildren: () => System.import('./help/help-center').then((comp: any) => comp.default) },
+      { path: 'report-problem', loadChildren: () => System.import('./help/report-problem').then((comp: any) => comp.default) },  
       { path: 'sign-out', component: SignOutComponent},       
     ]
   },

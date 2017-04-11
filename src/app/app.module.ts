@@ -65,7 +65,7 @@ type StoreType = {
   ],
   exports: [RouterModule],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    // {provide: APP_BASE_HREF, useValue: '/'},
+    {provide: APP_BASE_HREF, useValue: '/'},
     ENV_PROVIDERS,
     APP_PROVIDERS,
     AuthGuard,
