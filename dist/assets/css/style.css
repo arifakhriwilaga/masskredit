@@ -2006,9 +2006,9 @@ label.name-form {
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    color: #555;
+    color: #f1c40f;
     cursor: default;
-    background-color: #fff;
+    /*background-color: #fff;*/
     border: transparent; 
     border-bottom-color: transparent;
 }
