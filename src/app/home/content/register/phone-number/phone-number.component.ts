@@ -31,12 +31,12 @@ export class PhoneNumberComponent {
 		  rules: {
 		    phone: {
 		      required: true,
-		      valid:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z]+\.)+[a-zA-Z]{2,}))$/
+		      // valid:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z]+\.)+[a-zA-Z]{2,}))$/
 		    }
 		  },
 		  messages: {
 		  	phone: "Data dibutuhkan",
-		  	valid: "No Telepon tidak valid."
+		  	// valid: "No Telepon tidak valid."
 		  }
 		});
   }
