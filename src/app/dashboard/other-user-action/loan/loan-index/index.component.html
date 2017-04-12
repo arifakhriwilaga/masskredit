@@ -32,8 +32,7 @@
             <tr *ngFor="let data of loans; let i = 'index'">
               <td>{{ i + 1 }}</td>
               <td align="left"><img src="{{ data.image_profile }}" alt="Profile Borrower" style="border-radius: 80px;width:55px;height:55px"></td>
-              <td>{{ data.nama_borrower }}</td>
-              <!-- <td>{{ data.nama_borrower }}<label><img class="verifikasi-check" src="../../assets/img/green-checklist.png" style="width:15px;height: 15px;margin-left: 5px"></label></td> -->
+              <td>{{ data.nama_borrower }}<img *ngIf="data.status_code == 1" class="verifikasi-check" src="../../assets/img/green-checklist.png" style="width:15px;height: 15px;margin-left: 5px"></td>
               <td>
                 Borrower: {{ data.user_score_borrower }} <br>
                 Salary: {{ data.user_class }} <br>
