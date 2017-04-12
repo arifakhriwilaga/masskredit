@@ -158,7 +158,7 @@ export class DetailComponent {
 					this.simulation.nominal_and_fee = this.delimiter(dataResponse.data.simulation_result.nominal_and_fee);							
 					this.simulation.pokok = this.delimiter(dataResponse.data.simulation_result.pokok);
 					this.simulation.bunga = this.delimiter(dataResponse.data.simulation_result.bunga);
-					this.simulation.tenor = this.delimiter(dataResponse.data.simulation_result.tenor);
+					this.simulation.tenor = dataResponse.data.simulation_result.tenor;
 					this.simulation.denda = this.delimiter(dataResponse.data.simulation_result.denda);
 					this.simulation.cicilan_perbulan = this.delimiter(dataResponse.data.simulation_result.cicilan_perbulan);
 					this.simulation.transaction_fee = this.delimiter(dataResponse.data.simulation_result.transaction_fee);
