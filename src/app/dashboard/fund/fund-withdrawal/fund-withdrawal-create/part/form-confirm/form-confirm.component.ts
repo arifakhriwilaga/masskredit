@@ -23,21 +23,19 @@ export class FormConfirmComponent {
 	public data = {
 		access_token: JSON.parse(localStorage.getItem("access_token")),
 		id: this.incomingDataId,
-		verification_code: this.incomingDataVerificationCode,
+		verification_code: null,
 		password: null
 	};
 
 	private statusDataConfirm = 1;
 	// recieve data after create withdrawal 
 	@Input('dataId') incomingDataId:any;
-	@Input('dataVerificationCode') incomingDataVerificationCode:any;
-
+	
 
 	ngOnInit() { 
 		jQuery('#FormConfirm').modal({backdrop: 'static', keyboard: false});
-		if(this.incomingDataId != null && this.incomingDataVerificationCode != null) {
+		if(this.incomingDataId != null) {
 			this.data.id = this.incomingDataId;
-			this.data.verification_code = this.incomingDataVerificationCode;
 		}
   }
 
