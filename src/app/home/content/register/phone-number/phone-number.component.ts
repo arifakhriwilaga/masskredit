@@ -90,7 +90,7 @@ export class PhoneNumberComponent {
     jQuery('#phone-number').prop('disabled', false);
   	
   	localStorage.setItem("phone-number",number);
-  	alert(data.verification_code);
+  	// alert(data.verification_code);
   	this.data.phone_number = this.nomor.phone_number
   	this.data.status = 1;
   	this.statusVerify.emit(this.data);

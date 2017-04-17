@@ -29,7 +29,6 @@ export class FormComponent {
 	public statusFormConfirm = 0;
 
 	private idWithdrawal = null;
-	private verificationCode = null;
 
 	ngOnInit() {
 		// console.log(this.incomingDataNoRekening)
@@ -94,7 +93,6 @@ export class FormComponent {
   handleSuccess(data:any){
    	try {
 			this.idWithdrawal = data.id;
-			this.verificationCode = JSON.parse(data.verification_code);
 		} finally {
 			this.statusFormConfirm = 1;
 		}

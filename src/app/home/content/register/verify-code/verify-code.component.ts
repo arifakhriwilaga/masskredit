@@ -72,7 +72,7 @@ export class VerifyCodeComponent implements OnInit{
     	let data = dataResponse.data.verification_code;
 	    jQuery('#resend').prop('disabled', false);
 
-			alert(data)
+			// alert(data)
 		});
 	}
 

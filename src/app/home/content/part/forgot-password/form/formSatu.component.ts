@@ -27,7 +27,7 @@ export class FormSatuComponent {
 		if(this.dataOtp !== null) {
 			this.user.email = this.dataOtp.email;
 			this.user.phone_number = this.dataOtp.phone_number;
-			this.user.otp = this.dataOtp.otp;
+			// this.user.otp = this.dataOtp.otp;
 		}
 		jQuery('#FormForgot').validate({
 		  rules: {
@@ -45,6 +45,7 @@ export class FormSatuComponent {
 	statusFormForgot = 0;
 	forgotPassword(){
 		if(jQuery("#FormForgot").valid()) {
+			this.user.otp = this.dataOtp.otp;
 	    jQuery('#send').prop('disabled', true);
 			this.formService.postCreate(this.user).then(dataResponse => {
 				let message = dataResponse.meta.message;
