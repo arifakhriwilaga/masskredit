@@ -19,6 +19,7 @@ declare var jQuery: any;
 export class DashboardComponent {  
   constructor(
     private http : Http,
+    private activatedRoute : ActivatedRoute,
     private router:Router,
     private dashboardService:DashboardService
   ) { }
@@ -44,9 +45,14 @@ export class DashboardComponent {
     avg_review:null
   }
   dataComplete:number;
+
+  dataResponse:any;
   ngOnInit(){
+    // this.activatedRoute.data.subscribe((data: {user:any}) => {
+    //   console.log(data.dataUser);
+    // })
     this.getProfile();
-    this.dashboardService.sendData("Ari fakhri");
+    // this.dashboardService.sendData("Ari fakhri");
 
   }
 
@@ -91,6 +97,7 @@ export class DashboardComponent {
     this.dataUser.fund_history = data.profile.user_score.fund_history;
     this.dataUser.avg_review = data.profile.user_score.avg_reviews;
     this.delimiter(data.account_summary.balance)
+    // console.log(this.dataUser);
   }
 
   delimiter(nominal:any){
