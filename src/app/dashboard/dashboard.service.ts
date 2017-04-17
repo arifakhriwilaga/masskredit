@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject }    from 'rxjs/Subject';
 
 @Injectable ()
+
 export class DashboardService {
 	
 	constructor (

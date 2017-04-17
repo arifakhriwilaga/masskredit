@@ -15,6 +15,12 @@ import { AuthGuardDashboard } from './auth-guard/auth-guard-dashboard.service';
 // Guard Dashboard
 import { AuthGuardEntryDashboard } from './auth-guard/auth-guard-entry-dashboard.service';
 
+// offline js
+// import 'offline-js/themes/offline-theme-default.css';
+// import 'offline-js/themes/offline-language-english.css';
+import 'offline-js';
+// import 'ng-offline-js';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -60,7 +66,7 @@ type StoreType = {
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
-    HttpModule, 
+    HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules  }),
   ],
   exports: [RouterModule],
