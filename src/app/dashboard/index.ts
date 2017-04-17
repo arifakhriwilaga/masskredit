@@ -8,6 +8,7 @@ import { DataResolver } from './app.resolver';
 import { DashboardService } from './dashboard.service';
 // Auth Guard Dashboard
 import { AuthGuard } from './../auth-guard/auth-guard.service';
+import { DashboardUserResolver } from './dashboard-resolve.service';
 
 // Component
 import { DashboardComponent } from './dashboard.component';
