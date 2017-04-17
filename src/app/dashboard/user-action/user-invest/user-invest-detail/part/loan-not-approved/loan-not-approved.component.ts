@@ -100,6 +100,7 @@ export class LoanNotApprovedComponent{
     password: null,
     otp: null,
 	}
+
 	private postApproveUrl = 'https://masscredit-api.stagingapps.net/user/investment/approve';
 	sendDataApprove(){
     this.http.post(this.postApproveUrl,this.dataApprove,this.options)
@@ -174,10 +175,22 @@ export class LoanNotApprovedComponent{
 		}
 	}
 
+	dataIsOn = [
+    { value: 1 },
+    { value: 0 },
+  ];
+
+	isOn = 0;
+	
+
 	approveInvest(){
-		this.loaderDetailBorrower = 0;
-		this.dataApprove.approval_status = 1;
-		this.getOtp()
+		if(this.isOn === 0) {
+			return;
+		} else {
+			this.loaderDetailBorrower = 0;
+			this.dataApprove.approval_status = 1;
+			this.getOtp()
+		}
 	}
 
 	rejectInvest(){
