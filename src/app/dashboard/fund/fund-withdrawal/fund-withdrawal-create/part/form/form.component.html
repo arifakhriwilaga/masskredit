@@ -31,7 +31,7 @@
     <button class="btn-submit-fund" id="createWithdrawal" name="singlebutton" type="submit" (click)="createWithdrawal(data)">Simpan</button>
   </div>
   <!-- component confirm after user success withdrawal fund -->
-  <form-confirm *ngIf="statusFormConfirm == 1" [dataVerificationCode]="verificationCode" [dataId]="idWithdrawal" ></form-confirm>
+  <form-confirm *ngIf="statusFormConfirm == 1" [dataId]="idWithdrawal" ></form-confirm>
   <!-- component for notif if data bank user blank -->
   <message *ngIf="data.bank == 'Belum diisi' || data.no_rekening == 'Belum diisi'"></message>
 </div>
