@@ -20,8 +20,7 @@ export class FirstComponent implements OnInit{
 	@Input('dataFundHistory') incomingDataFundHistory: string
 	@Input('dataProfileImage') incomingDataProfileImage
 
-	linkToReportProblem = "#/dashboard/report-problem";
-	linkToHelpCenter = "#/dashboard/help-center";
+	linkToFAQ = "https://masscredit-backend.stagingapps.net/docs/faq";
 
 	private imageDefaultProfile = 'assets/img/default_profile.png';
 	ngOnInit(){
