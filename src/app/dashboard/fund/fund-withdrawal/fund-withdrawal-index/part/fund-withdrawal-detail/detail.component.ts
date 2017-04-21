@@ -37,8 +37,8 @@ export class DetailComponent implements OnInit{
 	public bank = { };
 
 	getFund(){
-		this.detailService.getFund(this.dataDetailFund)
-			.then(dataFund => {
+		this.detailService.getFund(this.dataDetailFund).then(dataFund => {
+				
 				let bank_name = dataFund.bank;
 				
 				if(bank_name == 1) {
