@@ -24,6 +24,8 @@
                 <th>Tipe</th>
                 <th>Kategori</th>
                 <th>Nominal Investasi</th>
+                <th>Nominal Masuk</th>
+                <th>Sisa Hari</th>
                 <th></th>
               </tr>
             </thead>
@@ -38,6 +40,8 @@
                 <td>{{ data.type_invest }}</td>
                 <td>{{ data.loan_category }}</td>
                 <td>{{ data.amount }}</td>
+                <td>{{ data.entry_amount }}</td>
+                <td>{{ data.sisa_hari }}</td>  
                 <td>
                   <button class="pull-right" *ngIf="data.loan_category == '-'" (click)="detailAddInvest(data.id)"><i aria-hidden="true" class="fa fa-info-circle"></i></button>
                   <button class="pull-right" *ngIf="data.loan_category != '-'" (click)="detailGiveInvest(data.id,data.borrower_id)"><i aria-hidden="true" class="fa fa-info-circle"></i></button>
