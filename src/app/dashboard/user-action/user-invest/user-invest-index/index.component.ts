@@ -30,6 +30,7 @@ export class IndexComponent {
 
 	getListInvest(){
 		this.indexService.getListInvests(this.data).then(dataInvests => {
+			console.log(dataInvests)
 			try {
 				if(dataInvests.length == 0) {
 					this.dataInvestsNull = 1;
@@ -49,33 +50,85 @@ export class IndexComponent {
 						data['image_invest'] = imageDefault;
 					}
 					let amount = data['amount'];
-					// condition make delimiter
-					var _minus = false;
-					var b:any = amount.toString();
-					if (b<0) _minus = true;
-						b=b.replace(".","");
-						b=b.replace("-","");
-						let c = "";
-						let panjang = b.length;
-						let j = 0;
-					for (let i = panjang; i > 0; i--){
-						j = j + 1;
-						if (((j % 3) == 1) && (j != 1)){
-							c = b.substr(i-1,1) + "." + c;
-							// console.log(c)
+					let entry_amount = amount - data['sisa_invest'];
+					data['amount'] = this.delimiter(data['amount']);
+					data['entry_amount'] = this.delimiter(entry_amount);
+
+
+
+					let dataDate = data['due_date'];
+      		
+      		if (dataDate !== '') {
+	      		let dateData = new Date(dataDate)
+						let dateToday = new Date('2017-04-21');
+						let timeDiff = Math.abs(dateData.getTime() - dateToday.getTime());
+						let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+						
+						if (dateToday > dateData) {
+							data['sisa_hari'] = "Invest Expired";
+
+						} else if( dateToday < dateData ) {
+							data['sisa_hari'] = diffDays;
+							
 						} else {
-							c = b.substr(i-1,1) + c;
+							data['sisa_hari'] = "Hari ini";
 						}
-					}
-					if (_minus) c = "-" + c ;
-					let idr = "Rp.";
-					data['amount'] = idr.concat(c);
+      		} else {
+						data['sisa_hari'] = "Tanggal Kosong";
+      		}
+
+					// var date = t.toISOString().split('T')[0];
+					// condition make delimiter
+					// var _minus = false;
+					// var b:any = amount.toString();
+					// if (b<0) _minus = true;
+					// 	b=b.replace(".","");
+					// 	b=b.replace("-","");
+					// 	let c = "";
+					// 	let panjang = b.length;
+					// 	let j = 0;
+					// for (let i = panjang; i > 0; i--){
+					// 	j = j + 1;
+					// 	if (((j % 3) == 1) && (j != 1)){
+					// 		c = b.substr(i-1,1) + "." + c;
+					// 		// console.log(c)
+					// 	} else {
+					// 		c = b.substr(i-1,1) + c;
+					// 	}
+					// }
+					// if (_minus) c = "-" + c ;
+					// let idr = "Rp.";
+					// data['amount'] = idr.concat(c);
 				}
 			} finally {
 				this.invests = dataInvests;
 				this.statusInvests = 1;
 			}
 		});
+	}
+
+	delimiter(nominal:any){	
+		var _minus = false;
+		var b:any = nominal.toString();
+		if (b<0) _minus = true;
+			b=b.replace(".","");
+			b=b.replace("-","");
+			let c = "";
+			let panjang = b.length;
+			let j = 0;
+		for (let i = panjang; i > 0; i--){
+			j = j + 1;
+			if (((j % 3) == 1) && (j != 1)){
+				c = b.substr(i-1,1) + "." + c;
+				// console.log(c)
+			} else {
+				c = b.substr(i-1,1) + c;
+			}
+		}
+		if (_minus) c = "-" + c ;
+		let idr = "Rp.";
+		let dataNominal:any = idr.concat(c);
+		return dataNominal;
 	}
 
 	detailAddInvest(investId:number){
