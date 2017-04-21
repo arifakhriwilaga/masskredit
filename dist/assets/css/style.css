@@ -2090,8 +2090,11 @@ label.name-form {
     color: #275081 !important;
 }
 
-.home {
-    background-image:  url("../../img/basic.png");
+#home-content {
+    background:  url("../img/basic.png")no-repeat center center;
+    min-height: 680px;
+    padding: 21px 0 65px 0;
+    position: relative;
 }
 
 .room {
@@ -2099,7 +2102,7 @@ label.name-form {
     opacity: 1 !important;
 }
 
-.oneline {
+.oneline-home {
     border-bottom: 1px solid #ddd;
     margin-top: 20px;
 }
@@ -2371,4 +2374,13 @@ label.name-form {
 /* Add some padding inside the card container */
 .container {
     padding: 2px 4px;
+}
+
+.not-active {
+   cursor: pointer; 
+   cursor: hand;
+   color: #2c3e50;
+}
+.not-active:hover{
+   color : #f1c40f;
 }
