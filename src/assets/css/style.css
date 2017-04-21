@@ -2375,3 +2375,12 @@ label.name-form {
 .container {
     padding: 2px 4px;
 }
+
+.not-active {
+   cursor: pointer; 
+   cursor: hand;
+   color: #2c3e50;
+}
+.not-active:hover{
+   color : #f1c40f;
+}
