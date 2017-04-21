@@ -35,6 +35,7 @@ export class FormConfirmComponent {
 	ngOnInit() { 
 		jQuery('#FormConfirm').modal({backdrop: 'static', keyboard: false});
 		if(this.incomingDataId != null) {
+			// console.log(this.incomingDataId)
 			this.data.id = this.incomingDataId;
 		}
   }
@@ -68,7 +69,13 @@ export class FormConfirmComponent {
 		} if(message == 'Password salah') {
       alert("Password salah")
    		this.statusDataConfirm = 1;
-   	}					
+   	}	else if(message == 'Transaksi tidak ditemukan'){
+      alert("Transaksi tidak ditemukan")
+   		this.statusDataConfirm = 1;
+   	}	else{
+      alert("Verifikasi salah")
+   		this.statusDataConfirm = 1;
+   	}		
   }
 
   handleSuccess(){
