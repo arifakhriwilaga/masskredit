@@ -192,7 +192,7 @@
           <div align="center">
             <span class="input-group-addon">
               <input type="checkbox" [checked]="isOn === dataIsOn[0].value" (change)="$event.target.checked? (isOn = dataIsOn[0].value) : (isOn = dataIsOn[1].value)">
-              <label>Saya setuju dengan syarat dan ketentuan</label>
+              <label><p class="{{ isOn > 0 ? 'not-active' : '' }}" disabled (click)="linkAgrement()">Saya setuju dengan syarat dan ketentuan</p></label>
             </span>
             <button class="btn btn-submit-invest" (click)="createInvest()" [ngClass]="{disabled:isOn === 0}" id="createLoan">Simpan</button>
           </div>
