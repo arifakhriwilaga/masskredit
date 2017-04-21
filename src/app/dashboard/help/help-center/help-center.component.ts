@@ -30,23 +30,43 @@ export class HelpCenterComponent implements OnInit{
     description: null
 	};
 
-	ngOnInit(){	}
+	ngOnInit(){	
+		jQuery("#helpForm").validate({
+		  rules: {
+        subject: {
+          required: true
+        },
+        description: {
+          required: true
+        },
+		  },
+		  messages: {
+		  	subject: "Data dibutuhkan",
+		  	description: "Data dibutuhkan"
+		  }
+		});
+	}
 
 	cancelHelp(){
 		this.router.navigateByUrl('/dashboard')
 	}
 
   createHelp(){
-		this.helpCenterService.postHelp(this.data).then(dataResponse => {
-			let message = dataResponse.meta.message;
-      let code = JSON.stringify(dataResponse.meta.code);
-      let data = dataResponse.data;
-      if(code.charAt(0) === '4') {
-        this.handleError(message);
-      } if(code.charAt(0) === '2') {
-        this.handleSuccess(data);
-      };
-		})
+    if(jQuery("#helpForm").valid()) {
+
+			this.helpCenterService.postHelp(this.data).then(dataResponse => {
+				let message = dataResponse.meta.message;
+	      let code = JSON.stringify(dataResponse.meta.code);
+	      let data = dataResponse.data;
+	      if(code.charAt(0) === '4') {
+	        this.handleError(message);
+	      } if(code.charAt(0) === '2') {
+	        this.handleSuccess(data);
+	      };
+			})
+		} else {
+			alert("Data tidak valid")
+		}
   }
 
   handleError(message:any){
