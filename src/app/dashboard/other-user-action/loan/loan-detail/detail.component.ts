@@ -67,6 +67,15 @@ export class DetailComponent {
     transaction_fee: null,
 	}
 
+	urlAgreement = 'https://masscredit-backend.stagingapps.net/docs/agreement'
+  linkAgrement(){
+    if(this.isOn === 0) {
+        return;
+    } else {
+      window.open(this.urlAgreement);
+    }
+  }
+
 	listLoan(){
 		this.router.navigateByUrl('/dashboard/other-user-action/loan');
 	}

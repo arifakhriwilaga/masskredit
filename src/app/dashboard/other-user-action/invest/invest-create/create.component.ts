@@ -96,6 +96,16 @@ export class CreateComponent {
   ];
 
 	isOn = 0;
+
+	urlAgreement = 'https://masscredit-backend.stagingapps.net/docs/agreement'
+  linkAgrement(){
+    if(this.isOn === 0) {
+        return;
+    } else {
+      window.open(this.urlAgreement);
+    }
+  }
+
 	createInvest(){
 		if(jQuery('#investForm').valid()) {
 			if(this.isOn === 0) {

@@ -21,6 +21,15 @@ export class CreateComponent {
 		private createService:CreateService
 	) { }
 
+	urlAgreement = 'https://masscredit-backend.stagingapps.net/docs/agreement'
+  linkAgrement(){
+    if(this.isOn === 0) {
+        return;
+    } else {
+      window.open(this.urlAgreement);
+    }
+  }
+
 	ngOnInit() {
 		this.getLoanCategory()
 		// validation

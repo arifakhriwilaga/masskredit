@@ -40,6 +40,15 @@ export class DetailComponent {
 	public dataDetailInvest = 0;
 	public statusDataDetail = 0;
 
+	urlAgreement = 'https://masscredit-backend.stagingapps.net/docs/agreement'
+  linkAgrement(){
+    if(this.isOn === 0) {
+        return;
+    } else {
+      window.open(this.urlAgreement);
+    }
+  }
+
 	linkInvest(){
 		this.router.navigateByUrl('/dashboard/other-user-action/invest')
 	}
