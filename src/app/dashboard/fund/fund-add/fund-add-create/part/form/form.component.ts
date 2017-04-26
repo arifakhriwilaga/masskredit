@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
@@ -75,11 +75,15 @@ export class FormComponent {
 
 	createFund() {
 		if(jQuery("#createForm").valid()) {
-			this.createService.postFundAdd(this.data);
+			this.dataFundCreate.emit(this.data);
+			// this.createService.postFundAdd(this.data);
 		}
 		else{
 			alert("Data tidak valid");
 		}
   }
+
+	@Output() dataFundCreate = new EventEmitter<any>();
+
 
 }
