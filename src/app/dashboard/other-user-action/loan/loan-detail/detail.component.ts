@@ -158,13 +158,15 @@ export class DetailComponent {
 		})
 	}
 
+	private dataOtp = { access_token : this.access_token }
+
 	formVerify:number;
 	createInvest(){
 		if(jQuery("#FormSimulation").valid()) {
 			if(this.isOn === 0) {
 				return;
 			} else {
-				this.formVerify = 1;
+				this.detailService.getOtp(this.dataOtp).then(dataResponse => { this.formVerify = 1; })
 			}
 		} else {
 			alert("Data tidak valid");

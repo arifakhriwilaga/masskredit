@@ -202,12 +202,14 @@ export class DetailComponent {
 
 	formVerify:number;
 
+	// objek request Get No Reference
+	private dataOtp = { access_token : this.access_token }
 	createLoan(){
 		if(jQuery("#FormSimulation").valid()) {
 			if(this.isOn === 0) {
 				return;
 			} else {
-				this.formVerify = 1;
+				this.detailService.getOtp(this.dataOtp).then(dataResponse => { this.formVerify = 1; })
 			}
 		}
 		else{
