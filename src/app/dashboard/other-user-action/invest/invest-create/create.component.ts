@@ -106,17 +106,21 @@ export class CreateComponent {
     }
   }
 
+	access_token = JSON.parse(localStorage.getItem("access_token"));
+	// objek request Get No Reference
+	private dataOtp = { access_token : this.access_token }
 	createInvest(){
 		if(jQuery('#investForm').valid()) {
 			if(this.isOn === 0) {
 				return;
 			} else {
 				try {
-					let due_date = jQuery('#due_date').val();
-					let changeDate = due_date.split('-');
-					let newDate:string = changeDate[2]+"-"+changeDate[1]+"-"+changeDate[0];
-					this.invest.due_date = newDate;
-				
+					this.createService.getOtp(this.dataOtp).then(dataResponse => {
+						let due_date = jQuery('#due_date').val();
+						let changeDate = due_date.split('-');
+						let newDate:string = changeDate[2]+"-"+changeDate[1]+"-"+changeDate[0];
+						this.invest.due_date = newDate;
+					})
 				} finally {
 					this.formVerify = 1;
 				}
