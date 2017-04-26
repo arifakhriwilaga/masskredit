@@ -83,4 +83,35 @@ export class CreateComponent implements OnInit{
 			this.data.nama_lengkap = dataProfile;
 		})
   }
+
+  dataCreate:any;
+  statusDataFundCreate:number;
+  dataFundCreate(data:any){
+  	if (data) {
+	  	this.createService.getOtp(this.dataNoReferenceProfile).then(dataOtp => {
+	  		let message = dataOtp.meta.message;
+	      let code = JSON.stringify(dataOtp.meta.code);
+	      // console.log(dataOtp.data);
+
+	      if(code.charAt(0) === '4') {
+	        this.handleError(message);
+	      } if(code.charAt(0) === '2') {
+	        this.handleSuccess(data);
+	      };
+			})
+  	} else {
+  		alert("Penambahan dana gagal");
+  	}
+  }
+
+  handleError(message:any){
+  	if(message === 'unauthorized') {      
+      this.router.navigate(['/dashboard/sign-out']);
+    }          
+  }
+
+  handleSuccess(data:any){
+  	this.dataCreate = data
+  	this.statusDataFundCreate = 1;
+  }
 }
