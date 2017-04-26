@@ -23,6 +23,15 @@ export class CreateService {
 		.catch(this.handleError);
 	}
 
+	otpUrl = 'https://masscredit-api.stagingapps.net/other-user/investment/otp';
+
+	getOtp(data:any): Promise<any>{
+		return this.http.post(this.otpUrl,data,this.options)
+		.toPromise()
+		.then(response => response.json())
+		.catch(this.handleError);
+	}
+
 	handleError(err){
 		var error = JSON.parse(err._body);
     return error;

@@ -28,6 +28,15 @@ export class CreateService {
     return error;
  	}
 
+ 	otpUrl = 'https://masscredit-api.stagingapps.net/other-user/loan/otp';
+
+	getOtp(data:any): Promise<any>{
+		return this.http.post(this.otpUrl,data,this.options)
+		.toPromise()
+		.then(response => response.json())
+		.catch(this.handleError);
+	}
+
 	categoryUrl = 'https://masscredit-api.stagingapps.net/master/loan-category';
  	getCategory(){
  		return this.http.get(this.categoryUrl,this.options)
