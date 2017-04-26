@@ -37,6 +37,7 @@ export class VerifyComponent implements OnInit{
   	due_date: '',
   	interest: null,
   	tenor: null,
+  	otp:null,
   	password: null
 	}
 
