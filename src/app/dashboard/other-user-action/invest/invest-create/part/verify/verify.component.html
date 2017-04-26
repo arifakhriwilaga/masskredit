@@ -3,7 +3,7 @@
 	<div class="modal-content">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="hideModal()">&times;</button>
-		  <h4 class="modal-title">Masukan Password untuk verifikasi</h4>
+		  <h4 class="modal-title">Masukan Otp Password untuk verifikasi</h4>
 	  </div>
 	  <div class="modal-body">
 	   <div class="row">
@@ -14,9 +14,9 @@
 		  <div *ngIf="statusConfirm == 1">
 		  <!-- component form -->
 		  <form-verify></form-verify>
-		  <div class="col-md-6">
+		  <div class="col-md-12">
 		    <div class="form-group">
-		        <div class="col-md-12">
+		        <div class="col-md-12" align="center">
 		          <button class="btn btn-default" (click)="cancelConfirmInvest()">Batal</button>
 		          <button class="btn btn-red" (click)="confirmInvest()">Verifikasi</button>
 		        </div>

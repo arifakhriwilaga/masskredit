@@ -87,10 +87,11 @@ export class FormConfirmComponent {
 	}
 
 	confirmFund(){
-		this.confirmService.postConfirm(this.data).then(dataConfirm => {
-			alert("Penambahan berhasil, harap menunggu konfirmasi admin")
-			this.cancelConfirm();
-		})
+		console.log(this.data)
+		// this.confirmService.postConfirm(this.data).then(dataConfirm => {
+		// 	alert("Penambahan berhasil, harap menunggu konfirmasi admin")
+		// 	this.cancelConfirm();
+		// })
 	}
 
 }

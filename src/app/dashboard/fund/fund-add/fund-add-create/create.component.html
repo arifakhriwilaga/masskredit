@@ -7,6 +7,7 @@
     <span class="sr-only">Loading...</span>
   </div>
   <div *ngIf="statusDataAddFund == 1">
-    <form-add-fund [dataBanks]="banks" [dataBankMasscredits]="bankMassCredits"></form-add-fund>
+    <form-add-fund [dataBanks]="banks" [dataBankMasscredits]="bankMassCredits" (dataFundCreate)="dataFundCreate($event)"></form-add-fund>
+    <form-confirm-fund *ngIf="statusDataFundCreate == 1" [dataFundCreate]="dataCreate"></form-confirm-fund>
   </div>
 </div>
