@@ -21,24 +21,20 @@ export class CreateService {
 	})
 	private options = new RequestOptions({ headers: this.headers })
 
-	// declare object url bank
+	private otpUrl = "https://masscredit-api.stagingapps.net/user/addfund/otp";
+	getOtp(access_token:any): Promise<any>{
+	 return this.http.post(this.otpUrl,access_token,this.options)
+		.toPromise()
+		.then(response => response.json())
+		.catch(this.handleError)
+  }
+
 	private postFundUrl = 'https://masscredit-api.stagingapps.net/user/fund/add';
-	
-	// request post fund
-  postFundAdd(data:any){
-		this.http.post(this.postFundUrl,data,this.options)
-		.map(response => response.json())
-		.subscribe((response : any) => {
-			alert("Penambahan dana berhasil, harap konfirmasi dana");
-			this.router.navigateByUrl('/dashboard/fund');
-		},(err:any) => {
-			var error   = JSON.parse(err._body);
-			var message = error.meta.message;
-			if(message == "unauthorized") {
-				alert("Maaf session anda telah habis silahkan login kembali");
-				this.router.navigateByUrl('/dashboard/sign-out');
-			}	
-		});	
+	postFundAdd(data:any){
+		return this.http.post(this.postFundUrl,data,this.options)
+			.toPromise()
+			.then(response => response.json())
+			.catch(this.handleErrorFundAdd)	
   }
 
 	private bankMassCreditUrl = "https://masscredit-api.stagingapps.net/master/bank-masscredit";
@@ -81,5 +77,10 @@ export class CreateService {
 			alert("Maaf session anda telah habis silahkan login kembali")
 			return this.router.navigateByUrl('/dashboard/sign-out')					
 		}
+	}
+
+	handleErrorFundAdd(err){
+		var error = JSON.parse(err._body);
+    return error;
 	}
 }

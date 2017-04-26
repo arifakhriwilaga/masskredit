@@ -31,6 +31,7 @@ export class VerifyComponent implements OnInit{
   	amount: null,
   	interest: null,
   	tenor: null,
+  	otp:null,
   	password: null
 	};
 
@@ -48,6 +49,7 @@ export class VerifyComponent implements OnInit{
 		if(jQuery("#confirmInvestForm").valid()) {
 			this.statusConfirm = 0;
 			this.verifyService.createInvest(this.dataInvest).then(dataResponse => {
+				// console.log(dataResponse);
 				let message = dataResponse.meta.message;
 				let code = JSON.stringify(dataResponse.meta.code);
 				// console.log(dataResponse)
