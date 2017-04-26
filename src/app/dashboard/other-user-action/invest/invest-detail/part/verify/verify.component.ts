@@ -25,6 +25,7 @@ export class VerifyComponent implements OnInit{
 		access_token: null,
 		invest_id: null,
 		loan_amount : null,
+		otp:null,
 		password: null
 	};
 
@@ -60,6 +61,8 @@ export class VerifyComponent implements OnInit{
 		try {
 			if(message == 'Jumlah yang anda masukan melebihi jumlah invest.') {
 	      alert("Jumlah yang anda masukan melebihi jumlah invest.");
+	   	}else if(message == 'Verifikasi salah.') {
+	      alert("Verifikasi salah.");
 	   	} else if(message.match(/Jumlah jaminan anda tidak mencukupi./)){
 	   		alert("Jumlah jaminan anda tidak mencukupi.");
 	   	}else {
