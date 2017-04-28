@@ -38,8 +38,8 @@ export class CreateComponent implements OnInit{
 		no_reference:"",
 		nama_lengkap:"",
 		bank_id:0,
-		no_rekening:null,
-		amount:null,
+		no_rekening:"",
+		amount:"",
 		nama_bank_lainnya:"",
 		id_bank_masscredit:0,
 	};
