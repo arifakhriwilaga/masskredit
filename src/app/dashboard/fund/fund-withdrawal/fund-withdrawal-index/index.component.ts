@@ -27,7 +27,7 @@ export class IndexComponent {
 	public pages:any = []; 
  	public per_page = null;
  	public totalPages = null;
- 	public limit = 5;
+ 	public limit = 9999999;
  	public page  = 1;
  	public currentPage:number;
  	public statusPaging:boolean;

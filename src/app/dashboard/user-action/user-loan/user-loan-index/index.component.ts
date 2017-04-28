@@ -22,7 +22,7 @@ export class IndexComponent {
 	private data = {
 		access_token : JSON.parse(localStorage.getItem("access_token")),
 		page:1,
-    limit:10
+    limit:999999
 	}
 
 	private loans:Loans[];
