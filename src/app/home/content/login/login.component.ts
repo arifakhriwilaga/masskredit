@@ -18,7 +18,7 @@ export class LoginComponent {
 	private user = { User };
 
 	ngOnInit(){
-		jQuery('#username').mask('000-000-000000');
+		jQuery('#username').mask('0000-0000-00000');
 	}
 
 	login(){
