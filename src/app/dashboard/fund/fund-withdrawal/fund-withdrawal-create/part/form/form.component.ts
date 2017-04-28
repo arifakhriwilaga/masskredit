@@ -49,7 +49,7 @@ export class FormComponent {
 		    }
 		  },
 		  messages: {
-		  	amount: "Data dibutuhkan"
+		  	amount: "Masukan nominal penarikan dana."
 		  }
 		});
 
@@ -58,11 +58,15 @@ export class FormComponent {
 	}
 
   cancelWithdrawal(){
-  	this.router.navigateByUrl('/dashboard/fund');
+  	this.router.navigateByUrl('/dashboard/fund/fund-withdrawal');
   }
 
+  loader:boolean;
   createWithdrawal(data) {
 		if(jQuery("#createForm").valid()) {
+			this.loader = true;
+	    jQuery('#createWithdrawal').prop('disabled', true);
+
     	this.formService.postCreate(this.data).then(dataResponse => {
   		let message = dataResponse.meta.message;
 	    let code = JSON.stringify(dataResponse.meta.code);
@@ -88,6 +92,9 @@ export class FormComponent {
   	} else {
   		alert(message)
   	}
+  	this.loader = false;
+	  jQuery('#createWithdrawal').prop('disabled', false);
+
   }
   
   handleSuccess(data:any){
