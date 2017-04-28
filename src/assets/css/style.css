@@ -2269,7 +2269,7 @@ label.name-form {
     background-color: #f1c40f;
     color: #34495e;
     border: none;
-    width: 90px;
+    width: 100px;
     height: 40px;
     line-height: 44px;
     border-radius: 5px;
@@ -2337,6 +2337,41 @@ label.name-form {
     font-size: 13px;
 }
 
+.btn-create-fund {
+    background-color: #f1c40f;
+    color: #34495e;
+    border: none;
+    width: 90px;
+    height: 40px;
+    line-height: 44px;
+    border-radius: 5px;
+    padding: 0px;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    font-size: 13px;
+}
+
+.btn-create-fund[disabled] {
+    background-color: #f1c40f;
+    color: #34495e;
+    border: none;
+    width: 90px;
+    height: 40px;
+    line-height: 44px;
+    border-radius: 5px;
+    padding: 0px;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.btn-create-fund:hover:enabled {
+    opacity: 0.9;
+}
+
 .btn-calculation-loan {
     background-color: #f1c40f;
     color: #34495e;
@@ -2384,3 +2419,4 @@ label.name-form {
 .not-active:hover{
    color : #f1c40f;
 }
+
