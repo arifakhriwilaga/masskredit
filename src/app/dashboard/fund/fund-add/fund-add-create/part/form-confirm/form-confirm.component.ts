@@ -31,8 +31,8 @@ export class FormConfirmFundComponent {
 		amount:null,
 		nama_bank_lainnya:"",
 		id_bank_masscredit:0,
-		otp:null,
-		password:null
+		otp:"",
+		password:""
 	};
 
 
