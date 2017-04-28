@@ -38,7 +38,8 @@ export class FormComponent {
 		      required: true
 		    },
 		    no_rekening: {
-		      required: true
+		      required: true,
+		      minlength: 10
 		    },
 		    amount: {
 		      required: true
@@ -46,6 +47,15 @@ export class FormComponent {
 		    tujuan_bank: {
 		      required: true
 		    },
+		  },
+		  messages: {
+		  	bank_name : "Pilih bank.",
+		  	tujuan_bank : "Pilih bank tujuan.",
+		  	no_rekening : {
+		  		required: "Field ini harus diisi.",
+		  		minlength :"Masukan no rekening yang valid."
+		  	},
+		  	amount : "Field ini harus diisi."
 		  }
 		});
 
@@ -73,17 +83,15 @@ export class FormComponent {
   	return this.router.navigateByUrl('/dashboard/fund');
   }
 
-	createFund() {
-		if(jQuery("#createForm").valid()) {
-			this.dataFundCreate.emit(this.data);
-			// this.createService.postFundAdd(this.data);
-		}
-		else{
-			alert("Data tidak valid");
-		}
-  }
-
 	@Output() dataFundCreate = new EventEmitter<any>();
+	loader:boolean;
+	createFund() {
 
+		if(jQuery("#createForm").valid()) {	
+			this.loader = true
+			this.dataFundCreate.emit(this.data);
+		
+		} else { alert("Data tidak valid"); }
+  }
 
 }
