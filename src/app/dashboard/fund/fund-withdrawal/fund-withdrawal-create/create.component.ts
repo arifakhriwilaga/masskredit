@@ -33,7 +33,7 @@ export class CreateComponent implements OnInit{
   	nama_lengkap : null,
   	bank_id : null,
 		no_rekening	: null,
-		amount : null,
+		amount : "",
 	}
 
 
