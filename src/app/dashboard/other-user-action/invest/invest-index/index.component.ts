@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
 	private data = {
 		access_token : JSON.parse(localStorage.getItem("access_token")),
 		page:1,
-    limit:10
+    limit:999999
 	}
 
 	invest : Invest[];
@@ -27,27 +27,29 @@ export class IndexComponent implements OnInit {
 	private dataArrayNull = 0;
 	private timer;
 	ngOnInit(){
-		// this.timedCount();
-		this.timer =	setTimeout(() => {this.getListInvests()},1500);
+		this.timedCount();
 	}
 
 	private number = 0;
 	timedCount(){
-		// var numberTwo = this.number + 1;
 		var numberTwo = this.number += 1;
+		// console.log(numberTwo)
 
-		if (numberTwo == 5) {
+		if (numberTwo == 130 && this.invest == undefined) {
         window.clearTimeout(this.timer);
-        this.dataListInvest = 1;
-        // con: false; 
+        this.dataListInvest = -1;
         return false;
     }
 
 		this.timer = setTimeout(() => {
+			if (this.invest != undefined) {
+				this.dataListInvest = 1;
+        return false;
+			}
+				// console.log(this.invest)
+				this.getListInvests()
 		    this.timedCount();
-    }, 100);
-
-    
+    }, 200);  
 	}
 
 	handleError(message:any){
