@@ -23,8 +23,8 @@ export class FormConfirmComponent {
 	public data = {
 		access_token: JSON.parse(localStorage.getItem("access_token")),
 		id: this.incomingDataId,
-		verification_code: null,
-		password: null
+		verification_code: "",
+		password: ""
 	};
 
 	private statusDataConfirm = 1;
@@ -41,7 +41,7 @@ export class FormConfirmComponent {
   }
 
   confirmWithdrawal(data) {
-		if(jQuery("#confirmForm").valid()) {
+		if(this.data.password != "" && this.data.verification_code != "") {
 			this.statusDataConfirm = 0;
 			this.confirmService.postConfirm(this.data)
 	  	.then(metaConfirm => {
