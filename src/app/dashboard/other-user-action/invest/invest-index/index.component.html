@@ -66,6 +66,15 @@
     </div>
     </div>
   </div>
+  <div  *ngIf="dataListInvest == -1">
+    <div class="container">
+      <div class="col-xs-12" align="center">
+      <br>
+      <br>
+      <p>Mohon periksa jaringan internet anda.</p>
+      </div>
+    </div>
+  </div>
   <br>
   <div align="center" *ngIf="dataListInvest == 0"> 
     <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
