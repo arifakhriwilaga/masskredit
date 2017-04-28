@@ -77,6 +77,6 @@
   </form>
   <div class="col-md-12 col-center">
     <button class="btn-back-fund" (click)="cancelFund()">Batal</button>
-    <button class="btn-submit-fund" id="createFund" type="submit" (click)="createFund()">Simpan</button>
+    <button class="btn-submit-fund" name="createFund" id="createFund" type="submit" (click)="createFund()">Tambah <i *ngIf="loader == true" class="fa fa-spinner ld ld-cycle"></i></button>
   </div>
 </div>
