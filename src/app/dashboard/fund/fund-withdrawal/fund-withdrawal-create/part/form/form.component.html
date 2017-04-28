@@ -30,7 +30,7 @@
   </form>
   <div class="col-md-12 col-center">
     <button class="btn-back-fund" (click)="cancelWithdrawal()">Batal</button>
-    <button class="btn-submit-fund" id="createWithdrawal" name="singlebutton" type="submit" (click)="createWithdrawal(data)">Simpan</button>
+    <button class="btn-submit-fund" id="createWithdrawal" name="singlebutton" type="submit" (click)="createWithdrawal(data)">Tarik <i *ngIf="loader == true" class="fa fa-spinner ld ld-cycle"></i></button>
   </div>
   <!-- component confirm after user success withdrawal fund -->
   <form-confirm *ngIf="statusFormConfirm == 1" [dataId]="idWithdrawal" ></form-confirm>

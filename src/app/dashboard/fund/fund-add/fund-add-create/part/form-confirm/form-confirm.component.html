@@ -29,7 +29,7 @@
         <div class="form-group">
         <div class="col-md-6 col-center">
           <button class="btn btn-default" (click)="cancelAddFund()">Batal</button>
-          <button class="btn btn-red" (click)="confirmAddFund()">Verifikasi</button>
+          <button class="btn btn-red" (click)="confirmAddFund()">Verifikasi <i *ngIf="loader == true" class="fa fa-spinner ld ld-cycle"></i></button>
         </div>
         </div>
         </div>
