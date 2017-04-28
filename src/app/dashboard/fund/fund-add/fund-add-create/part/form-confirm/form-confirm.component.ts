@@ -55,22 +55,41 @@ export class FormConfirmFundComponent {
 		this.data.id_bank_masscredit = this.dataFund.id_bank_masscredit;
   }
 
+	private timer;
+
+	loader:boolean
   confirmAddFund() {
-		if(jQuery("#confirmForm").valid()) {
-			// console.log(this.data)
+		if(this.data.otp != "" && this.data.password != "") {
+		this.loader = true
+    jQuery('#createFund').prop('disabled', true);
 
-			this.createService.postFundAdd(this.data).then(dataResponse => {
-				
-				let message = dataResponse.meta.message;
-	      let code = JSON.stringify(dataResponse.meta.code);
-	      let data = dataResponse.data;
+			let timeCount =	function(){
+				var numberTwo = this.number += 1;
 
-	      if(code.charAt(0) === '4') {
-	        this.handleError(message);
-	      } if(code.charAt(0) === '2') {
-	        this.handleSuccess();
-	      };
-			})
+				if (numberTwo == 130) {
+		        window.clearTimeout(this.timer);
+		        alert("Mohon periksa jaringan internet anda.");
+		        return false;
+		    }
+
+				this.timer = setTimeout(() => {
+					// console.log(this.invest)
+					this.timedCount();
+					this.createService.postFundAdd(this.data).then(dataResponse => {
+						
+						let message = dataResponse.meta.message;
+			      let code = JSON.stringify(dataResponse.meta.code);
+			      let data = dataResponse.data;
+
+			      if(code.charAt(0) === '4') {
+			        this.handleError(message);
+			      } if(code.charAt(0) === '2') {
+			        this.handleSuccess();
+			      };
+					})
+		    }, 200);  
+			}
+
 		}
 		else{
 			alert("Data tidak valid");
